@@ -35,28 +35,28 @@
 				<section class="col-3-4">
 					<div class="wrap-col">
 						<h2 class="under"><cufon class="cufon cufon-canvas" alt="Contact " style="width: 119px; height: 40px;"><canvas width="154" height="48" style="width: 154px; height: 48px; top: -8px; left: -2px;"></canvas><cufontext>Contact </cufontext></cufon><cufon class="cufon cufon-canvas" alt="form" style="width: 68px; height: 40px;"><canvas width="84" height="48" style="width: 84px; height: 48px; top: -8px; left: -2px;"></canvas><cufontext>form</cufontext></cufon></h2>
-						<form method="post" id="ContactForm">
+						{{ Form::open(array('url' => '','id' =>'ContactForm')) }}
 							<div>
 								<div class="wrapper">
-									<span>Your Name:</span>
-									<input type="text" class="input">
+									<span>{{ Form::label('name','Your Name:') }}</span>
+									{{ Form::text('name','',array('class'=>'input')) }}
 								</div>
 								<div class="wrapper">
-									<span>Your City:</span>
-									<input type="text" class="input">
+									<span>{{ Form::label('city','Your City:') }}</span>
+									{{ Form::text('city','',array('class'=>'input')) }}
 								</div>
 								<div class="wrapper">
-									<span>Your E-mail:</span>
-									<input type="text" class="input">
+									<span>{{ Form::label('email','Your E-mail:') }}</span>
+									{{ Form::text('email','',array('class'=>'input')) }}
 								</div>
 								<div class="textarea_box">
-									<span>Your Message:</span>
-									<textarea rows="1" cols="1" name="textarea"></textarea>
+									<span>{{ Form::label('message','Your Message:') }}</span>
+									{{ Form::textarea('message','',array('cols' => '1','rows' => '1')) }}
 								</div>
-								<a onclick="document.getElementById('ContactForm').submit()" href="#">Send</a>
-								<a onclick="document.getElementById('ContactForm').reset()" href="#">Clear</a>
+								{{ HTML::link('#','Send',array('onclick'=>"document.getElementById('ContactForm').submit()")) }}
+								{{ HTML::link('#','Clear',array('onclick'=>"document.getElementById('ContactForm').reset()")) }}
 							</div>
-						</form>
+						{{ Form::close() }}
 					</div>
 				</section>
 				<section class="col-1-4">
@@ -77,64 +77,6 @@
 			</div>
 
 		</article>
-	</div>
-</div>
-@stop
-
-@section('footer')
-<div class="body4">
-	<div class="main zerogrid">
-		<article id="content2">
-			<div class="wrapper row">
-				<section class="col-1-4">
-					<div class="wrap-col">
-						<h4><cufon class="cufon cufon-canvas" alt="Why " style="width: 52px; height: 26px;"><canvas width="75" height="32" style="width: 75px; height: 32px; top: -5px; left: -1px;"></canvas><cufontext>Why </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Us?" style="width: 41px; height: 26px;"><canvas width="57" height="32" style="width: 57px; height: 32px; top: -5px; left: -1px;"></canvas><cufontext>Us?</cufontext></cufon></h4>
-						<ul class="list1">
-							<li><a href="#">Lorem ipsum dolor sit</a></li>
-							<li><a href="#">Dmet, consectetur</a></li>
-							<li><a href="#">Adipisicing elit eiusmod </a></li>
-							<li><a href="#">Tempor incididunt ut</a></li>
-						</ul>
-					</div>
-				</section>
-				<section class="col-1-4">
-					<div class="wrap-col">
-						<h4><cufon class="cufon cufon-canvas" alt="Address" style="width: 83px; height: 26px;"><canvas width="101" height="32" style="width: 101px; height: 32px; top: -5px; left: -1px;"></canvas><cufontext>Address</cufontext></cufon></h4>
-						<ul class="address">
-							<li><span>Country:</span>USA</li>
-							<li><span>City:</span>San Diego</li>
-							<li><span>Phone:</span>8 800 154-45-67</li>
-							<li><span>Email:</span><a href="mailto:">progress@mail.com</a></li>
-						</ul>
-					</div>
-				</section>
-				<section class="col-1-4">
-					<div class="wrap-col">
-						<h4><cufon class="cufon cufon-canvas" alt="Follow " style="width: 72px; height: 26px;"><canvas width="94" height="32" style="width: 94px; height: 32px; top: -5px; left: -1px;"></canvas><cufontext>Follow </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Us" style="width: 28px; height: 26px;"><canvas width="45" height="32" style="width: 45px; height: 32px; top: -5px; left: -1px;"></canvas><cufontext>Us</cufontext></cufon></h4>
-						<ul id="icons">
-							<li><a href="#"><img alt="" src="images/icon1.jpg">Facebook</a></li>
-							<li><a href="#"><img alt="" src="images/icon2.jpg">Twitter</a></li>
-							<li><a href="#"><img alt="" src="images/icon3.jpg">LinkedIn</a></li>
-							<li><a href="#"><img alt="" src="images/icon4.jpg">Delicious</a></li>
-						</ul>
-					</div>
-				</section>
-				<section class="col-1-4">
-					<div class="wrap-col">
-						<h4><cufon class="cufon cufon-canvas" alt="Newsletter" style="width: 106px; height: 26px;"><canvas width="128" height="32" style="width: 128px; height: 32px; top: -5px; left: -1px;"></canvas><cufontext>Newsletter</cufontext></cufon></h4>
-						<form method="post" id="newsletter">
-							<div>
-								<div class="wrapper">
-									<input type="text" onfocus="if(this.value =='Type Your Email Here' ) this.value=''" onblur="if(this.value=='') this.value='Type Your Email Here'" value="Type Your Email Here" class="input">
-								</div>
-								<a onclick="document.getElementById('newsletter').submit()" class="button" href="#">Subscribe</a>
-							</div>
-						</form>
-					</div>
-				</section>
-			</div>
-		</article>
-		<!-- content end -->
 	</div>
 </div>
 @stop
