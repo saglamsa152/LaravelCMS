@@ -7,7 +7,7 @@
 				<!-- header -->
 				<header>
 					<div class="wrapper row">
-						<h1><a id="logo" href="{{ URL::route('home') }}"><img src="{{ URL::asset('assets/assets/images/logo.png') }}"></a></h1>
+						<h1><a id="logo" href="{{ URL::route('home') }}"><img src="{{ URL::asset('assets/images/logo.png') }}"></a></h1>
 						<nav>
 							<ul id="menu">
 								<li id="nav1"><a href="{{ URL::route('home') }}">Home<span>Welcome!</span></a></li>

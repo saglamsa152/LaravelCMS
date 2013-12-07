@@ -16,3 +16,5 @@ Route::get( '/news',array('as'=>'news','uses'=>'NewsController@index'));
 Route::get( '/services',array('as'=>'services','uses'=>'ServicesController@index'));
 Route::get( '/products',array('as'=>'products','uses'=>'ProductsController@index'));
 Route::get( '/contacts',array('as'=>'contacts','uses'=>'ContactsController@index'));
+Route::get( '/admin',array('as'=>'admin','uses'=>'AdminController@index'));
+Route::get( '/admin/users',array('as'=>'admin/users','uses'=>'AdminController@listUser'));

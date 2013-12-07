@@ -85,10 +85,10 @@
 					<div class="wrap-col">
 						<h4><cufon class="cufon cufon-canvas" alt="Follow " style="width: 72px; height: 26px;"><canvas width="94" height="32" style="width: 94px; height: 32px; top: -5px; left: -1px;"></canvas><cufontext>Follow </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Us" style="width: 28px; height: 26px;"><canvas width="45" height="32" style="width: 45px; height: 32px; top: -5px; left: -1px;"></canvas><cufontext>Us</cufontext></cufon></h4>
 						<ul id="icons">
-							<li><a href="#"><img alt="" src="images/icon1.jpg">Facebook</a></li>
-							<li><a href="#"><img alt="" src="images/icon2.jpg">Twitter</a></li>
-							<li><a href="#"><img alt="" src="images/icon3.jpg">LinkedIn</a></li>
-							<li><a href="#"><img alt="" src="images/icon4.jpg">Delicious</a></li>
+							<li><a href="#"><img alt="" src="{{ URL::asset('assets/images/icon1.jpg')}}">Facebook</a></li>
+							<li><a href="#"><img alt="" src="{{ URL::asset('assets/images/icon2.jpg')}}">Twitter</a></li>
+							<li><a href="#"><img alt="" src="{{ URL::asset('assets/images/icon3.jpg')}}">LinkedIn</a></li>
+							<li><a href="#"><img alt="" src="{{ URL::asset('assets/images/icon4.jpg')}}">Delicious</a></li>
 						</ul>
 					</div>
 				</section>
