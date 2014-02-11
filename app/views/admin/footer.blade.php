@@ -1,9 +1,9 @@
-<?php if(!isset($no_visible_elements) || !$no_visible_elements)	{ ?>
+@if(Auth::check())
 	<!-- content ends -->
 	</div><!--/#content.span10-->
-<?php } ?>
+@endif
 </div><!--/fluid-row-->
-<?php if(!isset($no_visible_elements) || !$no_visible_elements)	{ ?>
+@if(Auth::check())
 
 	<hr>
 
@@ -25,14 +25,14 @@
 		<p class="pull-left">&copy; <a href="http://usman.it" target="_blank">Muhammad Usman</a> <?php echo date('Y') ?></p>
 		<p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Charisma</a></p>
 	</footer>
-<?php } ?>
+@endif
 
 </div><!--/.fluid-container-->
 
 <!-- external javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-
+<!-- Bunların bu  kadar çok olması hoş değil sadece gerekli olanların yüklenmesini  sağlayan bir fonksiyon hazırlamalı-->
 <!-- jQuery -->
 {{ HTML::script('assets/admin/js/jquery-1.7.2.min.js') }}
 <!-- jQuery UI -->

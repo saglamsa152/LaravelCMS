@@ -35,7 +35,7 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::guest('login');
+	if (Auth::guest()) return Redirect::guest('admin/login')->withErrors(array('Bu işlemi yapabilmek için sisteme giriş yapmalısınız.'));
 });
 
 

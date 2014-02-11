@@ -161,7 +161,7 @@
 			<p>Time between updates: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> milliseconds</p>
 		</div>
 	</div><!--/span-->
-</div><!--/row-->
+</div><!--/row -->
 
 <div class="row-fluid sortable">
 	<div class="box span4">

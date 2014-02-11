@@ -6,6 +6,11 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
+	 * toplu atama yaparken hangi alanların kullanılacağını belirler (laravel kitap s145)
+	 * @var array
+	 */
+	protected $fillable = array('username', 'email', 'password','role', 'created_at', 'created_ip');
+	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
