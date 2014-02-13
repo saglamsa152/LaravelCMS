@@ -1,4 +1,5 @@
 <?php
+
 class AdminController extends BaseController {
 	/**
 	 * admin ana sayfasına yönlendirir
@@ -17,6 +18,16 @@ class AdminController extends BaseController {
 	}
 
 	/**
+	 *
+	 */
+	public function listPost() {
+		/*
+		 * todo Post sınıfı  bulunamıyor view içinde kullansamda burada kullansamda
+		 */
+		return View::make( 'admin/posts');
+	}
+
+	/**
 	 * Admin panel giriş sayfasını gösterir
 	 * @return mixed
 	 */
@@ -31,14 +42,14 @@ class AdminController extends BaseController {
 
 		// FORM KONTROLLERİNİ BELİRLEYELİM
 		$rules = array(
-			'username' => 'required',
-			'password' => 'required'
+				'username' => 'required',
+				'password' => 'required'
 		);
 
 		// HATA MESAJLARINI OLUŞTURALIM
 		$messages = array(
-			'username.required' => 'Lütfen kullanıcı adınızı yazın',
-			'password.required' => 'Lütfen şifrenizi yazın'
+				'username.required' => 'Lütfen kullanıcı adınızı yazın',
+				'password.required' => 'Lütfen şifrenizi yazın'
 		);
 		// Kontrol (Validation) işlemlerini gerçekleştirelim
 		$validator = Validator::make( $postData, $rules, $messages );
@@ -49,13 +60,13 @@ class AdminController extends BaseController {
 		}
 		else {
 			//kontroller doğruysa böyle bir kullanıcı olup olmadığına bakalım
-			if ( Auth::attempt( array( 'username' => $postData['username'], 'password' => $postData['password'] ),$remember ) ) {
+			if ( Auth::attempt( array( 'username' => $postData['username'], 'password' => $postData['password'] ), $remember ) ) {
 				//oturum açılmış oldu
 				return Redirect::intended( 'admin' );
 			}
 			else {
 				//girilen bilgiler hatalı mesajı verelim
-				return Redirect::route( 'loginForm' )->withInput->withErrors( array( 'Girdiğiniz bilgiler yanlış' ) );
+				return Redirect::route( 'loginForm' )->withInput()->withErrors( array( 'Girdiğiniz bilgiler yanlış' ) );
 			}
 		}
 	}
@@ -73,23 +84,23 @@ class AdminController extends BaseController {
 		$postData = Input::all();
 
 		$rules     = array(
-			'email'                 => 'required|email|unique:users',
-			'username'              => 'required|min:3|alpha_dash|unique:users',
-			'password'              => 'required|min:4|confirmed',
-			'password_confirmation' => 'required'
+				'email'                 => 'required|email|unique:users',
+				'username'              => 'required|min:3|alpha_dash|unique:users',
+				'password'              => 'required|min:4|confirmed',
+				'password_confirmation' => 'required'
 		);
 		$messages  = array(
-			'username.required'              => 'Lütfen kullanıcı adınızı yazın',
-			'username.min'                   => 'Kullanıcını adınız en az 3 karakterden oluşmalıdır',
-			'username.unique'                => 'Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı yazın',
-			'username.alpha_dash'            => 'Lütfen özel karakter ve boşluk içermeyen kullanıcı adı yazın',
-			'email.required'                 => 'Lütfen mail adresinizi yazın',
-			'email.email'                    => 'Lütfen geçerli bir mail adresi yazın',
-			'email.unique'                   => 'Bu mail adresi zaten kullanılıyor. Lütfen başka bir mail adresi yazın',
-			'password.required'              => 'Lütfen şifrenizi yazın',
-			'password.min'                   => 'Şifreniz minumum 4 karakterden oluşmalıdır',
-			'password.confirmed'             => 'Girdiğiniz şifreler birbiriyle eşleşmiyor',
-			'password_confirmation.required' => 'Lütfen şifrenizi doğrulayın'
+				'username.required'              => 'Lütfen kullanıcı adınızı yazın',
+				'username.min'                   => 'Kullanıcını adınız en az 3 karakterden oluşmalıdır',
+				'username.unique'                => 'Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı yazın',
+				'username.alpha_dash'            => 'Lütfen özel karakter ve boşluk içermeyen kullanıcı adı yazın',
+				'email.required'                 => 'Lütfen mail adresinizi yazın',
+				'email.email'                    => 'Lütfen geçerli bir mail adresi yazın',
+				'email.unique'                   => 'Bu mail adresi zaten kullanılıyor. Lütfen başka bir mail adresi yazın',
+				'password.required'              => 'Lütfen şifrenizi yazın',
+				'password.min'                   => 'Şifreniz minumum 4 karakterden oluşmalıdır',
+				'password.confirmed'             => 'Girdiğiniz şifreler birbiriyle eşleşmiyor',
+				'password_confirmation.required' => 'Lütfen şifrenizi doğrulayın'
 		);
 		$validator = Validator::make( $postData, $rules, $messages );
 
@@ -98,11 +109,11 @@ class AdminController extends BaseController {
 		}
 		else {
 			$user = User::create( array(
-				'username'   => $postData['username'],
-				'email'      => $postData['email'],
-				'password'   => Hash::make( $postData['password'] ),
-				'role'       => 'user',
-				'created_ip' => Request::getClientIp()
+					'username'   => $postData['username'],
+					'email'      => $postData['email'],
+					'password'   => Hash::make( $postData['password'] ),
+					'role'       => 'user',
+					'created_ip' => Request::getClientIp()
 			) );
 
 			//oturum açalım
@@ -111,9 +122,9 @@ class AdminController extends BaseController {
 		}
 	}
 
-	public function showProfile($id=null){
-		is_null($id)? $id=Auth::user()->id: $id=$id;
-		$user=User::find($id);
-		return View::make('admin.profil')->with('user',$user);
+	public function showProfile( $id = null ) {
+		is_null( $id ) ? $id = Auth::user()->id : $id = $id;
+		$user = User::find( $id );
+		return View::make( 'admin.profil' )->with( 'user', $user );
 	}
 }

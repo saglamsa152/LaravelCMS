@@ -18,6 +18,7 @@ Route::get( '/products',array('as'=>'products','uses'=>'ProductsController@index
 Route::get( '/contacts',array('as'=>'contacts','uses'=>'ContactsController@index'));
 Route::get( '/admin',array('as'=>'admin','uses'=>'AdminController@index','before'=>'auth'));
 Route::get( '/admin/users',array('as'=>'admin/users','uses'=>'AdminController@listUser','before'=>'auth'));
+Route::get( '/admin/posts',array('as'=>'admin/posts','uses'=>'AdminController@listPost','before'=>'auth'));
 Route::get( '/admin/login',array('as'=>'loginForm','uses'=>'AdminController@loginForm'));
 Route::post( '/admin/login',array('as'=>'login','uses'=>'AdminController@login','before'=>'csrf'));
 Route::get( '/admin/register',array('as'=>'registerForm','uses'=>'AdminController@registerForm'));
