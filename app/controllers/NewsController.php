@@ -2,6 +2,7 @@
 class NewsController extends BaseController {
 
 	public function index() {
-		return View::make( 'news/index' );
+		$posts=Post::where('type','=','news')->paginate(5);
+		return View::make( 'news/index' )->with('posts',$posts);
 	}
 }

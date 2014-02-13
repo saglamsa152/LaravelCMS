@@ -13,12 +13,13 @@ class PostsCreateTable extends Migration {
 	{
 		Schema::create('posts',function($table){
 			$table->increments('id');
-			$table->integer('author')->unique();
+			$table->string('author',64);
 			$table->text('content');
 			$table->text('title');
 			$table->text('excerpt');
 			$table->string('status',15);
 			$table->string('type',30);
+			$table->string('url',255)->unique();
 			$table->timestamps();
 			$table->string('created_ip', 15);
 		});
@@ -31,7 +32,7 @@ class PostsCreateTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('posts');
 	}
 
 }

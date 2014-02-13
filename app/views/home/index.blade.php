@@ -77,7 +77,7 @@
 					<div class="wrap-col">
 						<h2 class="under"><cufon class="cufon cufon-canvas" alt="Welcome, " style="width: 152px; height: 40px;"><canvas width="188" height="48" style="width: 188px; height: 48px; top: -8px; left: -2px;"></canvas><cufontext>Welcome, </cufontext></cufon><cufon class="cufon cufon-canvas" alt="dear " style="width: 71px; height: 40px;"><canvas width="107" height="48" style="width: 107px; height: 48px; top: -8px; left: -2px;"></canvas><cufontext>dear </cufontext></cufon><cufon class="cufon cufon-canvas" alt="visitor!" style="width: 94px; height: 40px;"><canvas width="129" height="48" style="width: 129px; height: 48px; top: -8px; left: -2px;"></canvas><cufontext>visitor!</cufontext></cufon></h2>
 						<div class="wrapper">
-							<figure class="left marg_right1"><img alt="" src="images/page1_img1.jpg"></figure>
+							<figure class="left marg_right1"><img alt="" src="{{URL::asset('assets/images/page1_img1.jpg')}}"></figure>
 							<p class="pad_bot1">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa.</p>
 							<p>
 								Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
