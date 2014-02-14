@@ -68,7 +68,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="{{ URL::route('admin') }}">
+			<a class="brand" href="{{ URL::action('AdminController@getIndex') }}">
 				<img alt="Charisma Logo" src="{{URL::asset('assets/admin/img/logo20.png') }}" /> <span>Charisma</span></a>
 
 			<!-- theme selector starts -->
@@ -100,7 +100,7 @@
 				<ul class="dropdown-menu">
 					<li><a href="{{URL::action('AdminController@showProfile',Auth::user()->id)}}">Profile</a></li>
 					<li class="divider"></li>
-					<li>{{link_to_route('logout','Logout')}}</li>
+					<li>{{link_to_action('AdminController@getLogout','Logout')}}</li>
 				</ul>
 			</div>
 			<!-- user dropdown ends -->
@@ -131,13 +131,13 @@
 				<ul class="nav nav-tabs nav-stacked main-menu">
 					<li class="nav-header hidden-tablet">Main</li>
 					<li>
-						<a class="ajax-link" href="{{URL::route('admin')}}"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getIndex')}}"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::route('admin/users')}}"><i class="icon-user"></i><span class="hidden-tablet">Users</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getUsers')}}"><i class="icon-user"></i><span class="hidden-tablet">Users</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::route('admin/posts')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet">Post</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getPosts')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet">Post</span></a>
 					</li>
 				</ul>
 				<label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>

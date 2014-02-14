@@ -1,11 +1,23 @@
 <?php
 
 class AdminController extends BaseController {
+	public function __construct(){
+		/**
+		 * login ve register sayfaları  dışındaki  sayfalarda oturum kontrolü
+		 */
+		$this->beforeFilter('auth',array('except'=>array('getLogin','getRegister','login','register')));
+		/**
+		 * Post istelkerinde CSRF kontrolü
+		 */
+		$this->beforeFilter('csrf', array('on' => 'post'));
+
+	}
+
 	/**
 	 * admin ana sayfasına yönlendirir
 	 * @return mixed
 	 */
-	public function index() {
+	public function getIndex() {
 		return View::make( 'admin/index' );
 	}
 
@@ -13,17 +25,14 @@ class AdminController extends BaseController {
 	 * Admin panel users sayfasını açar
 	 * @return mixed
 	 */
-	public function listUser() {
+	public function getUsers() {
 		return View::make( 'admin/users' );
 	}
 
 	/**
 	 *
 	 */
-	public function listPost() {
-		/*
-		 * todo Post sınıfı  bulunamıyor view içinde kullansamda burada kullansamda
-		 */
+	public function getPosts() {
 		return View::make( 'admin/posts');
 	}
 
@@ -31,7 +40,7 @@ class AdminController extends BaseController {
 	 * Admin panel giriş sayfasını gösterir
 	 * @return mixed
 	 */
-	public function loginForm() {
+	public function getLogin() {
 		return View::make( 'admin/login' );
 	}
 
@@ -56,27 +65,27 @@ class AdminController extends BaseController {
 
 		if ( $validator->fails() ) {
 			//validator işlemi  olumsuzsa hata mesajlarını ve input değerlerini
-			return Redirect::route( 'loginForm' )->withInput()->withErrors( $validator->messages() );
+			return Redirect::action( 'AdminController@getLogin' )->withInput()->withErrors( $validator->messages() );
 		}
 		else {
 			//kontroller doğruysa böyle bir kullanıcı olup olmadığına bakalım
 			if ( Auth::attempt( array( 'username' => $postData['username'], 'password' => $postData['password'] ), $remember ) ) {
 				//oturum açılmış oldu
-				return Redirect::intended( 'admin' );
+				return Redirect::intended( 'admin' );//todo action kullanılacak  şekilde düzenlenmeli
 			}
 			else {
 				//girilen bilgiler hatalı mesajı verelim
-				return Redirect::route( 'loginForm' )->withInput()->withErrors( array( 'Girdiğiniz bilgiler yanlış' ) );
+				return Redirect::action( 'AdminController@getLogin' )->withInput()->withErrors( array( 'Girdiğiniz bilgiler yanlış' ) );
 			}
 		}
 	}
 
-	public function logout() {
+	public function getLogout() {
 		Auth::logout();
 		return Redirect::route( 'home' );
 	}
 
-	public function registerForm() {
+	public function getRegister() {
 		return View::make( 'admin.register' );
 	}
 

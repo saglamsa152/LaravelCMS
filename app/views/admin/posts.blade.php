@@ -3,10 +3,10 @@
 <div>
 	<ul class="breadcrumb">
 		<li>
-			<a href="{{URL::route('admin')}}">Home</a> <span class="divider">/</span>
+			<a href="{{URL::action('AdminController@getIndex')}}">Home</a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::route('admin/posts')}}">Posts</a>
+			<a href="{{URL::action('AdminController@getPosts')}}">Posts</a>
 		</li>
 	</ul>
 </div>

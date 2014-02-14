@@ -1,6 +1,6 @@
 @include('admin.header')
 @if(Auth::check())
-{{Redirect::route('admin')}}
+{{Redirect::action('AdminController@getIndex')}}
 @endif
 <div class="row-fluid">
 	<div class="span12 center login-header">
@@ -45,7 +45,7 @@
 			<div class="clearfix"></div>
 
 			<div class="center">
-				<div id="register-btn" class="input-prepend span6"><a href="{{URL::route('registerForm')}}">{{Form::button('Register',array('class'=>'btn btn-primary'))}}</a></div>
+				<div id="register-btn" class="input-prepend span6"><a href="{{URL::action('AdminController@getRegister')}}">{{Form::button('Register',array('class'=>'btn btn-primary'))}}</a></div>
 				<div class="input-prepend span6">{{Form::submit('Login',array('class'=>'btn btn-success'))}}</div>
 			</div>
 

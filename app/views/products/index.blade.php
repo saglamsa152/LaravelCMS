@@ -6,18 +6,7 @@
 			<div class="main zerogrid">
 				<!-- header -->
 				<header>
-					<div class="wrapper row">
-						<h1><a id="logo" href="{{ URL::route('home') }}"><img src="{{ URL::asset('assets/images/logo.png') }}"></a></h1>
-						<nav>
-							<ul id="menu">
-								<li id="nav1"><a href="{{ URL::route('home') }}">Home<span>Welcome!</span></a></li>
-								<li id="nav2"><a href="{{ URL::route('news') }}">News<span>Fresh</span></a></li>
-								<li id="nav3"><a href="{{ URL::route('services') }}">Services<span>for you</span></a></li>
-								<li id="nav4" class="active"><a href="{{ URL::route('products') }}">Products<span>The best</span></a></li>
-								<li id="nav5"><a href="{{ URL::route('contacts') }}">Contacts<span>Our Address</span></a></li>
-							</ul>
-						</nav>
-					</div>
+					@include('template.menu')
 				</header>
 				<!-- header end-->
 			</div>
