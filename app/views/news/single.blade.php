@@ -21,9 +21,8 @@
 		<!-- content -->
 		<article id="content">
 			<div class="wrapper tabs">
-				@foreach($posts as $post)
 				<h5>
-						<span class="dropcap">
+					<span class="dropcap">
 							<strong><!-- Gün -->
 								@if($post->created_at->day<10)
 								0 {{$post->created_at->day}}
@@ -43,12 +42,8 @@
 				</h5>
 
 				<div class="wrapper pad_bot2">
-					{{$post->excerpt}}
-					<a class="link1" href="{{URL::action('HomeController@getNews',$post->url)}}">Read More</a>
+					{{$post->content}}
 				</div>
-
-				@endforeach
-				{{$posts->links()}}
 
 			</div>
 

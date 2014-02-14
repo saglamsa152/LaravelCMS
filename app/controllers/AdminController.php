@@ -82,7 +82,7 @@ class AdminController extends BaseController {
 
 	public function getLogout() {
 		Auth::logout();
-		return Redirect::route( 'home' );
+		return Redirect::home();
 	}
 
 	public function getRegister() {

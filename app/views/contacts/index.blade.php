@@ -24,7 +24,7 @@
 				<section class="col-3-4">
 					<div class="wrap-col">
 						<h2 class="under"><cufon class="cufon cufon-canvas" alt="Contact " style="width: 119px; height: 40px;"><canvas width="154" height="48" style="width: 154px; height: 48px; top: -8px; left: -2px;"></canvas><cufontext>Contact </cufontext></cufon><cufon class="cufon cufon-canvas" alt="form" style="width: 68px; height: 40px;"><canvas width="84" height="48" style="width: 84px; height: 48px; top: -8px; left: -2px;"></canvas><cufontext>form</cufontext></cufon></h2>
-						{{ Form::open(array('url' => '','id' =>'ContactForm')) }}
+						{{ Form::open(array('url' => '','id' =>'ContactForm')) }}<!--todo form çalışır hale gelecek-->
 							<div>
 								<div class="wrapper">
 									<span>{{ Form::label('name','Your Name:') }}</span>
