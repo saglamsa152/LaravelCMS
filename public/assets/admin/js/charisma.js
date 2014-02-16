@@ -18,7 +18,10 @@ $(document).ready(function(){
 	
 	function switch_theme(theme_name)
 	{
-		$('#bs-css').attr('href','css/bootstrap-'+theme_name+'.css');
+		/*
+		link laravel e göre değiştirildi
+		 */
+		$('#bs-css').attr('href','../assets/admin/css/bootstrap-'+theme_name+'.css');
 	}
 	
 	//ajax menu checkbox
@@ -164,10 +167,10 @@ function docReady(){
 		score : 4 //default stars
 	});
 
-	//uploadify - multiple uploads
+	//uploadify - multiple uploads Linkler Laravele göre değiştirildi
 	$('#file_upload').uploadify({
-		'swf'      : 'misc/uploadify.swf',
-		'uploader' : 'misc/uploadify.php'
+		'swf'      : '../assets/admin/misc/uploadify.swf',
+		'uploader' : '../assets/admin/misc/uploadify.php'
 		// Put your options here
 	});
 
