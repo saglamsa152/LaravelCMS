@@ -18,7 +18,7 @@
 	<meta name="author" content="Muhammad Usman">
 
 	<!-- The styles -->
-	{{ HTML::style('assets/admin/css/bootstrap-cerulean.css') }}
+	{{ HTML::style('assets/admin/css/bootstrap-cerulean.css',array('id'=>'bs-css')) }}
 	<style type="text/css">
 		body {
 			padding-bottom: 40px;
@@ -136,8 +136,12 @@
 					<li>
 						<a class="ajax-link" href="{{URL::action('AdminController@getUsers')}}"><i class="icon-user"></i><span class="hidden-tablet">Users</span></a>
 					</li>
+					<li class="nav-header hidden-tablet">Posts</li>
 					<li>
 						<a class="ajax-link" href="{{URL::action('AdminController@getPosts')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet">Post</span></a>
+						<li class="nav-level-2">
+							<a class="ajax-link" href="{{URL::action('AdminController@getPosts')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet">New Post</span></a>
+						</li>
 					</li>
 				</ul>
 				<label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>
