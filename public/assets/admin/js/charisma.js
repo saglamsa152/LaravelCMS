@@ -20,8 +20,9 @@ $(document).ready(function(){
 	{
 		/*
 		link laravel e göre değiştirildi
+		http://yourdomain/assets/admin/css/bootstrap-'+theme_name+'.css
 		 */
-		$('#bs-css').attr('href','../assets/admin/css/bootstrap-'+theme_name+'.css');
+		$('#bs-css').attr('href','http://www.ilklaravel.loc/assets/admin/css/bootstrap-'+theme_name+'.css');
 	}
 	
 	//ajax menu checkbox
@@ -169,8 +170,8 @@ function docReady(){
 
 	//uploadify - multiple uploads Linkler Laravele göre değiştirildi
 	$('#file_upload').uploadify({
-		'swf'      : '../assets/admin/misc/uploadify.swf',
-		'uploader' : '../assets/admin/misc/uploadify.php'
+		'swf'      : '../misc/uploadify.swf',
+		'uploader' : '../misc/uploadify.php'
 		// Put your options here
 	});
 
