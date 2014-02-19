@@ -8,6 +8,7 @@
 	@endif
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!--todo eklenecek  her  dosya için  bir  isim  belirleyip  aktif sayfada gerekli olan dosyalar  nelerse sadece onların  yüklenmesi  sağlanabilir.-->
 	{{ HTML::style('assets/css/reset.css')}}
 	{{ HTML::style('assets/css/layout.css')}}
 	{{ HTML::style('assets/css/style.css')}}

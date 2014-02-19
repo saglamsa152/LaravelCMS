@@ -29,12 +29,7 @@ class AdminController extends BaseController {
 		return View::make( 'admin/users' );
 	}
 
-	/**
-	 *
-	 */
-	public function getPosts() {
-		return View::make( 'admin/posts');
-	}
+
 
 	/**
 	 * Admin panel giriş sayfasını gösterir
@@ -89,7 +84,7 @@ class AdminController extends BaseController {
 		return View::make( 'admin.register' );
 	}
 
-	public function register() {
+	public function postRegister() {
 		$postData = Input::all();
 
 		$rules     = array(
@@ -114,7 +109,7 @@ class AdminController extends BaseController {
 		$validator = Validator::make( $postData, $rules, $messages );
 
 		if ( $validator->fails() ) {
-			return Redirect::route( 'registerForm' )->withInput()->withErrors( $validator->messages() );
+			return Redirect::action( 'AdminController@getRegister' )->withInput()->withErrors( $validator->messages() );
 		}
 		else {
 			$user = User::create( array(
@@ -127,13 +122,31 @@ class AdminController extends BaseController {
 
 			//oturum açalım
 			Auth::Login( $user );
-			return Redirect::route( 'admin' );
+			return Redirect::action( 'AdminController@getIndex' );
 		}
 	}
 
-	public function showProfile( $id = null ) {
+	public function getProfile( $id = null ) {
 		is_null( $id ) ? $id = Auth::user()->id : $id = $id;
 		$user = User::find( $id );
 		return View::make( 'admin.profil' )->with( 'user', $user );
+	}
+
+	/**
+	 *
+	 */
+	public function getNews() {
+		return View::make( 'admin/news');
+	}
+	/**
+	 * Yeni gönderi oluşturma sayfası
+	 */
+	public function getNewNews(){
+		$title='New Post';
+		return View::make('admin.newNews')->with('title',$title);
+	}
+
+	public function postAddNews(){
+
 	}
 }

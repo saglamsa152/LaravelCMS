@@ -22,7 +22,7 @@
 		'role'   => 'form',
 		'class'  => 'form-horizontal',
 		'method' => 'post',
-		'action' => 'AdminController@register'
+		'action' => 'AdminController@postRegister'
 		))
 		}}
 		<fieldset>

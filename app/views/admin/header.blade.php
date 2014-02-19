@@ -12,11 +12,14 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
+	@if(isset($title))
+	<title>{{$title}}</title>
+	@else
 	<title>Free HTML5 Bootstrap Admin Template</title>
+	@endif
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
-
 	<!-- The styles -->
 	{{ HTML::style('assets/admin/css/bootstrap-cerulean.css',array('id'=>'bs-css')) }}
 	<style type="text/css">
@@ -134,14 +137,22 @@
 						<a class="ajax-link" href="{{URL::action('AdminController@getIndex')}}"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getUsers')}}"><i class="icon-user"></i><span class="hidden-tablet">Users</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getUsers')}}"><i class="icon-user"></i><span class="hidden-tablet"> Users</span></a>
 					</li>
-					<li class="nav-header hidden-tablet">Posts</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getPosts')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet">Post</span></a>
-						<li class="nav-level-2">
-							<a class="ajax-link" href="{{URL::action('AdminController@getPosts')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet">New Post</span></a>
-						</li>
+						<a class="ajax-link" href="{{URL::action('AdminController@getNews')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet"> News</span></a>
+					</li>
+					<li>
+						<a class="ajax-link" href="#"><i class=" icon-list-alt"></i><span class="hidden-tablet"> Products</span></a>
+					</li>
+					<li>
+						<a class="ajax-link" href="#"><i class=" icon-briefcase"></i><span class="hidden-tablet"> Services</span></a>
+					</li>
+					<li>
+						<a class="ajax-link" href="#"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> Orders</span></a>
+					</li>
+					<li>
+						<a class="ajax-link" href="#"><i class=" icon-envelope"></i><span class="hidden-tablet"> Contact</span></a>
 					</li>
 				</ul>
 				<label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>

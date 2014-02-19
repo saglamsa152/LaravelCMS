@@ -15,6 +15,9 @@
 	<div class="box span12">
 		<div class="box-header well" data-original-title>
 			<h2><i class="icon-user"></i> Members</h2>
+			<a href="{{URL::action('AdminController@getNewNews')}}"><!--todo -->
+				<button class="btn btn-primary"> Add User</button>
+			</a>
 
 			<div class="box-icon">
 				<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
@@ -41,7 +44,7 @@
 					<td class="center">{{$user->created_at}}</td>
 					<td class="center">{{$user->role}}</td>
 					<td class="center">
-						<a class="btn btn-success" href="{{URL::action('AdminController@showProfile',$user->id)}}">
+						<a class="btn btn-success" href="{{URL::action('AdminController@getProfile',$user->id)}}">
 							<i class="icon-zoom-in icon-white"></i>
 							View
 						</a>
