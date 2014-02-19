@@ -5,7 +5,7 @@ class AdminController extends BaseController {
 		/**
 		 * login ve register sayfaları  dışındaki  sayfalarda oturum kontrolü
 		 */
-		$this->beforeFilter('auth',array('except'=>array('getLogin','getRegister','login','register')));
+		$this->beforeFilter('auth',array('except'=>array('getLogin','getRegister','postLogin','postRegister')));
 		/**
 		 * Post istelkerinde CSRF kontrolü
 		 */
@@ -39,7 +39,7 @@ class AdminController extends BaseController {
 		return View::make( 'admin/login' );
 	}
 
-	public function login() {
+	public function postLogin() {
 		// POST İLE GÖNDERİLEN DEĞERLERİ ALALIM.
 		$postData = Input::all();
 		isset( $postData['remember'] ) ? $remember = true : $remember = false;

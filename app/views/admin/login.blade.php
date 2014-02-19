@@ -25,7 +25,7 @@
 				'role'   => 'form',
 				'class'  => 'form-horizontal',
 				'method' => 'post',
-				'route' => 'login'
+				'action' => 'AdminController@postLogin'
 			))
 		}}
 		<fieldset>

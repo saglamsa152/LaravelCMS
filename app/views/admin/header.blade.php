@@ -31,7 +31,7 @@
 			padding: 9px 0;
 		}
 	</style>
-	<!--//todo bunların  bu kadar çok olması  hoş değil  bunlara bir  ayar çekmek lazım-->
+	<!--//todo #5 bunların  bu kadar çok olması  hoş değil  bunlara bir  ayar çekmek lazım-->
 	{{ HTML::style('assets/admin/css/bootstrap-responsive.css') }}
 	{{ HTML::style('assets/admin/css/charisma-app.css') }}
 	{{ HTML::style('assets/admin/css/jquery-ui-1.8.21.custom.css') }}
@@ -101,7 +101,7 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="{{URL::action('AdminController@showProfile',Auth::user()->id)}}">Profile</a></li>
+					<li><a href="{{URL::action('AdminController@getProfile',Auth::user()->id)}}">Profile</a></li>
 					<li class="divider"></li>
 					<li>{{link_to_action('AdminController@getLogout','Logout')}}</li>
 				</ul>
