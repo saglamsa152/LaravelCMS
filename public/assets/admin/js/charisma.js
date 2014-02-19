@@ -107,8 +107,8 @@ function docReady(){
 	});
 	
 	//rich text editor
-	$('.cleditor').cleditor();
-	
+	$('.ckeditor').ckeditor(); // Use CKEDITOR.replace() if element is <textarea>.
+
 	//datepicker
 	$('.datepicker').datepicker();
 	

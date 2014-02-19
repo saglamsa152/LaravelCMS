@@ -85,7 +85,8 @@
 <!-- plugin for gallery image view -->
 {{ HTML::script('assets/admin/js/jquery.colorbox.min.js') }}
 <!-- rich text editor library -->
-{{ HTML::script('assets/admin/js/jquery.cleditor.min.js') }}
+{{ HTML::script('assets/admin/misc/ckeditor/ckeditor.js') }}
+{{ HTML::script('assets/admin/misc/ckeditor/adapters/jquery.js') }}
 <!-- notification plugin -->
 {{ HTML::script('assets/admin/js/jquery.noty.js') }}
 <!-- file manager library -->

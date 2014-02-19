@@ -42,7 +42,7 @@
 
 				<div class="control-group">
 					<div class="controls">
-						<textarea class="cleditor" id="textarea2" rows="3"></textarea>
+						<textarea class="ckeditor" id="textarea2" rows="3"></textarea>
 					</div>
 				</div>
 			</fieldset>
