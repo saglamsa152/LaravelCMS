@@ -35,10 +35,10 @@ class HomeController extends BaseController {
 	 */
 	public function getNews( $url = null ) {
 		if ( is_null( $url ) ):
-			$posts = Post::where( 'type', '=', 'news' )->paginate( 5 );
+			$posts = Post::news()->orderBy('created_at','desc')->paginate( 5 );
 			return View::make( 'news/index' )->with( 'posts', $posts );
 		else:
-			$post = Post::whereRaw( "url= '$url'" )->first();
+			$post = Post::news()->whereRaw( "url= '$url'" )->first();
 			return View::make( 'news/single' )->with( array( 'post' => $post, 'title' => $post->title ) );
 		endif;
 	}

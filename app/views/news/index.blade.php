@@ -39,14 +39,14 @@
 							</span>
 							</strong>
 						</span>
-					{{$post->title}}
+					{{$post->title}} - {{$post->user->username}}
 				</h5>
 
 				<div class="wrapper pad_bot2">
 					{{$post->excerpt}}
 					<a class="link1" href="{{URL::action('HomeController@getNews',$post->url)}}">Read More</a>
 				</div>
-
+				<div class="clear"></div>
 				@endforeach
 				{{$posts->links()}}
 

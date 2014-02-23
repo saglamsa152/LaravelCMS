@@ -6,18 +6,7 @@
 			<!-- header -->
 			<header>
 				@include('template.menu')
-				<div class="wrapper row">
-					<div class="slider">
-						<div class="rslides_container">
-							<ul class="rslides" id="slider">
-								<li><img src="{{ URL::asset('assets/images/img1.jpg') }}" alt=""></li>
-								<li><img src="{{ URL::asset('assets/images/img2.jpg') }}" alt=""></li>
-								<li><img src="{{ URL::asset('assets/images/img3.jpg') }}" alt=""></li>
-								<li><img src="{{ URL::asset('assets/images/img4.jpg') }}" alt=""></li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				@include('template.slider')
 			</header>
 			<!-- header end-->
 		</div>

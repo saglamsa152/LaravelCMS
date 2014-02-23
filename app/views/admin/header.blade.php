@@ -152,6 +152,9 @@
 						<a class="ajax-link" href="#"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> Orders</span></a>
 					</li>
 					<li>
+						<a class="ajax-link" href="{{URL::action('AdminController@getSlider')}}"><i class="icon-picture"></i><span class="hidden-tablet"> Slider</span></a>
+					</li>
+					<li>
 						<a class="ajax-link" href="#"><i class=" icon-envelope"></i><span class="hidden-tablet"> Contact</span></a>
 					</li>
 				</ul>

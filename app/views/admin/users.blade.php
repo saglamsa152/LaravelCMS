@@ -37,7 +37,7 @@
 				</tr>
 				</thead>
 				<tbody>
-				@foreach(User::all() as $user)
+				@foreach($users as $user)
 				<tr>
 					<td>{{$user->id}}</td>
 					<td>{{$user->username}}</td>

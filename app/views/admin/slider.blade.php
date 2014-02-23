@@ -6,7 +6,7 @@
 			<a href="{{URL::action('AdminController@getIndex')}}">Home</a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getNews')}}">Posts</a>
+			<a href="{{URL::action('AdminController@getSlider')}}">Slider</a>
 		</li>
 	</ul>
 </div>
@@ -16,9 +16,9 @@
 		<div class="box-header well" data-original-title>
 			<h2><i class="icon-user"></i> News</h2>
 
-			<a class="btn btn-success pull-right" href="{{URL::action('AdminController@getNewNews')}}">
+			<a class="btn btn-success pull-right" href="{{URL::action('AdminController@getNewSlide')}}">
 				<i class="icon-edit icon-white"></i>
-				Add News
+				Add Slide
 			</a>
 		</div>
 		<div class="box-content">
@@ -27,23 +27,21 @@
 				<tr>
 					<th>Id</th>
 					<th>Title</th>
-					<th>Author</th>
+					<th>İmage</th>
 					<th>Publish Date</th>
-					<th>Type</th>
 					<th>Actions</th>
 				</tr>
 				</thead>
 				<tbody>
 
-				@foreach($news as $new)
+				@foreach($slides as $slide)
 				<tr>
-					<td>{{$new->id}}</td>
-					<td>{{$new->title}}</td>
-					<td>{{$new->author}}</td>
-					<td class="center">{{$new->created_at}}</td>
-					<td class="center">{{$new->type}}</td>
+					<td>{{$slide->id}}</td>
+					<td>{{$slide->title}}</td>
+					<td><img src="{{URL::asset($slide->postMeta()->where('metaKey', '=', 'image')->first()->metaValue)}}" class="img-rounded" height="150px" /></td>
+					<td class="center">{{$slide->created_at}}</td>
 					<td class="center">
-						<a class="btn btn-success" href="{{URL::action('HomeController@getNews',$new->url)}}">
+						<a class="btn btn-success" href="">
 							<i class="icon-zoom-in icon-white"></i>
 							View
 						</a>

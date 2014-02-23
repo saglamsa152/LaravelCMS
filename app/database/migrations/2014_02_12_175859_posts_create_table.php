@@ -13,15 +13,16 @@ class PostsCreateTable extends Migration {
 	{
 		Schema::create('posts',function($table){
 			$table->increments('id');
-			$table->string('author',64);
+			$table->integer('author')->unsigned();
 			$table->text('content');
-			$table->text('title');
+			$table->string('title',255)->unique();
 			$table->text('excerpt');
 			$table->string('status',15);
 			$table->string('type',30);
-			$table->string('url',255)->unique();
+			$table->text('url');
 			$table->timestamps();
 			$table->string('created_ip', 15);
+			$table->foreign('author')->references('id')->on('users');
 		});
 	}
 

@@ -13,10 +13,10 @@
 			<a href="{{URL::action('AdminController@getIndex')}}">Home</a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getNews')}}">Posts</a>
+			<a href="{{URL::action('AdminController@getNews')}}">News</a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getNewNews')}}">New Post</a>
+			<a href="{{URL::action('AdminController@getNewNews')}}">New News</a>
 		</li>
 	</ul>
 </div>
@@ -34,7 +34,14 @@
 
 		</div>
 		<div class="box-content">
-
+			@if($errors->count() >0)
+			@foreach ($errors->all() as $error)
+			<div class="alert alert-error">
+				<button data-dismiss="alert" class="close" type="button">×</button>
+				<strong>Dikkat</strong> {{$error}}
+			</div>
+			@endforeach
+			@endif
 			<fieldset>
 				<div class="controls">
 					<?php echo Form::text( 'title', Input::old( 'title' ), array( 'class' => 'span6', 'id' => 'title', 'placeholder' => 'Title' ) ) ?>
@@ -42,7 +49,7 @@
 
 				<div class="control-group">
 					<div class="controls">
-						<textarea class="ckeditor" id="textarea2" rows="3"></textarea>
+						<?php echo Form::textarea( 'content', '', array( 'class' => 'ckeditor', 'id' => 'content' ) ) ?>
 					</div>
 				</div>
 			</fieldset>
@@ -60,8 +67,7 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<button type="submit" class="btn btn-primary">Save changes</button>
-			<button type="reset" class="btn">Cancel</button>
+			<?php echo Form::submit( 'Publish', array( 'class' => 'btn btn-primary' ) ) ?>
 		</div>
 	</div>
 	<div class="box span3">

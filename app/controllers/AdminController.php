@@ -1,15 +1,15 @@
 <?php
 
 class AdminController extends BaseController {
-	public function __construct(){
+	public function __construct() {
 		/**
 		 * login ve register sayfaları  dışındaki  sayfalarda oturum kontrolü
 		 */
-		$this->beforeFilter('auth',array('except'=>array('getLogin','getRegister','postLogin','postRegister')));
+		$this->beforeFilter( 'auth', array( 'except' => array( 'getLogin', 'getRegister', 'postLogin', 'postRegister' ) ) );
 		/**
 		 * Post istelkerinde CSRF kontrolü
 		 */
-		$this->beforeFilter('csrf', array('on' => 'post'));
+		$this->beforeFilter( 'csrf', array( 'on' => 'post' ) );
 
 	}
 
@@ -26,19 +26,77 @@ class AdminController extends BaseController {
 	 * @return mixed
 	 */
 	public function getUsers() {
-		return View::make( 'admin/users' );
+		$users= User::all();
+		return View::make( 'admin.users' )->with('users',$users);
 	}
-
-
 
 	/**
 	 * Admin panel giriş sayfasını gösterir
 	 * @return mixed
 	 */
 	public function getLogin() {
-		return View::make( 'admin/login' );
+		return View::make( 'admin.login' );
 	}
 
+	/**
+	 * @return \Illuminate\View\View
+	 */
+	public function getSlider() {
+		$slides = Post::slider()->with('postMeta')->orderBy( 'created_at', 'desc' )->get();
+		return View::make( 'admin.slider' )->with(array( 'slides'=> $slides ) );
+	}
+
+	public function getNewSlide(){
+		$title = 'New Post';
+		return View::make( 'admin.newNews' )->with( 'title', $title );
+	}
+	/**
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function getLogout() {
+		Auth::logout();
+		return Redirect::home();
+	}
+
+	/**
+	 * @return \Illuminate\View\View
+	 */
+	public function getRegister() {
+		return View::make( 'admin.register' );
+	}
+
+	/**
+	 * @param null $id
+	 *
+	 * @return \Illuminate\View\View
+	 */
+	public function getProfile( $id = null ) {
+		is_null( $id ) ? $id = Auth::user()->id : $id = $id;
+		$user = User::with('post')->find($id);
+		return View::make( 'admin.profil' )->with( 'user', $user );
+	}
+
+	/**
+	 * @return \Illuminate\View\View
+	 */
+	public function getNews() {
+		$news = Post::news()->with('postMeta')->orderBy( 'created_at', 'desc' )->get();
+		return View::make( 'admin/news' )->with( 'news', $news );
+	}
+
+	/**
+	 * Yeni gönderi oluşturma sayfası
+	 */
+	public function getNewNews() {
+		$title = 'New Post';
+		return View::make( 'admin.newNews' )->with( 'title', $title );
+	}
+
+	/**
+	 * Login işlemini denetler
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
 	public function postLogin() {
 		// POST İLE GÖNDERİLEN DEĞERLERİ ALALIM.
 		$postData = Input::all();
@@ -66,7 +124,7 @@ class AdminController extends BaseController {
 			//kontroller doğruysa böyle bir kullanıcı olup olmadığına bakalım
 			if ( Auth::attempt( array( 'username' => $postData['username'], 'password' => $postData['password'] ), $remember ) ) {
 				//oturum açılmış oldu
-				return Redirect::intended( 'admin' );//todo action kullanılacak  şekilde düzenlenmeli
+				return Redirect::intended( 'admin' ); //todo action kullanılacak  şekilde düzenlenmeli
 			}
 			else {
 				//girilen bilgiler hatalı mesajı verelim
@@ -75,15 +133,11 @@ class AdminController extends BaseController {
 		}
 	}
 
-	public function getLogout() {
-		Auth::logout();
-		return Redirect::home();
-	}
-
-	public function getRegister() {
-		return View::make( 'admin.register' );
-	}
-
+	/**
+	 * Yeni üye kaydını denetler
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
 	public function postRegister() {
 		$postData = Input::all();
 
@@ -126,27 +180,58 @@ class AdminController extends BaseController {
 		}
 	}
 
-	public function getProfile( $id = null ) {
-		is_null( $id ) ? $id = Auth::user()->id : $id = $id;
-		$user = User::find( $id );
-		return View::make( 'admin.profil' )->with( 'user', $user );
-	}
-
 	/**
+	 * YEni haber kaydını denetler
 	 *
+	 * @return \Illuminate\Http\RedirectResponse
 	 */
-	public function getNews() {
-		return View::make( 'admin/news');
+	public function postAddNews() {
+		$postData  = Input::all();
+		$rules     = array(
+				'title'   => 'required|unique:posts',
+				'content' => 'required'
+		);
+		$messages  = array(
+				'title.required'   => 'Başlık boş bırakılamaz',
+				'content.required' => 'İçerik boş bırakılamaz'
+		);
+		$validator = Validator::make( $postData, $rules, $messages );
+
+		if ( $validator->fails() ) {
+			return Redirect::action( 'AdminController@getNewNews' )->withInput()->withErrors( $validator->messages() );
+		}
+		else {
+			Post::create( array(
+					'author'     => Auth::user()->username,
+					'content'    => $postData['content'],
+					'title'      => $postData['title'],
+					'excerpt'    => mb_substr( $postData['content'], 0, 450, 'UTF-8' ),
+					'status'     => 'publish',
+					'type'       => 'news',
+					'url'        => $this->createUrl( $postData['title'] ),
+					'created_ip' => Request::getClientIp()
+			) );
+			//todo post meta eklenecek
+			return Redirect::action( 'AdminController@getNews' );
+		}
 	}
+
 	/**
-	 * Yeni gönderi oluşturma sayfası
+	 * Girilen string metni url ye uygun metne çevirir
+	 *
+	 * @param $t Url ye uygun hale  getirilecek  string
+	 *
+	 * @return mixed|string
 	 */
-	public function getNewNews(){
-		$title='New Post';
-		return View::make('admin.newNews')->with('title',$title);
+	public function  createUrl( $t ) {
+		$tr = array('ş','Ş','ı','İ','ğ','Ğ','ü','Ü','ö','Ö','ç','Ç');
+		$en = array('s','s','i','i','g','g','u','u','o','o','c','c');
+		$t = str_replace($tr,$en,$t);
+		$t= strtolower($t);
+		$t= preg_replace('/[^a-z0-9-_]+/','-',$t);
+		$t= preg_replace('/-+/','-',$t);
+		return $t;
 	}
 
-	public function postAddNews(){
 
-	}
 }
