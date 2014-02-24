@@ -44,14 +44,17 @@ class HomeController extends BaseController {
 	}
 
 	public function getContacts() {
-		return View::make( 'contacts/index' );
+		$title=_('Contact');
+		return View::make( 'contacts/index' )->with('title',$title);
 	}
 
 	public function getProducts() {
-		return View::make( 'products/index' );
+		$title=_('Products');
+		return View::make( 'products/index' )->with('title',$title);
 	}
 
 	public function getServices() {
-		return View::make( 'services/index' );
+		$title=_('Services');
+		return View::make( 'services/index' )->with('title',$title);
 	}
 }

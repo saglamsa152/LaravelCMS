@@ -10,13 +10,13 @@
 <div>
 	<ul class="breadcrumb">
 		<li>
-			<a href="{{URL::action('AdminController@getIndex')}}">Home</a> <span class="divider">/</span>
+			<a href="{{URL::action('AdminController@getIndex')}}">{{_('Home')}}</a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getNews')}}">News</a> <span class="divider">/</span>
+			<a href="{{URL::action('AdminController@getNews')}}">{{_('News')}}</a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getNewNews')}}">New News</a>
+			<a href="{{URL::action('AdminController@getNewNews')}}">{{_('New News')}}</a>
 		</li>
 	</ul>
 </div>
@@ -30,7 +30,7 @@
 
 	<div class="box span9">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> New News</h2>
+			<h2><i class="icon-user"></i> {{_('New News')}}</h2>
 
 		</div>
 		<div class="box-content">
@@ -44,7 +44,7 @@
 			@endif
 			<fieldset>
 				<div class="controls">
-					<?php echo Form::text( 'title', Input::old( 'title' ), array( 'class' => 'span6', 'id' => 'title', 'placeholder' => 'Title' ) ) ?>
+					<?php echo Form::text( 'title', Input::old( 'title' ), array( 'class' => 'span6', 'id' => 'title', 'placeholder' => _('Title') ) ) ?>
 				</div>
 
 				<div class="control-group">
@@ -59,7 +59,7 @@
 	<!--/span-->
 	<div class="box span3">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> News Meta</h2>
+			<h2><i class="icon-user"></i> {{_('News Meta')}}</h2>
 
 			<div class="box-icon">
 				<a class="btn  btn-round" href="#"><i class="icon-cog"></i></a>
@@ -67,12 +67,12 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<?php echo Form::submit( 'Publish', array( 'class' => 'btn btn-primary' ) ) ?>
+			<?php echo Form::submit( _('Publish'), array( 'class' => 'btn btn-primary' ) ) ?>
 		</div>
 	</div>
 	<div class="box span3">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> News Meta</h2>
+			<h2><i class="icon-user"></i> {{_('News Meta')}}</h2>
 
 			<div class="box-icon">
 				<a class="btn  btn-round" href="#"><i class="icon-cog"></i></a>
@@ -81,7 +81,7 @@
 		</div>
 		<div class="box-content">
 			<div class="control-group">
-				<label class="control-label" for="file_upload">File input</label>
+				<label class="control-label" for="file_upload">{{_('File input')}}</label>
 
 				<div class="controls">
 					<input class="input-file uniform_on" id="file_upload" type="file">

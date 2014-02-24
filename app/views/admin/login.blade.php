@@ -30,7 +30,7 @@
 		}}
 		<fieldset>
 			<div class="input-prepend" title="Username" data-rel="tooltip">
-				<span class="add-on"><i class="icon-user"></i></span>{{Form::text('username',Input::old('username'),array('class'=>'input-large','autofocus','id'=>'username','placeholder'=>'Username'))}}
+				<span class="add-on"><i class="icon-user"></i></span>{{Form::text('username',Input::old('username'),array('class'=>'input-large','autofocus','id'=>'username','placeholder'=>_('Username')))}}
 			</div>
 			<div class="clearfix"></div>
 
@@ -40,13 +40,13 @@
 			<div class="clearfix"></div>
 
 			<div class="input-prepend">
-				<label class="remember" for="remember">{{Form::checkbox('remember')}}Remember me</label>
+				<label class="remember" for="remember">{{Form::checkbox('remember')}}{{_('Remember me')}}</label>
 			</div>
 			<div class="clearfix"></div>
 
 			<div class="center">
-				<div id="register-btn" class="input-prepend span6"><a href="{{URL::action('AdminController@getRegister')}}">{{Form::button('Register',array('class'=>'btn btn-primary'))}}</a></div>
-				<div class="input-prepend span6">{{Form::submit('Login',array('class'=>'btn btn-success'))}}</div>
+				<div id="register-btn" class="input-prepend span6"><a href="{{URL::action('AdminController@getRegister')}}">{{Form::button(_('Register'),array('class'=>'btn btn-primary'))}}</a></div>
+				<div class="input-prepend span6">{{Form::submit(_('Login'),array('class'=>'btn btn-success'))}}</div>
 			</div>
 
 		</fieldset>

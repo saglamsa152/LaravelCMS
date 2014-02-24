@@ -31,7 +31,7 @@
 			</div>
 			<div class="clearfix"></div>
 			<div class="input-prepend" title="Username" data-rel="tooltip">
-				<span class="add-on"><i class="icon-user"></i></span>{{Form::text('username',Input::old('username'),array('class'=>'input-large','id'=>'username','placeholder'=>'Username'))}}
+				<span class="add-on"><i class="icon-user"></i></span>{{Form::text('username',Input::old('username'),array('class'=>'input-large','id'=>'username','placeholder'=>_('Username')))}}
 			</div>
 			<div class="clearfix"></div>
 
@@ -41,12 +41,12 @@
 			<div class="clearfix"></div>
 
 			<div class="input-prepend" title="Password Confirm" data-rel="tooltip">
-				<span class="add-on"><i class="icon-lock"></i></span>{{Form::password('password_confirmation',array('class'=>'input-large','id'=>'password_confirmation','placeholder'=>'Password Confirm'))}}
+				<span class="add-on"><i class="icon-lock"></i></span>{{Form::password('password_confirmation',array('class'=>'input-large','id'=>'password_confirmation','placeholder'=>_('Password Confirm')))}}
 			</div>
 			<div class="clearfix"></div>
 
 			<p class="center span5">
-				{{Form::submit('Register',array('class'=>'btn btn-primary'))}}
+				{{Form::submit(_('Register'),array('class'=>'btn btn-primary'))}}
 			</p>
 		</fieldset>
 		{{Form::close()}}

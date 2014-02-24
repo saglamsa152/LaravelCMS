@@ -72,12 +72,13 @@
 				<span class="icon-bar"></span>
 			</a>
 			<a class="brand" href="{{ URL::action('AdminController@getIndex') }}">
-				<img alt="Charisma Logo" src="{{URL::asset('assets/admin/img/logo20.png') }}" /> <span>Charisma</span></a>
+				<img alt="Charisma Logo" src="{{URL::asset('assets/admin/img/logo20.png') }}" /> <span>Charisma</span>
+			</a>
 
 			<!-- theme selector starts -->
 			<div class="btn-group pull-right theme-container">
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					<i class="icon-tint"></i><span class="hidden-phone"> Change Theme / Skin</span>
+					<i class="icon-tint"></i><span class="hidden-phone"> {{_('Change Theme / Skin')}}</span>
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu" id="themes">
@@ -101,19 +102,19 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="{{URL::action('AdminController@getProfile',Auth::user()->id)}}">Profile</a></li>
+					<li><a href="{{URL::action('AdminController@getProfile',Auth::user()->id)}}"> {{_('Profile')}}</a></li>
 					<li class="divider"></li>
-					<li>{{link_to_action('AdminController@getLogout','Logout')}}</li>
+					<li>{{link_to_action('AdminController@getLogout',_('Logout'))}}</li>
 				</ul>
 			</div>
 			<!-- user dropdown ends -->
 
 			<div class="top-nav nav-collapse">
 				<ul class="nav">
-					<li><a href="{{ URL::route('home') }}">Visit Site</a></li>
+					<li><a href="{{ URL::route('home') }}">{{_('Visit Site')}}</a></li>
 					<li>
 						<form class="navbar-search pull-left">
-							<input placeholder="Search" class="search-query span2" name="query" type="text">
+							<input placeholder="{{_('Search')}}" class="search-query span2" name="query" type="text">
 						</form>
 					</li>
 				</ul>
@@ -132,33 +133,33 @@
 		<div class="span2 main-menu-span">
 			<div class="well nav-collapse sidebar-nav">
 				<ul class="nav nav-tabs nav-stacked main-menu">
-					<li class="nav-header hidden-tablet">Main</li>
+					<li class="nav-header hidden-tablet">{{_('Main')}}</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getIndex')}}"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getIndex')}}"><i class="icon-home"></i><span class="hidden-tablet"> {{_('Dashboard')}}</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getUsers')}}"><i class="icon-user"></i><span class="hidden-tablet"> Users</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getUsers')}}"><i class="icon-user"></i><span class="hidden-tablet"> {{_('Users')}}</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getNews')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet"> News</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getNews')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet"> {{_('News')}}</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="#"><i class=" icon-list-alt"></i><span class="hidden-tablet"> Products</span></a>
+						<a class="ajax-link" href="#"><i class=" icon-list-alt"></i><span class="hidden-tablet"> {{_('Products')}}</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="#"><i class=" icon-briefcase"></i><span class="hidden-tablet"> Services</span></a>
+						<a class="ajax-link" href="#"><i class=" icon-briefcase"></i><span class="hidden-tablet"> {{_('Services')}}</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="#"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> Orders</span></a>
+						<a class="ajax-link" href="#"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> {{_('Orders')}}</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getSlider')}}"><i class="icon-picture"></i><span class="hidden-tablet"> Slider</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getSlider')}}"><i class="icon-picture"></i><span class="hidden-tablet"> {{_('Slider')}}</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="#"><i class=" icon-envelope"></i><span class="hidden-tablet"> Contact</span></a>
+						<a class="ajax-link" href="#"><i class=" icon-envelope"></i><span class="hidden-tablet"> {{_('Contact')}}</span></a>
 					</li>
 				</ul>
-				<label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>
+				<label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> {{_('Ajax on menu')}}</label>
 			</div>
 			<!--/.well -->
 		</div>
@@ -167,10 +168,10 @@
 
 		<noscript>
 			<div class="alert alert-block span10">
-				<h4 class="alert-heading">Warning!</h4>
+				<h4 class="alert-heading">{{_('Warning!')}}</h4>
 
-				<p>You need to have
-					<a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				<p>{{_('You need to have
+					<a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.')}}</p>
 			</div>
 		</noscript>
 

@@ -3,10 +3,10 @@
 <div>
 	<ul class="breadcrumb">
 		<li>
-			<a href="{{URL::action('AdminController@getIndex')}}">Home</a> <span class="divider">/</span>
+			<a href="{{URL::action('AdminController@getIndex')}}">{{_('Home')}}</a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getNews')}}">Posts</a>
+			<a href="{{URL::action('AdminController@getNews')}}">{{_('News')}}</a>
 		</li>
 	</ul>
 </div>
@@ -14,11 +14,11 @@
 <div class="row-fluid">
 	<div class="box span12">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> News</h2>
+			<h2><i class="icon-user"></i> {{_('News')}}</h2>
 
 			<a class="btn btn-success pull-right" href="{{URL::action('AdminController@getNewNews')}}">
 				<i class="icon-edit icon-white"></i>
-				Add News
+				{{_('Add News')}}
 			</a>
 		</div>
 		<div class="box-content">
@@ -26,11 +26,11 @@
 				<thead>
 				<tr>
 					<th>Id</th>
-					<th>Title</th>
-					<th>Author</th>
-					<th>Publish Date</th>
-					<th>Type</th>
-					<th>Actions</th>
+					<th>{{_('Title')}}</th>
+					<th>{{_('Author')}}</th>
+					<th>{{_('Publish Date')}}</th>
+					<th>{{_('Type')}}</th>
+					<th>{{_('Actions')}}</th>
 				</tr>
 				</thead>
 				<tbody>

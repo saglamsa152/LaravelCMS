@@ -3,10 +3,10 @@
 <div>
 	<ul class="breadcrumb">
 		<li>
-			<a href="{{URL::action('AdminController@getIndex')}}">Home</a> <span class="divider">/</span>
+			<a href="{{URL::action('AdminController@getIndex')}}">{{_('Home')}}</a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getSlider')}}">Slider</a>
+			<a href="{{URL::action('AdminController@getSlider')}}">{{_('Slider')}}</a>
 		</li>
 	</ul>
 </div>
@@ -14,11 +14,11 @@
 <div class="row-fluid">
 	<div class="box span12">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> News</h2>
+			<h2><i class="icon-user"></i> {{_('Slides')}}</h2>
 
 			<a class="btn btn-success pull-right" href="{{URL::action('AdminController@getNewSlide')}}">
 				<i class="icon-edit icon-white"></i>
-				Add Slide
+				{{_('Add Slide')}}
 			</a>
 		</div>
 		<div class="box-content">
@@ -26,10 +26,10 @@
 				<thead>
 				<tr>
 					<th>Id</th>
-					<th>Title</th>
-					<th>İmage</th>
-					<th>Publish Date</th>
-					<th>Actions</th>
+					<th>{{_('Title')}}</th>
+					<th>{{_('İmage')}}</th>
+					<th>{{_('Description')}}</th>
+					<th>{{_('Actions')}}</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -39,7 +39,7 @@
 					<td>{{$slide->id}}</td>
 					<td>{{$slide->title}}</td>
 					<td><img src="{{URL::asset($slide->postMeta()->where('metaKey', '=', 'image')->first()->metaValue)}}" class="img-rounded" height="150px" /></td>
-					<td class="center">{{$slide->created_at}}</td>
+					<td class="center">{{$slide->content}}</td>
 					<td class="center">
 						<div class="btn-group">
 							<button class="btn btn-large">{{_('Actions')}}</button>

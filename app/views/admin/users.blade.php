@@ -3,10 +3,10 @@
 <div>
 	<ul class="breadcrumb">
 		<li>
-			<a href="{{URL::action('AdminController@getIndex')}}">Home</a> <span class="divider">/</span>
+			<a href="{{URL::action('AdminController@getIndex')}}">{{_('Home')}}</a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getUsers')}}">Members</a>
+			<a href="{{URL::action('AdminController@getUsers')}}">{{_('Members')}}</a>
 		</li>
 	</ul>
 </div>
@@ -14,9 +14,9 @@
 <div class="row-fluid sortable">
 	<div class="box span12">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> Members</h2>
+			<h2><i class="icon-user"></i> {{_('Members')}}</h2>
 			<a href="{{URL::action('AdminController@getNewNews')}}"><!--todo -->
-				<button class="btn btn-primary pull-right"><i class="icon-plus icon-white"></i> Add User</button>
+				<button class="btn btn-primary pull-right"><i class="icon-plus icon-white"></i> {{_('Add User')}}</button>
 			</a>
 		</div>
 		<div class="box-content">
@@ -24,10 +24,10 @@
 				<thead>
 				<tr>
 					<th>Id</th>
-					<th>Username</th>
-					<th>Date registered</th>
-					<th>Role</th>
-					<th>Actions</th>
+					<th>{{_('Username')}}</th>
+					<th>{{_('Date registered')}}</th>
+					<th>{{_('Role')}}</th>
+					<th>{{_('Actions')}}</th>
 				</tr>
 				</thead>
 				<tbody>

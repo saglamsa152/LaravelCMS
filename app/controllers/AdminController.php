@@ -51,7 +51,7 @@ class AdminController extends BaseController {
 	}
 
 	public function getNewSlide() {
-		$title = 'New Post';
+		$title = _('New Post');
 		return View::make( 'admin.newNews' )->with( 'title', $title );
 	}
 
@@ -79,8 +79,8 @@ class AdminController extends BaseController {
 	public function getProfile( $id = null ) {
 		is_null( $id ) ? $id = Auth::user()->id : $id = $id;
 		$user  = User::with( 'post' )->find( $id );
-		$title = printf( _( '%d Profil Page' ), $user->username );
-		return View::make( 'admin.profil' )->with( 'user', $user );
+		$title =$user->username.( ' Profil Page' );
+		return View::make( 'admin.profil' )->with(array('user'=>$user,'title'=>$title) );
 	}
 
 	/**
@@ -118,8 +118,8 @@ class AdminController extends BaseController {
 
 		// HATA MESAJLARINI OLUŞTURALIM
 		$messages = array(
-				'username.required' => 'Lütfen kullanıcı adınızı yazın',
-				'password.required' => 'Lütfen şifrenizi yazın'
+				'username.required' => _('Please enter user name'),
+				'password.required' => _('Please enter password')
 		);
 		// Kontrol (Validation) işlemlerini gerçekleştirelim
 		$validator = Validator::make( $postData, $rules, $messages );
@@ -155,18 +155,19 @@ class AdminController extends BaseController {
 				'password'              => 'required|min:4|confirmed',
 				'password_confirmation' => 'required'
 		);
+		// todo  İngilizce  tercüme yapılacak
 		$messages  = array(
-				'username.required'              => 'Lütfen kullanıcı adınızı yazın',
-				'username.min'                   => 'Kullanıcını adınız en az 3 karakterden oluşmalıdır',
-				'username.unique'                => 'Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı yazın',
-				'username.alpha_dash'            => 'Lütfen özel karakter ve boşluk içermeyen kullanıcı adı yazın',
-				'email.required'                 => 'Lütfen mail adresinizi yazın',
-				'email.email'                    => 'Lütfen geçerli bir mail adresi yazın',
-				'email.unique'                   => 'Bu mail adresi zaten kullanılıyor. Lütfen başka bir mail adresi yazın',
-				'password.required'              => 'Lütfen şifrenizi yazın',
-				'password.min'                   => 'Şifreniz minumum 4 karakterden oluşmalıdır',
-				'password.confirmed'             => 'Girdiğiniz şifreler birbiriyle eşleşmiyor',
-				'password_confirmation.required' => 'Lütfen şifrenizi doğrulayın'
+				'username.required'              => _('Lütfen kullanıcı adınızı yazın'),
+				'username.min'                   => _('Kullanıcını adınız en az 3 karakterden oluşmalıdır'),
+				'username.unique'                => _('Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı yazın'),
+				'username.alpha_dash'            => _('Lütfen özel karakter ve boşluk içermeyen kullanıcı adı yazın'),
+				'email.required'                 => _('Lütfen mail adresinizi yazın'),
+				'email.email'                    => _('Lütfen geçerli bir mail adresi yazın'),
+				'email.unique'                   => _('Bu mail adresi zaten kullanılıyor. Lütfen başka bir mail adresi yazın'),
+				'password.required'              => _('Lütfen şifrenizi yazın'),
+				'password.min'                   => _('Şifreniz minumum 4 karakterden oluşmalıdır'),
+				'password.confirmed'             => _('Girdiğiniz şifreler birbiriyle eşleşmiyor'),
+				'password_confirmation.required' => _('Lütfen şifrenizi doğrulayın')
 		);
 		$validator = Validator::make( $postData, $rules, $messages );
 
@@ -199,9 +200,10 @@ class AdminController extends BaseController {
 				'title'   => 'required|unique:posts',
 				'content' => 'required'
 		);
+		// todo  ingilzce  tercüme
 		$messages  = array(
-				'title.required'   => 'Başlık boş bırakılamaz',
-				'content.required' => 'İçerik boş bırakılamaz'
+				'title.required'   => _('Başlık boş bırakılamaz'),
+				'content.required' => _('İçerik boş bırakılamaz')
 		);
 		$validator = Validator::make( $postData, $rules, $messages );
 
