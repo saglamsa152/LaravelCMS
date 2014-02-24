@@ -18,7 +18,8 @@ class AdminController extends BaseController {
 	 * @return mixed
 	 */
 	public function getIndex() {
-		return View::make( 'admin/index' );
+		$title = _( 'Admin Panel' );
+		return View::make( 'admin/index' )->with( 'title', $title );
 	}
 
 	/**
@@ -26,8 +27,9 @@ class AdminController extends BaseController {
 	 * @return mixed
 	 */
 	public function getUsers() {
-		$users= User::all();
-		return View::make( 'admin.users' )->with('users',$users);
+		$title = _( 'Users' );
+		$users = User::all();
+		return View::make( 'admin.users' )->with( array( 'users' => $users, 'title' => $title ) );
 	}
 
 	/**
@@ -35,21 +37,24 @@ class AdminController extends BaseController {
 	 * @return mixed
 	 */
 	public function getLogin() {
-		return View::make( 'admin.login' );
+		$title = _( 'Login Page' );
+		return View::make( 'admin.login' )->with( 'title', $title );
 	}
 
 	/**
 	 * @return \Illuminate\View\View
 	 */
 	public function getSlider() {
-		$slides = Post::slider()->with('postMeta')->orderBy( 'created_at', 'desc' )->get();
-		return View::make( 'admin.slider' )->with(array( 'slides'=> $slides ) );
+		$title  = _( 'Slider Management Page' );
+		$slides = Post::slider()->with( 'postMeta' )->orderBy( 'created_at', 'desc' )->get();
+		return View::make( 'admin.slider' )->with( array( 'slides' => $slides, 'title' => $title ) );
 	}
 
-	public function getNewSlide(){
+	public function getNewSlide() {
 		$title = 'New Post';
 		return View::make( 'admin.newNews' )->with( 'title', $title );
 	}
+
 	/**
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
@@ -62,7 +67,8 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getRegister() {
-		return View::make( 'admin.register' );
+		$title = _( 'Register Page' );
+		return View::make( 'admin.register' )->with( 'title', $title );
 	}
 
 	/**
@@ -72,7 +78,8 @@ class AdminController extends BaseController {
 	 */
 	public function getProfile( $id = null ) {
 		is_null( $id ) ? $id = Auth::user()->id : $id = $id;
-		$user = User::with('post')->find($id);
+		$user  = User::with( 'post' )->find( $id );
+		$title = printf( _( '%d Profil Page' ), $user->username );
 		return View::make( 'admin.profil' )->with( 'user', $user );
 	}
 
@@ -80,8 +87,9 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getNews() {
-		$news = Post::news()->with('postMeta')->orderBy( 'created_at', 'desc' )->get();
-		return View::make( 'admin/news' )->with( 'news', $news );
+		$title = _( 'News Management Page' );
+		$news  = Post::news()->with( 'postMeta' )->orderBy( 'created_at', 'desc' )->get();
+		return View::make( 'admin/news' )->with( array( 'news' => $news, 'title' => $title ) );
 	}
 
 	/**
@@ -224,12 +232,12 @@ class AdminController extends BaseController {
 	 * @return mixed|string
 	 */
 	public function  createUrl( $t ) {
-		$tr = array('ş','Ş','ı','İ','ğ','Ğ','ü','Ü','ö','Ö','ç','Ç');
-		$en = array('s','s','i','i','g','g','u','u','o','o','c','c');
-		$t = str_replace($tr,$en,$t);
-		$t= strtolower($t);
-		$t= preg_replace('/[^a-z0-9-_]+/','-',$t);
-		$t= preg_replace('/-+/','-',$t);
+		$tr = array( 'ş', 'Ş', 'ı', 'İ', 'ğ', 'Ğ', 'ü', 'Ü', 'ö', 'Ö', 'ç', 'Ç' );
+		$en = array( 's', 's', 'i', 'i', 'g', 'g', 'u', 'u', 'o', 'o', 'c', 'c' );
+		$t  = str_replace( $tr, $en, $t );
+		$t  = strtolower( $t );
+		$t  = preg_replace( '/[^a-z0-9-_]+/', '-', $t );
+		$t  = preg_replace( '/-+/', '-', $t );
 		return $t;
 	}
 

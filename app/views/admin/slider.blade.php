@@ -41,18 +41,27 @@
 					<td><img src="{{URL::asset($slide->postMeta()->where('metaKey', '=', 'image')->first()->metaValue)}}" class="img-rounded" height="150px" /></td>
 					<td class="center">{{$slide->created_at}}</td>
 					<td class="center">
-						<a class="btn btn-success" href="">
-							<i class="icon-zoom-in icon-white"></i>
-							View
-						</a>
-						<a class="btn btn-info" href="#">
-							<i class="icon-edit icon-white"></i>
-							Edit
-						</a>
-						<a class="btn btn-danger" href="#">
-							<i class="icon-trash icon-white"></i>
-							Delete
-						</a>
+						<div class="btn-group">
+							<button class="btn btn-large">{{_('Actions')}}</button>
+							<button data-toggle="dropdown" class="btn btn-large dropdown-toggle"><span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#">
+										<i class="icon-zoom-in"></i>
+										{{_('View')}}
+									</a>
+								</li>
+								<li><a href="#">
+										<i class="icon-edit"></i>
+										{{_('Edit')}}
+									</a></li>
+								<li>
+									<a href="#">
+										<i class="icon-trash"></i>
+										{{_('Delete')}}
+									</a></li>
+							</ul>
+						</div>
 					</td>
 				</tr>
 				@endforeach
