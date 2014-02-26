@@ -194,7 +194,7 @@ class AdminController extends BaseController {
 	 *
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
-	public function postAddNews() {
+	public function postAddNews() {//todo #24
 		$postData  = Input::all();
 		$rules     = array(
 				'title'   => 'required|unique:posts',

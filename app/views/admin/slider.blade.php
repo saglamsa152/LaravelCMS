@@ -42,8 +42,7 @@
 					<td class="center">{{$slide->content}}</td>
 					<td class="center">
 						<div class="btn-group">
-							<button class="btn btn-large">{{_('Actions')}}</button>
-							<button data-toggle="dropdown" class="btn btn-large dropdown-toggle"><span class="caret"></span></button>
+							<button data-toggle="dropdown" class="btn btn-large dropdown-toggle">{{_('Actions')}} <span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li>
 									<a href="#">
