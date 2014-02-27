@@ -15,7 +15,7 @@
 	<div class="box span12">
 		<div class="box-header well" data-original-title>
 			<h2><i class="icon-user"></i> {{_('Members')}}</h2>
-			<a href="{{URL::action('AdminController@getNewNews')}}"><!--todo -->
+			<a href="{{URL::action('AdminController@getAddUser')}}">
 				<button class="btn btn-primary pull-right"><i class="icon-plus icon-white"></i> {{_('Add User')}}</button>
 			</a>
 		</div>

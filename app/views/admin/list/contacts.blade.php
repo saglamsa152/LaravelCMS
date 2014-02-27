@@ -6,7 +6,7 @@
 			<a href="{{URL::action('AdminController@getIndex')}}">{{_('Home')}}</a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getNews')}}">{{_('News')}}</a>
+			<a href="{{URL::action('AdminController@getContacts')}}">{{_('Contacts')}}</a>
 		</li>
 	</ul>
 </div>
@@ -14,12 +14,7 @@
 <div class="row-fluid">
 	<div class="box span12">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> {{_('News')}}</h2>
-
-			<a class="btn btn-success pull-right" href="{{URL::action('AdminController@getNewNews')}}">
-				<i class="icon-edit icon-white"></i>
-				{{_('Add News')}}
-			</a>
+			<h2><i class="icon-user"></i> {{_('Contacts')}}</h2>
 		</div>
 		<div class="box-content">
 			<table class="table table-striped table-bordered bootstrap-datatable datatable">
@@ -35,19 +30,19 @@
 				</thead>
 				<tbody>
 
-				@foreach($news as $new)
+				@foreach($contacts as $contact)
 				<tr>
-					<td>{{$new->id}}</td>
-					<td>{{$new->title}}</td>
-					<td>{{$new->author}}</td>
-					<td class="center">{{$new->created_at}}</td>
-					<td class="center">{{$new->type}}</td>
+					<td>{{$contact->id}}</td>
+					<td>{{$contact->title}}</td>
+					<td>{{$contact->user->username}}</td>
+					<td class="center">{{$contact->created_at}}</td>
+					<td class="center">{{$contact->type}}</td>
 					<td class="center">
 						<div class="btn-group">
 							<button data-toggle="dropdown" class="btn btn-large dropdown-toggle">{{_('Actions')}} <span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="{{URL::action('HomeController@getNews',$new->url)}}">
+									<a href="{{URL::action('HomeController@getNews',$contact->url)}}">
 										<i class="icon-zoom-in"></i>
 										{{_('View')}}
 									</a>

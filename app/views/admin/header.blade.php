@@ -144,19 +144,22 @@
 						<a class="ajax-link" href="{{URL::action('AdminController@getNews')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet"> {{_('News')}}</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="#"><i class=" icon-list-alt"></i><span class="hidden-tablet"> {{_('Products')}}</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getProducts')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet"> {{_('Products')}}</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="#"><i class=" icon-briefcase"></i><span class="hidden-tablet"> {{_('Services')}}</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getServices')}}"><i class=" icon-briefcase"></i><span class="hidden-tablet"> {{_('Services')}}</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="#"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> {{_('Orders')}}</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getOrders')}}"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> {{_('Orders')}}</span></a>
 					</li>
 					<li>
 						<a class="ajax-link" href="{{URL::action('AdminController@getSlider')}}"><i class="icon-picture"></i><span class="hidden-tablet"> {{_('Slider')}}</span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="#"><i class=" icon-envelope"></i><span class="hidden-tablet"> {{_('Contact')}}</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getContacts')}}"><i class=" icon-envelope"></i><span class="hidden-tablet"> {{_('Contact')}}</span></a>
+					</li>
+					<li>
+						<a class="ajax-link" href="{{URL::action('AdminController@getOptions')}}"><i class=" icon-wrench"></i><span class="hidden-tablet"> {{_('Options')}}</span></a>
 					</li>
 				</ul>
 				<label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> {{_('Ajax on menu')}}</label>

@@ -16,8 +16,8 @@
 		<div class="box-header well" data-original-title>
 			<h2><i class="icon-user"></i> {{_('Slides')}}</h2>
 
-			<a class="btn btn-success pull-right" href="{{URL::action('AdminController@getNewSlide')}}">
-				<i class="icon-edit icon-white"></i>
+			<a class="btn btn-primary pull-right" href="{{URL::action('AdminController@getAddSlide')}}">
+				<i class="icon-plus icon-white"></i>
 				{{_('Add Slide')}}
 			</a>
 		</div>

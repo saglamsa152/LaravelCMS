@@ -16,7 +16,7 @@
 			<a href="{{URL::action('AdminController@getNews')}}">{{_('News')}}</a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getNewNews')}}">{{_('New News')}}</a>
+			<a href="{{URL::action('AdminController@getAddNews')}}">{{_('New News')}}</a>
 		</li>
 	</ul>
 </div>
@@ -24,8 +24,9 @@
 		'role'   => 'form',
 		'class'  => '',
 		'method' => 'post',
-		'action' => 'AdminController@postAddNews'
-) )?>
+		'action' => 'AdminController@postAddPost'
+) );
+echo Form::hidden( 'type', 'news' )?>
 <div class="row-fluid sortable ui-sortable">
 
 	<div class="box span9">
@@ -44,7 +45,7 @@
 			@endif
 			<fieldset>
 				<div class="controls">
-					<?php echo Form::text( 'title', Input::old( 'title' ), array( 'class' => 'span6', 'id' => 'title', 'placeholder' => _('Title') ) ) ?>
+					<?php echo Form::text( 'title', Input::old( 'title' ), array( 'class' => 'span6', 'id' => 'title', 'placeholder' => _( 'Title' ) ) ) ?>
 				</div>
 
 				<div class="control-group">
@@ -67,7 +68,7 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<?php echo Form::submit( _('Publish'), array( 'class' => 'btn btn-primary' ) ) ?>
+			<?php echo Form::submit( _( 'Publish' ), array( 'class' => 'btn btn-primary' ) ) ?>
 		</div>
 	</div>
 	<div class="box span3">

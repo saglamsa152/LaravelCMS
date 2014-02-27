@@ -84,7 +84,7 @@ class PostTableSeeder extends Seeder {
 						'excerpt'    => $excerpt,
 						'title'      => 'Lorem ipsum dolor sit amet - Product',
 						'status'     => 'publish',
-						'type'       => 'service',
+						'type'       => 'product',
 						'url'        => 'lorem-ipsum-dolor-sit-amet-service-product',
 						'created_at' => date( 'Y-m-d H:i:s' ),
 						'created_ip' => '127.0.0.1'
