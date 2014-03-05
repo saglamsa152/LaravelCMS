@@ -35,6 +35,7 @@
 				<tbody>
 
 				@foreach($slides as $slide)
+				<pre><?php var_dump($slide->postMeta)?></pre>
 				<tr>
 					<td>{{$slide->id}}</td>
 					<td>{{$slide->title}}</td>
