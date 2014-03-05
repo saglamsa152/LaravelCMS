@@ -35,11 +35,15 @@
 				<tbody>
 
 				@foreach($slides as $slide)
-				<pre><?php var_dump($slide->postMeta)?></pre>
+				<?php
+				foreach($slide->postMeta as $meta){
+					$slide=array_add($slide,$meta->metaKey,$meta->metaValue);
+				}
+				?>
 				<tr>
 					<td>{{$slide->id}}</td>
 					<td>{{$slide->title}}</td>
-					<td><img src="{{URL::asset($slide->postMeta()->where('metaKey', '=', 'image')->first()->metaValue)}}" class="img-rounded" height="150px" /></td>
+					<td><img src="{{URL::asset($slide->image)}}" class="img-rounded" height="150px" /></td>
 					<td class="center">{{$slide->content}}</td>
 					<td class="center">
 						<div class="btn-group">

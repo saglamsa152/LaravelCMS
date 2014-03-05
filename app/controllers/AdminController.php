@@ -68,14 +68,7 @@ class AdminController extends BaseController {
 	public function getSlider() {
 		$title  = _( 'Slider Management Page' );
 		$slides = Post::slider()->with( 'postMeta' )->orderBy( 'created_at', 'desc' )->get();
-		/*$meta=array();
-		foreach ( $slides as $slide ) {
-			$meta=array_add($meta,)
-			$meta=$slide->postMeta;
-		}*/
-
-
-		return View::make( 'admin.list.slider' )->with( array( 'slides' => $slides, 'title' => $title ) );
+		return View::make( 'admin.list.slider' )->with( array( 'slides' => $slides, 'title' => $title) );
 	}
 
 	public function getAddSlide() {
