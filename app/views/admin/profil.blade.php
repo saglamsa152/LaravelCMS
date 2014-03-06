@@ -55,22 +55,22 @@
 					<td class="center">{{$post->type}}</td>
 					<td class="center">
 						<div class="btn-group">
-							<button data-toggle="dropdown" class="btn btn-large dropdown-toggle">{{_('Actions')}} <span class="caret"></span></button>
+							<button data-toggle="dropdown" class="btn btn-large dropdown-toggle"><?php echo _('Actions')?> <span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li>
 									<a href="{{URL::action('HomeController@getNews',$post->url)}}">
 										<i class="icon-zoom-in"></i>
-										{{_('View')}}
+										<?php echo _('View')?>
 									</a>
 								</li>
 								<li><a href="#">
 										<i class="icon-edit"></i>
-										{{_('Edit')}}
+										<?php echo _('Edit')?>
 									</a></li>
 								<li>
 									<a href="#">
 										<i class="icon-trash"></i>
-										{{_('Delete')}}
+										<?php echo _('Delete')?>
 									</a></li>
 							</ul>
 						</div>

@@ -11,16 +11,34 @@
 |
 */
 
-App::before(function($request)
-{
-	//
-});
+App::before( function ( $request ) {
+	echo $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+	$accpetLanguages = explode( ',', $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
+	if ( strpos( $accpetLanguages[0], 'tr' ) !== false ) {
+		$language = 'tr_TR';
+	}
+	elseif ( strpos( $accpetLanguages[0], 'en' ) !== false ) {
+		$language = 'en_US';
+	}
+	// dili belirtiyoruz
+	$language = $language . '.UTF-8';
+	putenv( 'LC_ALL=' . $language );
+	setlocale( LC_ALL, $language );
+
+// burada hangi kataloğumuzu kullanacağımızı
+// ve dil dosyaların hangi dizinde olduğunu
+// yani: /diller/en_US/LC_MESSAGES/projemiz.po
+	$katalog = 'ilklaravel';
+	bindtextdomain( $katalog, __DIR__ . "/lang" );
+
+// burada da kataloğumuzun adını belirtiyoruz.
+	textdomain( $katalog );
+} );
 
 
-App::after(function($request, $response)
-{
+App::after( function ( $request, $response ) {
 	//
-});
+} );
 
 /*
 |--------------------------------------------------------------------------
@@ -33,16 +51,14 @@ App::after(function($request, $response)
 |
 */
 
-Route::filter('auth', function()
-{
-	if (Auth::guest()) return Redirect::guest('admin/login')->withErrors(array('Bu işlemi yapabilmek için sisteme giriş yapmalısınız.'));
-});
+Route::filter( 'auth', function () {
+	if ( Auth::guest() ) return Redirect::guest( 'admin/login' )->withErrors( array( 'Bu işlemi yapabilmek için sisteme giriş yapmalısınız.' ) );
+} );
 
 
-Route::filter('auth.basic', function()
-{
+Route::filter( 'auth.basic', function () {
 	return Auth::basic();
-});
+} );
 
 /*
 |--------------------------------------------------------------------------
@@ -55,10 +71,9 @@ Route::filter('auth.basic', function()
 |
 */
 
-Route::filter('guest', function()
-{
-	if (Auth::check()) return Redirect::to('/');
-});
+Route::filter( 'guest', function () {
+	if ( Auth::check() ) return Redirect::to( '/' );
+} );
 
 /*
 |--------------------------------------------------------------------------
@@ -71,10 +86,8 @@ Route::filter('guest', function()
 |
 */
 
-Route::filter('csrf', function()
-{
-	if (Session::token() != Input::get('_token'))
-	{
+Route::filter( 'csrf', function () {
+	if ( Session::token() != Input::get( '_token' ) ) {
 		throw new Illuminate\Session\TokenMismatchException;
 	}
-});
+} );

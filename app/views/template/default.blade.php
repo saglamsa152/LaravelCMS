@@ -67,7 +67,7 @@
 			<div class="wrapper row">
 				<section class="col-1-4">
 					<div class="wrap-col">
-						<h4> {{_('Why Us?')}} </h4>
+						<h4> <?php echo _('Why Us?')?> </h4>
 						<ul class="list1">
 							<li><a href="#">Lorem ipsum dolor sit</a></li>
 							<li><a href="#">Dmet, consectetur</a></li>
@@ -78,18 +78,18 @@
 				</section>
 				<section class="col-1-4">
 					<div class="wrap-col">
-						<h4>{{_('Address')}}</h4>
+						<h4><?php echo _('Address')?></h4>
 						<ul class="address">
-							<li><span>{{_('Country:')}}</span>USA</li>
-							<li><span>{{_('City:')}}</span>San Diego</li>
-							<li><span>{{_('Phone:')}}</span>8 800 154-45-67</li>
-							<li><span>{{_('Email:')}}</span><a href="mailto:">progress@mail.com</a></li>
+							<li><span><?php echo _('Country:')?></span>USA</li>
+							<li><span><?php echo _('City:')?></span>San Diego</li>
+							<li><span><?php echo _('Phone:')?></span>8 800 154-45-67</li>
+							<li><span><?php echo _('Email:')?></span><a href="mailto:">progress@mail.com</a></li>
 						</ul>
 					</div>
 				</section>
 				<section class="col-1-4">
 					<div class="wrap-col">
-						<h4> {{_('Follow Us')}}</h4>
+						<h4> <?php echo _('Follow Us')?></h4>
 						<ul id="icons">
 							<li><a href="#"><img alt="" src="{{ URL::asset('assets/images/icon1.jpg')}}">Facebook</a></li>
 							<li><a href="#"><img alt="" src="{{ URL::asset('assets/images/icon2.jpg')}}">Twitter</a></li>
@@ -100,7 +100,7 @@
 				</section>
 				<section class="col-1-4">
 					<div class="wrap-col">
-						<h4>{{_('Newsletter')}}</h4>
+						<h4><?php echo _('Newsletter')?></h4>
 						<form method="post" id="newsletter">
 							<div>
 								<div class="wrapper">

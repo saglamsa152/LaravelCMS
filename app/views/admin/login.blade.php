@@ -35,12 +35,12 @@
 			<div class="clearfix"></div>
 
 			<div class="input-prepend" title="Password" data-rel="tooltip">
-				<span class="add-on"><i class="icon-lock"></i></span>{{Form::password('password',array('class'=>'input-large','id'=>'password','placeholder'=>'Password'))}}
+				<span class="add-on"><i class="icon-lock"></i></span>{{Form::password('password',array('class'=>'input-large','id'=>'password','placeholder'=>'Password'))?>
 			</div>
 			<div class="clearfix"></div>
 
 			<div class="input-prepend">
-				<label class="remember" for="remember">{{Form::checkbox('remember')}}{{_('Remember me')}}</label>
+				<label class="remember" for="remember">{{Form::checkbox('remember')}}<?php echo _('Remember me')?></label>
 			</div>
 			<div class="clearfix"></div>
 

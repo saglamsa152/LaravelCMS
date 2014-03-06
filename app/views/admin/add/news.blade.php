@@ -10,13 +10,13 @@
 <div>
 	<ul class="breadcrumb">
 		<li>
-			<a href="{{URL::action('AdminController@getIndex')}}">{{_('Home')}}</a> <span class="divider">/</span>
+			<a href="{{URL::action('AdminController@getIndex')}}"><?php echo _('Home')?></a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getNews')}}">{{_('News')}}</a> <span class="divider">/</span>
+			<a href="{{URL::action('AdminController@getNews')}}"><?php echo _('News')?></a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getAddNews')}}">{{_('New News')}}</a>
+			<a href="{{URL::action('AdminController@getAddNews')}}"><?php echo _('New News')?></a>
 		</li>
 	</ul>
 </div>
@@ -31,7 +31,7 @@ echo Form::hidden( 'type', 'news' )?>
 
 	<div class="box span9">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> {{_('New News')}}</h2>
+			<h2><i class="icon-user"></i> <?php echo _('New News')?></h2>
 
 		</div>
 		<div class="box-content">
@@ -60,7 +60,7 @@ echo Form::hidden( 'type', 'news' )?>
 	<!--/span-->
 	<div class="box span3">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> {{_('News Meta')}}</h2>
+			<h2><i class="icon-user"></i> <?php echo _('News Meta')?></h2>
 
 			<div class="box-icon">
 				<a class="btn  btn-round" href="#"><i class="icon-cog"></i></a>
@@ -73,7 +73,7 @@ echo Form::hidden( 'type', 'news' )?>
 	</div>
 	<div class="box span3">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> {{_('News Meta')}}</h2>
+			<h2><i class="icon-user"></i> <?php echo _('News Meta')?></h2>
 
 			<div class="box-icon">
 				<a class="btn  btn-round" href="#"><i class="icon-cog"></i></a>
@@ -82,7 +82,7 @@ echo Form::hidden( 'type', 'news' )?>
 		</div>
 		<div class="box-content">
 			<div class="control-group">
-				<label class="control-label" for="file_upload">{{_('File input')}}</label>
+				<label class="control-label" for="file_upload"><?php echo _('File input')?></label>
 
 				<div class="controls">
 					<input class="input-file uniform_on" id="file_upload" type="file">

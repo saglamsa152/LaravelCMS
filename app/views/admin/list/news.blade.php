@@ -3,10 +3,10 @@
 <div>
 	<ul class="breadcrumb">
 		<li>
-			<a href="{{URL::action('AdminController@getIndex')}}">{{_('Home')}}</a> <span class="divider">/</span>
+			<a href="{{URL::action('AdminController@getIndex')}}"><?php echo _('Home')?></a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getNews')}}">{{_('News')}}</a>
+			<a href="{{URL::action('AdminController@getNews')}}"><?php echo _('News')?></a>
 		</li>
 	</ul>
 </div>
@@ -14,10 +14,10 @@
 <div class="row-fluid">
 	<div class="box span12">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> {{_('News')}}</h2>
+			<h2><i class="icon-user"></i> <?php echo _('News')?></h2>
 			<a class="btn btn-primary pull-right" href="{{URL::action('AdminController@getAddNews')}}">
 				<i class="icon-plus icon-white"></i>
-				{{_('Add News')}}
+				<?php echo _('Add News')?>
 			</a>
 		</div>
 		<div class="box-content">
@@ -25,11 +25,11 @@
 				<thead>
 				<tr>
 					<th>Id</th>
-					<th>{{_('Title')}}</th>
-					<th>{{_('Author')}}</th>
-					<th>{{_('Publish Date')}}</th>
-					<th>{{_('Type')}}</th>
-					<th>{{_('Actions')}}</th>
+					<th><?php echo _('Title')?></th>
+					<th><?php echo _('Author')?></th>
+					<th><?php echo _('Publish Date')?></th>
+					<th><?php echo _('Type')?></th>
+					<th><?php echo _('Actions')?></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -43,22 +43,22 @@
 					<td class="center">{{$new->type}}</td>
 					<td class="center">
 						<div class="btn-group">
-							<button data-toggle="dropdown" class="btn btn-large dropdown-toggle">{{_('Actions')}} <span class="caret"></span></button>
+							<button data-toggle="dropdown" class="btn btn-large dropdown-toggle"><?php echo _('Actions')?> <span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li>
 									<a href="{{URL::action('HomeController@getNews',$new->url)}}">
 										<i class="icon-zoom-in"></i>
-										{{_('View')}}
+										<?php echo _('View')?>
 									</a>
 								</li>
 								<li><a href="#">
 										<i class="icon-edit"></i>
-										{{_('Edit')}}
+										<?php echo _('Edit')?>
 									</a></li>
 								<li>
 									<a href="#">
 										<i class="icon-trash"></i>
-										{{_('Delete')}}
+										<?php echo _('Delete')?>
 									</a></li>
 							</ul>
 						</div>

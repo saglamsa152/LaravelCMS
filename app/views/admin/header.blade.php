@@ -78,7 +78,7 @@
 			<!-- theme selector starts -->
 			<div class="btn-group pull-right theme-container">
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					<i class="icon-tint"></i><span class="hidden-phone"> {{_('Change Theme / Skin')}}</span>
+					<i class="icon-tint"></i><span class="hidden-phone"> <?php echo _('Change Theme / Skin')?></span>
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu" id="themes">
@@ -102,7 +102,7 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="{{URL::action('AdminController@getProfile',Auth::user()->id)}}"> {{_('Profile')}}</a></li>
+					<li><a href="{{URL::action('AdminController@getProfile',Auth::user()->id)}}"> <?php echo _('Profile')?></a></li>
 					<li class="divider"></li>
 					<li>{{link_to_action('AdminController@getLogout',_('Logout'))}}</li>
 				</ul>
@@ -111,10 +111,10 @@
 
 			<div class="top-nav nav-collapse">
 				<ul class="nav">
-					<li><a href="{{ URL::route('home') }}">{{_('Visit Site')}}</a></li>
+					<li><a href="{{ URL::route('home') }}"><?php echo _('Visit Site')?></a></li>
 					<li>
 						<form class="navbar-search pull-left">
-							<input placeholder="{{_('Search')}}" class="search-query span2" name="query" type="text">
+							<input placeholder="<?php echo _('Search')?>" class="search-query span2" name="query" type="text">
 						</form>
 					</li>
 				</ul>
@@ -133,36 +133,36 @@
 		<div class="span2 main-menu-span">
 			<div class="well nav-collapse sidebar-nav">
 				<ul class="nav nav-tabs nav-stacked main-menu">
-					<li class="nav-header hidden-tablet">{{_('Main')}}</li>
+					<li class="nav-header hidden-tablet"><?php echo _('Main')?></li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getIndex')}}"><i class="icon-home"></i><span class="hidden-tablet"> {{_('Dashboard')}}</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getIndex')}}"><i class="icon-home"></i><span class="hidden-tablet"> <?php echo _('Dashboard')?></span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getUsers')}}"><i class="icon-user"></i><span class="hidden-tablet"> {{_('Users')}}</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getUsers')}}"><i class="icon-user"></i><span class="hidden-tablet"> <?php echo _('Users')?></span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getNews')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet"> {{_('News')}}</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getNews')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet"> <?php echo _('News')?></span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getProducts')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet"> {{_('Products')}}</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getProducts')}}"><i class=" icon-list-alt"></i><span class="hidden-tablet"> <?php echo _('Products')?></span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getServices')}}"><i class=" icon-briefcase"></i><span class="hidden-tablet"> {{_('Services')}}</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getServices')}}"><i class=" icon-briefcase"></i><span class="hidden-tablet"> <?php echo _('Services')?></span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getOrders')}}"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> {{_('Orders')}}</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getOrders')}}"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> <?php echo _('Orders')?></span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getSlider')}}"><i class="icon-picture"></i><span class="hidden-tablet"> {{_('Slider')}}</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getSlider')}}"><i class="icon-picture"></i><span class="hidden-tablet"> <?php echo _('Slider')?></span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getContacts')}}"><i class=" icon-envelope"></i><span class="hidden-tablet"> {{_('Contact')}}</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getContacts')}}"><i class=" icon-envelope"></i><span class="hidden-tablet"> <?php echo _('Contact')?></span></a>
 					</li>
 					<li>
-						<a class="ajax-link" href="{{URL::action('AdminController@getOptions')}}"><i class=" icon-wrench"></i><span class="hidden-tablet"> {{_('Options')}}</span></a>
+						<a class="ajax-link" href="{{URL::action('AdminController@getOptions')}}"><i class=" icon-wrench"></i><span class="hidden-tablet"> <?php echo _('Options')?></span></a>
 					</li>
 				</ul>
-				<label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> {{_('Ajax on menu')}}</label>
+				<label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> <?php echo _('Ajax on menu')?></label>
 			</div>
 			<!--/.well -->
 		</div>
@@ -171,10 +171,10 @@
 
 		<noscript>
 			<div class="alert alert-block span10">
-				<h4 class="alert-heading">{{_('Warning!')}}</h4>
+				<h4 class="alert-heading"><?php echo _('Warning!')?></h4>
 
-				<p>{{_('You need to have
-					<a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.')}}</p>
+				<p><?php echo _('You need to have
+					<a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.')?></p>
 			</div>
 		</noscript>
 

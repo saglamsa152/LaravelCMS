@@ -10,20 +10,20 @@
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>{{_('Settings')}}</h3>
+			<h3><?php echo _('Settings')?></h3>
 		</div>
 		<div class="modal-body">
 			<p>Here settings can be configured...</p>
 		</div>
 		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">{{_('Close')}}</a>
-			<a href="#" class="btn btn-primary">{{_('Save changes')}}</a>
+			<a href="#" class="btn" data-dismiss="modal"><?php echo _('Close')?></a>
+			<a href="#" class="btn btn-primary"><?php echo _('Save changes')?></a>
 		</div>
 	</div>
 
 	<footer>
 		<p class="pull-left">&copy; <a href="http://usman.it" target="_blank">Muhammad Usman</a> <?php echo date('Y') ?></p>
-		<p class="pull-right">{{_('Powered by: <a href="http://usman.it/free-responsive-admin-template">Charisma</a>')}}</p>
+		<p class="pull-right"><?php echo _('Powered by: <a href="http://usman.it/free-responsive-admin-template">Charisma</a>')?></p>
 	</footer>
 @endif
 
