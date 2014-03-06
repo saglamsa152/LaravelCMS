@@ -1,0 +1,151 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ilklaravel\n"
+"POT-Creation-Date: 2014-03-06 01:10+0200\n"
+"PO-Revision-Date: 2014-03-06 01:14+0200\n"
+"Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
+"Language-Team:  <sametatabasch@gmail.com>\n"
+"Language: TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: views\n"
+"X-Poedit-SearchPath-1: models\n"
+"X-Poedit-SearchPath-2: controllers\n"
+
+#: views/admin/add/news.blade.php:48
+msgid "Title"
+msgstr "Başlık"
+
+#: views/admin/add/news.blade.php:71
+msgid "Publish"
+msgstr "Yayınla"
+
+#: controllers/HomeController.php:47
+msgid "Contact"
+msgstr "İletişim"
+
+#: controllers/HomeController.php:52 controllers/AdminController.php:120
+msgid "Products"
+msgstr "Ürünler"
+
+#: controllers/HomeController.php:57 controllers/AdminController.php:109
+msgid "Services"
+msgstr "Hizmeler"
+
+#: controllers/AdminController.php:21
+msgid "Admin Panel"
+msgstr "Yönetici Paneli"
+
+#: controllers/AdminController.php:37
+msgid "Register Page"
+msgstr "Üyelik Sayfası"
+
+#: controllers/AdminController.php:46
+msgid "Login Page"
+msgstr "Giriş Sayfası"
+
+#: controllers/AdminController.php:55
+msgid "Users"
+msgstr "kullanıcılar"
+
+#: controllers/AdminController.php:61
+msgid "Add New User"
+msgstr ""
+
+#: controllers/AdminController.php:69
+msgid "Slider Management Page"
+msgstr ""
+
+#: controllers/AdminController.php:75
+msgid "Add New Slide"
+msgstr ""
+
+#: controllers/AdminController.php:95
+msgid "News Management Page"
+msgstr ""
+
+#: controllers/AdminController.php:115
+msgid "Add New Service"
+msgstr ""
+
+#: controllers/AdminController.php:126
+msgid "Add New Product"
+msgstr ""
+
+#: controllers/AdminController.php:131
+msgid "Cotacts"
+msgstr ""
+
+#: controllers/AdminController.php:136
+msgid "Orders"
+msgstr ""
+
+#: controllers/AdminController.php:141
+msgid "Options"
+msgstr ""
+
+#: controllers/AdminController.php:162
+msgid "Please enter user name"
+msgstr ""
+
+#: controllers/AdminController.php:163
+msgid "Please enter password"
+msgstr ""
+
+#: controllers/AdminController.php:201
+msgid "Lütfen kullanıcı adınızı yazın"
+msgstr ""
+
+#: controllers/AdminController.php:202
+msgid "Kullanıcını adınız en az 3 karakterden oluşmalıdır"
+msgstr ""
+
+#: controllers/AdminController.php:203
+msgid ""
+"Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı yazın"
+msgstr ""
+
+#: controllers/AdminController.php:204
+msgid "Lütfen özel karakter ve boşluk içermeyen kullanıcı adı yazın"
+msgstr ""
+
+#: controllers/AdminController.php:205
+msgid "Lütfen mail adresinizi yazın"
+msgstr ""
+
+#: controllers/AdminController.php:206
+msgid "Lütfen geçerli bir mail adresi yazın"
+msgstr ""
+
+#: controllers/AdminController.php:207
+msgid "Bu mail adresi zaten kullanılıyor. Lütfen başka bir mail adresi yazın"
+msgstr ""
+
+#: controllers/AdminController.php:208
+msgid "Lütfen şifrenizi yazın"
+msgstr ""
+
+#: controllers/AdminController.php:209
+msgid "Şifreniz minumum 4 karakterden oluşmalıdır"
+msgstr ""
+
+#: controllers/AdminController.php:210
+msgid "Girdiğiniz şifreler birbiriyle eşleşmiyor"
+msgstr ""
+
+#: controllers/AdminController.php:211
+msgid "Lütfen şifrenizi doğrulayın"
+msgstr ""
+
+#: controllers/AdminController.php:246
+msgid "Başlık boş bırakılamaz"
+msgstr ""
+
+#: controllers/AdminController.php:247
+msgid "İçerik boş bırakılamaz"
+msgstr ""
