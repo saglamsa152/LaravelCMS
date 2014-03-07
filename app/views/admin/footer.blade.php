@@ -1,30 +1,31 @@
 @if(Auth::check())
-	<!-- content ends -->
-	</div><!--/#content.span10-->
+<!-- content ends -->
+</div><!--/#content.span10-->
 @endif
 </div><!--/fluid-row-->
 @if(Auth::check())
 
-	<hr>
+<hr>
 
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3><?php echo _('Settings')?></h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal"><?php echo _('Close')?></a>
-			<a href="#" class="btn btn-primary"><?php echo _('Save changes')?></a>
-		</div>
+<div class="modal hide fade" id="myModal">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">×</button>
+		<h3><?php echo _( 'Settings' ) ?></h3>
 	</div>
+	<div class="modal-body">
+		<p>Here settings can be configured...</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal"><?php echo _( 'Close' ) ?></a>
+		<a href="#" class="btn btn-primary"><?php echo _( 'Save changes' ) ?></a>
+	</div>
+</div>
 
-	<footer>
-		<p class="pull-left">&copy; <a href="http://usman.it" target="_blank">Muhammad Usman</a> <?php echo date('Y') ?></p>
-		<p class="pull-right"><?php echo _('Powered by: <a href="http://usman.it/free-responsive-admin-template">Charisma</a>')?></p>
-	</footer>
+<footer>
+	<p class="pull-left">&copy; <a href="http://usman.it" target="_blank">Muhammad Usman</a> <?php echo date( 'Y' ) ?></p>
+
+	<p class="pull-right"><?php echo _( 'Powered by: <a href="http://usman.it/free-responsive-admin-template">Charisma</a>' ) ?></p>
+</footer>
 @endif
 
 </div><!--/.fluid-container-->
@@ -103,6 +104,17 @@
 {{ HTML::script('assets/admin/js/jquery.history.js') }}
 <!-- application script for Charisma demo -->
 {{ HTML::script('assets/admin/js/charisma.js') }}
+<!-- Mini Ajax file upload-->
+	<!-- JavaScript Includes -->
+	{{ HTML::script('assets/admin/js/jquery.knob.js') }}
 
+	<!-- jQuery File Upload Dependencies -->
+	{{ HTML::script('assets/admin/js/jquery.ui.widget.js') }}
+	{{ HTML::script('assets/admin/js/jquery.iframe-transport.js') }}
+	{{ HTML::script('assets/admin/js/jquery.fileupload.js') }}
+
+	<!-- Our main JS file -->
+	{{ HTML::script('assets/admin/js/script.js') }}
+<!--/Mini Ajax file upload-->
 </body>
 </html>

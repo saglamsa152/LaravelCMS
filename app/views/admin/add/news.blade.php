@@ -59,14 +59,7 @@ echo Form::hidden( 'type', 'news' )?>
 	</div>
 	<!--/span-->
 	<div class="box span3">
-		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> <?php echo _('News Meta')?></h2>
 
-			<div class="box-icon">
-				<a class="btn  btn-round" href="#"><i class="icon-cog"></i></a>
-				<a class="btn btn-minimize btn-round" href="#"><i class="icon-chevron-up"></i></a>
-			</div>
-		</div>
 		<div class="box-content">
 			<?php echo Form::submit( _( 'Publish' ), array( 'class' => 'btn btn-primary' ) ) ?>
 		</div>

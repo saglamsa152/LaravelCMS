@@ -49,6 +49,10 @@
 	{{ HTML::style('assets/admin/css/opa-icons.css') }}
 	{{ HTML::style('assets/admin/css/uploadify.css') }}
 	{{ HTML::style('assets/admin/css/custom.css') }}
+	<!--Mini ajax file upload -->
+	{{ HTML::style('assets/admin/css/mini-ajax-upload-style.css')}}
+	{{ HTML::style('http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700')}}
+	<!--/Mini Ajax file upload-->
 
 	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>

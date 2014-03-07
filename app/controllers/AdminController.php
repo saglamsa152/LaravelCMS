@@ -57,9 +57,9 @@ class AdminController extends BaseController {
 		return View::make( 'admin.list.users' )->with( array( 'users' => $users, 'title' => $title ) );
 	}
 
-	public function getAddUser(){
-		$title=_('Add New User');
-		return View::make('admin.add.user')->with('title',$title);
+	public function getAddUser() {
+		$title = _( 'Add New User' );
+		return View::make( 'admin.add.user' )->with( 'title', $title );
 	}
 
 	/**
@@ -68,7 +68,7 @@ class AdminController extends BaseController {
 	public function getSlider() {
 		$title  = _( 'Slider Management Page' );
 		$slides = Post::slider()->with( 'postMeta' )->orderBy( 'created_at', 'desc' )->get();
-		return View::make( 'admin.list.slider' )->with( array( 'slides' => $slides, 'title' => $title) );
+		return View::make( 'admin.list.slider' )->with( array( 'slides' => $slides, 'title' => $title ) );
 	}
 
 	public function getAddSlide() {
@@ -93,7 +93,7 @@ class AdminController extends BaseController {
 	 */
 	public function getNews() {
 		$title = _( 'News Management Page' );
-		$news  = Post::news()->with( 'postMeta','user' )->orderBy( 'created_at', 'desc' )->get();
+		$news  = Post::news()->with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->get();
 		return View::make( 'admin.list.news' )->with( array( 'news' => $news, 'title' => $title ) );
 	}
 
@@ -105,42 +105,44 @@ class AdminController extends BaseController {
 		return View::make( 'admin.add.news' )->with( 'title', $title );
 	}
 
-	public function getServices(){
-		$title=_('Services');
-		$services= Post::with('postMeta','user')->orderBy('created_at','desc')->service()->get();
-		return View::make('admin.list.services')->with(array('title'=>$title,'services'=>$services));
+	public function getServices() {
+		$title    = _( 'Services' );
+		$services = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->service()->get();
+		return View::make( 'admin.list.services' )->with( array( 'title' => $title, 'services' => $services ) );
 	}
 
-	public function getAddService(){
-		$title=_('Add New Service');
-		return View::make('admin.add.service')->with('title',$title);
+	public function getAddService() {
+		$title = _( 'Add New Service' );
+		return View::make( 'admin.add.service' )->with( 'title', $title );
 	}
 
-	public function getProducts(){
-		$title=_('Products');
-		$products=Post::with('postMeta','user')->orderBy('created_at','desc')->product()->get();
-		return View::make('admin.list.products')->with(array('title'=>$title,'products'=>$products));
+	public function getProducts() {
+		$title    = _( 'Products' );
+		$products = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->product()->get();
+		return View::make( 'admin.list.products' )->with( array( 'title' => $title, 'products' => $products ) );
 	}
 
-	public function getAddProduct(){
-		$title=_('Add New Product');
-		return View::make('admin.add.product')->with('title',$title);
+	public function getAddProduct() {
+		$title = _( 'Add New Product' );
+		return View::make( 'admin.add.product' )->with( 'title', $title );
 	}
 
-	public function getContacts(){
-		$title=_('Cotacts');
-		$contacts=Contact::all();
-		return View::make('admin.list.contacts')->with(array('title'=>$title,'contacts'=>$contacts));
-	}
-	public function getOrders(){
-		$title=_('Orders');
-		return View::make('admin.list.orders')->with('title',$title);
+	public function getContacts() {
+		$title    = _( 'Cotacts' );
+		$contacts = Contact::all();
+		return View::make( 'admin.list.contacts' )->with( array( 'title' => $title, 'contacts' => $contacts ) );
 	}
 
-	public function getOptions(){
-		$title=_('Options');
-		return View::make('admin.options')->with(array('title'=>$title));
+	public function getOrders() {
+		$title = _( 'Orders' );
+		return View::make( 'admin.list.orders' )->with( 'title', $title );
 	}
+
+	public function getOptions() {
+		$title = _( 'Options' );
+		return View::make( 'admin.options' )->with( array( 'title' => $title ) );
+	}
+
 	/**
 	 * Login işlemini denetler
 	 *
@@ -284,5 +286,32 @@ class AdminController extends BaseController {
 		return $t;
 	}
 
+	/**
+	 * mini-ajx-upload-file uygulamasını upload işlemi
+	 * resim yükleme işlemini gerçekleştiriyor
+	 */
+	public function postMiniAjaxUpload() {
+		// A list of permitted file extensions
+		$allowed = array( 'png', 'jpg', 'gif', 'zip' );
+		$file    = Input::file( 'upl' );
+		if ( Input::hasFile( 'upl' ) && Input::file( 'upl' )->getError() == 0 ) {
+
+			$extension = Input::file( 'upl' )->getClientOriginalExtension();
+
+			if ( ! in_array( strtolower( $extension ), $allowed ) ) {
+				echo '{"status":"error"}';
+				exit;
+			}
+			//Input::file('upl')->move(public_path().'/uploads/', time());// todo  if  ile  bunu  kullanımını  bulmak lazım
+			if ( Input::file('upl')->move(public_path().'/uploads/', time())  ) {
+				echo '{"status":"success"}';
+				exit;
+			}
+
+		}
+
+		echo '{"status":"error"}';
+		exit;
+	}
 
 }
