@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
-"POT-Creation-Date: 2014-03-06 01:10+0200\n"
-"PO-Revision-Date: 2014-03-06 01:14+0200\n"
+"POT-Creation-Date: 2014-03-07 22:51+0200\n"
+"PO-Revision-Date: 2014-03-07 22:52+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: TR\n"
@@ -13,139 +13,504 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: views\n"
-"X-Poedit-SearchPath-1: models\n"
-"X-Poedit-SearchPath-2: controllers\n"
+"X-Poedit-SearchPath-0: ../../views\n"
+"X-Poedit-SearchPath-1: ../../models\n"
+"X-Poedit-SearchPath-2: ../../controllers\n"
 
-#: views/admin/add/news.blade.php:48
-msgid "Title"
-msgstr "Başlık"
+#: ../../views/admin/footer.blade.php:13
+msgid "Settings"
+msgstr "Ayarlar"
 
-#: views/admin/add/news.blade.php:71
-msgid "Publish"
-msgstr "Yayınla"
+#: ../../views/admin/footer.blade.php:19
+msgid "Close"
+msgstr "Kapat"
 
-#: controllers/HomeController.php:47
-msgid "Contact"
-msgstr "İletişim"
+#: ../../views/admin/footer.blade.php:20
+msgid "Save changes"
+msgstr "Değişiklikleri  kaydet"
 
-#: controllers/HomeController.php:52 controllers/AdminController.php:120
-msgid "Products"
-msgstr "Ürünler"
+#: ../../views/admin/footer.blade.php:26
+msgid ""
+"Powered by: <a href=\"http://usman.it/free-responsive-admin-template"
+"\">Charisma</a>"
+msgstr ""
 
-#: controllers/HomeController.php:57 controllers/AdminController.php:109
-msgid "Services"
-msgstr "Hizmeler"
+#: ../../views/admin/header.blade.php:81
+msgid "Change Theme / Skin"
+msgstr "Temayı değiştir"
 
-#: controllers/AdminController.php:21
-msgid "Admin Panel"
-msgstr "Yönetici Paneli"
+#: ../../views/admin/header.blade.php:105
+msgid "Profile"
+msgstr "Profil"
 
-#: controllers/AdminController.php:37
-msgid "Register Page"
-msgstr "Üyelik Sayfası"
+#: ../../views/admin/header.blade.php:114
+msgid "Visit Site"
+msgstr "Siteye git"
 
-#: controllers/AdminController.php:46
-msgid "Login Page"
-msgstr "Giriş Sayfası"
+#: ../../views/admin/header.blade.php:117
+msgid "Search"
+msgstr "Ara"
 
-#: controllers/AdminController.php:55
+#: ../../views/admin/header.blade.php:136
+msgid "Main"
+msgstr ""
+
+#: ../../views/admin/header.blade.php:138 ../../views/admin/index.blade.php:8
+msgid "Dashboard"
+msgstr "Başlangıç"
+
+#: ../../views/admin/header.blade.php:141
+#: ../../controllers/AdminController.php:55
 msgid "Users"
 msgstr "kullanıcılar"
 
-#: controllers/AdminController.php:61
-msgid "Add New User"
-msgstr ""
+#: ../../views/admin/header.blade.php:144
+#: ../../views/admin/list/news.blade.php:9
+#: ../../views/admin/list/news.blade.php:17
+#: ../../views/admin/list/orders.blade.php:9
+#: ../../views/admin/list/orders.blade.php:17
+#: ../../views/admin/add/news.blade.php:16
+#: ../../views/template/menu.blade.php:9
+msgid "News"
+msgstr "Haberler"
 
-#: controllers/AdminController.php:69
-msgid "Slider Management Page"
-msgstr ""
+#: ../../views/admin/header.blade.php:147
+#: ../../views/admin/list/products.blade.php:9
+#: ../../views/admin/list/products.blade.php:17
+#: ../../views/template/menu.blade.php:13
+#: ../../controllers/HomeController.php:52
+#: ../../controllers/AdminController.php:120
+msgid "Products"
+msgstr "Ürünler"
 
-#: controllers/AdminController.php:75
-msgid "Add New Slide"
-msgstr ""
+#: ../../views/admin/header.blade.php:150
+#: ../../views/admin/list/services.blade.php:9
+#: ../../views/admin/list/services.blade.php:17
+#: ../../views/template/menu.blade.php:11
+#: ../../controllers/HomeController.php:57
+#: ../../controllers/AdminController.php:109
+msgid "Services"
+msgstr "Hizmeler"
 
-#: controllers/AdminController.php:95
-msgid "News Management Page"
-msgstr ""
-
-#: controllers/AdminController.php:115
-msgid "Add New Service"
-msgstr ""
-
-#: controllers/AdminController.php:126
-msgid "Add New Product"
-msgstr ""
-
-#: controllers/AdminController.php:131
-msgid "Cotacts"
-msgstr ""
-
-#: controllers/AdminController.php:136
+#: ../../views/admin/header.blade.php:153
+#: ../../controllers/AdminController.php:136
 msgid "Orders"
-msgstr ""
+msgstr "Siparişler"
 
-#: controllers/AdminController.php:141
+#: ../../views/admin/header.blade.php:156
+#: ../../views/admin/list/slider.blade.php:9
+msgid "Slider"
+msgstr "Slider"
+
+#: ../../views/admin/header.blade.php:159
+#: ../../controllers/HomeController.php:47
+msgid "Contact"
+msgstr "İletişim"
+
+#: ../../views/admin/header.blade.php:162
+#: ../../controllers/AdminController.php:141
 msgid "Options"
+msgstr "Ayarlar"
+
+#: ../../views/admin/header.blade.php:165
+msgid "Ajax on menu"
+msgstr "Ajax açık"
+
+#: ../../views/admin/header.blade.php:174
+msgid "Warning!"
+msgstr "Dikkat!"
+
+#: ../../views/admin/header.blade.php:176
+msgid ""
+"You need to have\n"
+"\t\t\t\t\t<a href=\"http://en.wikipedia.org/wiki/JavaScript\" target=\"_blank"
+"\">JavaScript</a> enabled to use this site."
 msgstr ""
 
-#: controllers/AdminController.php:162
+#: ../../views/admin/profil.blade.php:58
+#: ../../views/admin/list/services.blade.php:33
+#: ../../views/admin/list/services.blade.php:47
+#: ../../views/admin/list/news.blade.php:32
+#: ../../views/admin/list/news.blade.php:46
+#: ../../views/admin/list/contacts.blade.php:28
+#: ../../views/admin/list/contacts.blade.php:42
+#: ../../views/admin/list/users.blade.php:30
+#: ../../views/admin/list/users.blade.php:42
+#: ../../views/admin/list/products.blade.php:33
+#: ../../views/admin/list/products.blade.php:47
+#: ../../views/admin/list/slider.blade.php:32
+#: ../../views/admin/list/slider.blade.php:50
+#: ../../views/admin/list/orders.blade.php:33
+#: ../../views/admin/list/orders.blade.php:47
+msgid "Actions"
+msgstr "İşlemler"
+
+#: ../../views/admin/profil.blade.php:63
+#: ../../views/admin/list/services.blade.php:52
+#: ../../views/admin/list/news.blade.php:51
+#: ../../views/admin/list/contacts.blade.php:47
+#: ../../views/admin/list/users.blade.php:47
+#: ../../views/admin/list/products.blade.php:52
+#: ../../views/admin/list/slider.blade.php:55
+#: ../../views/admin/list/orders.blade.php:52
+msgid "View"
+msgstr "Göster"
+
+#: ../../views/admin/profil.blade.php:68
+#: ../../views/admin/list/services.blade.php:57
+#: ../../views/admin/list/news.blade.php:56
+#: ../../views/admin/list/contacts.blade.php:52
+#: ../../views/admin/list/users.blade.php:52
+#: ../../views/admin/list/products.blade.php:57
+#: ../../views/admin/list/slider.blade.php:60
+#: ../../views/admin/list/orders.blade.php:57
+msgid "Edit"
+msgstr "Düzenle"
+
+#: ../../views/admin/profil.blade.php:73
+#: ../../views/admin/list/services.blade.php:62
+#: ../../views/admin/list/news.blade.php:61
+#: ../../views/admin/list/contacts.blade.php:57
+#: ../../views/admin/list/users.blade.php:57
+#: ../../views/admin/list/products.blade.php:62
+#: ../../views/admin/list/slider.blade.php:65
+#: ../../views/admin/list/orders.blade.php:62
+msgid "Delete"
+msgstr "Sil"
+
+#: ../../views/admin/login.blade.php:33
+#: ../../views/admin/register.blade.php:34
+#: ../../views/admin/list/users.blade.php:27
+msgid "Username"
+msgstr "kullanıcı adı"
+
+#: ../../views/admin/login.blade.php:38
+msgid "Password"
+msgstr "Şifre"
+
+#: ../../views/admin/login.blade.php:43
+msgid "Remember me"
+msgstr "Beni  hatırla"
+
+#: ../../views/admin/login.blade.php:48
+#: ../../views/admin/register.blade.php:49
+msgid "Register"
+msgstr "Kayıt ol"
+
+#: ../../views/admin/login.blade.php:49
+msgid "Login"
+msgstr "Giriş"
+
+#: ../../views/admin/index.blade.php:5
+#: ../../views/admin/list/services.blade.php:6
+#: ../../views/admin/list/news.blade.php:6
+#: ../../views/admin/list/contacts.blade.php:6
+#: ../../views/admin/list/users.blade.php:6
+#: ../../views/admin/list/products.blade.php:6
+#: ../../views/admin/list/slider.blade.php:6
+#: ../../views/admin/list/orders.blade.php:6
+#: ../../views/admin/add/news.blade.php:13
+#: ../../views/template/menu.blade.php:7
+msgid "Home"
+msgstr "Anasayfa"
+
+#: ../../views/admin/index.blade.php:15
+msgid "Total Members"
+msgstr "Tüm Kullanıcılar"
+
+#: ../../views/admin/index.blade.php:22
+msgid "Pro Members"
+msgstr "Özel Kullanıcılar"
+
+#: ../../views/admin/index.blade.php:29
+msgid "Sales"
+msgstr "Satışlar"
+
+#: ../../views/admin/index.blade.php:36
+msgid "Messages"
+msgstr "Mesajlar"
+
+#: ../../views/admin/register.blade.php:44
+msgid "Password Confirm"
+msgstr "Şifre Tekrar"
+
+#: ../../views/admin/list/services.blade.php:21
+msgid "Add Service"
+msgstr "Yeni Hizmet Ekle"
+
+#: ../../views/admin/list/services.blade.php:29
+#: ../../views/admin/list/news.blade.php:28
+#: ../../views/admin/list/contacts.blade.php:24
+#: ../../views/admin/list/products.blade.php:29
+#: ../../views/admin/list/slider.blade.php:29
+#: ../../views/admin/list/orders.blade.php:29
+#: ../../views/admin/add/news.blade.php:48
+msgid "Title"
+msgstr "Başlık"
+
+#: ../../views/admin/list/services.blade.php:30
+#: ../../views/admin/list/news.blade.php:29
+#: ../../views/admin/list/contacts.blade.php:25
+#: ../../views/admin/list/products.blade.php:30
+#: ../../views/admin/list/orders.blade.php:30
+msgid "Author"
+msgstr "Yazar"
+
+#: ../../views/admin/list/services.blade.php:31
+#: ../../views/admin/list/news.blade.php:30
+#: ../../views/admin/list/contacts.blade.php:26
+#: ../../views/admin/list/products.blade.php:31
+#: ../../views/admin/list/orders.blade.php:31
+msgid "Publish Date"
+msgstr "Yayınlama tarihi"
+
+#: ../../views/admin/list/services.blade.php:32
+#: ../../views/admin/list/news.blade.php:31
+#: ../../views/admin/list/contacts.blade.php:27
+#: ../../views/admin/list/products.blade.php:32
+#: ../../views/admin/list/orders.blade.php:32
+msgid "Type"
+msgstr "Tip"
+
+#: ../../views/admin/list/news.blade.php:20
+#: ../../views/admin/list/orders.blade.php:21
+msgid "Add News"
+msgstr "Yeni  Haber Ekle"
+
+#: ../../views/admin/list/contacts.blade.php:9
+#: ../../views/admin/list/contacts.blade.php:17
+#: ../../views/template/menu.blade.php:15
+#: ../../views/contacts/index.blade.php:53
+msgid "Contacts"
+msgstr "İletişim"
+
+#: ../../views/admin/list/users.blade.php:9
+#: ../../views/admin/list/users.blade.php:17
+msgid "Members"
+msgstr "Kullanıcılar"
+
+#: ../../views/admin/list/users.blade.php:19
+msgid "Add User"
+msgstr "Kullanıcı Ekle"
+
+#: ../../views/admin/list/users.blade.php:28
+msgid "Date registered"
+msgstr "Kayıt Tarihi"
+
+#: ../../views/admin/list/users.blade.php:29
+msgid "Role"
+msgstr "Rol"
+
+#: ../../views/admin/list/products.blade.php:21
+msgid "Add Product"
+msgstr "Ürün Ekle"
+
+#: ../../views/admin/list/slider.blade.php:17
+msgid "Slides"
+msgstr "Slidelar"
+
+#: ../../views/admin/list/slider.blade.php:21
+msgid "Add Slide"
+msgstr "Slide ekle"
+
+#: ../../views/admin/list/slider.blade.php:30
+msgid "İmage"
+msgstr "Resmin"
+
+#: ../../views/admin/list/slider.blade.php:31
+msgid "Description"
+msgstr "Açıklama"
+
+#: ../../views/admin/add/news.blade.php:19
+#: ../../views/admin/add/news.blade.php:34
+msgid "New News"
+msgstr "Yeni Haber"
+
+#: ../../views/admin/add/news.blade.php:63
+#: ../../views/admin/add/news.blade.php:76
+msgid "News Meta"
+msgstr ""
+
+#: ../../views/admin/add/news.blade.php:71
+msgid "Publish"
+msgstr "Yayınla"
+
+#: ../../views/admin/add/news.blade.php:85
+msgid "File input"
+msgstr ""
+
+#: ../../views/emails/auth/reminder.blade.php:7
+msgid "Password Reset"
+msgstr "Şifre sıfırlama"
+
+#: ../../views/emails/auth/reminder.blade.php:10
+msgid "To reset your password, complete this form:"
+msgstr "Şifrenizi  yenilemek için bu formu doldurun"
+
+#: ../../views/template/default.blade.php:70
+msgid "Why Us?"
+msgstr "Neden biz?"
+
+#: ../../views/template/default.blade.php:81
+msgid "Address"
+msgstr "Adres"
+
+#: ../../views/template/default.blade.php:83
+#: ../../views/contacts/index.blade.php:56
+msgid "Country:"
+msgstr "Ülke:"
+
+#: ../../views/template/default.blade.php:84
+#: ../../views/contacts/index.blade.php:57
+msgid "City:"
+msgstr "Şehir:"
+
+#: ../../views/template/default.blade.php:85
+msgid "Phone:"
+msgstr "Telefon:"
+
+#: ../../views/template/default.blade.php:86
+#: ../../views/contacts/index.blade.php:59
+msgid "Email:"
+msgstr "Eposta:"
+
+#: ../../views/template/default.blade.php:92
+msgid "Follow Us"
+msgstr "Bizi takip edin"
+
+#: ../../views/template/default.blade.php:103
+msgid "Newsletter"
+msgstr ""
+
+#: ../../views/template/menu.blade.php:7
+msgid "Welcome!"
+msgstr "Hoş geldiniz!"
+
+#: ../../views/template/menu.blade.php:9
+msgid "Fresh"
+msgstr "Temiz"
+
+#: ../../views/template/menu.blade.php:11
+msgid "for you"
+msgstr "sizin için"
+
+#: ../../views/template/menu.blade.php:13
+msgid "The best"
+msgstr "En iyisi"
+
+#: ../../views/template/menu.blade.php:15
+msgid "Our Address"
+msgstr "Adresimiz"
+
+#: ../../views/contacts/index.blade.php:26
+msgid "Contact Form"
+msgstr "İletişim Formu"
+
+#: ../../views/contacts/index.blade.php:58
+msgid "Telephone:"
+msgstr "Telefon:"
+
+#: ../../views/contacts/index.blade.php:64
+msgid "Miscellaneous"
+msgstr ""
+
+#: ../../controllers/AdminController.php:21
+msgid "Admin Panel"
+msgstr "Yönetici Paneli"
+
+#: ../../controllers/AdminController.php:37
+msgid "Register Page"
+msgstr "Üyelik Sayfası"
+
+#: ../../controllers/AdminController.php:46
+msgid "Login Page"
+msgstr "Giriş Sayfası"
+
+#: ../../controllers/AdminController.php:61
+msgid "Add New User"
+msgstr "Yeni  Kullanıcı Ekle"
+
+#: ../../controllers/AdminController.php:69
+msgid "Slider Management Page"
+msgstr "Slider  Yönetim  Sayfası"
+
+#: ../../controllers/AdminController.php:75
+msgid "Add New Slide"
+msgstr "Yeni  slide ekle"
+
+#: ../../controllers/AdminController.php:95
+msgid "News Management Page"
+msgstr "Haberler  Yönetim  Sayfası"
+
+#: ../../controllers/AdminController.php:115
+msgid "Add New Service"
+msgstr "Yeni Hizmet Ekle"
+
+#: ../../controllers/AdminController.php:126
+msgid "Add New Product"
+msgstr "Yeni  Ürün Ekle"
+
+#: ../../controllers/AdminController.php:131
+msgid "Cotacts"
+msgstr "İletişim"
+
+#: ../../controllers/AdminController.php:162
 msgid "Please enter user name"
-msgstr ""
+msgstr "Lütfen kullanıcı adınızı giriniz"
 
-#: controllers/AdminController.php:163
+#: ../../controllers/AdminController.php:163
 msgid "Please enter password"
-msgstr ""
+msgstr "Lütfen şifrenizi giriniz"
 
-#: controllers/AdminController.php:201
+#: ../../controllers/AdminController.php:201
 msgid "Lütfen kullanıcı adınızı yazın"
 msgstr ""
 
-#: controllers/AdminController.php:202
+#: ../../controllers/AdminController.php:202
 msgid "Kullanıcını adınız en az 3 karakterden oluşmalıdır"
 msgstr ""
 
-#: controllers/AdminController.php:203
+#: ../../controllers/AdminController.php:203
 msgid ""
 "Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı yazın"
 msgstr ""
 
-#: controllers/AdminController.php:204
+#: ../../controllers/AdminController.php:204
 msgid "Lütfen özel karakter ve boşluk içermeyen kullanıcı adı yazın"
 msgstr ""
 
-#: controllers/AdminController.php:205
+#: ../../controllers/AdminController.php:205
 msgid "Lütfen mail adresinizi yazın"
 msgstr ""
 
-#: controllers/AdminController.php:206
+#: ../../controllers/AdminController.php:206
 msgid "Lütfen geçerli bir mail adresi yazın"
 msgstr ""
 
-#: controllers/AdminController.php:207
+#: ../../controllers/AdminController.php:207
 msgid "Bu mail adresi zaten kullanılıyor. Lütfen başka bir mail adresi yazın"
 msgstr ""
 
-#: controllers/AdminController.php:208
+#: ../../controllers/AdminController.php:208
 msgid "Lütfen şifrenizi yazın"
 msgstr ""
 
-#: controllers/AdminController.php:209
+#: ../../controllers/AdminController.php:209
 msgid "Şifreniz minumum 4 karakterden oluşmalıdır"
 msgstr ""
 
-#: controllers/AdminController.php:210
+#: ../../controllers/AdminController.php:210
 msgid "Girdiğiniz şifreler birbiriyle eşleşmiyor"
 msgstr ""
 
-#: controllers/AdminController.php:211
+#: ../../controllers/AdminController.php:211
 msgid "Lütfen şifrenizi doğrulayın"
 msgstr ""
 
-#: controllers/AdminController.php:246
+#: ../../controllers/AdminController.php:246
 msgid "Başlık boş bırakılamaz"
 msgstr ""
 
-#: controllers/AdminController.php:247
+#: ../../controllers/AdminController.php:247
 msgid "İçerik boş bırakılamaz"
 msgstr ""

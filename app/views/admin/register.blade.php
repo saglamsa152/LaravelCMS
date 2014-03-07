@@ -27,26 +27,26 @@
 		}}
 		<fieldset>
 			<div class="input-prepend" title="E-mail" data-rel="tooltip">
-				<span class="add-on"><i class="icon-globe"></i></span>{{Form::text('email',Input::old('email'),array('class'=>'input-large','autofocus','id'=>'email','placeholder'=>'E-mail'))}}
+				<span class="add-on"><i class="icon-globe"></i></span><?php echo Form::text('email',Input::old('email'),array('class'=>'input-large','autofocus','id'=>'email','placeholder'=>'E-mail'))?>
 			</div>
 			<div class="clearfix"></div>
 			<div class="input-prepend" title="Username" data-rel="tooltip">
-				<span class="add-on"><i class="icon-user"></i></span>{{Form::text('username',Input::old('username'),array('class'=>'input-large','id'=>'username','placeholder'=>_('Username')))}}
+				<span class="add-on"><i class="icon-user"></i></span><?php echo Form::text('username',Input::old('username'),array('class'=>'input-large','id'=>'username','placeholder'=>_('Username')))?>
 			</div>
 			<div class="clearfix"></div>
 
 			<div class="input-prepend" title="Password" data-rel="tooltip">
-				<span class="add-on"><i class="icon-lock"></i></span>{{Form::password('password',array('class'=>'input-large','id'=>'password','placeholder'=>'Password'))}}
+				<span class="add-on"><i class="icon-lock"></i></span><?php echo Form::password('password',array('class'=>'input-large','id'=>'password','placeholder'=>'Password'))?>
 			</div>
 			<div class="clearfix"></div>
 
 			<div class="input-prepend" title="Password Confirm" data-rel="tooltip">
-				<span class="add-on"><i class="icon-lock"></i></span>{{Form::password('password_confirmation',array('class'=>'input-large','id'=>'password_confirmation','placeholder'=>_('Password Confirm')))}}
+				<span class="add-on"><i class="icon-lock"></i></span><?php echo Form::password('password_confirmation',array('class'=>'input-large','id'=>'password_confirmation','placeholder'=>_('Password Confirm')))?>
 			</div>
 			<div class="clearfix"></div>
 
 			<p class="center span5">
-				{{Form::submit(_('Register'),array('class'=>'btn btn-primary'))}}
+				<?php echo Form::submit(_('Register'),array('class'=>'btn btn-primary'))?>
 			</p>
 		</fieldset>
 		{{Form::close()}}
