@@ -175,7 +175,7 @@ class AdminController extends BaseController {
 			//kontroller doğruysa böyle bir kullanıcı olup olmadığına bakalım
 			if ( Auth::attempt( array( 'username' => $postData['username'], 'password' => $postData['password'] ), $remember ) ) {
 				//oturum açılmış oldu
-				return Redirect::intended( 'admin' ); //todo action kullanılacak  şekilde düzenlenmeli
+				return Redirect::intended( '/admin' ); //todo action kullanılacak  şekilde düzenlenmeli
 			}
 			else {
 				//girilen bilgiler hatalı mesajı verelim
@@ -254,7 +254,7 @@ class AdminController extends BaseController {
 			return Redirect::action( 'AdminController@getNewNews' )->withInput()->withErrors( $validator->messages() );
 		}
 		else {
-			Post::create( array(
+			$post=Post::create( array(
 					'author'     => Auth::user()->id,
 					'content'    => $postData['content'],
 					'title'      => $postData['title'],
@@ -264,8 +264,22 @@ class AdminController extends BaseController {
 					'url'        => $this->createUrl( $postData['title'] ),
 					'created_ip' => Request::getClientIp()
 			) );
-			//todo post meta eklenecek
-			return Redirect::action( 'AdminController@getNews' );
+
+			$postMeta=$postData['postMeta'];
+			$modelPostMeta=array();
+			foreach($postMeta as $key=>$value){
+				$modelPostMeta[]=new PostMeta(array('metaKey'=>$key,'metaValue'=>$value));
+			}
+			$post->postMeta()->saveMany($modelPostMeta);
+
+			return Redirect::back();//todo burada bunu kullanmak doğrumu
+		}
+	}
+
+	public function getDeletePost($id=null){
+		if(!is_null($id)){
+			Post::destroy($id);
+			return Redirect::back();//todo burada bunu kullanmak doğrumu
 		}
 	}
 

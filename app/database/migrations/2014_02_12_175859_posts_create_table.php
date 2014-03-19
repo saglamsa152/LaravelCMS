@@ -22,7 +22,7 @@ class PostsCreateTable extends Migration {
 			$table->text('url');
 			$table->timestamps();
 			$table->string('created_ip', 15);
-			$table->foreign('author')->references('id')->on('users');
+
 		});
 	}
 

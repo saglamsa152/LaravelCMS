@@ -27,21 +27,26 @@
 				<tr>
 					<th>Id</th>
 					<th><?php echo _('Title')?></th>
-					<th><?php echo _('Author')?></th>
+					<th><?php echo _('Price')?></th>
 					<th><?php echo _('Publish Date')?></th>
-					<th><?php echo _('Type')?></th>
+					<th><?php echo _('Category')?></th>
 					<th><?php echo _('Actions')?></th>
 				</tr>
 				</thead>
 				<tbody>
 
 				@foreach($products as $product)
+				<?php
+				foreach($product->postMeta as $meta){
+					$product=array_add($product,$meta->metaKey,$meta->metaValue);
+				}
+				?>
 				<tr>
 					<td>{{$product->id}}</td>
 					<td>{{$product->title}}</td>
-					<td>{{$product->user->username}}</td>
+					<td>{{$product->price}}</td>
 					<td class="center">{{$product->created_at}}</td>
-					<td class="center">{{$product->type}}</td>
+					<td class="center">{{$product->category}}</td>
 					<td class="center">
 						<div class="btn-group">
 							<button data-toggle="dropdown" class="btn btn-large dropdown-toggle"><?php echo _('Actions')?> <span class="caret"></span></button>
@@ -57,9 +62,9 @@
 										<?php echo _('Edit')?>
 									</a></li>
 								<li>
-									<a href="#">
+									<a href="<?= URL::action( 'AdminController@getDeletePost', $product->id ) ?>">
 										<i class="icon-trash"></i>
-										<?php echo _('Delete')?>
+										<?php echo _( 'Delete' ) ?>
 									</a></li>
 							</ul>
 						</div>

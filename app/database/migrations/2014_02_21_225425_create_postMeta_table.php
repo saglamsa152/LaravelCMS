@@ -17,7 +17,7 @@ class CreatePostMetaTable extends Migration {
 			$table->text('metaKey');
 			$table->text('metaValue');
 			$table->timestamps();
-			$table->foreign('postId')->references('id')->on('posts');
+			$table->foreign('postId')->references('id')->on('posts')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
 

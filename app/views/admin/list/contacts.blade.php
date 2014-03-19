@@ -52,9 +52,9 @@
 										<?php echo _('Edit')?>
 									</a></li>
 								<li>
-									<a href="#">
+									<a href="<?= URL::action( 'AdminController@getDeletePost', $product->id ) ?>">
 										<i class="icon-trash"></i>
-										<?php echo _('Delete')?>
+										<?php echo _( 'Delete' ) ?>
 									</a></li>
 							</ul>
 						</div>
