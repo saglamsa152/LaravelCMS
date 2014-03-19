@@ -56,7 +56,7 @@
 										<?php echo _('Edit')?>
 									</a></li>
 								<li>
-									<a href="<?= URL::action( 'AdminController@getDeletePost', $product->id ) ?>">
+									<a href="<?= URL::action( 'AdminController@getDeletePost', $new->id ) ?>">
 										<i class="icon-trash"></i>
 										<?php echo _( 'Delete' ) ?>
 									</a></li>
