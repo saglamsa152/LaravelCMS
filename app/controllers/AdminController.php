@@ -354,7 +354,7 @@ class AdminController extends BaseController {
 				exit;
 			}
 			//Input::file('upl')->move(public_path().'/uploads/', time());// todo  if  ile  bunu  kullanımını  bulmak lazım
-			if ( Input::file('upl')->move(public_path().'/uploads/', time())  ) {
+			if ( Input::file('upl')->move(public_path().'/uploads/', time().'_'.$file->getClientOriginalName().'.'.$extension)  ) {
 				echo '{"status":"success"}';
 				exit;
 			}
