@@ -36,11 +36,6 @@
 				<tbody>
 
 				@foreach($products as $product)
-				<?php
-				foreach($product->postMeta as $meta){
-					$product=array_add($product,$meta->metaKey,$meta->metaValue);
-				}
-				?>
 				<tr>
 					<td>{{$product->id}}</td>
 					<td>{{$product->title}}</td>

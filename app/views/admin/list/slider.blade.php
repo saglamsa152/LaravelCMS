@@ -35,11 +35,6 @@
 				<tbody>
 
 				@foreach($slides as $slide)
-				<?php
-				foreach($slide->postMeta as $meta){
-					$slide=array_add($slide,$meta->metaKey,$meta->metaValue);
-				}
-				?>
 				<tr>
 					<td>{{$slide->id}}</td>
 					<td>{{$slide->title}}</td>

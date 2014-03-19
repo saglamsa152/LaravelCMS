@@ -54,6 +54,12 @@ class AdminController extends BaseController {
 	public function getUsers() {
 		$title = _( 'Users' );
 		$users = User::all();
+		/* User meta tablosu  eklenince  aktif  edilecek
+		 * foreach ( $users as $user ) {
+			foreach($user->userMeta as $meta){
+				$user=array_add($user,$meta->metaKey,$meta->metaValue);
+			}
+		}*/
 		return View::make( 'admin.list.users' )->with( array( 'users' => $users, 'title' => $title ) );
 	}
 
@@ -68,6 +74,13 @@ class AdminController extends BaseController {
 	public function getSlider() {
 		$title  = _( 'Slider Management Page' );
 		$slides = Post::slider()->with( 'postMeta' )->orderBy( 'created_at', 'desc' )->get();
+
+		foreach ( $slides as $slide ) {
+			foreach($slide->postMeta as $meta){
+				$slide=array_add($slide,$meta->metaKey,$meta->metaValue);
+			}
+		}
+
 		return View::make( 'admin.list.slider' )->with( array( 'slides' => $slides, 'title' => $title ) );
 	}
 
@@ -84,6 +97,10 @@ class AdminController extends BaseController {
 	public function getProfile( $id = null ) {
 		is_null( $id ) ? $id = Auth::user()->id : $id = $id;
 		$user  = User::with( 'post' )->find( $id );
+		/* User meta tablosu eklenince aktif edilecek
+		 * foreach($user->userMeta as $meta){
+			$user=array_add($user,$meta->metaKey,$meta->metaValue);
+		}*/
 		$title = $user->username . ( ' Profil Page' );
 		return View::make( 'admin.profil' )->with( array( 'user' => $user, 'title' => $title ) );
 	}
@@ -94,6 +111,11 @@ class AdminController extends BaseController {
 	public function getNews() {
 		$title = _( 'News Management Page' );
 		$news  = Post::news()->with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->get();
+		foreach ( $news as $new ) {
+			foreach($new->postMeta as $meta){
+				$new=array_add($new,$meta->metaKey,$meta->metaValue);
+			}
+		}
 		return View::make( 'admin.list.news' )->with( array( 'news' => $news, 'title' => $title ) );
 	}
 
@@ -108,6 +130,11 @@ class AdminController extends BaseController {
 	public function getServices() {
 		$title    = _( 'Services' );
 		$services = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->service()->get();
+		foreach ( $services as $service ) {
+			foreach($service->postMeta as $meta){
+				$service=array_add($service,$meta->metaKey,$meta->metaValue);
+			}
+		}
 		return View::make( 'admin.list.services' )->with( array( 'title' => $title, 'services' => $services ) );
 	}
 
@@ -119,6 +146,11 @@ class AdminController extends BaseController {
 	public function getProducts() {
 		$title    = _( 'Products' );
 		$products = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->product()->get();
+		foreach ( $products as $product ) {
+			foreach($product->postMeta as $meta){
+				$product=array_add($product,$meta->metaKey,$meta->metaValue);
+			}
+		}
 		return View::make( 'admin.list.products' )->with( array( 'title' => $title, 'products' => $products ) );
 	}
 
@@ -130,6 +162,11 @@ class AdminController extends BaseController {
 	public function getContacts() {
 		$title    = _( 'Cotacts' );
 		$contacts = Contact::all();
+		foreach ( $contacts as $contact ) {
+			foreach($contact->postMeta as $meta){
+				$contact=array_add($contact,$meta->metaKey,$meta->metaValue);
+			}
+		}
 		return View::make( 'admin.list.contacts' )->with( array( 'title' => $title, 'contacts' => $contacts ) );
 	}
 
