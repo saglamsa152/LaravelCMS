@@ -98,8 +98,6 @@
 {{ HTML::script('assets/admin/js/jquery.iphone.toggle.js') }}
 <!-- autogrowing textarea plugin -->
 {{ HTML::script('assets/admin/js/jquery.autogrow-textarea.js') }}
-<!-- multiple file upload plugin -->
-{{ HTML::script('assets/admin/js/jquery.uploadify-3.1.min.js') }}
 <!-- history.js for cross-browser state change on ajax -->
 {{ HTML::script('assets/admin/js/jquery.history.js') }}
 <!-- application script for Charisma demo -->
