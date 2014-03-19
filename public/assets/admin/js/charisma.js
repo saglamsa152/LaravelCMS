@@ -169,13 +169,6 @@ function docReady(){
 		score : 4 //default stars
 	});
 
-	//uploadify - multiple uploads Linkler Laravele göre değiştirildi
-	$('#file_upload').uploadify({
-		'swf'      : '../misc/uploadify.swf',
-		'uploader' : '../misc/uploadify.php'
-		// Put your options here
-	});
-
 	//gallery controlls container animation
 	$('ul.gallery li').hover(function(){
 		$('img',this).fadeToggle(1000);
