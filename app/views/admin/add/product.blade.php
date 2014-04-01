@@ -61,7 +61,22 @@ echo Form::hidden( 'type', 'product' )?>
 	<div class="box span3">
 
 		<div class="box-content">
-			<?php echo Form::submit( _( 'Publish' ), array( 'class' => 'btn btn-primary' ) ) ?>
+			<div class="row-fluid">
+				<?=
+				Form::select(
+						'status',
+						array(
+								'task'    => _( 'Task' ),
+								'trash=>' => _( 'Trash' ),
+								'public'  => _( 'Public' )
+						),
+						'public',
+						array( 'class' => 'input-small' )
+				) ?>
+			</div>
+			<div class="row-fluid">
+				<?php echo Form::submit( _( 'Publish' ), array( 'class' => 'btn btn-primary' ) ) ?>
+			</div>
 		</div>
 	</div>
 	<div class="box span3">
@@ -78,7 +93,7 @@ echo Form::hidden( 'type', 'product' )?>
 				<label class="control-label" for="file_upload"><?php echo _('Pruduct Category')?></label>
 
 				<div class="controls">
-					<?=Form::select('postMeta[category]',array('kategori 1','Kategori 2'),'kategori 1')?>
+					<?=Form::select('postMeta[category]',array('kategori 1'=>'kategori 1','Kategori 2'=>'Kategori 2'),'kategori 1')?>
 
 				</div>
 				<?= Form::label('price',_('Price'))?>

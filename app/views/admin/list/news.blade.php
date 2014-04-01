@@ -1,5 +1,4 @@
 @include('admin.header')
-<!-- todo laravel kitap sayfa 57 -->
 <div>
 	<ul class="breadcrumb">
 		<li>
@@ -46,12 +45,12 @@
 							<button data-toggle="dropdown" class="btn btn-large dropdown-toggle"><?php echo _('Actions')?> <span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="{{URL::action('HomeController@getNews',$new->url)}}">
+									<a href="<?=URL::action('HomeController@getNews',$new->url)?>">
 										<i class="icon-zoom-in"></i>
 										<?php echo _('View')?>
 									</a>
 								</li>
-								<li><a href="#">
+								<li><a href="<?= URL::action( 'AdminController@getUpdateNews', $new->id ) ?>">
 										<i class="icon-edit"></i>
 										<?php echo _('Edit')?>
 									</a></li>

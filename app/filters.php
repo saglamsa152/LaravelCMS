@@ -12,7 +12,7 @@
 */
 
 App::before( function ( $request ) {
-	$accpetLanguages = explode( ',', $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
+	$accpetLanguages =Request::getLanguages();
 	if ( strpos( $accpetLanguages[0], 'tr' ) !== false ) {
 		$language = 'tr_TR';
 	}

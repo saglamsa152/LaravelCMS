@@ -38,7 +38,7 @@
 							</span>
 							</strong>
 						</span>
-					{{$post->title}}
+					{{{$post->title}}}
 				</h5>
 
 				<div class="wrapper pad_bot2">

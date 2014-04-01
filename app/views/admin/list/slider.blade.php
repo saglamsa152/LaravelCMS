@@ -1,5 +1,4 @@
 @include('admin.header')
-<!-- todo laravel kitap sayfa 57 -->
 <div>
 	<ul class="breadcrumb">
 		<li>
@@ -50,7 +49,7 @@
 										<?php echo _('View')?>
 									</a>
 								</li>
-								<li><a href="#">
+								<li><a href="<?= URL::action( 'AdminController@getUpdateSlide', $slide->id ) ?>">
 										<i class="icon-edit"></i>
 										<?php echo _('Edit')?>
 									</a></li>

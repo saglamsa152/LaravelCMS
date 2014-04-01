@@ -1,5 +1,4 @@
 @include('admin.header')
-<!-- todo laravel kitap sayfa 57 -->
 <div>
 	<ul class="breadcrumb">
 		<li>
@@ -17,39 +16,40 @@
 			<h2><i class="icon-user"></i> <?php echo _('Contacts')?></h2>
 		</div>
 		<div class="box-content">
-			<table class="table table-striped table-bordered bootstrap-datatable datatable">
+			<table class="table table-bordered bootstrap-datatable datatable">
 				<thead>
 				<tr>
 					<th>Id</th>
-					<th><?php echo _('Title')?></th>
-					<th><?php echo _('Author')?></th>
-					<th><?php echo _('Publish Date')?></th>
-					<th><?php echo _('Type')?></th>
+					<th><?php echo _('Sender\'s Name')?></th>
+					<th><?php echo _('Sender\'s E-mail')?></th>
+					<th><?php echo _('Send Date')?></th>
+					<th><?php echo _('Message')?></th>
 					<th><?php echo _('Actions')?></th>
 				</tr>
 				</thead>
 				<tbody>
 
 				@foreach($contacts as $contact)
-				<tr>
+				<?php $contact->meta=unserialize($contact->meta);?>
+				<tr @if($contact->isRead) class="isRead" @endif>
 					<td>{{$contact->id}}</td>
-					<td>{{$contact->title}}</td>
-					<td>{{$contact->user->username}}</td>
+					<td>{{$contact->meta['name']}}</td>
+					<td>{{$contact->meta['email']}}</td>
 					<td class="center">{{$contact->created_at}}</td>
-					<td class="center">{{$contact->type}}</td>
+					<td class="center">{{$contact->message}}</td>
 					<td class="center">
 						<div class="btn-group">
 							<button data-toggle="dropdown" class="btn btn-large dropdown-toggle"><?php echo _('Actions')?> <span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="{{URL::action('HomeController@getNews',$contact->url)}}">
-										<i class="icon-zoom-in"></i>
-										<?php echo _('View')?>
+									<a href="{{URL::action('AdminController@getMarkAsReadContact',$contact->id)}}">
+										<i class="icon-ok"></i>
+										@if($contact->isRead) {{_('Mark as unread')}} @else {{_('Mark as read')}} @endif
 									</a>
 								</li>
 								<li><a href="#">
 										<i class="icon-edit"></i>
-										<?php echo _('Edit')?>
+										<?php echo _('Answer')?>
 									</a></li>
 								<li>
 									<a href="<?= URL::action( 'AdminController@getDeletePost', $contact->id ) ?>">

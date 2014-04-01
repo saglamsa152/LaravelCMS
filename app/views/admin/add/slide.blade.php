@@ -61,7 +61,22 @@ echo Form::hidden( 'type', 'slider' )?>
 	<!--/span-->
 	<div class="box span3">
 		<div class="box-content">
-			<?php echo Form::submit( _( 'Publish' ), array( 'class' => 'btn btn-primary' ) ) ?>
+			<div class="row-fluid">
+				<?=
+				Form::select(
+						'status',
+						array(
+								'task'    => _( 'Task' ),
+								'trash=>' => _( 'Trash' ),
+								'public'  => _( 'Public' )
+						),
+						'public',
+						array( 'class' => 'input-small' )
+				) ?>
+			</div>
+			<div class="row-fluid">
+				<?php echo Form::submit( _( 'Publish' ), array( 'class' => 'btn btn-primary' ) ) ?>
+			</div>
 		</div>
 	</div>
 	<div class="box span3">

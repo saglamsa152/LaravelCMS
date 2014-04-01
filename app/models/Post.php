@@ -23,6 +23,9 @@ class Post extends Eloquent {
 	 */
 	protected $fillable = array( 'author', 'content', 'title', 'excerpt', 'status', 'type', 'url', 'created_ip' );
 
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
 	public function postMeta(){
 		return $this->hasMany('PostMeta','postId');
 	}

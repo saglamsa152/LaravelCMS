@@ -1,5 +1,4 @@
 @include('admin.header')
-<!-- todo laravel kitap sayfa 57 -->
 <div>
 	<ul class="breadcrumb">
 		<li>

@@ -16,22 +16,23 @@
 			<a href="{{URL::action('AdminController@getNews')}}"><?php echo _( 'News' ) ?></a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getAddNews')}}"><?php echo _( 'New News' ) ?></a>
+			<a href="{{URL::action('AdminController@getUpdateNews')}}"><?php echo _( 'Update News' ) ?></a>
 		</li>
 	</ul>
 </div>
-<?php echo Form::open( array(
+<?php echo Form::model($news, array(
 		'role'   => 'form',
 		'class'  => '',
 		'method' => 'post',
-		'action' => 'AdminController@postAddPost'
+		'action' => 'AdminController@postUpdatePost'
 ) );
-echo Form::hidden( 'type', 'news' )?>
+echo Form::hidden( 'type', 'news' );
+echo Form::hidden( 'id', $news->id )?>
 <div class="row-fluid sortable ui-sortable">
 
 	<div class="box span9">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> <?php echo _( 'New News' ) ?></h2>
+			<h2><i class="icon-user"></i> <?php echo _( 'Update News' ) ?></h2>
 
 		</div>
 		<div class="box-content">
@@ -39,7 +40,7 @@ echo Form::hidden( 'type', 'news' )?>
 			@foreach ($errors->all() as $error)
 			<div class="alert alert-error">
 				<button data-dismiss="alert" class="close" type="button">×</button>
-				<strong>Dikkat</strong> {{$error}}
+				<strong><?=_('Warning')?></strong> {{$error}}
 			</div>
 			@endforeach
 			@endif
@@ -50,7 +51,7 @@ echo Form::hidden( 'type', 'news' )?>
 
 				<div class="control-group">
 					<div class="controls">
-						<?php echo Form::textarea( 'content', '', array( 'class' => 'ckeditor', 'id' => 'content' ) ) ?>
+						<?php echo Form::textarea( 'content', Input::old( 'content' ), array( 'class' => 'ckeditor', 'id' => 'content' ) ) ?>
 					</div>
 				</div>
 			</fieldset>
@@ -75,7 +76,7 @@ echo Form::hidden( 'type', 'news' )?>
 				) ?>
 			</div>
 			<div class="row-fluid">
-				<?php echo Form::submit( _( 'Publish' ), array( 'class' => 'btn btn-primary' ) ) ?>
+				<?php echo Form::submit( _( 'Update' ), array( 'class' => 'btn btn-primary' ) ) ?>
 			</div>
 		</div>
 	</div>

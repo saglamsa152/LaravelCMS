@@ -13,25 +13,27 @@
 			<a href="{{URL::action('AdminController@getIndex')}}"><?php echo _( 'Home' ) ?></a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getNews')}}"><?php echo _( 'News' ) ?></a> <span class="divider">/</span>
+			<a href="{{URL::action('AdminController@getSlider')}}"><?php echo _( 'Slider' ) ?></a>
+			<span class="divider">/</span>
 		</li>
 		<li>
-			<a href="{{URL::action('AdminController@getAddNews')}}"><?php echo _( 'New News' ) ?></a>
+			<a href="{{URL::action('AdminController@getUpdateSlide')}}"><?php echo _( 'Update Slide' ) ?></a>
 		</li>
 	</ul>
 </div>
-<?php echo Form::open( array(
+<?php echo Form::model($slide, array(
 		'role'   => 'form',
 		'class'  => '',
 		'method' => 'post',
-		'action' => 'AdminController@postAddPost'
+		'action' => 'AdminController@postUpdatePost'
 ) );
-echo Form::hidden( 'type', 'news' )?>
+echo Form::hidden( 'type', 'slider' );
+echo Form::hidden('id',$slide->id)?>
 <div class="row-fluid sortable ui-sortable">
 
 	<div class="box span9">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> <?php echo _( 'New News' ) ?></h2>
+			<h2><i class="icon-user"></i> <?php echo _( 'Update Slide' ) ?></h2>
 
 		</div>
 		<div class="box-content">
@@ -39,7 +41,7 @@ echo Form::hidden( 'type', 'news' )?>
 			@foreach ($errors->all() as $error)
 			<div class="alert alert-error">
 				<button data-dismiss="alert" class="close" type="button">×</button>
-				<strong>Dikkat</strong> {{$error}}
+				<strong><?=_('Warning') ?></strong> {{$error}}
 			</div>
 			@endforeach
 			@endif
@@ -50,7 +52,7 @@ echo Form::hidden( 'type', 'news' )?>
 
 				<div class="control-group">
 					<div class="controls">
-						<?php echo Form::textarea( 'content', '', array( 'class' => 'ckeditor', 'id' => 'content' ) ) ?>
+						<?php echo Form::textarea( 'content', Input::old( 'content' ), array( 'class' => 'ckeditor', 'id' => 'content' ) ) ?>
 					</div>
 				</div>
 			</fieldset>
@@ -59,7 +61,6 @@ echo Form::hidden( 'type', 'news' )?>
 	</div>
 	<!--/span-->
 	<div class="box span3">
-
 		<div class="box-content">
 			<div class="row-fluid">
 				<?=
@@ -75,13 +76,13 @@ echo Form::hidden( 'type', 'news' )?>
 				) ?>
 			</div>
 			<div class="row-fluid">
-				<?php echo Form::submit( _( 'Publish' ), array( 'class' => 'btn btn-primary' ) ) ?>
+				<?php echo Form::submit( _( 'Update' ), array( 'class' => 'btn btn-primary' ) ) ?>
 			</div>
 		</div>
 	</div>
 	<div class="box span3">
 		<div class="box-header well" data-original-title>
-			<h2><i class="icon-user"></i> <?php echo _( 'News Meta' ) ?></h2>
+			<h2><i class="icon-user"></i> <?php echo _( 'Slide Meta' ) ?></h2>
 
 			<div class="box-icon">
 				<a class="btn  btn-round" href="#"><i class="icon-cog"></i></a>
@@ -93,12 +94,46 @@ echo Form::hidden( 'type', 'news' )?>
 				<label class="control-label" for="file_upload"><?php echo _( 'File input' ) ?></label>
 
 				<div class="controls">
-					<input class="input-file uniform_on" id="file_upload" type="file">
+					<a class="btn btn-success" data-toggle="modal" href="#uploadModal" data-target="#uploadModal">click me</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
 </div><!--/row-->
+
 <?php echo Form::close() ?>
+<div class="modal hide fade" id="uploadModal">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">×</button>
+		<h3><?php echo _( 'Settings' ) ?></h3>
+	</div>
+	<div class="modal-body">
+		<?php echo Form::open( array(
+				'role'    => 'form',
+				'method'  => 'post',
+				'action'  => 'AdminController@postMiniAjaxUpload',
+				'id'      => 'upload',
+				'enctype' => 'multipart/form-data'
+
+		) )?>
+
+		<div id="drop">
+			Drop Here
+
+			<a>Browse</a>
+			<?php echo Form::file('upl',array('multiple'))?>
+		</div>
+
+		<ul>
+			<!-- The file uploads will be shown here -->
+		</ul>
+
+		<?php echo Form::close()?>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal"><?php echo _( 'Close' ) ?></a>
+		<a href="#" class="btn btn-primary"><?php echo _( 'Save changes' ) ?></a>
+	</div>
+</div>
 @include('admin.footer')
