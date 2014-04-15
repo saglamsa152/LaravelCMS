@@ -23,4 +23,8 @@ CKEDITOR.editorConfig = function (config) {
 		{ name: 'others', items: [ '-' ] },
 	];
 
+	config.filebrowserBrowseUrl="/admin/upload-form";
+	//config.filebrowserUploadUrl="/admin/upload-form";
+	//config.filebrowserImageBrowseUrl=roxyFileman+'/type=image';
+	//config.filebrowserImageUploadUrl=roxyFileman+'/type=image';
 };
