@@ -1,8 +1,15 @@
 /*----------------------------
     The file upload form
 -----------------------------*/
+.content{
+	margin: 0;
+	padding: 0;
+	background-color:#373a3d;
 
-
+	background-image:-webkit-linear-gradient(top, #373a3d, #313437);
+	background-image:-moz-linear-gradient(top, #373a3d, #313437);
+	background-image:linear-gradient(top, #373a3d, #313437);
+}
 #upload{
     font-family:'PT Sans Narrow', sans-serif;
     background-color:#373a3d;

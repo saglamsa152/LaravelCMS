@@ -46,6 +46,10 @@ class AdminController extends BaseController {
 		return View::make( 'admin.login' )->with( 'title', $title );
 	}
 
+	public function getUploadForm($param=null){
+		return View::make('admin/imageBrowse');
+	}
+
 	/*
 	 * Listeler
 	 */
