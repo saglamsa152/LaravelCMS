@@ -18,7 +18,7 @@ class AdminController extends BaseController {
 	 */
 	public function getIndex() {
 		$title = _( 'Admin Panel' );
-		return View::make( 'admin/index' )->with( 'title', $title );
+		return View::make( 'admin/index' )->with(array( 'title'=> $title,'rightSide'=>'default') );
 	}
 
 	/**
@@ -113,7 +113,7 @@ class AdminController extends BaseController {
 				$new = array_add( $new, $meta->metaKey, $meta->metaValue );
 			}
 		}
-		return View::make( 'admin.list.news' )->with( array( 'news' => $news, 'title' => $title ) );
+		return View::make( 'admin.index' )->with( array( 'news' => $news, 'title' => $title,'rightSide'=>'list/news' ) );
 	}
 
 	/**
