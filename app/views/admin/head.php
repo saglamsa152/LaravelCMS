@@ -26,6 +26,8 @@
 <?= HTML::style( 'assets/admin/css/AdminLTE.css' ) ?>
 <!-- DATA TABLES -->
 <?= HTML::style( 'assets/admin/css/datatables/dataTables.bootstrap.css' ) ?>
+<!-- Custom CSS -->
+<?= HTML::style( 'assets/admin/css/custom.css' ) ?>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

@@ -41,35 +41,35 @@ if ( Auth::check() ) {
 		endforeach;
 	endif;
 	?>
-	<div class="header"><?= _( 'Sign In' ) ?></div>
+	<div class="header"><?=_('Register New Membership')?></div>
 	<?=
 	Form::open( array(
 			'role'   => 'form',
 			'method' => 'post',
-			'action' => 'AdminController@postLogin'
-	) ) ?>
+			'action' => 'AdminController@postRegister'
+	) )?>
 	<div class="body bg-gray">
 		<div class="form-group">
-			<?= Form::text( 'username', Input::old( 'username' ), array( 'class' => 'form-control', 'autofocus', 'id' => 'username', 'placeholder' => _( 'Username' ) ) ) ?>
+			<?=Form::text('email',Input::old('email'),array('class'=>'form-control','autofocus','id'=>'email','placeholder'=>'E-mail'))?>
 		</div>
 		<div class="form-group">
-			<?php echo Form::password( 'password', array( 'class' => 'form-control', 'id' => 'password', 'placeholder' => _( 'Password' ) ) ) ?>
+			<?=Form::text('username',Input::old('username'),array('class'=>'form-control','id'=>'username','placeholder'=>_('Username')))?>
 		</div>
 		<div class="form-group">
-			<?= Form::checkbox( 'remember' ) ?> <?= _( 'Remember me' ) ?>
+			<?=Form::password('password',array('class'=>'form-control','id'=>'password','placeholder'=>'Password'))?>
+		</div>
+		<div class="form-group">
+			<?=Form::password('password_confirmation',array('class'=>'form-control','id'=>'password_confirmation','placeholder'=>_('Password Confirm')))?>
 		</div>
 	</div>
 	<div class="footer">
-		<?= Form::button( _( 'Sing in' ), array( 'class' => 'btn bg-olive btn-block', 'type' => 'submit' ) ) ?>
+		<?=Form::button(_('Sign me up'),array('class'=>'btn bg-olive btn-block','type'=>'submit'))?>
 
-		<p><a href="#"><?= _( 'I forgot my password' ) ?></a></p>
-
-		<?= link_to_action( 'AdminController@getRegister', _( 'Register a new membership' ), '', array( 'class' => 'text-center' ) ) ?>
+		<?=link_to_action('AdminController@getLogin',_('I already have a membership'),'',array('class'=>'text-center'))?>
 	</div>
 	<?= Form::close() ?>
-
 	<div class="margin text-center">
-		<span><?= _( 'Sign in using social networks' ) ?></span>
+		<span><?=_('Register using social networks')?></span>
 		<br />
 		<button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
 		<button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>

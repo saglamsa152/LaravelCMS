@@ -11,7 +11,11 @@ class Option extends Eloquent {
 	 * toplu atama yaparken hangi alanların kullanılacağını belirler (laravel kitap s145)
 	 * @var array
 	 */
-	//protected $fillable = array('author', 'content', 'title','excerpt', 'status', 'type','url','created_ip');
+	protected $guarded = array('id','created_at','updated_at');
+
+	public function scopeGeneral($query){
+		return $query->where( 'optionType', '=', 'general' );
+	}
 
 
 }
