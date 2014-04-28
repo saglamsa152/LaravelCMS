@@ -20,8 +20,6 @@
 <?= HTML::style( 'assets/admin/css/fullcalendar/fullcalendar.css' ) ?>
 <!-- Daterange picker -->
 <?= HTML::style( 'assets/admin/css/daterangepicker/daterangepicker-bs3.css' ) ?>
-<!-- bootstrap wysihtml5 - text editor -->
-<?= HTML::style( 'assets/admin/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' ) ?>
 <!-- Theme style -->
 <?= HTML::style( 'assets/admin/css/AdminLTE.css' ) ?>
 <!-- DATA TABLES -->

@@ -2,14 +2,14 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			<?= _( 'General Options' ) ?>
+			<?= $title ?>
 			<small><?= _( 'Menage General Options' ) ?></small>
 		</h1>
 		<ol class="breadcrumb">
 			<li>
 				<a href="<?= URL::action( 'AdminController@getIndex' ) ?>"><i class="fa fa-dashboard"></i> <?= _( 'Admin Home' ) ?>
 				</a></li>
-			<li class="active"><?= _( 'General Options' ) ?></li>
+			<li class="active"><?= $title ?></li>
 		</ol>
 	</section>
 
@@ -31,7 +31,6 @@
 					</div>
 					<!-- /.box-header-->
 					<div class="box-body">
-						<pre><?=var_dump($options)?></pre>
 						<?=
 						Form::open( array(
 								'role'   => 'form',
@@ -43,13 +42,13 @@
 							<?= Form::hidden( 'type', 'general' ) ?>
 							<?= Form::label( 'options[siteName]', _( 'Site Name' ), array( 'class' => 'control-label col-md-2' ) ) ?>
 							<div class=" col-md-4">
-								<?= Form::text( 'options[siteName]', isset( $options->siteName ) ? $options->siteName : '', array( 'class' => 'form-control', 'id' => 'siteName' ) ) ?>
+								<?= Form::text( 'options[siteName]', $options->getOption('siteName'), array( 'class' => 'form-control', 'id' => 'siteName' ) ) ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<?= Form::label( 'options[siteDescription]', _( 'Site Description' ), array( 'class' => 'control-label col-md-2' ) ) ?>
 							<div class="col-md-4">
-								<?= Form::textarea( 'options[siteDescription]', isset( $options->siteDescription ) ? $options->siteDescription : '', array( 'class' => 'form-control', 'rows' => '3' ) ) ?>
+								<?= Form::textarea( 'options[siteDescription]', $options->getOption('siteDescription'), array( 'class' => 'form-control', 'rows' => '3' ) ) ?>
 							</div>
 						</div>
 						<div id="sonuc"></div>

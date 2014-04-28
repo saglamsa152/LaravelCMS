@@ -22,12 +22,10 @@ class OptionsController extends BaseController {
 	 * genel  ayarlar
 	 */
 	public function getIndex() {
-		$options = Option::General()->orderBy( 'created_at', 'desc' )->get();
-		foreach ( $options as $option ) {
-			//$options = array_add( $options, $option->optionKey, $option->optionValue );
-			$options->put($option->optionKey,$option->optionValue);
-		}
-		return View::make( 'admin.index' )->with( array( 'options' => $options, 'title' => _( 'General Options' ), 'rightSide' => 'options/index' ) );
+		$options   = new Option;
+		$title     = _( 'General Options' );
+		$rightSide = 'options/index';
+		return View::make( 'admin.index' )->with( compact( 'options', 'title', 'rightSide' ) );
 	}
 
 	/**
@@ -37,12 +35,14 @@ class OptionsController extends BaseController {
 		if ( Request::ajax() ) {
 			$postData = Input::all();
 			//todo validation yapılır gerekirse
-			$cevap = array( 'status' => 'success', 'msg' => _( 'Options Saved' ) );
+			//todo save işlemi yapılacak
+			$type = $postData['type'];
+			$option=new Option();
 			foreach ( $postData['options'] as $key => $value ) {
-				$opt=Option::where('optionType','=', $postData['type'])->where('optionKey','=', $key)->get();
-				$cevap['msg'] .= $opt.'<br/>';
+				$option->setOption( $key, $value, $type );
 			}
-			return Response::json( $cevap );
+			$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Options Saved' ) );
+			return Response::json( $ajaxResponse );
 		}
 	}
 
