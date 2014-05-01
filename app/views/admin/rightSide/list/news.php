@@ -2,11 +2,11 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			<?= _( 'News' ) ?>
+			<?= $title ?>
 			<small>advanced tables</small>
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="<?= URL::action( 'AdminController@getIndex' ) ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="<?= URL::action( 'AdminController@getIndex' ) ?>"><i class="fa fa-dashboard"></i> <?=_('Home')?></a></li>
 			<li><a href="<?= URL::action( 'AdminController@getNews' ) ?>"><?= _( 'News' ) ?></a></li>
 			<li class="active"><?= _( 'List' ) ?></li>
 		</ol>
@@ -27,11 +27,11 @@
 							<thead>
 							<tr>
 								<th>Id</th>
-								<th><?php echo _( 'Title' ) ?></th>
-								<th><?php echo _( 'Author' ) ?></th>
-								<th><?php echo _( 'Publish Date' ) ?></th>
-								<th><?php echo _( 'Type' ) ?></th>
-								<th><?php echo _( 'Actions' ) ?></th>
+								<th><?= _( 'Title' ) ?></th>
+								<th><?= _( 'Author' ) ?></th>
+								<th><?= _( 'Publish Date' ) ?></th>
+								<th><?= _( 'Type' ) ?></th>
+								<th><?= _( 'Actions' ) ?></th>
 							</tr>
 							</thead>
 							<tbody>
@@ -53,18 +53,18 @@
 											<ul role="menu" class="dropdown-menu">
 												<li>
 													<a href="<?= URL::action( 'HomeController@getNews', $new->url ) ?>">
-														<i class="icon-zoom-in"></i>
-														<?php echo _( 'View' ) ?>
+														<i class="fa fa-eye"></i>
+														<?= _( 'View' ) ?>
 													</a>
 												</li>
 												<li><a href="<?= URL::action( 'AdminController@getUpdateNews', $new->id ) ?>">
-														<i class="icon-edit"></i>
-														<?php echo _( 'Edit' ) ?>
+														<i class="fa fa-edit"></i>
+														<?= _( 'Edit' ) ?>
 													</a></li>
 												<li>
 													<a href="<?= URL::action( 'AdminController@getDeletePost', $new->id ) ?>">
-														<i class="icon-trash"></i>
-														<?php echo _( 'Delete' ) ?>
+														<i class="fa fa-trash-o"></i>
+														<?= _( 'Delete' ) ?>
 													</a></li>
 											</ul>
 										</div>
@@ -75,11 +75,11 @@
 							<tfoot>
 							<tr>
 								<th>Id</th>
-								<th><?php echo _( 'Title' ) ?></th>
-								<th><?php echo _( 'Author' ) ?></th>
-								<th><?php echo _( 'Publish Date' ) ?></th>
-								<th><?php echo _( 'Type' ) ?></th>
-								<th><?php echo _( 'Actions' ) ?></th>
+								<th><?= _( 'Title' ) ?></th>
+								<th><?= _( 'Author' ) ?></th>
+								<th><?= _( 'Publish Date' ) ?></th>
+								<th><?= _( 'Type' ) ?></th>
+								<th><?= _( 'Actions' ) ?></th>
 							</tr>
 							</tfoot>
 						</table>

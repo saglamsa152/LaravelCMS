@@ -7,7 +7,6 @@
 <?=HTML::script('assets/admin/js/jquery-ui-1.10.3.min.js')?>
 <!-- Bootstrap -->
 <?=HTML::script('assets/admin/js/bootstrap.min.js')?>
-<script src="" type="text/javascript"></script>
 <!-- Morris.js charts -->
 <?=HTML::script('//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js')?>
 <?=HTML::script('assets/admin/js/plugins/morris/morris.min.js')?>
@@ -29,12 +28,13 @@
 <!-- DATA TABES SCRIPT -->
 <?=HTML::script('assets/admin/js/plugins/datatables/jquery.dataTables.js')?>
 <?=HTML::script('assets/admin/js/plugins/datatables/dataTables.bootstrap.js')?>
-
+<!-- CK Editor -->
+<?=HTML::script('assets/admin/js/plugins/ckeditor/ckeditor.js')?>
 <!-- Custom Js-->
 <?=HTML::script('assets/admin/js/custom.js')?>
 
 <!-- AdminLTE App -->
 <?=HTML::script('assets/admin/js/AdminLTE/app.js')?>
 
-<!-- AdminLTE dashboard demo (This is only for demo purposes) Silinecek -->
+<!-- AdminLTE dashboard demo (This is only for demo purposes) todo Silinecek -->
 <?=HTML::script('assets/admin/js/AdminLTE/dashboard.js')?>

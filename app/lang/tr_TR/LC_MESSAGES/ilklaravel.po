@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
 "POT-Creation-Date: 2014-04-19 22:12+0200\n"
-"PO-Revision-Date: 2014-04-19 22:13+0200\n"
+"PO-Revision-Date: 2014-04-30 00:33+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: TR\n"
@@ -408,7 +408,7 @@ msgstr "Slide ekle"
 
 #: ../../views/admin/eski/list/slider.blade.php:29
 msgid "İmage"
-msgstr "Resmin"
+msgstr "Resim"
 
 #: ../../views/admin/eski/list/slider.blade.php:30
 msgid "Description"

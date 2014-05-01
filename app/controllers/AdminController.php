@@ -7,7 +7,7 @@ class AdminController extends BaseController {
 		 */
 		$this->beforeFilter( 'auth', array( 'except' => array( 'getLogin', 'getRegister', 'postLogin', 'postRegister' ) ) );
 		/**
-		 * Post istelkerinde CSRF kontrolü
+		 * Post istelkerinde CSRF güvenlik kontrolü
 		 */
 		$this->beforeFilter( 'csrf', array( 'on' => 'post' ) );
 	}
@@ -18,10 +18,11 @@ class AdminController extends BaseController {
 	 */
 	public function getIndex() {
 		$title = _( 'Admin Panel' );
-		return View::make( 'admin/index' )->with(array( 'title'=> $title,'rightSide'=>'default') );
+		return View::make( 'admin/index' )->with( array( 'title' => $title, 'rightSide' => 'default' ) );
 	}
 
 	/**
+	 * Kullanıcı oturumunu sonlandırır
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function getLogout() {
@@ -30,6 +31,7 @@ class AdminController extends BaseController {
 	}
 
 	/**
+	 * Üye ol sayfası
 	 * @return \Illuminate\View\View
 	 */
 	public function getRegister() {
@@ -46,10 +48,6 @@ class AdminController extends BaseController {
 		return View::make( 'admin.login' )->with( 'title', $title );
 	}
 
-	public function getUploadForm($param=null){
-		return View::make('admin/imageBrowse');
-	}
-
 	/*
 	 * Listeler
 	 */
@@ -59,31 +57,32 @@ class AdminController extends BaseController {
 	 * @return mixed
 	 */
 	public function getUsers() {
-		$title = _( 'Users' );
-		$users = User::all();
+		$title     = _( 'Users' );
+		$rightSide = 'list/users';
+		$users     = User::all();
 		/* User meta tablosu  eklenince  aktif  edilecek
 		 * foreach ( $users as $user ) {
 			foreach($user->userMeta as $meta){
 				$user=array_add($user,$meta->metaKey,$meta->metaValue);
 			}
 		}*/
-		return View::make( 'admin.list.users' )->with( array( 'users' => $users, 'title' => $title ) );
+		return View::make( 'admin.index' )->with( compact( 'users', 'title', 'rightSide' ) );
 	}
 
 	/**
 	 * @return \Illuminate\View\View
 	 */
 	public function getSlider() {
-		$title  = _( 'Slider Management Page' );
-		$slides = Post::slider()->with( 'postMeta' )->orderBy( 'created_at', 'desc' )->get();
-
+		$title     = _( 'Slider Management Page' );
+		$slides    = Post::slider()->with( 'postMeta' )->orderBy( 'created_at', 'desc' )->get();
+		$rightSide = 'list/slider';
 		foreach ( $slides as $slide ) {
 			foreach ( $slide->postMeta as $meta ) {
 				$slide = array_add( $slide, $meta->metaKey, $meta->metaValue );
 			}
 		}
 
-		return View::make( 'admin.list.slider' )->with( array( 'slides' => $slides, 'title' => $title ) );
+		return View::make( 'admin.index' )->with( compact( 'title', 'slides', 'rightSide' ) );
 	}
 
 	/**
@@ -99,7 +98,8 @@ class AdminController extends BaseController {
 			$user=array_add($user,$meta->metaKey,$meta->metaValue);
 		}*/
 		$title = $user->username . ( ' Profil Page' );
-		return View::make( 'admin.profil' )->with( array( 'user' => $user, 'title' => $title ) );
+		$rightSide='list/profile';
+		return View::make( 'admin.index' )->with( compact('user','title','rightSide') );
 	}
 
 	/**
@@ -113,7 +113,7 @@ class AdminController extends BaseController {
 				$new = array_add( $new, $meta->metaKey, $meta->metaValue );
 			}
 		}
-		return View::make( 'admin.index' )->with( array( 'news' => $news, 'title' => $title,'rightSide'=>'list/news' ) );
+		return View::make( 'admin.index' )->with( array( 'news' => $news, 'title' => $title, 'rightSide' => 'list/news' ) );
 	}
 
 	/**
@@ -122,12 +122,13 @@ class AdminController extends BaseController {
 	public function getServices() {
 		$title    = _( 'Services' );
 		$services = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->service()->get();
+		$rightSide='list/services';
 		foreach ( $services as $service ) {
 			foreach ( $service->postMeta as $meta ) {
 				$service = array_add( $service, $meta->metaKey, $meta->metaValue );
 			}
 		}
-		return View::make( 'admin.list.services' )->with( array( 'title' => $title, 'services' => $services ) );
+		return View::make( 'admin.index' )->with( compact('title','services','rightSide') );
 	}
 
 	/**
@@ -136,12 +137,13 @@ class AdminController extends BaseController {
 	public function getProducts() {
 		$title    = _( 'Products' );
 		$products = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->product()->get();
+		$rightSide='list/products';
 		foreach ( $products as $product ) {
 			foreach ( $product->postMeta as $meta ) {
 				$product = array_add( $product, $meta->metaKey, $meta->metaValue );
 			}
 		}
-		return View::make( 'admin.list.products' )->with( array( 'title' => $title, 'products' => $products ) );
+		return View::make( 'admin.index' )->with( compact('title','products','rightSide') );
 	}
 
 	/**
@@ -150,7 +152,8 @@ class AdminController extends BaseController {
 	public function getContacts() {
 		$title    = _( 'Cotacts' );
 		$contacts = Contact::all();
-		return View::make( 'admin.list.contacts' )->with( array( 'title' => $title, 'contacts' => $contacts ) );
+		$rightSide='list/contacts';
+		return View::make( 'admin.index' )->with( compact('title','contacts','rightSide'));
 	}
 
 	/**
@@ -158,7 +161,8 @@ class AdminController extends BaseController {
 	 */
 	public function getOrders() {
 		$title = _( 'Orders' );
-		return View::make( 'admin.list.orders' )->with( 'title', $title );
+		$rightSide='list/orders';
+		return View::make( 'admin.index' )->with( compact('title','rightSide'));
 	}
 
 	/**
@@ -192,8 +196,9 @@ class AdminController extends BaseController {
 	 * Yeni gönderi oluşturma sayfası
 	 */
 	public function getAddNews() {
-		$title = 'New Post';
-		return View::make( 'admin.add.news' )->with( 'title', $title );
+		$title     = 'New Post';
+		$rightSide = 'add/news';
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
 	}
 
 	/**
@@ -364,44 +369,46 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function postAddPost() {
-		$postData = Input::all();
-		$rules    = array(
-				'title'   => 'required|unique:posts',
-				'content' => 'required'
-		);
-		// todo  ingilzce  tercüme
-		$messages  = array(
-				'title.required'   => _( 'Başlık boş bırakılamaz' ),
-				'content.required' => _( 'İçerik boş bırakılamaz' )
-		);
-		$validator = Validator::make( $postData, $rules, $messages );
+		if ( Request::ajax() ) {
+			$postData = Input::all();
+			$rules    = array(
+					'title'   => 'required|unique:posts',
+					'content' => 'required'
+			);
+			// todo  ingilzce  tercüme
+			$messages  = array(
+					'title.required'   => _( 'Başlık boş bırakılamaz' ),
+					'content.required' => _( 'İçerik boş bırakılamaz' )
+			);
+			$validator = Validator::make( $postData, $rules, $messages );
 
-		if ( $validator->fails() ) {
-			return Redirect::back()->withInput()->withErrors( $validator->messages() );
-		}
-		else {
-			$post = Post::create( array(
-					'author'     => Auth::user()->id,
-					'content'    => $postData['content'],
-					'title'      => $postData['title'],
-					'excerpt'    => mb_substr( $postData['content'], 0, 450, 'UTF-8' ),
-					'status'     => $postData['status'],
-					'type'       => $postData['type'],
-					'url'        => Str::slug( $postData['title'] ),
-					'created_ip' => Request::getClientIp()
-			) );
-
-			if ( isset( $postData['postMeta'] ) ) {
-				$postMeta      = $postData['postMeta'];
-				$modelPostMeta = array();
-				foreach ( $postMeta as $key => $value ) {
-					$modelPostMeta[] = new PostMeta( array( 'metaKey' => $key, 'metaValue' => $value ) );
-				}
-				$post->postMeta()->saveMany( $modelPostMeta );
+			if ( $validator->fails() ) {
+				$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() ); //todo  burası  olmuyor
+				return Response::json( $ajaxResponse );
 			}
+			else {
+				$post = Post::create( array(
+						'author'     => Auth::user()->id,
+						'content'    => $postData['content'],
+						'title'      => $postData['title'],
+						'excerpt'    => mb_substr( $postData['content'], 0, 450, 'UTF-8' ),
+						'status'     => $postData['status'],
+						'type'       => $postData['type'],
+						'url'        => Str::slug( $postData['title'] ),
+						'created_ip' => Request::getClientIp()
+				) );
 
-
-			return Redirect::back(); //todo burada bunu kullanmak doğrumu
+				if ( isset( $postData['postMeta'] ) ) {
+					$postMeta      = $postData['postMeta'];
+					$modelPostMeta = array();
+					foreach ( $postMeta as $key => $value ) {
+						$modelPostMeta[] = new PostMeta( array( 'metaKey' => $key, 'metaValue' => $value ) );
+					}
+					$post->postMeta()->saveMany( $modelPostMeta );
+				}
+				$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Processing was carried out successfully' ) );
+				return Response::json( $ajaxResponse );
+			}
 		}
 	}
 
@@ -455,9 +462,9 @@ class AdminController extends BaseController {
 			$post->created_ip = Request::getClientIp();
 
 			if ( isset( $postData['postMeta'] ) ) {
-				$postMeta  = $postData['postMeta'];
+				$postMeta = $postData['postMeta'];
 				foreach ( $postMeta as $key => $value ) {
-					$post->postMeta()->where('metaKey','=',$key)->update(array('metaValue'=>$value));
+					$post->postMeta()->where( 'metaKey', '=', $key )->update( array( 'metaValue' => $value ) );
 				}
 			}
 			$post->push();
@@ -470,7 +477,7 @@ class AdminController extends BaseController {
 	 * İletişim işlemleri
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
-	public function getContact() {
+	public function postAddContact() {
 		$postData = Input::all();
 
 		$rules = array(
