@@ -5,7 +5,7 @@
 		<!-- Sidebar user panel -->
 		<div class="user-panel">
 			<div class="pull-left image">
-				<?= HTML::image( 'assets/admin/img/avatar3.png', 'User Image', array( 'class' => 'img-circle' ) ) ?>
+				<?= HTML::image( get_gravatar(), 'User Image', array( 'class' => 'img-circle' ) ) ?>
 			</div>
 			<div class="pull-left info">
 				<p><?=_('Hello')?> , <?php if (Auth::user()->name==''):
@@ -46,6 +46,7 @@
 				</a>
 				<ul class="treeview-menu">
 					<li><a href="<?=URL::action('AdminController@getUsers')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
+					<li><a href=""><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
 				</ul>
 			</li>
 			<!-- /Users -->
@@ -58,7 +59,7 @@
 				</a>
 				<ul class="treeview-menu">
 					<li><a href="<?=URL::action('AdminController@getNews')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-					<li><a href="<?=URL::action('AdminController@getAddNews')?>"><i class="fa fa-angle-double-right"></i> <?=_('Add New')?></a></li>
+					<li><a href="<?=URL::action('AdminController@getAddNews')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
 				</ul>
 			</li>
 			<!-- /News -->
@@ -71,6 +72,7 @@
 				</a>
 				<ul class="treeview-menu">
 					<li><a href="<?=URL::action('AdminController@getSlider')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
+					<li><a href=""><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
 				</ul>
 			</li>
 			<!-- /Slider -->
@@ -83,6 +85,7 @@
 				</a>
 				<ul class="treeview-menu">
 					<li><a href="<?=URL::action('AdminController@getProducts')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
+					<li><a href=""><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
 				</ul>
 			</li>
 			<!-- /Product -->
@@ -95,6 +98,7 @@
 				</a>
 				<ul class="treeview-menu">
 					<li><a href="<?=URL::action('AdminController@getServices')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
+					<li><a href=""><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
 				</ul>
 			</li>
 			<!-- /Services -->

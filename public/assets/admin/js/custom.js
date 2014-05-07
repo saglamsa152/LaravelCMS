@@ -1,19 +1,24 @@
 /**
  * Created by sametatabasch on 17.04.2014.
  */
-/**
- * dataTable sınıflı  tablolar DataTeble ile düzenleniyor
- */
+
 $(function () {
+	/**
+	 * dataTable sınıflı  tablolar DataTeble ile düzenleniyor
+	 */
 	$('.dataTable').dataTable();
-});
-/**
- * ajaxForm sınıflı  formların işlemini ajax ile yapıyor
- */
-$(function () {
+
+	/**
+	 * ajaxForm sınıflı  formların işlemini ajax ile yapıyor
+	 */
+
 	$('.ajaxForm').on('submit', function () {
-		//ckeditor deki verilerin textarea ya aktarılıtor
-		CKEDITOR.instances.content.updateElement();
+
+		if (typeof(CKEDITOR) != 'undefined' && $('.ckeditor').length > 0) {//CKEDİTOR tanımlanmış ve sayfada ckeditör aktif edilmişse
+			var editorName = $('.ckeditor').attr('name');//ckeditor sınıflı  nesnenin name özelliği
+			//ckeditor deki verilerin textarea ya aktar
+			CKEDITOR.instances[editorName].updateElement();
+		}
 		$.ajax({
 			type   : 'POST',
 			url    : $(this).attr('action'),
@@ -23,10 +28,10 @@ $(function () {
 				var cevap = '<ul>';
 				if (jQuery.type(returnData['msg']) == "object") {
 					$.each(returnData['msg'], function (key, value) {
-						cevap +='<li>'+value+'</li>';
+						cevap += '<li>' + key + '-' + value + '</li>';
 					});
-					cevap+='</ul>';
-				}else cevap=returnData['msg'];
+					cevap += '</ul>';
+				} else cevap = returnData['msg'];
 				$('body').append(
 						'<div id="ajaxResult" class="alert alert-' + returnData['status'] + ' alert-dismissable">' +
 								'<i class="fa fa-check"></i>' +
@@ -42,4 +47,10 @@ $(function () {
 		});
 		return false;
 	});
-});
+
+	/**
+	 *  data-mask özelliği olan nesneye input mask uygular
+	 */
+	$("[data-mask]").inputmask();
+
+});//ready function

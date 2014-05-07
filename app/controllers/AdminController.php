@@ -93,13 +93,12 @@ class AdminController extends BaseController {
 	public function getProfile( $id = null ) {
 		is_null( $id ) ? $id = Auth::user()->id : $id = $id;
 		$user = User::with( 'post' )->find( $id );
-		/* User meta tablosu eklenince aktif edilecek
-		 * foreach($user->userMeta as $meta){
-			$user=array_add($user,$meta->metaKey,$meta->metaValue);
-		}*/
-		$title = $user->username . ( ' Profil Page' );
-		$rightSide='list/profile';
-		return View::make( 'admin.index' )->with( compact('user','title','rightSide') );
+		foreach ( $user->userMeta as $meta ) {
+			$user = array_add( $user, $meta->metaKey, $meta->metaValue );
+		}
+		$user->name != '' ? $title = $user->name . ' ' . $user->lastName . ( ' Profile Page' ) : $title = $user->username . ( ' Profile Page' );
+		$rightSide = 'profile';
+		return View::make( 'admin.index' )->with( compact( 'user', 'title', 'rightSide' ) );
 	}
 
 	/**
@@ -120,49 +119,49 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getServices() {
-		$title    = _( 'Services' );
-		$services = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->service()->get();
-		$rightSide='list/services';
+		$title     = _( 'Services' );
+		$services  = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->service()->get();
+		$rightSide = 'list/services';
 		foreach ( $services as $service ) {
 			foreach ( $service->postMeta as $meta ) {
 				$service = array_add( $service, $meta->metaKey, $meta->metaValue );
 			}
 		}
-		return View::make( 'admin.index' )->with( compact('title','services','rightSide') );
+		return View::make( 'admin.index' )->with( compact( 'title', 'services', 'rightSide' ) );
 	}
 
 	/**
 	 * @return \Illuminate\View\View
 	 */
 	public function getProducts() {
-		$title    = _( 'Products' );
-		$products = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->product()->get();
-		$rightSide='list/products';
+		$title     = _( 'Products' );
+		$products  = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->product()->get();
+		$rightSide = 'list/products';
 		foreach ( $products as $product ) {
 			foreach ( $product->postMeta as $meta ) {
 				$product = array_add( $product, $meta->metaKey, $meta->metaValue );
 			}
 		}
-		return View::make( 'admin.index' )->with( compact('title','products','rightSide') );
+		return View::make( 'admin.index' )->with( compact( 'title', 'products', 'rightSide' ) );
 	}
 
 	/**
 	 * @return \Illuminate\View\View
 	 */
 	public function getContacts() {
-		$title    = _( 'Cotacts' );
-		$contacts = Contact::all();
-		$rightSide='list/contacts';
-		return View::make( 'admin.index' )->with( compact('title','contacts','rightSide'));
+		$title     = _( 'Cotacts' );
+		$contacts  = Contact::all();
+		$rightSide = 'list/contacts';
+		return View::make( 'admin.index' )->with( compact( 'title', 'contacts', 'rightSide' ) );
 	}
 
 	/**
 	 * @return \Illuminate\View\View
 	 */
 	public function getOrders() {
-		$title = _( 'Orders' );
-		$rightSide='list/orders';
-		return View::make( 'admin.index' )->with( compact('title','rightSide'));
+		$title     = _( 'Orders' );
+		$rightSide = 'list/orders';
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
 	}
 
 	/**
@@ -474,6 +473,28 @@ class AdminController extends BaseController {
 	}
 
 	/**
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function postUpdateProfile() {
+		if ( Request::ajax() ) {
+			$postData     = Input::all();
+			$user= User::find($postData['id']);
+			// meta bilgilerini  dizinen çıkartalım
+			$metas=array_pull($postData,'meta');
+			// yeni bilgileri güncelleyelim
+			$user->fill($postData)->push();
+			//userMeta modelini statik olmayan metodlarını kullanmak değişkene aktarıyoruz
+			$userMeta=new UserMeta();
+			foreach($metas as $key=>$value){
+				if($value=='') continue;
+				$userMeta->setMeta($postData['id'],$key,$value);
+			}
+			$response = array( 'status' => 'success', 'msg' => 'Saved successfully' );
+			return Response::json( $response );
+		}
+	}
+
+	/**
 	 * İletişim işlemleri
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
@@ -535,6 +556,7 @@ class AdminController extends BaseController {
 	}
 
 	/**
+	 * todo upload işlemleri  yapılınca taşınacak
 	 * mini-ajx-upload-file uygulamasını upload işlemi
 	 * resim yükleme işlemini gerçekleştiriyor
 	 */

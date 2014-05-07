@@ -9,13 +9,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * toplu atama yaparken hangi alanların kullanılacağını belirler (laravel kitap s145)
 	 * @var array
 	 */
-	protected $fillable = array( 'username', 'email', 'password', 'role', 'created_at', 'created_ip' );
+	protected $guarded = array( 'id', 'created_at', 'created_ip' );
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
 	protected $table = 'users';
+	/**
+	 * Belirsiz silme aktif
+	 *
+	 * @var bool
+	 */
+	protected $softDelete = true;
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -52,7 +58,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function post() {
-		return $this->hasMany( 'Post','author' );
+		return $this->hasMany( 'Post', 'author' );
 	}
 
+	public function userMeta() {
+		return $this->hasMany( 'UserMeta', 'userId' );
+	}
 }

@@ -16,7 +16,7 @@ class PostMeta extends Eloquent {
 	protected $guarded = array( 'id', 'created_at', 'updated_at' );
 
 	public function post() {
-		return $this->belongsTo( 'Post','postId' );
+		return $this->belongsTo( 'Post','id' );
 	}
 
 }

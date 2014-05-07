@@ -6,7 +6,8 @@
 			<small>advanced tables</small>
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="<?= URL::action( 'AdminController@getIndex' ) ?>"><i class="fa fa-dashboard"></i> <?=_('Home')?></a></li>
+			<li><a href="<?= URL::action( 'AdminController@getIndex' ) ?>"><i class="fa fa-dashboard"></i> <?= _( 'Home' ) ?>
+				</a></li>
 			<li><a href="<?= URL::action( 'AdminController@getUsers' ) ?>"><?= _( 'Users' ) ?></a></li>
 			<li class="active"><?= _( 'List' ) ?></li>
 		</ol>
@@ -27,10 +28,12 @@
 							<thead>
 							<tr>
 								<th>Id</th>
-								<th><?= _('Username')?></th>
-								<th><?= _('Date registered')?></th>
-								<th><?= _('Role')?></th>
-								<th><?= _('Actions')?></th>
+								<th><?= _( 'Username' ) ?></th>
+								<th><?= _( 'Name - Lastname' ) ?></th>
+								<th><?= _( 'email' ) ?></th>
+								<th><?= _( 'Date registered' ) ?></th>
+								<th><?= _( 'Role' ) ?></th>
+								<th><?= _( 'Actions' ) ?></th>
 							</tr>
 							</thead>
 							<tbody>
@@ -39,9 +42,11 @@
 								<tr>
 									<td><?= $user->id ?></td>
 									<td><?= $user->username ?></td>
-									<td class="center"><?= $user->created_at ?></td>
-									<td class="center"><?= $user->role ?></td>
-									<td class="center">
+									<td><?= $user->name . ' - ' . $user->lastName ?></td>
+									<td><?= $user->email ?></td>
+									<td><?= $user->created_at ?></td>
+									<td><?= $user->role ?></td>
+									<td>
 										<div class="btn-group">
 											<button class="btn btn-default btn-flat" type="button"><?= _( 'Actions' ) ?></button>
 											<button data-toggle="dropdown" class="btn btn-default btn-flat dropdown-toggle" type="button">
@@ -50,15 +55,11 @@
 											</button>
 											<ul role="menu" class="dropdown-menu">
 												<li>
-													<a href="<?= URL::action( 'AdminController@getProfile', $user->url ) ?>">
+													<a href="<?= URL::action( 'AdminController@getProfile', $user->id ) ?>">
 														<i class="fa fa-eye"></i>
-														<?= _( 'View' ) ?>
+														<?= _( 'View/Edit' ) ?>
 													</a>
 												</li>
-												<li><a href="#">
-														<i class="fa fa-edit"></i>
-														<?= _( 'Edit' ) ?>
-													</a></li>
 												<li>
 													<a href="#">
 														<i class="fa fa-trash-o"></i>
@@ -73,10 +74,10 @@
 							<tfoot>
 							<tr>
 								<th>Id</th>
-								<th><?= _('Username')?></th>
-								<th><?= _('Date registered')?></th>
-								<th><?= _('Role')?></th>
-								<th><?= _('Actions')?></th>
+								<th><?= _( 'Username' ) ?></th>
+								<th><?= _( 'Date registered' ) ?></th>
+								<th><?= _( 'Role' ) ?></th>
+								<th><?= _( 'Actions' ) ?></th>
 							</tr>
 							</tfoot>
 						</table>

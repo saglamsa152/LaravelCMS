@@ -22,7 +22,12 @@ class Post extends Eloquent {
 	 * @var array
 	 */
 	protected $fillable = array( 'author', 'content', 'title', 'excerpt', 'status', 'type', 'url', 'created_ip' );
-
+	/**
+	 * Belirsiz silme aktif
+	 *
+	 * @var bool
+	 */
+	protected $softDelete = true;
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
