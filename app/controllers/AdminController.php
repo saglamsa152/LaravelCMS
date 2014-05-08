@@ -179,16 +179,18 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getAddUser() {
-		$title = _( 'Add New User' );
-		return View::make( 'admin.add.user' )->with( 'title', $title );
+		$title     = _( 'Add New User' );
+		$rightSide = 'add/user';
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
 	}
 
 	/**
 	 * @return \Illuminate\View\View
 	 */
 	public function getAddSlide() {
-		$title = _( 'Add New Slide' );
-		return View::make( 'admin.add.slide' )->with( 'title', $title );
+		$title     = _( 'Add New Slide' );
+		$rightSide = 'add/slide';
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
 	}
 
 	/**
@@ -204,16 +206,18 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getAddService() {
-		$title = _( 'Add New Service' );
-		return View::make( 'admin.add.service' )->with( 'title', $title );
+		$title     = _( 'Add New Service' );
+		$rightSide = 'add/service';
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
 	}
 
 	/**
 	 * @return \Illuminate\View\View
 	 */
 	public function getAddProduct() {
-		$title = _( 'Add New Product' );
-		return View::make( 'admin.add.product' )->with( 'title', $title );
+		$title     = _( 'Add New Product' );
+		$rightSide = 'add/product';
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
 	}
 
 	/*
