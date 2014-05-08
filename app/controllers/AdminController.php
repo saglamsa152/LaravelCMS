@@ -164,14 +164,6 @@ class AdminController extends BaseController {
 		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
 	}
 
-	/**
-	 * @return \Illuminate\View\View
-	 */
-	public function getOptions() {
-		$title = _( 'Options' );
-		return View::make( 'admin.options' )->with( array( 'title' => $title ) );
-	}
-
 	/*
 	 * Yeni Oluşturma
 	 */

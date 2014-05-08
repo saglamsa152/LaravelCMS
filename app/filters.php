@@ -59,6 +59,13 @@ App::before( function ( $request ) {
 		}
 		return $url;
 	}
+
+	/**
+	 * getOption ve setOption metodlarını  kullanmak  için  options değişkenine Option metodunu  atıyorum
+	 *
+	 * todo Kaliteli  bir kullanım  gibi  durmuyor  laravel ile  daha iyisi  yapılabilir  öğrenmek lazım
+	 */
+	$options=new Option();
 } );
 
 

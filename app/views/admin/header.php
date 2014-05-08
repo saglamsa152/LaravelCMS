@@ -1,7 +1,7 @@
 <!-- header logo: style can be found in header.less -->
 <header class="header">
 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-<?= link_to_action( 'AdminController@getIndex', 'AdminLTE', '', array( 'class' => 'logo' ) ) ?>
+<?= link_to_action( 'AdminController@getIndex', $options->getOption('siteName'), '', array( 'class' => 'logo' ) ) ?>
 
 <!-- Header Navbar: style can be found in header.less -->
 <nav class="navbar navbar-static-top" role="navigation">
