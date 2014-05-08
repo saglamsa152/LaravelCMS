@@ -414,14 +414,16 @@ class AdminController extends BaseController {
 	/**
 	 * Post sil işlemi
 	 *
-	 * @param null $id
-	 *
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
-	public function getDeletePost( $id = null ) {
-		if ( ! is_null( $id ) ) {
-			Post::destroy( $id );
-			return Redirect::back(); //todo burada bunu kullanmak doğrumu
+	public function postDeletePost() {
+		if ( Request::ajax() ) {
+			$id = Input::get( 'id' );
+			if ( ! is_null( $id ) ) {
+				Post::destroy( $id );
+				$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully' );
+				return Response::json( $response );
+			}
 		}
 	}
 
@@ -477,17 +479,17 @@ class AdminController extends BaseController {
 	 */
 	public function postUpdateProfile() {
 		if ( Request::ajax() ) {
-			$postData     = Input::all();
-			$user= User::find($postData['id']);
+			$postData = Input::all();
+			$user     = User::find( $postData['id'] );
 			// meta bilgilerini  dizinen çıkartalım
-			$metas=array_pull($postData,'meta');
+			$metas = array_pull( $postData, 'meta' );
 			// yeni bilgileri güncelleyelim
-			$user->fill($postData)->push();
+			$user->fill( $postData )->push();
 			//userMeta modelini statik olmayan metodlarını kullanmak değişkene aktarıyoruz
-			$userMeta=new UserMeta();
-			foreach($metas as $key=>$value){
-				if($value=='') continue;
-				$userMeta->setMeta($postData['id'],$key,$value);
+			$userMeta = new UserMeta();
+			foreach ( $metas as $key => $value ) {
+				if ( $value == '' ) continue;
+				$userMeta->setMeta( $postData['id'], $key, $value );
 			}
 			$response = array( 'status' => 'success', 'msg' => 'Saved successfully' );
 			return Response::json( $response );

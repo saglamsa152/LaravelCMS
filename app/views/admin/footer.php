@@ -1,8 +1,7 @@
 <!-- add new calendar event modal -->
 
 
-<!-- jQuery 2.0.2 -->
-<?=HTML::script('http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js')?>
+
 <!-- jQuery UI 1.10.3 -->
 <?=HTML::script('assets/admin/js/jquery-ui-1.10.3.min.js')?>
 <!-- Bootstrap -->
