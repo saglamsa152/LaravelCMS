@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
-"POT-Creation-Date: 2014-04-19 22:12+0200\n"
-"PO-Revision-Date: 2014-04-30 00:33+0200\n"
+"POT-Creation-Date: 2014-05-11 23:22+0200\n"
+"PO-Revision-Date: 2014-05-11 23:22+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: TR\n"
@@ -17,27 +17,28 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../models\n"
 "X-Poedit-SearchPath-2: ../../controllers\n"
 
-#: ../../views/admin/header.php:236
+#: ../../views/admin/header.php:246
 #: ../../views/admin/eski/header.blade.php:109
 msgid "Profile"
 msgstr "Profil"
 
-#: ../../views/admin/header.php:239
+#: ../../views/admin/header.php:249
 msgid "Sign out"
-msgstr ""
+msgstr "Çıkış yap"
 
 #: ../../views/admin/login.php:38 ../../views/admin/register.php:38
 msgid "Alert!"
-msgstr ""
+msgstr "Uyarı!"
 
 #: ../../views/admin/login.php:44
 msgid "Sign In"
-msgstr ""
+msgstr "Giriş Yap"
 
 #: ../../views/admin/login.php:53 ../../views/admin/register.php:56
 #: ../../views/admin/eski/login.blade.php:33
 #: ../../views/admin/eski/register.blade.php:34
-#: ../../views/admin/eski/list/users.blade.php:26
+#: ../../views/admin/rightSide/list/users.php:31
+#: ../../views/admin/rightSide/list/users.php:77
 msgid "Username"
 msgstr "Kullanıcı Adı"
 
@@ -51,24 +52,143 @@ msgstr "Beni  hatırla"
 
 #: ../../views/admin/login.php:63
 msgid "Sing in"
-msgstr ""
+msgstr "Giriş yap"
 
 #: ../../views/admin/login.php:65
 msgid "I forgot my password"
-msgstr ""
+msgstr "Şifremi unuttum"
 
 #: ../../views/admin/login.php:67
 msgid "Register a new membership"
-msgstr ""
+msgstr "Yeni üyelik oluştur"
 
 #: ../../views/admin/login.php:72
 msgid "Sign in using social networks"
-msgstr ""
+msgstr "Sosyal ağları kullanarak giriş yap"
+
+#: ../../views/admin/leftSide.php:11
+msgid "Hello"
+msgstr "Selam"
+
+#: ../../views/admin/leftSide.php:36
+#: ../../views/admin/eski/header.blade.php:142
+#: ../../views/admin/eski/index.blade.php:8
+msgid "Dashboard"
+msgstr "Başlangıç"
+
+#: ../../views/admin/leftSide.php:44
+#: ../../views/admin/eski/header.blade.php:145
+#: ../../views/admin/rightSide/list/users.php:11
+#: ../../views/admin/rightSide/list/users.php:23
+#: ../../controllers/AdminController.php:60
+msgid "Users"
+msgstr "Kullanıcılar"
+
+#: ../../views/admin/leftSide.php:48 ../../views/admin/leftSide.php:61
+#: ../../views/admin/leftSide.php:74 ../../views/admin/leftSide.php:87
+#: ../../views/admin/leftSide.php:100 ../../views/admin/leftSide.php:113
+#: ../../views/admin/rightSide/list/slider.php:11
+#: ../../views/admin/rightSide/list/news.php:11
+#: ../../views/admin/rightSide/list/contacts.php:11
+#: ../../views/admin/rightSide/list/users.php:12
+#: ../../views/admin/rightSide/list/services.php:11
+#: ../../views/admin/rightSide/list/products.php:11
+msgid "List"
+msgstr "Liste"
+
+#: ../../views/admin/leftSide.php:49 ../../views/admin/leftSide.php:62
+#: ../../views/admin/leftSide.php:75 ../../views/admin/leftSide.php:88
+#: ../../views/admin/leftSide.php:101
+#, fuzzy
+msgid "Add New"
+msgstr "Yeni  Haber Ekle"
+
+#: ../../views/admin/leftSide.php:57
+#: ../../views/admin/eski/header.blade.php:148
+#: ../../views/admin/eski/add/news.blade.php:16
+#: ../../views/admin/eski/update/news.blade.php:16
+#: ../../views/admin/rightSide/list/news.php:10
+#: ../../views/admin/rightSide/list/news.php:22
+#: ../../views/template/menu.blade.php:9
+msgid "News"
+msgstr "Haberler"
+
+#: ../../views/admin/leftSide.php:70
+#: ../../views/admin/eski/header.blade.php:160
+#: ../../views/admin/eski/add/slide.blade.php:16
+#: ../../views/admin/eski/update/slide.blade.php:16
+msgid "Slider"
+msgstr "Slider"
+
+#: ../../views/admin/leftSide.php:83
+#: ../../views/admin/eski/header.blade.php:151
+#: ../../views/admin/eski/add/product.blade.php:16
+#: ../../views/admin/eski/update/product.blade.php:16
+#: ../../views/admin/rightSide/list/products.php:10
+#: ../../views/admin/rightSide/list/products.php:22
+#: ../../views/template/menu.blade.php:13
+#: ../../controllers/HomeController.php:52
+#: ../../controllers/AdminController.php:137
+msgid "Products"
+msgstr "Ürünler"
+
+#: ../../views/admin/leftSide.php:96
+#: ../../views/admin/eski/header.blade.php:154
+#: ../../views/admin/rightSide/list/contacts.php:10
+#: ../../views/admin/rightSide/list/contacts.php:22
+#: ../../views/admin/rightSide/list/services.php:10
+#: ../../views/admin/rightSide/list/services.php:22
+#: ../../views/template/menu.blade.php:11
+#: ../../controllers/HomeController.php:57
+#: ../../controllers/AdminController.php:122
+msgid "Services"
+msgstr "Hizmeler"
+
+#: ../../views/admin/leftSide.php:109
+#: ../../views/admin/eski/header.blade.php:157
+#: ../../controllers/AdminController.php:162
+msgid "Orders"
+msgstr "Siparişler"
+
+#: ../../views/admin/leftSide.php:121
+#: ../../views/admin/eski/header.blade.php:163
+#: ../../controllers/HomeController.php:47
+msgid "Contact"
+msgstr "İletişim"
+
+#: ../../views/admin/leftSide.php:125
+msgid "İnbox"
+msgstr "Gelen Kutusu"
+
+#: ../../views/admin/leftSide.php:133
+#: ../../views/admin/eski/header.blade.php:166
+msgid "Options"
+msgstr "Ayarlar"
+
+#: ../../views/admin/leftSide.php:137
+msgid "General"
+msgstr "Genel"
+
+#: ../../views/admin/register.php:44
+msgid "Register New Membership"
+msgstr "Yeni Üyelik Oluştur"
 
 #: ../../views/admin/register.php:62
 #: ../../views/admin/eski/register.blade.php:44
 msgid "Password Confirm"
 msgstr "Şifre Tekrar"
+
+#: ../../views/admin/register.php:66
+msgid "Sign me up"
+msgstr "Üye yap"
+
+#: ../../views/admin/register.php:68
+msgid "I already have a membership"
+msgstr "Zaten bir üyeliğim var"
+
+#: ../../views/admin/register.php:72
+msgid "Register using social networks"
+msgstr "Sosyal ağları kullanarak üye ol"
 
 #: ../../views/admin/eski/footer.blade.php:13
 #: ../../views/admin/eski/add/slide.blade.php:108
@@ -110,72 +230,6 @@ msgstr "Ara"
 msgid "Main"
 msgstr ""
 
-#: ../../views/admin/eski/header.blade.php:142
-#: ../../views/admin/eski/index.blade.php:8
-msgid "Dashboard"
-msgstr "Başlangıç"
-
-#: ../../views/admin/eski/header.blade.php:145
-#: ../../controllers/AdminController.php:62
-msgid "Users"
-msgstr "Kullanıcılar"
-
-#: ../../views/admin/eski/header.blade.php:148
-#: ../../views/admin/eski/list/news.blade.php:8
-#: ../../views/admin/eski/list/news.blade.php:16
-#: ../../views/admin/eski/list/orders.blade.php:9
-#: ../../views/admin/eski/list/orders.blade.php:17
-#: ../../views/admin/eski/add/news.blade.php:16
-#: ../../views/admin/eski/update/news.blade.php:16
-#: ../../views/admin/rightSide/list/news.php:5
-#: ../../views/admin/rightSide/list/news.php:10
-#: ../../views/admin/rightSide/list/news.php:22
-#: ../../views/template/menu.blade.php:9
-msgid "News"
-msgstr "Haberler"
-
-#: ../../views/admin/eski/header.blade.php:151
-#: ../../views/admin/eski/list/products.blade.php:8
-#: ../../views/admin/eski/list/products.blade.php:16
-#: ../../views/admin/eski/add/product.blade.php:16
-#: ../../views/admin/eski/update/product.blade.php:16
-#: ../../views/template/menu.blade.php:13
-#: ../../controllers/HomeController.php:52
-#: ../../controllers/AdminController.php:137
-msgid "Products"
-msgstr "Ürünler"
-
-#: ../../views/admin/eski/header.blade.php:154
-#: ../../views/admin/eski/list/services.blade.php:8
-#: ../../views/admin/eski/list/services.blade.php:16
-#: ../../views/template/menu.blade.php:11
-#: ../../controllers/HomeController.php:57
-#: ../../controllers/AdminController.php:123
-msgid "Services"
-msgstr "Hizmeler"
-
-#: ../../views/admin/eski/header.blade.php:157
-#: ../../controllers/AdminController.php:160
-msgid "Orders"
-msgstr "Siparişler"
-
-#: ../../views/admin/eski/header.blade.php:160
-#: ../../views/admin/eski/list/slider.blade.php:8
-#: ../../views/admin/eski/add/slide.blade.php:16
-#: ../../views/admin/eski/update/slide.blade.php:16
-msgid "Slider"
-msgstr "Slider"
-
-#: ../../views/admin/eski/header.blade.php:163
-#: ../../controllers/HomeController.php:47
-msgid "Contact"
-msgstr "İletişim"
-
-#: ../../views/admin/eski/header.blade.php:166
-#: ../../controllers/AdminController.php:168
-msgid "Options"
-msgstr "Ayarlar"
-
 #: ../../views/admin/eski/header.blade.php:169
 msgid "Ajax on menu"
 msgstr "Ajax açık"
@@ -192,57 +246,51 @@ msgid ""
 msgstr ""
 
 #: ../../views/admin/eski/profil.blade.php:58
-#: ../../views/admin/eski/list/services.blade.php:32
-#: ../../views/admin/eski/list/services.blade.php:46
-#: ../../views/admin/eski/list/news.blade.php:31
-#: ../../views/admin/eski/list/news.blade.php:45
-#: ../../views/admin/eski/list/contacts.blade.php:27
-#: ../../views/admin/eski/list/contacts.blade.php:42
-#: ../../views/admin/eski/list/users.blade.php:29
-#: ../../views/admin/eski/list/users.blade.php:41
-#: ../../views/admin/eski/list/products.blade.php:32
-#: ../../views/admin/eski/list/products.blade.php:46
-#: ../../views/admin/eski/list/slider.blade.php:31
-#: ../../views/admin/eski/list/slider.blade.php:44
-#: ../../views/admin/eski/list/orders.blade.php:33
-#: ../../views/admin/eski/list/orders.blade.php:47
+#: ../../views/admin/rightSide/list/slider.php:32
+#: ../../views/admin/rightSide/list/slider.php:45
+#: ../../views/admin/rightSide/list/slider.php:78
 #: ../../views/admin/rightSide/list/news.php:34
 #: ../../views/admin/rightSide/list/news.php:48
-#: ../../views/admin/rightSide/list/news.php:82
+#: ../../views/admin/rightSide/list/news.php:86
+#: ../../views/admin/rightSide/list/contacts.php:34
+#: ../../views/admin/rightSide/list/contacts.php:49
+#: ../../views/admin/rightSide/list/contacts.php:83
+#: ../../views/admin/rightSide/list/users.php:36
+#: ../../views/admin/rightSide/list/users.php:51
+#: ../../views/admin/rightSide/list/users.php:80
+#: ../../views/admin/rightSide/list/services.php:34
+#: ../../views/admin/rightSide/list/services.php:48
+#: ../../views/admin/rightSide/list/services.php:82
+#: ../../views/admin/rightSide/list/products.php:34
+#: ../../views/admin/rightSide/list/products.php:48
+#: ../../views/admin/rightSide/list/products.php:82
 msgid "Actions"
 msgstr "İşlemler"
 
 #: ../../views/admin/eski/profil.blade.php:63
-#: ../../views/admin/eski/list/services.blade.php:51
-#: ../../views/admin/eski/list/news.blade.php:50
-#: ../../views/admin/eski/list/users.blade.php:46
-#: ../../views/admin/eski/list/products.blade.php:51
-#: ../../views/admin/eski/list/slider.blade.php:49
-#: ../../views/admin/eski/list/orders.blade.php:52
+#: ../../views/admin/rightSide/profile.php:121
+#: ../../views/admin/rightSide/list/slider.php:54
 #: ../../views/admin/rightSide/list/news.php:57
+#: ../../views/admin/rightSide/list/services.php:57
+#: ../../views/admin/rightSide/list/products.php:57
 msgid "View"
 msgstr "Göster"
 
 #: ../../views/admin/eski/profil.blade.php:68
-#: ../../views/admin/eski/list/services.blade.php:56
-#: ../../views/admin/eski/list/news.blade.php:55
-#: ../../views/admin/eski/list/users.blade.php:51
-#: ../../views/admin/eski/list/products.blade.php:56
-#: ../../views/admin/eski/list/slider.blade.php:54
-#: ../../views/admin/eski/list/orders.blade.php:57
+#: ../../views/admin/rightSide/list/slider.php:59
 #: ../../views/admin/rightSide/list/news.php:62
+#: ../../views/admin/rightSide/list/services.php:62
+#: ../../views/admin/rightSide/list/products.php:62
 msgid "Edit"
 msgstr "Düzenle"
 
 #: ../../views/admin/eski/profil.blade.php:73
-#: ../../views/admin/eski/list/services.blade.php:61
-#: ../../views/admin/eski/list/news.blade.php:60
-#: ../../views/admin/eski/list/contacts.blade.php:57
-#: ../../views/admin/eski/list/users.blade.php:56
-#: ../../views/admin/eski/list/products.blade.php:61
-#: ../../views/admin/eski/list/slider.blade.php:59
-#: ../../views/admin/eski/list/orders.blade.php:62
-#: ../../views/admin/rightSide/list/news.php:67
+#: ../../views/admin/rightSide/list/slider.php:64
+#: ../../views/admin/rightSide/list/news.php:70
+#: ../../views/admin/rightSide/list/contacts.php:68
+#: ../../views/admin/rightSide/list/users.php:66
+#: ../../views/admin/rightSide/list/services.php:67
+#: ../../views/admin/rightSide/list/products.php:67
 msgid "Delete"
 msgstr "Sil"
 
@@ -256,19 +304,19 @@ msgid "Login"
 msgstr "Giriş"
 
 #: ../../views/admin/eski/index.blade.php:5
-#: ../../views/admin/eski/list/services.blade.php:5
-#: ../../views/admin/eski/list/news.blade.php:5
-#: ../../views/admin/eski/list/contacts.blade.php:5
-#: ../../views/admin/eski/list/users.blade.php:5
-#: ../../views/admin/eski/list/products.blade.php:5
-#: ../../views/admin/eski/list/slider.blade.php:5
-#: ../../views/admin/eski/list/orders.blade.php:6
 #: ../../views/admin/eski/add/news.blade.php:13
 #: ../../views/admin/eski/add/product.blade.php:13
 #: ../../views/admin/eski/add/slide.blade.php:13
 #: ../../views/admin/eski/update/news.blade.php:13
 #: ../../views/admin/eski/update/product.blade.php:13
 #: ../../views/admin/eski/update/slide.blade.php:13
+#: ../../views/admin/rightSide/profile.php:10
+#: ../../views/admin/rightSide/list/slider.php:9
+#: ../../views/admin/rightSide/list/news.php:9
+#: ../../views/admin/rightSide/list/contacts.php:9
+#: ../../views/admin/rightSide/list/users.php:9
+#: ../../views/admin/rightSide/list/services.php:9
+#: ../../views/admin/rightSide/list/products.php:9
 #: ../../views/template/menu.blade.php:7
 msgid "Home"
 msgstr "Anasayfa"
@@ -289,135 +337,29 @@ msgstr "Satışlar"
 msgid "Messages"
 msgstr "Mesajlar"
 
-#: ../../views/admin/eski/list/services.blade.php:20
-msgid "Add Service"
-msgstr "Yeni Hizmet Ekle"
+#: ../../views/admin/eski/add/news.blade.php:19
+#: ../../views/admin/eski/add/news.blade.php:34
+#: ../../views/admin/rightSide/add/news.php:30
+msgid "New News"
+msgstr "Yeni Haber"
 
-#: ../../views/admin/eski/list/services.blade.php:28
-#: ../../views/admin/eski/list/news.blade.php:27
-#: ../../views/admin/eski/list/products.blade.php:28
-#: ../../views/admin/eski/list/slider.blade.php:28
-#: ../../views/admin/eski/list/orders.blade.php:29
 #: ../../views/admin/eski/add/news.blade.php:48
 #: ../../views/admin/eski/add/product.blade.php:48
 #: ../../views/admin/eski/add/slide.blade.php:49
 #: ../../views/admin/eski/update/news.blade.php:49
 #: ../../views/admin/eski/update/product.blade.php:49
 #: ../../views/admin/eski/update/slide.blade.php:50
+#: ../../views/admin/rightSide/list/slider.php:29
+#: ../../views/admin/rightSide/list/slider.php:75
 #: ../../views/admin/rightSide/list/news.php:30
-#: ../../views/admin/rightSide/list/news.php:78
+#: ../../views/admin/rightSide/list/news.php:82
+#: ../../views/admin/rightSide/list/services.php:30
+#: ../../views/admin/rightSide/list/services.php:78
+#: ../../views/admin/rightSide/list/products.php:30
+#: ../../views/admin/rightSide/list/products.php:78
+#: ../../views/admin/rightSide/add/news.php:42
 msgid "Title"
 msgstr "Başlık"
-
-#: ../../views/admin/eski/list/services.blade.php:29
-#: ../../views/admin/eski/list/news.blade.php:28
-#: ../../views/admin/eski/list/orders.blade.php:30
-#: ../../views/admin/rightSide/list/news.php:31
-#: ../../views/admin/rightSide/list/news.php:79
-msgid "Author"
-msgstr "Yazar"
-
-#: ../../views/admin/eski/list/services.blade.php:30
-#: ../../views/admin/eski/list/news.blade.php:29
-#: ../../views/admin/eski/list/products.blade.php:30
-#: ../../views/admin/eski/list/orders.blade.php:31
-#: ../../views/admin/rightSide/list/news.php:32
-#: ../../views/admin/rightSide/list/news.php:80
-msgid "Publish Date"
-msgstr "Yayınlama tarihi"
-
-#: ../../views/admin/eski/list/services.blade.php:31
-#: ../../views/admin/eski/list/news.blade.php:30
-#: ../../views/admin/eski/list/orders.blade.php:32
-#: ../../views/admin/rightSide/list/news.php:33
-#: ../../views/admin/rightSide/list/news.php:81
-msgid "Type"
-msgstr "Tip"
-
-#: ../../views/admin/eski/list/news.blade.php:19
-#: ../../views/admin/eski/list/orders.blade.php:21
-msgid "Add News"
-msgstr "Yeni  Haber Ekle"
-
-#: ../../views/admin/eski/list/contacts.blade.php:8
-#: ../../views/admin/eski/list/contacts.blade.php:16
-#: ../../views/template/menu.blade.php:15
-#: ../../views/contacts/index.blade.php:53
-msgid "Contacts"
-msgstr "İletişim"
-
-#: ../../views/admin/eski/list/contacts.blade.php:23
-msgid "Sender's Name"
-msgstr ""
-
-#: ../../views/admin/eski/list/contacts.blade.php:24
-msgid "Sender's E-mail"
-msgstr ""
-
-#: ../../views/admin/eski/list/contacts.blade.php:25
-msgid "Send Date"
-msgstr ""
-
-#: ../../views/admin/eski/list/contacts.blade.php:26
-#, fuzzy
-msgid "Message"
-msgstr "Mesajlar"
-
-#: ../../views/admin/eski/list/contacts.blade.php:52
-msgid "Answer"
-msgstr ""
-
-#: ../../views/admin/eski/list/users.blade.php:8
-#: ../../views/admin/eski/list/users.blade.php:16
-msgid "Members"
-msgstr "Kullanıcılar"
-
-#: ../../views/admin/eski/list/users.blade.php:18
-msgid "Add User"
-msgstr "Kullanıcı Ekle"
-
-#: ../../views/admin/eski/list/users.blade.php:27
-msgid "Date registered"
-msgstr "Kayıt Tarihi"
-
-#: ../../views/admin/eski/list/users.blade.php:28
-msgid "Role"
-msgstr "Rol"
-
-#: ../../views/admin/eski/list/products.blade.php:20
-msgid "Add Product"
-msgstr "Ürün Ekle"
-
-#: ../../views/admin/eski/list/products.blade.php:29
-#: ../../views/admin/eski/add/product.blade.php:99
-#: ../../views/admin/eski/update/product.blade.php:100
-msgid "Price"
-msgstr ""
-
-#: ../../views/admin/eski/list/products.blade.php:31
-msgid "Category"
-msgstr ""
-
-#: ../../views/admin/eski/list/slider.blade.php:16
-msgid "Slides"
-msgstr "Slidelar"
-
-#: ../../views/admin/eski/list/slider.blade.php:20
-msgid "Add Slide"
-msgstr "Slide ekle"
-
-#: ../../views/admin/eski/list/slider.blade.php:29
-msgid "İmage"
-msgstr "Resim"
-
-#: ../../views/admin/eski/list/slider.blade.php:30
-msgid "Description"
-msgstr "Açıklama"
-
-#: ../../views/admin/eski/add/news.blade.php:19
-#: ../../views/admin/eski/add/news.blade.php:34
-msgid "New News"
-msgstr "Yeni Haber"
 
 #: ../../views/admin/eski/add/news.blade.php:69
 #: ../../views/admin/eski/add/product.blade.php:69
@@ -425,8 +367,9 @@ msgstr "Yeni Haber"
 #: ../../views/admin/eski/update/news.blade.php:70
 #: ../../views/admin/eski/update/product.blade.php:70
 #: ../../views/admin/eski/update/slide.blade.php:70
+#: ../../views/admin/rightSide/add/news.php:60
 msgid "Task"
-msgstr ""
+msgstr "Görev"
 
 #: ../../views/admin/eski/add/news.blade.php:70
 #: ../../views/admin/eski/add/product.blade.php:70
@@ -434,8 +377,9 @@ msgstr ""
 #: ../../views/admin/eski/update/news.blade.php:71
 #: ../../views/admin/eski/update/product.blade.php:71
 #: ../../views/admin/eski/update/slide.blade.php:71
+#: ../../views/admin/rightSide/add/news.php:61
 msgid "Trash"
-msgstr ""
+msgstr "Çöp"
 
 #: ../../views/admin/eski/add/news.blade.php:71
 #: ../../views/admin/eski/add/product.blade.php:71
@@ -443,6 +387,7 @@ msgstr ""
 #: ../../views/admin/eski/update/news.blade.php:72
 #: ../../views/admin/eski/update/product.blade.php:72
 #: ../../views/admin/eski/update/slide.blade.php:72
+#: ../../views/admin/rightSide/add/news.php:62
 #, fuzzy
 msgid "Public"
 msgstr "Yayınla"
@@ -450,6 +395,7 @@ msgstr "Yayınla"
 #: ../../views/admin/eski/add/news.blade.php:78
 #: ../../views/admin/eski/add/product.blade.php:78
 #: ../../views/admin/eski/add/slide.blade.php:78
+#: ../../views/admin/rightSide/add/news.php:71
 msgid "Publish"
 msgstr "Yayınla"
 
@@ -490,7 +436,12 @@ msgstr "Ürünler"
 #: ../../views/admin/eski/add/product.blade.php:93
 #: ../../views/admin/eski/update/product.blade.php:94
 msgid "Pruduct Category"
-msgstr ""
+msgstr "Ürün kategorisi"
+
+#: ../../views/admin/eski/add/product.blade.php:99
+#: ../../views/admin/eski/update/product.blade.php:100
+msgid "Price"
+msgstr "Fiyat"
 
 #: ../../views/admin/eski/add/slide.blade.php:20
 #: ../../views/admin/eski/add/slide.blade.php:35
@@ -511,7 +462,7 @@ msgstr "Yeni  Haber Ekle"
 #: ../../views/admin/eski/update/product.blade.php:79
 #: ../../views/admin/eski/update/slide.blade.php:79
 msgid "Update"
-msgstr ""
+msgstr "Güncelle"
 
 #: ../../views/admin/eski/update/product.blade.php:19
 #, fuzzy
@@ -530,9 +481,188 @@ msgstr "Slide ekle"
 msgid "Slide Meta"
 msgstr "Slider"
 
-#: ../../views/admin/rightSide/list/news.php:11
-msgid "List"
+#: ../../views/admin/rightSide/profile.php:7
+#, fuzzy
+msgid "Menage Profile"
+msgstr "Profil"
+
+#: ../../views/admin/rightSide/profile.php:12
+#, fuzzy
+msgid "Profile page"
+msgstr "Profil"
+
+#: ../../views/admin/rightSide/profile.php:29
+msgid "Personal Information"
+msgstr "Kişisel Bilgiler"
+
+#: ../../views/admin/rightSide/profile.php:32
+msgid "Name :"
+msgstr "İsim :"
+
+#: ../../views/admin/rightSide/profile.php:40
+msgid "Last Name :"
+msgstr "Soyisim :"
+
+#: ../../views/admin/rightSide/profile.php:48
+msgid "Birthday :"
+msgstr "Doğum Tarihi :"
+
+#: ../../views/admin/rightSide/profile.php:57
+#, fuzzy
+msgid "Contact Information"
+msgstr "İletişim Formu"
+
+#: ../../views/admin/rightSide/profile.php:61
+msgid "GSM :"
 msgstr ""
+
+#: ../../views/admin/rightSide/profile.php:72
+#, fuzzy
+msgid "Phone :"
+msgstr "Telefon:"
+
+#: ../../views/admin/rightSide/profile.php:83
+#, fuzzy
+msgid "e-mail :"
+msgstr "Eposta:"
+
+#: ../../views/admin/rightSide/profile.php:114
+#: ../../views/admin/rightSide/options/index.php:58
+msgid "Save"
+msgstr "Kaydet"
+
+#: ../../views/admin/rightSide/profile.php:123
+msgid "Avatar"
+msgstr ""
+
+#: ../../views/admin/rightSide/list/slider.php:5
+#: ../../views/admin/rightSide/list/slider.php:10
+#: ../../views/admin/rightSide/list/slider.php:21
+msgid "Slides"
+msgstr "Slidelar"
+
+#: ../../views/admin/rightSide/list/slider.php:30
+#: ../../views/admin/rightSide/list/slider.php:76
+msgid "İmage"
+msgstr "Resim"
+
+#: ../../views/admin/rightSide/list/slider.php:31
+#: ../../views/admin/rightSide/list/slider.php:77
+msgid "Description"
+msgstr "Açıklama"
+
+#: ../../views/admin/rightSide/list/news.php:31
+#: ../../views/admin/rightSide/list/news.php:83
+#: ../../views/admin/rightSide/list/services.php:31
+#: ../../views/admin/rightSide/list/services.php:79
+#: ../../views/admin/rightSide/list/products.php:31
+#: ../../views/admin/rightSide/list/products.php:79
+msgid "Author"
+msgstr "Yazar"
+
+#: ../../views/admin/rightSide/list/news.php:32
+#: ../../views/admin/rightSide/list/news.php:84
+#: ../../views/admin/rightSide/list/services.php:32
+#: ../../views/admin/rightSide/list/services.php:80
+#: ../../views/admin/rightSide/list/products.php:32
+#: ../../views/admin/rightSide/list/products.php:80
+msgid "Publish Date"
+msgstr "Yayınlama tarihi"
+
+#: ../../views/admin/rightSide/list/news.php:33
+#: ../../views/admin/rightSide/list/news.php:85
+#: ../../views/admin/rightSide/list/services.php:33
+#: ../../views/admin/rightSide/list/services.php:81
+#: ../../views/admin/rightSide/list/products.php:33
+#: ../../views/admin/rightSide/list/products.php:81
+msgid "Type"
+msgstr "Tip"
+
+#: ../../views/admin/rightSide/list/contacts.php:30
+#: ../../views/admin/rightSide/list/contacts.php:79
+msgid "Sender's Name"
+msgstr "Gönderenin Adı"
+
+#: ../../views/admin/rightSide/list/contacts.php:31
+#: ../../views/admin/rightSide/list/contacts.php:80
+msgid "Sender's E-mail"
+msgstr "Gönderenin e-maili"
+
+#: ../../views/admin/rightSide/list/contacts.php:32
+#: ../../views/admin/rightSide/list/contacts.php:81
+msgid "Send Date"
+msgstr "Gönderme Tarihi"
+
+#: ../../views/admin/rightSide/list/contacts.php:33
+#: ../../views/admin/rightSide/list/contacts.php:82
+#, fuzzy
+msgid "Message"
+msgstr "Mesajlar"
+
+#: ../../views/admin/rightSide/list/contacts.php:58
+msgid "Mark as unread"
+msgstr "Okunmadı olarak işaretle"
+
+#: ../../views/admin/rightSide/list/contacts.php:58
+msgid "Mark as read"
+msgstr "Okundu olarak işaretle"
+
+#: ../../views/admin/rightSide/list/contacts.php:63
+msgid "Answer"
+msgstr "Cevap"
+
+#: ../../views/admin/rightSide/list/users.php:32
+msgid "Name - Lastname"
+msgstr "İsim - Soyisim"
+
+#: ../../views/admin/rightSide/list/users.php:33
+#, fuzzy
+msgid "email"
+msgstr "Eposta:"
+
+#: ../../views/admin/rightSide/list/users.php:34
+#: ../../views/admin/rightSide/list/users.php:78
+msgid "Date registered"
+msgstr "Kayıt Tarihi"
+
+#: ../../views/admin/rightSide/list/users.php:35
+#: ../../views/admin/rightSide/list/users.php:79
+msgid "Role"
+msgstr "Rol"
+
+#: ../../views/admin/rightSide/list/users.php:60
+#, fuzzy
+msgid "View/Edit"
+msgstr "Göster"
+
+#: ../../views/admin/rightSide/add/news.php:6
+#, fuzzy
+msgid "Creat New News"
+msgstr "Yeni Haber"
+
+#: ../../views/admin/rightSide/add/news.php:10
+#: ../../views/admin/rightSide/options/index.php:10
+#, fuzzy
+msgid "Admin Home"
+msgstr "Yönetici Paneli"
+
+#: ../../views/admin/rightSide/options/index.php:6
+msgid "Menage General Options"
+msgstr "Genel Ayarları Yönet"
+
+#: ../../views/admin/rightSide/options/index.php:23
+#, fuzzy
+msgid "Site Options"
+msgstr "Ayarlar"
+
+#: ../../views/admin/rightSide/options/index.php:43
+msgid "Site Name"
+msgstr "Site Adı"
+
+#: ../../views/admin/rightSide/options/index.php:49
+#, fuzzy
+msgid "Site Description"
+msgstr "Açıklama"
 
 #: ../../views/emails/auth/reminder.blade.php:7
 msgid "Password Reset"
@@ -594,6 +724,11 @@ msgid "The best"
 msgstr "En iyisi"
 
 #: ../../views/template/menu.blade.php:15
+#: ../../views/contacts/index.blade.php:53
+msgid "Contacts"
+msgstr "İletişim"
+
+#: ../../views/template/menu.blade.php:15
 msgid "Our Address"
 msgstr "Adresimiz"
 
@@ -613,39 +748,39 @@ msgstr ""
 msgid "Admin Panel"
 msgstr "Yönetici Paneli"
 
-#: ../../controllers/AdminController.php:36
+#: ../../controllers/AdminController.php:38
 msgid "Register Page"
 msgstr "Üyelik Sayfası"
 
-#: ../../controllers/AdminController.php:45
+#: ../../controllers/AdminController.php:47
 msgid "Login Page"
 msgstr "Giriş Sayfası"
 
-#: ../../controllers/AdminController.php:77
+#: ../../controllers/AdminController.php:76
 msgid "Slider Management Page"
 msgstr "Slider  Yönetim  Sayfası"
 
-#: ../../controllers/AdminController.php:109
+#: ../../controllers/AdminController.php:108
 msgid "News Management Page"
 msgstr "Haberler  Yönetim  Sayfası"
 
-#: ../../controllers/AdminController.php:151
+#: ../../controllers/AdminController.php:152
 msgid "Cotacts"
 msgstr "İletişim"
 
-#: ../../controllers/AdminController.php:179
+#: ../../controllers/AdminController.php:174
 msgid "Add New User"
 msgstr "Yeni  Kullanıcı Ekle"
 
-#: ../../controllers/AdminController.php:187
+#: ../../controllers/AdminController.php:183
 msgid "Add New Slide"
 msgstr "Yeni  slide ekle"
 
-#: ../../controllers/AdminController.php:203
+#: ../../controllers/AdminController.php:201
 msgid "Add New Service"
 msgstr "Yeni Hizmet Ekle"
 
-#: ../../controllers/AdminController.php:211
+#: ../../controllers/AdminController.php:210
 msgid "Add New Product"
 msgstr "Yeni  Ürün Ekle"
 
@@ -675,12 +810,12 @@ msgid "Lütfen özel karakter ve boşluk içermeyen kullanıcı adı yazın"
 msgstr ""
 
 #: ../../controllers/AdminController.php:333
-#: ../../controllers/AdminController.php:483
+#: ../../controllers/AdminController.php:509
 msgid "Lütfen mail adresinizi yazın"
 msgstr ""
 
 #: ../../controllers/AdminController.php:334
-#: ../../controllers/AdminController.php:484
+#: ../../controllers/AdminController.php:510
 msgid "Lütfen geçerli bir mail adresi yazın"
 msgstr ""
 
@@ -704,34 +839,63 @@ msgstr ""
 msgid "Lütfen şifrenizi doğrulayın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:374
-#: ../../controllers/AdminController.php:436
+#: ../../controllers/AdminController.php:375
+#: ../../controllers/AdminController.php:440
 msgid "Başlık boş bırakılamaz"
 msgstr ""
 
-#: ../../controllers/AdminController.php:375
-#: ../../controllers/AdminController.php:437
+#: ../../controllers/AdminController.php:376
+#: ../../controllers/AdminController.php:441
 msgid "İçerik boş bırakılamaz"
 msgstr ""
 
-#: ../../controllers/AdminController.php:485
+#: ../../controllers/AdminController.php:404
+msgid "Processing was carried out successfully"
+msgstr ""
+
+#: ../../controllers/AdminController.php:511
 #, fuzzy
 msgid "Please Enter Your Name"
 msgstr "Lütfen kullanıcı adınızı giriniz"
 
-#: ../../controllers/AdminController.php:486
+#: ../../controllers/AdminController.php:512
 msgid "İsim en az 3 karakter olabilir"
 msgstr ""
 
-#: ../../controllers/AdminController.php:487
+#: ../../controllers/AdminController.php:513
 msgid "İsimda sadece harf kullanınız"
 msgstr ""
 
-#: ../../controllers/AdminController.php:488
+#: ../../controllers/AdminController.php:514
 #, fuzzy
 msgid "Please enter message"
 msgstr "Lütfen kullanıcı adınızı giriniz"
 
-#: ../../controllers/AdminController.php:489
+#: ../../controllers/AdminController.php:515
 msgid "Mesaj en  az 10 karakter olabilir."
 msgstr ""
+
+#: ../../controllers/OptionsController.php:26
+#, fuzzy
+msgid "General Options"
+msgstr "Ayarlar"
+
+#: ../../controllers/OptionsController.php:44
+#, fuzzy
+msgid "Options Saved"
+msgstr "Ayarlar"
+
+#~ msgid "Add Service"
+#~ msgstr "Yeni Hizmet Ekle"
+
+#~ msgid "Members"
+#~ msgstr "Kullanıcılar"
+
+#~ msgid "Add User"
+#~ msgstr "Kullanıcı Ekle"
+
+#~ msgid "Add Product"
+#~ msgstr "Ürün Ekle"
+
+#~ msgid "Add Slide"
+#~ msgstr "Slide ekle"
