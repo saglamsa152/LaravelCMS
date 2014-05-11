@@ -4,7 +4,7 @@
 <?php else : ?>
 	<title>AdminLTE | Dashboard</title>
 <?php endif; ?>
-
+<?php $options=new Option();// Option modelindeki  statik metodları kullanmak için?>
 <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 <meta content="<?=$options->getOption('siteDescription')?>" name="description">
 <!-- bootstrap 3.0.2 -->
