@@ -46,6 +46,7 @@ App::before( function ( $request ) {
 	 * @source http://gravatar.com/site/implement/images/php/
 	 */
 	function get_gravatar( $email = null, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+		//todo before filtresinden kaldırılmalı heryerde kullanabilmek için yaptım böyle ama uygun değil gibi
 		if(is_null($email))$email=Auth::user()->email;
 		$url = 'http://www.gravatar.com/avatar/';
 		$url .= md5( strtolower( trim( $email ) ) );

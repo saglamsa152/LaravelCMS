@@ -8,7 +8,7 @@
 				<?= HTML::image( get_gravatar(), 'User Image', array( 'class' => 'img-circle' ) ) ?>
 			</div>
 			<div class="pull-left info">
-				<p><?=_('Hello')?> , <?php if (Auth::user()->name==''):
+				<p><?=_('Hello')?> </br> <?php if (Auth::user()->name==''):
 						echo Auth::user()->username;
 					else:
 						echo Auth::user()->name . ' ' . Auth::user()->lastName;

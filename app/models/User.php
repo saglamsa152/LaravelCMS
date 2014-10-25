@@ -23,7 +23,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * Belirsiz silme aktif
 	 *
 	 */
-	use SoftDeletingTrait;
+	use SoftDeletingTrait; //todo olmasa daha iyi sanki sildikten sonra tam olarak silinmezse kullanıcı adı kullanılamaz
 
 	/*
 	 * 4.1 den 4.2 ye güncellleme klavuzunda yazıyor
@@ -64,18 +64,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
-	public function getRememberToken()
-	{
+	public function getRememberToken() {
 		return $this->remember_token;
 	}
 
-	public function setRememberToken($value)
-	{
+	public function setRememberToken( $value ) {
 		$this->remember_token = $value;
 	}
 
-	public function getRememberTokenName()
-	{
+	public function getRememberTokenName() {
 		return 'remember_token';
 	}
 
@@ -86,4 +83,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function userMeta() {
 		return $this->hasMany( 'UserMeta', 'userId' );
 	}
+
+	/**
+	 * Kullanıcı rolleri
+	 * @return array
+	 */
+	public static  function getRoles() {
+		return array( 'user'=>_('User'), 'admin'=>_('Admin') );
+	}
+
 }

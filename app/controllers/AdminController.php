@@ -319,8 +319,8 @@ class AdminController extends BaseController {
 		$postData = Input::all();
 
 		$rules = array(
-				'email'                 => 'required|email|unique:users',
-				'username'              => 'required|min:3|alpha_dash|unique:users',
+				'email'                 => 'required|email|unique:users,email',
+				'username'              => 'required|min:3|alpha_dash|unique:users,username',
 				'password'              => 'required|min:4|confirmed',
 				'password_confirmation' => 'required'
 		);
@@ -415,7 +415,7 @@ class AdminController extends BaseController {
 	public function postDeletePost() {
 		if ( Request::ajax() ) {
 			$id = Input::get( 'id' );
-			if ( ! is_null( $id ) ) {
+			if ( !is_null( $id ) ) {
 				Post::destroy( $id );
 				$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully' );
 				return Response::json( $response );
@@ -492,11 +492,64 @@ class AdminController extends BaseController {
 		}
 	}
 
+
+	public function postAddUser() {
+		if ( Request::ajax() ) {
+			$postData = Input::all();
+			//kurallar
+			$rules = array(
+					'username' => 'required|min:3|unique:users,username',
+					'email'    => 'required|email|unique:users,email'
+			);
+			// todo  ingilzce  tercüme
+			$messages  = array(
+					'username.required' => _( 'Bir kullanıcı adı tanımlamalısınız' ),
+					'content.required'  => _( 'Bir e-mail belirtmelisiniz' ),
+					'username.unique'   => _( 'Kullanıcı adı kullanılıyor' ),
+					'email.unique'      => _( 'Mail adresi kullanılıyor' ),
+					'username.min'      => _( 'Kullanıcını adınız en az 3 karakterden oluşmalıdır' ),
+			);
+			$validator = Validator::make( $postData, $rules, $messages );
+
+			if ( $validator->fails() ) {
+				$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() ); //todo  burası  olmuyor
+				return Response::json( $ajaxResponse );
+			}
+			else {
+				$password = str_random( 6 );
+				$user     = User::create( array(
+						'username'   => $postData['username'],
+						'email'      => $postData['email'],
+						'password'   => Hash::make( $password ),
+						'role'       => $postData['role'],
+						'created_ip' => Request::getClientIp()
+				) );
+				$mailData = array( 'username' => $postData['username'],
+													 'password' => $password );
+				Mail::send( 'emails.welcome', $mailData, function ( $message ) use($postData) {
+					$message->to( $postData['email'], $postData['name'].' '.$postData['lastName'] )->subject( 'Hoş geldiniz!' );
+				} );
+
+				if ( isset( $postData['meta'] ) ) {
+					$userMeta      = $postData['meta'];
+					$modelUserMeta = array();
+					foreach ( $userMeta as $key => $value ) {
+						$modelUserMeta[] = new UserMeta( array( 'metaKey' => $key, 'metaValue' => $value ) );
+					}
+					$user->userMeta()->saveMany( $modelUserMeta );
+				}
+				$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Yeni Üye oluşturuldu' ) );
+				return Response::json( $ajaxResponse );
+			}
+		}
+	}
+
 	/**
 	 * İletişim işlemleri
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function postAddContact() {
+		//todo veri tabanına kayıt yerine direk mail olarak gönderilir ve contact sayfasında ilgili mail hesabı açılır
 		$postData = Input::all();
 
 		$rules = array(
@@ -542,9 +595,9 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function getMarkAsReadContact( $id = null ) {
-		if ( ! is_null( $id ) ) {
+		if ( !is_null( $id ) ) {
 			$contact         = Contact::find( $id );
-			$contact->isRead = ! $contact->isRead;
+			$contact->isRead = !$contact->isRead;
 			$contact->save();
 			return Redirect::back();
 		}
@@ -566,7 +619,7 @@ class AdminController extends BaseController {
 
 			$extension = Input::file( 'upl' )->getClientOriginalExtension();
 
-			if ( ! in_array( strtolower( $extension ), $allowed ) ) {
+			if ( !in_array( strtolower( $extension ), $allowed ) ) {
 				echo '{"status":"error"}';
 				exit;
 			}

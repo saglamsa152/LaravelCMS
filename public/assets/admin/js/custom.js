@@ -24,7 +24,7 @@ $(function () {
 			url    : $(this).attr('action'),
 			data   : $(this).serializeArray(),
 			success: function (returnData) {
-				//todo  fadein ve fadeout animasyonu eklenecek
+				//todo  fadein ve fadeout animasyonu eklenecek ve yükleniyor animasyonu #39
 				var cevap = '<ul>';
 				if (jQuery.type(returnData['msg']) == "object") {
 					$.each(returnData['msg'], function (key, value) {
