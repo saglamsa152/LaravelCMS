@@ -39,7 +39,7 @@
 							</span>
 							</strong>
 						</span>
-					{{$post->title}} - {{$post->user->username}}
+					{{{$post->title}}} - {{$post->user->username}}
 				</h5>
 
 				<div class="wrapper pad_bot2">

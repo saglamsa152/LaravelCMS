@@ -57,4 +57,8 @@ class HomeController extends BaseController {
 		$title=_('Services');
 		return View::make( 'services/index' )->with('title',$title);
 	}
+
+	public function getSource($source){
+		echo Response::view(public_path('assets/admin/js/plugins/ResponsiveFilemanager/source/').$source);
+	}
 }

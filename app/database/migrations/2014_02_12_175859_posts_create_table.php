@@ -21,8 +21,9 @@ class PostsCreateTable extends Migration {
 			$table->string('type',30);
 			$table->text('url');
 			$table->timestamps();
+			$table->softDeletes();
 			$table->string('created_ip', 15);
-			$table->foreign('author')->references('id')->on('users');
+
 		});
 	}
 

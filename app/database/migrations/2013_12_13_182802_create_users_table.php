@@ -18,9 +18,10 @@ class CreateUsersTable extends Migration {
 			$table->string('password');
 			$table->string('name');
 			$table->string('lastName');
-			$table->dateTime('birthday');
+			$table->date('birthday')->default('00.00.000');
 			$table->string('role');
 			$table->timestamps();
+			$table->softDeletes();
 			$table->string('created_ip', 15);
 		});
 	}

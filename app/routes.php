@@ -14,5 +14,6 @@
 
 
 Route::get( '/', array( 'as' => 'home', 'uses' => 'HomeController@getIndex' ) );
+Route::controller('/admin/options','OptionsController');
 Route::controller( '/admin', 'AdminController');
 Route::controller('/','HomeController');

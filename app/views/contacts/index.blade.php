@@ -24,7 +24,7 @@
 				<section class="col-3-4">
 					<div class="wrap-col">
 						<h2 class="under"><?php echo _('Contact Form')?></h2>
-						{{ Form::open(array('url' => '','id' =>'ContactForm')) }}<!--todo form çalışır hale gelecek-->
+						{{ Form::open(array('role' => 'form','id' =>'ContactForm','action'=>'AdminController@postAddContact')) }}
 						<div>
 							<div class="wrapper">
 								<span>{{ Form::label('name',_('Your Name:')) }}</span>
