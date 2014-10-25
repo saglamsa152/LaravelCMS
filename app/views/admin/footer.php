@@ -1,7 +1,5 @@
 <!-- add new calendar event modal -->
 
-
-
 <!-- jQuery UI 1.10.3 -->
 <?=HTML::script('assets/admin/js/jquery-ui-1.10.3.min.js')?>
 <!-- Bootstrap -->
@@ -29,10 +27,13 @@
 <?=HTML::script('assets/admin/js/plugins/datatables/dataTables.bootstrap.js')?>
 <!-- CK Editor -->
 <?=HTML::script('assets/admin/js/plugins/ckeditor/ckeditor.js')?>
+<!--TinyMCE -->
+<?=HTML::script('assets/admin/js/plugins/tinymce/tinymce.min.js')?>
 <!-- InputMask -->
 <?=HTML::script('assets/admin/js/plugins/input-mask/jquery.inputmask.js')?>
 <?=HTML::script('assets/admin/js/plugins/input-mask/jquery.inputmask.date.extensions.js')?>
 <?=HTML::script('assets/admin/js/plugins/input-mask/jquery.inputmask.extensions.js')?>
+
 
 <!-- Custom Js-->
 <?=HTML::script('assets/admin/js/custom.js')?>

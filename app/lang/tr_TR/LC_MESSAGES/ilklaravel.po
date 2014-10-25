@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
 "POT-Creation-Date: 2014-05-11 23:22+0200\n"
-"PO-Revision-Date: 2014-05-11 23:22+0200\n"
+"PO-Revision-Date: 2014-07-06 13:45+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: TR\n"
@@ -369,7 +369,7 @@ msgstr "Başlık"
 #: ../../views/admin/eski/update/slide.blade.php:70
 #: ../../views/admin/rightSide/add/news.php:60
 msgid "Task"
-msgstr "Görev"
+msgstr "Taslak"
 
 #: ../../views/admin/eski/add/news.blade.php:70
 #: ../../views/admin/eski/add/product.blade.php:70

@@ -6,25 +6,24 @@
 CKEDITOR.editorConfig = function (config) {
 	// Define changes to default configuration here. For example:
 	config.language = 'tr';
-	// config.uiColor = '#AADC6E';
+	config.uiColor = '#F4F4F4';
 	config.toolbar = [
-		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Preview', '-', 'Templates' ] },
-		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll'] },
-		{ name: 'forms', items: [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
-		'/',
-		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
-		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
-		{ name: 'links', items: [ 'Link', 'Unlink' ] },
-		{ name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'PageBreak'] },
-		{ name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-		{ name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-		{ name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
-		{ name: 'others', items: [ '-' ] },
+		[ 'Source', '-', 'Preview', '-', 'Templates' ] ,
+		[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] ,
+		[ 'Find', 'Replace', '-', 'SelectAll'] ,
+		[ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] ,
+		'/',//Satır sonu
+		[ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] ,
+		[ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] ,
+		[ 'Link', 'Unlink' ] ,
+		[ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'PageBreak'] ,
+		[ 'Styles', 'Format', 'Font', 'FontSize' ] ,
+		[ 'TextColor', 'BGColor' ],
+		[ 'Maximize', 'ShowBlocks' ] ,
 	];
 
-	config.filebrowserBrowseUrl="/admin/upload-form";
+	config.filebrowserBrowseUrl='/assets/admin/js/plugins/fileman/index.html';
 	//config.filebrowserUploadUrl="/admin/upload-form";
-	//config.filebrowserImageBrowseUrl=roxyFileman+'/type=image';
+	//config.filebrowserImageBrowseUrl='/assets/admin/js/plugins/ResponsiveFilemanager/filemanager/dialog.php?type=1';
 	//config.filebrowserImageUploadUrl=roxyFileman+'/type=image';
 };
