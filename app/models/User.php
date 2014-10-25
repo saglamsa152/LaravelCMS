@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
@@ -22,6 +24,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 */
 	use SoftDeletingTrait;
+
+	/*
+	 * 4.1 den 4.2 ye güncellleme klavuzunda yazıyor
+	 */
+	protected $dates = [ 'deleted_at' ];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -55,6 +62,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	public function getReminderEmail() {
 		return $this->email;
+	}
+
+	public function getRememberToken()
+	{
+		return $this->remember_token;
+	}
+
+	public function setRememberToken($value)
+	{
+		$this->remember_token = $value;
+	}
+
+	public function getRememberTokenName()
+	{
+		return 'remember_token';
 	}
 
 	public function post() {

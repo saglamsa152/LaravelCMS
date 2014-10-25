@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration {
 			$table->timestamps();
 			$table->softDeletes();
 			$table->string('created_ip', 15);
+			$table->rememberToken();
 		});
 	}
 
