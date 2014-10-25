@@ -2,6 +2,7 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
@@ -19,9 +20,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	/**
 	 * Belirsiz silme aktif
 	 *
-	 * @var bool
 	 */
-	protected $softDelete = true;
+	use SoftDeletingTrait;
 
 	/**
 	 * The attributes excluded from the model's JSON form.

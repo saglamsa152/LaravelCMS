@@ -56,9 +56,15 @@ return array(
 		),
 
 	),
-
+	/*
+	 * update 4.0 to 4.1
+	 */
 	'failed' => array(
 			'database' => 'mysql', 'table' => 'failed_jobs',
 	),
+	/*
+		 * update 4.1 to 4.2
+		 */
+	'encrypt' => true
 
 );
