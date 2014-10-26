@@ -17,28 +17,28 @@ class Option extends Eloquent {
 	public function scopeGeneral( $query ) {
 		return $query->where( 'optionType', '=', 'general' );
 	}
-
 	/**
 	 * @param string $key
 	 * @param string $type
 	 *
 	 * @return bool|mixed
 	 */
-	public function getOption( $key, $type = null ) {
+	public static function getOption( $key, $type = null ) {
+		//todo statik olmaları tavsiye edilmiyor FACEDES olayi iyi anlaşılmalı
 		if ( is_null( $type ) ) $type = 'general';
-		$value = $this->where( 'optionKey', '=', $key )->where( 'optionType', '=', $type )->pluck( 'optionValue' );
+		$value = self::where( 'optionKey', '=', $key )->where( 'optionType', '=', $type )->pluck( 'optionValue' );
 		return is_null( $value ) ? false : $value;
 	}
 
-	public function setOption( $key, $value, $type = null ) {
+	public static function setOption( $key, $value, $type = null ) {
+		//todo statik olmaları tavsiye edilmiyor FACEDES olayi iyi anlaşılmalı
 		if ( is_null( $type ) ) $type = 'general';
-		if ( $this->getOption( $key, $type ) !== false ) {
-			$this->where( 'optionKey', '=', $key )->update( array( 'optionValue' => $value ) );
+		if ( self::getOption( $key, $type ) !== false ) {
+			self::where( 'optionKey', '=', $key )->update( array( 'optionValue' => $value ) );
 		}
 		else {
-			$this->create( array( 'optionKey' => $key, 'optionValue' => $value, 'optionType' => $type ) );
+			self::create( array( 'optionKey' => $key, 'optionValue' => $value, 'optionType' => $type ) );
 		}
 	}
-
 
 }

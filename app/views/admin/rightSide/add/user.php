@@ -24,7 +24,7 @@
 							'class'  => 'ajaxForm form-horizontal',
 							'action' => 'AdminController@postAddUser',
 							'method' => 'post'
-					) )?>
+					) ) ?>
 					<h4 class="page-header"><?= _( 'Personal Information' ) ?></h4>
 					<!-- Username -->
 					<div class="form-group col-md-6">
@@ -69,11 +69,36 @@
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
 					<div class="clearfix"></div>
+
 					<h4 class="page-header"><?= _( 'Contact Information' ) ?></h4>
+
+					<!-- Address -->
+					<div class="form-group col-md-6">
+						<?= Form::label( 'meta[address]', _( 'Address :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
+						<div class="input-group col-md-8">
+							<?= Form::textarea( 'meta[address]', '', array( 'class' => 'form-control', 'rows' => 3 ) ) ?>
+						</div><!-- /.input group -->
+					</div><!-- /.form group -->
+
+					<!-- City -->
+					<div class="form-group col-md-6">
+						<?= Form::label( 'meta[city]', _( 'City :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
+						<div class="input-group col-md-8">
+							<?= Form::select( 'meta[city]', unserialize(Option::getOption('cities')), null, array( 'class' => 'form-control ','data'=>'cities' ) ) ?>
+						</div><!-- /.input group -->
+					</div><!-- /.form group -->
+
+					<!-- Counties -->
+					<div class="form-group col-md-6">
+						<?= Form::label( 'meta[counties]', _( 'County :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
+						<div class="input-group col-md-8">
+							<?= Form::select( 'meta[counties]', array(_('First select a city')), null, array( 'class' => 'form-control ' ) ) ?>
+						</div><!-- /.input group -->
+					</div><!-- /.form group -->
 
 					<!-- GSM -->
 					<div class="form-group col-md-6">
-						<?=Form::label('meta[gsm]',_('GSM :'),array('class'=>'control-label col-md-4'))?>
+						<?= Form::label( 'meta[gsm]', _( 'GSM :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
 							<div class="input-group-addon">
 								<i class="fa fa-phone"></i>
@@ -84,7 +109,7 @@
 
 					<!-- Phone -->
 					<div class="form-group col-md-6">
-						<?=Form::label('meta[phone]',_('Phone :'),array('class'=>'control-label col-md-4'))?>
+						<?= Form::label( 'meta[phone]', _( 'Phone :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
 							<div class="input-group-addon">
 								<span class="glyphicon glyphicon-phone-alt"></span>
@@ -95,41 +120,45 @@
 
 					<!-- Email -->
 					<div class="form-group col-md-6">
-						<?=Form::label('email',_('e-mail :'),array('class'=>'control-label col-md-4'))?>
+						<?= Form::label( 'email', _( 'e-mail :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
 							<div class="input-group-addon">
 								<b>@</b>
 							</div>
-							<?=Form::text('email','',array('class'=>'form-control'))?>
+							<?= Form::text( 'email', '', array( 'class' => 'form-control' ) ) ?>
 						</div>
 					</div>
 
-					<!-- Facebook -->
+					<div class="clearfix"></div>
+					<h4 class="page-header"><?= _( 'Social Information' ) ?></h4>
+
+					<!-- Twitter -->
 					<div class="form-group col-md-6">
-						<?=Form::label('meta[facebook]','Facebook :',array('class'=>'control-label col-md-4'))?>
+						<?= Form::label( 'meta[twitter]', 'Twitter :', array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
 							<div class="input-group-addon">
-								<i class="fa fa-facebook-square"></i>
+								<i class="fa fa-twitter-square"></i>
 							</div>
 							<?=Form::text('meta[facebook]','',array('class'=>'form-control'))?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
 
-					<!-- Twitter -->
+					<!-- Facebook -->
 					<div class="form-group col-md-6">
-						<?=Form::label('meta[twitter]','Twitter :',array('class'=>'control-label col-md-4'))?>
+						<?= Form::label( 'meta[facebook]', 'Facebook :', array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
 							<div class="input-group-addon">
-								<i class="fa fa-twitter-square"></i>
+								<i class="fa fa-facebook-square"></i>
 							</div>
 							<?=Form::text('meta[twitter]','',array('class'=>'form-control'))?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
 					<div class="clearfix"></div>
-					<?=Form::submit(_('Save'),array('class'=>'btn btn-primary pull-right'))?>
+					<?= Form::submit( _( 'Save' ), array( 'class' => 'btn btn-primary pull-right' ) ) ?>
 
 					<?= Form::close() ?>
 				</section><!-- /.col-md-9 -->
+
 				<section class="col-md-3 no-padding">
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs pull-right">

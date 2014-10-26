@@ -42,13 +42,13 @@
 							<?= Form::hidden( 'type', 'general' ) ?>
 							<?= Form::label( 'options[siteName]', _( 'Site Name' ), array( 'class' => 'control-label col-md-2' ) ) ?>
 							<div class=" col-md-4">
-								<?= Form::text( 'options[siteName]', $options->getOption('siteName'), array( 'class' => 'form-control', 'id' => 'siteName' ) ) ?>
+								<?= Form::text( 'options[siteName]', Option::getOption('siteName'), array( 'class' => 'form-control', 'id' => 'siteName' ) ) ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<?= Form::label( 'options[siteDescription]', _( 'Site Description' ), array( 'class' => 'control-label col-md-2' ) ) ?>
 							<div class="col-md-4">
-								<?= Form::textarea( 'options[siteDescription]', $options->getOption('siteDescription'), array( 'class' => 'form-control', 'rows' => '3' ) ) ?>
+								<?= Form::textarea( 'options[siteDescription]', Option::getOption('siteDescription'), array( 'class' => 'form-control', 'rows' => '3' ) ) ?>
 							</div>
 						</div>
 						<div id="sonuc"></div>

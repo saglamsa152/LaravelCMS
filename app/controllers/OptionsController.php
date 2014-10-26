@@ -15,17 +15,16 @@ class OptionsController extends BaseController {
 		/**
 		 * Post istelkerinde CSRF kontrolü
 		 */
-		$this->beforeFilter( 'csrf', array( 'on' => 'post' ) );
+		$this->beforeFilter( 'csrf', array( 'on' => 'post', 'except' => array( 'postCounties' ) ) );
 	}
 
 	/**
 	 * genel  ayarlar
 	 */
 	public function getIndex() {
-		$options   = new Option;
 		$title     = _( 'General Options' );
 		$rightSide = 'options/index';
-		return View::make( 'admin.index' )->with( compact( 'options', 'title', 'rightSide' ) );
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
 	}
 
 	/**
@@ -37,13 +36,19 @@ class OptionsController extends BaseController {
 			//todo validation yapılır gerekirse
 			//todo save işlemi yapılacak
 			$type = $postData['type'];
-			$option=new Option();
 			foreach ( $postData['options'] as $key => $value ) {
-				$option->setOption( $key, $value, $type );
+				Option::setOption( $key, $value, $type );
 			}
 			$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Options Saved' ) );
 			return Response::json( $ajaxResponse );
 		}
+	}
+
+	public function postCounties() {
+		$city_id = Input::get('city_id');
+		if ( is_null( $city_id ) ) return;
+		$counties = unserialize( Option::getOption( 'counties' ) );
+		return Response::json( $counties[$city_id] );
 	}
 
 }
