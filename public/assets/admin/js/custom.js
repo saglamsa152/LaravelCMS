@@ -34,10 +34,10 @@ $(function () {
 				} else cevap = returnData['msg'];
 				$('body').append(
 						'<div id="ajaxResult" class="alert alert-' + returnData['status'] + ' alert-dismissable">' +
-								'<i class="fa fa-check"></i>' +
-								'<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>' +
-								'' + cevap +
-								'</div>'
+						'<i class="fa fa-check"></i>' +
+						'<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>' +
+						'' + cevap +
+						'</div>'
 				);
 				$('#ajaxResult').css({
 					'left': (window.innerWidth - jQuery('#ajaxResult').width()) / 2,
@@ -57,24 +57,37 @@ $(function () {
 	 * TinyMCE tinymce sınıflı  textarea üzerine yerleşecek
 	 */
 	tinymce.init({
-		selector: "textarea.tinymce",
-		menubar : false,
-		language : 'tr_TR',
-		theme: "modern",
-		plugins: [
+		selector                 : "textarea.tinymce",
+		menubar                  : false,
+		language                 : 'tr_TR',
+		theme                    : "modern",
+		plugins                  : [
 			"advlist autolink link image lists charmap print preview hr anchor pagebreak",
 			"searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
 			"table contextmenu directionality emoticons paste textcolor responsivefilemanager",
 			"code spellchecker"
 		],
-		toolbar1: "|  preview code undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect | responsivefilemanager | image media",
-		toolbar2: "| link unlink anchor  | forecolor backcolor  | hr link image charmap paste copy cut pagebreak searchreplace | insertdatetime table ltr rtl",
-		image_advtab: true ,
-		external_filemanager_path:"/assets/admin/js/plugins/ResponsiveFilemanager/filemanager/",
-		filemanager_title:"Responsive Filemanager" ,
-		external_plugins: { "filemanager" : "/assets/admin/js/plugins/ResponsiveFilemanager/filemanager/plugin.min.js"}
+		toolbar1                 : "|  preview code undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect | responsivefilemanager | image media",
+		toolbar2                 : "| link unlink anchor  | forecolor backcolor  | hr link image charmap paste copy cut pagebreak searchreplace | insertdatetime table ltr rtl",
+		image_advtab             : true,
+		external_filemanager_path: "/assets/admin/js/plugins/ResponsiveFilemanager/filemanager/",
+		filemanager_title        : "Responsive Filemanager",
+		external_plugins         : {"filemanager": "/assets/admin/js/plugins/ResponsiveFilemanager/filemanager/plugin.min.js"}
 
 
+	});
+	/**
+	 * şehir seçildiğinde otomatik olark ilçe listesini getirmek için
+	 */
+	$("select[name='meta[city]']").change(function () {
+		$.post('http://www.ilklaravel.loc/admin/options/counties', {city_id: this.value}, function (counties) {
+			out = '';
+			$.each(counties, function (key, value) {
+				out += '<option value="' + key + '">' + value + '</option>';
+			});
+			$("select[name='meta[counties]'] option").remove();
+			$("select[name='meta[counties]'] ").append(out);
+		});
 	});
 
 });//ready function
