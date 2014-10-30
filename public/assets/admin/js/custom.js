@@ -19,12 +19,30 @@ $(function () {
 			//ckeditor deki verilerin textarea ya aktar
 			CKEDITOR.instances[editorName].updateElement();
 		}
+		/* waiting animation */
+		$('body').fadeIn('slow', function () {
+			$(this).append(
+					'<div id="ajaxResult" class="alert alert-info">' +
+					'<div class="spinner">' +
+					'<div class="rect1"></div>' +
+					'<div class="rect2"></div>' +
+					'<div class="rect3"></div>' +
+					'<div class="rect4"></div>' +
+					'<div class="rect5"></div>' +
+					'</div>' +
+					'</div>'
+			);
+		});
+		$('#ajaxResult').css({
+			'left': (window.innerWidth - jQuery('#ajaxResult').width()) / 2,
+			'top' : (window.innerHeight - jQuery('#ajaxResult').height()) / 2
+		});
+		/* / waiting animation */
 		$.ajax({
 			type   : 'POST',
 			url    : $(this).attr('action'),
 			data   : $(this).serializeArray(),
 			success: function (returnData) {
-				//todo  fadein ve fadeout animasyonu eklenecek ve yükleniyor animasyonu #39
 				var cevap = '<ul>';
 				if (jQuery.type(returnData['msg']) == "object") {
 					$.each(returnData['msg'], function (key, value) {
@@ -32,16 +50,26 @@ $(function () {
 					});
 					cevap += '</ul>';
 				} else cevap = returnData['msg'];
-				$('body').append(
-						'<div id="ajaxResult" class="alert alert-' + returnData['status'] + ' alert-dismissable">' +
-						'<i class="fa fa-check"></i>' +
-						'<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>' +
-						'' + cevap +
-						'</div>'
-				);
-				$('#ajaxResult').css({
-					'left': (window.innerWidth - jQuery('#ajaxResult').width()) / 2,
-					'top' : (window.innerHeight - jQuery('#ajaxResult').height()) / 2
+				$('#ajaxResult').fadeOut('slow', function () {
+					$(this).removeClass('alert-info').addClass(' alert-' + returnData['status'] + ' alert-dismissable');
+					$(this).html(
+							'<i class="fa fa-check"></i>' +
+							'<button aria-hidden="true"  class="close" type="button">×</button>' +
+							'' + cevap + ''
+					).css({
+								'left': (window.innerWidth - $(this).width()) / 2,
+								'top' : (window.innerHeight - $(this).height()) / 2
+							});
+					// fadeout effect on click close button
+					$(this).children('.close').click(function () {
+						$(this).parent().fadeOut('slow', function () {
+							$(this).remove()
+						});
+					});
+					// Close ajaxResult automatically in 20sn
+					$(this).delay(20000).fadeOut('slow', function () {
+						$(this).remove()
+					});
 				});
 			}
 		});
