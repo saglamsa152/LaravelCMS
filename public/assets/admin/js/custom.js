@@ -66,11 +66,8 @@ $(function () {
 							$(this).remove()
 						});
 					});
-					// Close ajaxResult automatically in 20sn
-					$(this).delay(20000).fadeOut('slow', function () {
-						$(this).remove()
-					});
 				});
+				$('#ajaxResult').fadeIn('slow');
 			}
 		});
 		return false;
