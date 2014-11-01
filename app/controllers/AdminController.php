@@ -48,10 +48,7 @@ class AdminController extends BaseController {
 		return View::make( 'admin.login' )->with( 'title', $title );
 	}
 
-	/*
-	 * Listeler
-	 */
-
+	/* User */
 	/**
 	 * Admin panel users sayfasını açar
 	 * @return mixed
@@ -67,22 +64,6 @@ class AdminController extends BaseController {
 			}
 		}*/
 		return View::make( 'admin.index' )->with( compact( 'users', 'title', 'rightSide' ) );
-	}
-
-	/**
-	 * @return \Illuminate\View\View
-	 */
-	public function getSlider() {
-		$title     = _( 'Slider Management Page' );
-		$slides    = Post::slider()->with( 'postMeta' )->orderBy( 'created_at', 'desc' )->get();
-		$rightSide = 'list/slider';
-		foreach ( $slides as $slide ) {
-			foreach ( $slide->postMeta as $meta ) {
-				$slide = array_add( $slide, $meta->metaKey, $meta->metaValue );
-			}
-		}
-
-		return View::make( 'admin.index' )->with( compact( 'title', 'slides', 'rightSide' ) );
 	}
 
 	/**
@@ -104,6 +85,89 @@ class AdminController extends BaseController {
 	/**
 	 * @return \Illuminate\View\View
 	 */
+	public function getAddUser() {
+		$title     = _( 'Add New User' );
+		$rightSide = 'add/user';
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
+	}
+	/**
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function postUpdateUser() {
+		if ( Request::ajax() ) {
+			$postData = Input::all();
+			$user     = User::find( $postData['id'] );
+			// meta bilgilerini  dizinen çıkartalım
+			$metas = array_pull( $postData, 'meta' );
+			// yeni bilgileri güncelleyelim
+			$user->fill( $postData )->push();
+			//userMeta modelini statik olmayan metodlarını kullanmak değişkene aktarıyoruz
+			$userMeta = new UserMeta();
+			foreach ( $metas as $key => $value ) {
+				if ( $value == '' ) continue;
+				$userMeta->setMeta( $postData['id'], $key, $value );
+			}
+			$response = array( 'status' => 'success', 'msg' => 'Saved successfully' );
+			return Response::json( $response );
+		}
+	}
+
+
+	public function postAddUser() {
+		if ( Request::ajax() ) {
+			$postData = Input::all();
+			//kurallar
+			$rules = array(
+					'username' => 'required|min:3|unique:users,username',
+					'email'    => 'required|email|unique:users,email'
+			);
+			// todo  ingilzce  tercüme
+			$messages  = array(
+					'username.required' => _( 'Bir kullanıcı adı tanımlamalısınız' ),
+					'content.required'  => _( 'Bir e-mail belirtmelisiniz' ),
+					'username.unique'   => _( 'Kullanıcı adı kullanılıyor' ),
+					'email.unique'      => _( 'Mail adresi kullanılıyor' ),
+					'username.min'      => _( 'Kullanıcını adınız en az 3 karakterden oluşmalıdır' ),
+			);
+			$validator = Validator::make( $postData, $rules, $messages );
+
+			if ( $validator->fails() ) {
+				$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() ); //todo  burası  olmuyor
+				return Response::json( $ajaxResponse );
+			}
+			else {
+				$password = str_random( 6 );
+				$user     = User::create( array(
+						'username'   => $postData['username'],
+						'email'      => $postData['email'],
+						'password'   => Hash::make( $password ),
+						'role'       => $postData['role'],
+						'created_ip' => Request::getClientIp()
+				) );
+				$mailData = array( 'username' => $postData['username'],
+													 'password' => $password );
+				Mail::send( 'emails.welcome', $mailData, function ( $message ) use($postData) {
+					$message->to( $postData['email'], $postData['name'].' '.$postData['lastName'] )->subject( 'Hoş geldiniz!' );
+				} );
+
+				if ( isset( $postData['meta'] ) ) {
+					$userMeta      = $postData['meta'];
+					$modelUserMeta = array();
+					foreach ( $userMeta as $key => $value ) {
+						$modelUserMeta[] = new UserMeta( array( 'metaKey' => $key, 'metaValue' => $value ) );
+					}
+					$user->userMeta()->saveMany( $modelUserMeta );
+				}
+				$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Yeni Üye oluşturuldu' ) );
+				return Response::json( $ajaxResponse );
+			}
+		}
+	}
+
+	/* News */
+	/**
+	 * @return \Illuminate\View\View
+	 */
 	public function getNews() {
 		$title = _( 'News Management Page' );
 		$news  = Post::news()->with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->get();
@@ -114,6 +178,74 @@ class AdminController extends BaseController {
 		}
 		return View::make( 'admin.index' )->with( array( 'news' => $news, 'title' => $title, 'rightSide' => 'list/news' ) );
 	}
+
+	/**
+	 * Yeni gönderi oluşturma sayfası
+	 */
+	public function getAddNews() {
+		$title     = 'New Post';
+		$rightSide = 'add/news';
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
+	}
+
+	/**
+	 * @param null $id
+	 *
+	 * @return bool|\Illuminate\View\View
+	 */
+	public function getUpdateNews( $id = null ) {
+		if ( is_null( $id ) ) return false; //todo hata sayfası
+		$title = _( 'Update News' );
+		$news  = Post::news()->with( 'postMeta' )->find( $id );
+		foreach ( $news->postMeta as $meta ) {
+			$news = array_add( $news, $meta->metaKey, $meta->metaValue );
+		}
+		return View::make( 'admin.update.news' )->with( array( 'news' => $news, 'title' => $title ) );
+	}
+
+	/* Slider */
+
+	/**
+	 * @return \Illuminate\View\View
+	 */
+	public function getSlider() {
+		$title     = _( 'Slider Management Page' );
+		$slides    = Post::slider()->with( 'postMeta' )->orderBy( 'created_at', 'desc' )->get();
+		$rightSide = 'list/slider';
+		foreach ( $slides as $slide ) {
+			foreach ( $slide->postMeta as $meta ) {
+				$slide = array_add( $slide, $meta->metaKey, $meta->metaValue );
+			}
+		}
+
+		return View::make( 'admin.index' )->with( compact( 'title', 'slides', 'rightSide' ) );
+	}
+
+	/**
+	 * @return \Illuminate\View\View
+	 */
+	public function getAddSlide() {
+		$title     = _( 'Add New Slide' );
+		$rightSide = 'add/slide';
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
+	}
+
+	/**
+	 * @param null $id
+	 *
+	 * @return bool|\Illuminate\View\View
+	 */
+	public function getUpdateSlide( $id = null ) {
+		if ( is_null( $id ) ) return false; //todo hata sayfası
+		$title = _( 'Update Slide' );
+		$slide = Post::slider()->with( 'postMeta' )->find( $id );
+		foreach ( $slide->postMeta as $meta ) {
+			$slide = array_add( $slide, $meta->metaKey, $meta->metaValue );
+		}
+		return View::make( 'admin.update.slide' )->with( array( 'slide' => $slide, 'title' => $title ) );
+	}
+
+	/* Services */
 
 	/**
 	 * @return \Illuminate\View\View
@@ -133,6 +265,27 @@ class AdminController extends BaseController {
 	/**
 	 * @return \Illuminate\View\View
 	 */
+	public function getAddService() {
+		$title     = _( 'Add New Service' );
+		$rightSide = 'add/service';
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
+	}
+
+	public function getUpdateService( $id = null ) {
+		if ( is_null( $id ) ) return false; //todo hata sayfası
+		$title   = _( 'Update News' );
+		$service = Post::service()->with( 'postMeta' )->find( $id );
+		foreach ( $service->postMeta as $meta ) {
+			$service = array_add( $service, $meta->metaKey, $meta->metaValue );
+		}
+		return View::make( 'admin.update.service' )->with( array( 'service' => $service, 'title' => $title ) );
+	}
+
+	/* Products */
+
+	/**
+	 * @return \Illuminate\View\View
+	 */
 	public function getProducts() {
 		$title     = _( 'Products' );
 		$products  = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->product()->get();
@@ -148,101 +301,10 @@ class AdminController extends BaseController {
 	/**
 	 * @return \Illuminate\View\View
 	 */
-	public function getContacts() {
-		$title     = _( 'Cotacts' );
-		$contacts  = Contact::all();
-		$rightSide = 'list/contacts';
-		return View::make( 'admin.index' )->with( compact( 'title', 'contacts', 'rightSide' ) );
-	}
-
-	/**
-	 * @return \Illuminate\View\View
-	 */
-	public function getOrders() {
-		$title     = _( 'Orders' );
-		$rightSide = 'list/orders';
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
-	}
-
-	/*
-	 * Yeni Oluşturma
-	 */
-	/**
-	 * @return \Illuminate\View\View
-	 */
-	public function getAddUser() {
-		$title     = _( 'Add New User' );
-		$rightSide = 'add/user';
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
-	}
-
-	/**
-	 * @return \Illuminate\View\View
-	 */
-	public function getAddSlide() {
-		$title     = _( 'Add New Slide' );
-		$rightSide = 'add/slide';
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
-	}
-
-	/**
-	 * Yeni gönderi oluşturma sayfası
-	 */
-	public function getAddNews() {
-		$title     = 'New Post';
-		$rightSide = 'add/news';
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
-	}
-
-	/**
-	 * @return \Illuminate\View\View
-	 */
-	public function getAddService() {
-		$title     = _( 'Add New Service' );
-		$rightSide = 'add/service';
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
-	}
-
-	/**
-	 * @return \Illuminate\View\View
-	 */
 	public function getAddProduct() {
 		$title     = _( 'Add New Product' );
 		$rightSide = 'add/product';
 		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
-	}
-
-	/*
-	 * Güncellemeler
-	 */
-	/**
-	 * @param null $id
-	 *
-	 * @return bool|\Illuminate\View\View
-	 */
-	public function getUpdateSlide( $id = null ) {
-		if ( is_null( $id ) ) return false; //todo hata sayfası
-		$title = _( 'Update Slide' );
-		$slide = Post::slider()->with( 'postMeta' )->find( $id );
-		foreach ( $slide->postMeta as $meta ) {
-			$slide = array_add( $slide, $meta->metaKey, $meta->metaValue );
-		}
-		return View::make( 'admin.update.slide' )->with( array( 'slide' => $slide, 'title' => $title ) );
-	}
-
-	/**
-	 * @param null $id
-	 *
-	 * @return bool|\Illuminate\View\View
-	 */
-	public function getUpdateNews( $id = null ) {
-		if ( is_null( $id ) ) return false; //todo hata sayfası
-		$title = _( 'Update News' );
-		$news  = Post::news()->with( 'postMeta' )->find( $id );
-		foreach ( $news->postMeta as $meta ) {
-			$news = array_add( $news, $meta->metaKey, $meta->metaValue );
-		}
-		return View::make( 'admin.update.news' )->with( array( 'news' => $news, 'title' => $title ) );
 	}
 
 	public function getUpdateProduct( $id = null ) {
@@ -255,14 +317,89 @@ class AdminController extends BaseController {
 		return View::make( 'admin.update.product' )->with( array( 'product' => $product, 'title' => $title ) );
 	}
 
-	public function getUpdateService( $id = null ) {
-		if ( is_null( $id ) ) return false; //todo hata sayfası
-		$title   = _( 'Update News' );
-		$service = Post::service()->with( 'postMeta' )->find( $id );
-		foreach ( $service->postMeta as $meta ) {
-			$service = array_add( $service, $meta->metaKey, $meta->metaValue );
+	/* Contacts */
+
+	/**
+	 * @return \Illuminate\View\View
+	 */
+	public function getContacts() {
+		$title     = _( 'Cotacts' );
+		$contacts  = Contact::all();
+		$rightSide = 'list/contacts';
+		return View::make( 'admin.index' )->with( compact( 'title', 'contacts', 'rightSide' ) );
+	}
+
+	/**
+	 * İletişim işlemleri
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function postAddContact() {
+		//todo veri tabanına kayıt yerine direk mail olarak gönderilir ve contact sayfasında ilgili mail hesabı açılır
+		$postData = Input::all();
+
+		$rules = array(
+				'name'    => 'required|min:3|alpha_dash',
+				'email'   => 'required|email',
+				'message' => 'required|min:10',
+		);
+		// todo  İngilizce  tercüme yapılacak
+		$messages  = array(
+				'email.required'   => _( 'Lütfen mail adresinizi yazın' ),
+				'email.email'      => _( 'Lütfen geçerli bir mail adresi yazın' ),
+				'name.required'    => _( 'Please Enter Your Name' ),
+				'name.min'         => _( 'İsim en az 3 karakter olabilir' ),
+				'name.alpha_dash'  => _( 'İsimda sadece harf kullanınız' ),
+				'message.required' => _( 'Please enter message' ),
+				'message.min'      => _( 'Mesaj en  az 10 karakter olabilir.' )
+		);
+		$validator = Validator::make( $postData, $rules, $messages );
+
+		if ( $validator->failed() ) {
+			return Redirect::action( 'HomeController@getContacts' )->withErrors( $validator->messages() )->withInput();
 		}
-		return View::make( 'admin.update.service' )->with( array( 'service' => $service, 'title' => $title ) );
+		else {
+			$meta = array(
+					'name'  => $postData['name'],
+					'email' => $postData['email']
+			);
+			Contact::create( array(
+					'meta'    => serialize( $meta ),
+					'message' => $postData['message'],
+					'isRead'  => false
+			) );
+			//todo Options modelinden contact mail  adresini alıp  o  adrese mail  olarak  da  yollanacak
+			return Redirect::action( 'HomeController@getIndex' );
+		}
+	}
+
+	/**
+	 * İletişim mesajını  okundu yada okunmadı olarak işaretler
+	 *
+	 * @param null $id
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function getMarkAsReadContact( $id = null ) {
+		if ( !is_null( $id ) ) {
+			$contact         = Contact::find( $id );
+			$contact->isRead = !$contact->isRead;
+			$contact->save();
+			return Redirect::back();
+		}
+		else {
+			return Redirect::intended();
+		}
+	}
+
+	/* Orders */
+
+	/**
+	 * @return \Illuminate\View\View
+	 */
+	public function getOrders() {
+		$title     = _( 'Orders' );
+		$rightSide = 'list/orders';
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
 	}
 
 	/*
@@ -470,141 +607,7 @@ class AdminController extends BaseController {
 		}
 	}
 
-	/**
-	 * @return \Illuminate\Http\JsonResponse
-	 */
-	public function postUpdateProfile() {
-		if ( Request::ajax() ) {
-			$postData = Input::all();
-			$user     = User::find( $postData['id'] );
-			// meta bilgilerini  dizinen çıkartalım
-			$metas = array_pull( $postData, 'meta' );
-			// yeni bilgileri güncelleyelim
-			$user->fill( $postData )->push();
-			//userMeta modelini statik olmayan metodlarını kullanmak değişkene aktarıyoruz
-			$userMeta = new UserMeta();
-			foreach ( $metas as $key => $value ) {
-				if ( $value == '' ) continue;
-				$userMeta->setMeta( $postData['id'], $key, $value );
-			}
-			$response = array( 'status' => 'success', 'msg' => 'Saved successfully' );
-			return Response::json( $response );
-		}
-	}
 
-
-	public function postAddUser() {
-		if ( Request::ajax() ) {
-			$postData = Input::all();
-			//kurallar
-			$rules = array(
-					'username' => 'required|min:3|unique:users,username',
-					'email'    => 'required|email|unique:users,email'
-			);
-			// todo  ingilzce  tercüme
-			$messages  = array(
-					'username.required' => _( 'Bir kullanıcı adı tanımlamalısınız' ),
-					'content.required'  => _( 'Bir e-mail belirtmelisiniz' ),
-					'username.unique'   => _( 'Kullanıcı adı kullanılıyor' ),
-					'email.unique'      => _( 'Mail adresi kullanılıyor' ),
-					'username.min'      => _( 'Kullanıcını adınız en az 3 karakterden oluşmalıdır' ),
-			);
-			$validator = Validator::make( $postData, $rules, $messages );
-
-			if ( $validator->fails() ) {
-				$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() ); //todo  burası  olmuyor
-				return Response::json( $ajaxResponse );
-			}
-			else {
-				$password = str_random( 6 );
-				$user     = User::create( array(
-						'username'   => $postData['username'],
-						'email'      => $postData['email'],
-						'password'   => Hash::make( $password ),
-						'role'       => $postData['role'],
-						'created_ip' => Request::getClientIp()
-				) );
-				$mailData = array( 'username' => $postData['username'],
-													 'password' => $password );
-				Mail::send( 'emails.welcome', $mailData, function ( $message ) use($postData) {
-					$message->to( $postData['email'], $postData['name'].' '.$postData['lastName'] )->subject( 'Hoş geldiniz!' );
-				} );
-
-				if ( isset( $postData['meta'] ) ) {
-					$userMeta      = $postData['meta'];
-					$modelUserMeta = array();
-					foreach ( $userMeta as $key => $value ) {
-						$modelUserMeta[] = new UserMeta( array( 'metaKey' => $key, 'metaValue' => $value ) );
-					}
-					$user->userMeta()->saveMany( $modelUserMeta );
-				}
-				$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Yeni Üye oluşturuldu' ) );
-				return Response::json( $ajaxResponse );
-			}
-		}
-	}
-
-	/**
-	 * İletişim işlemleri
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function postAddContact() {
-		//todo veri tabanına kayıt yerine direk mail olarak gönderilir ve contact sayfasında ilgili mail hesabı açılır
-		$postData = Input::all();
-
-		$rules = array(
-				'name'    => 'required|min:3|alpha_dash',
-				'email'   => 'required|email',
-				'message' => 'required|min:10',
-		);
-		// todo  İngilizce  tercüme yapılacak
-		$messages  = array(
-				'email.required'   => _( 'Lütfen mail adresinizi yazın' ),
-				'email.email'      => _( 'Lütfen geçerli bir mail adresi yazın' ),
-				'name.required'    => _( 'Please Enter Your Name' ),
-				'name.min'         => _( 'İsim en az 3 karakter olabilir' ),
-				'name.alpha_dash'  => _( 'İsimda sadece harf kullanınız' ),
-				'message.required' => _( 'Please enter message' ),
-				'message.min'      => _( 'Mesaj en  az 10 karakter olabilir.' )
-		);
-		$validator = Validator::make( $postData, $rules, $messages );
-
-		if ( $validator->failed() ) {
-			return Redirect::action( 'HomeController@getContacts' )->withErrors( $validator->messages() )->withInput();
-		}
-		else {
-			$meta = array(
-					'name'  => $postData['name'],
-					'email' => $postData['email']
-			);
-			Contact::create( array(
-					'meta'    => serialize( $meta ),
-					'message' => $postData['message'],
-					'isRead'  => false
-			) );
-			//todo Options modelinden contact mail  adresini alıp  o  adrese mail  olarak  da  yollanacak
-			return Redirect::action( 'HomeController@getIndex' );
-		}
-	}
-
-	/**
-	 * İletişim mesajını  okundu yada okunmadı olarak işaretler
-	 *
-	 * @param null $id
-	 *
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function getMarkAsReadContact( $id = null ) {
-		if ( !is_null( $id ) ) {
-			$contact         = Contact::find( $id );
-			$contact->isRead = !$contact->isRead;
-			$contact->save();
-			return Redirect::back();
-		}
-		else {
-			return Redirect::intended();
-		}
-	}
 
 	/**
 	 * todo upload işlemleri  yapılınca taşınacak

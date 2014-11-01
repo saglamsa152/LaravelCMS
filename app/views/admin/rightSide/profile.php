@@ -22,7 +22,7 @@
 					Form::open( array(
 							'role'   => 'form',
 							'class'  => 'ajaxForm form-horizontal',
-							'action' => 'AdminController@postUpdateProfile',
+							'action' => 'AdminController@postUpdateUser',
 							'method' => 'post'
 					) )?>
 					<?=Form::hidden('id',$user->id)?>
