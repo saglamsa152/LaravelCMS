@@ -62,7 +62,7 @@
 														<?= _( 'Edit' ) ?>
 													</a></li>
 												<li>
-													<a href="<?= URL::action( 'AdminController@getDeletePost', $product->id ) ?>">
+													<a href="#">
 														<i class="fa fa-trash"></i>
 														<?= _( 'Delete' ) ?>
 													</a></li>

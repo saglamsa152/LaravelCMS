@@ -63,7 +63,7 @@
 														<?= _( 'Answer' ) ?>
 													</a></li>
 												<li>
-													<a href="<?= URL::action( 'AdminController@getDeletePost', $contact->id ) ?>">
+													<a href="#">
 														<i class="fa fa-trash-o"></i>
 														<?= _( 'Delete' ) ?>
 													</a></li>

@@ -65,7 +65,7 @@
 													<?=Form::open(array('id'=>'deleteForm-'.$new->id,'method'=>'post','action'=>'AdminController@postDeletePost','class'=>'ajaxForm'))?>
 													<?=Form::hidden('id',$new->id)?>
 													<?=Form::close()?>
-													<a href="" onclick="$('#deleteForm-<?=$new->id?>').submit()">
+													<a href="#" onclick="$('#deleteForm-<?=$new->id?>').submit()">
 														<i class="fa fa-trash-o"></i>
 														<?=_( 'Delete' )?>
 													</a>
