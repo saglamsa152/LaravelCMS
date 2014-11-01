@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
@@ -19,11 +18,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var string
 	 */
 	protected $table = 'users';
-	/**
-	 * Belirsiz silme aktif
-	 *
-	 */
-	use SoftDeletingTrait; //todo olmasa daha iyi sanki sildikten sonra tam olarak silinmezse kullanıcı adı kullanılamaz
 
 	/*
 	 * 4.1 den 4.2 ye güncellleme klavuzunda yazıyor
