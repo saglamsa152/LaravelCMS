@@ -160,33 +160,65 @@ class AdminController extends BaseController {
 			}
 			else {
 				$password = str_random( 6 );
-				$user     = User::create( array(
-						'username'   => $postData['username'],
-						'name'       => $postData['name'],
-						'lastName'   => $postData['lastName'],
-						'birthday'   => $postData['birthday'],
-						'email'      => $postData['email'],
-						'password'   => Hash::make( $password ),
-						'role'       => $postData['role'],
-						'created_ip' => Request::getClientIp()
-				) );
-				$mailData = array( 'username' => $postData['username'],
-													 'password' => $password );
+				//meta verileini diziden çıkartalım ve $userMeta değişkenine atayalım
+				$userMeta = array_pull( $postData, 'meta' );
+				//password ve created_ip alanlarını  diziye ekleyelim
+				$postData['password']   = Hash::make( $password );
+				$postData['created_ip'] = Request::getClientIp();
+				$user                   = User::create( $postData );
+
+				$mailData = array( 'username' => $postData['username'], 'password' => $password );
 				Mail::send( 'emails.welcome', $mailData, function ( $message ) use ( $postData ) {
 					$message->to( $postData['email'], $postData['name'] . ' ' . $postData['lastName'] )->subject( 'Hoş geldiniz!' );
 				} );
 
-				if ( isset( $postData['meta'] ) ) {
-					$userMeta      = $postData['meta'];
-					$modelUserMeta = array();
-					foreach ( $userMeta as $key => $value ) {
-						$modelUserMeta[] = new UserMeta( array( 'metaKey' => $key, 'metaValue' => $value ) );
-					}
-					$user->userMeta()->saveMany( $modelUserMeta );
+				$modelUserMeta = array();
+				foreach ( $userMeta as $key => $value ) {
+					$modelUserMeta[] = new UserMeta( array( 'metaKey' => $key, 'metaValue' => $value ) );
 				}
+				$user->userMeta()->saveMany( $modelUserMeta );
 				$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Yeni Üye oluşturuldu' ) );
 				return Response::json( $ajaxResponse );
 			}
+		}
+	}
+
+	public function postUpdateUserPassword() {
+		$postData = Input::all();
+		$rules    = array(
+				'currentPassword'       => 'required',
+				'password'              => 'required|min:4|confirmed',
+				'password_confirmation' => 'required'
+		);
+		// todo  İngilizce  tercüme yapılacak
+		$messages  = array(
+				'currentPassword.required'       => _( 'Lütfen şuanki şifrenizi yazın' ),
+				'password.required'              => _( 'Lütfen şifrenizi yazın' ),
+				'password.min'                   => _( 'Şifreniz minumum 4 karakterden oluşmalıdır' ),
+				'password.confirmed'             => _( 'Girdiğiniz şifreler birbiriyle eşleşmiyor' ),
+				'password_confirmation.required' => _( 'Lütfen şifrenizi doğrulayın' )
+		);
+		$validator = Validator::make( $postData, $rules, $messages );
+
+		if ( $validator->fails() ) {
+			$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() );
+			return Response::json( $ajaxResponse );
+		}
+		else {
+			if ( isset( $postData['id'] ) ) {
+				$user = User::findOrFail( $postData['id'] );
+				if($postData['currentPassword']!==$postData['password']) {
+					if ( Hash::check( $postData['currentPassword'], $user->getAuthPassword() ) ) {
+						$user->password = Hash::make( $postData['password'] );
+						$user->save();
+						$ajaxResponse = array( 'status' => 'info', 'msg' => '' );
+					}
+					else {
+						$ajaxResponse = array( 'status' => 'danger', 'msg' => array( 'currentPassword' => _( 'Incorrect Password' ) ) );
+					}
+				}else $ajaxResponse = array( 'status' => 'danger', 'msg' => array( 'password' => _( 'Passwords mustn\'t same' ) ) );
+			}
+			return Response::json( $ajaxResponse );
 		}
 	}
 
@@ -498,7 +530,7 @@ class AdminController extends BaseController {
 
 		$rules = array(
 				'email'                 => 'required|email|unique:users,email',
-				'username'              => 'required|min:3|alpha_dash|unique:users,username',
+				'username'              => 'required|min:3|unique:users,username',
 				'password'              => 'required|min:4|confirmed',
 				'password_confirmation' => 'required'
 		);

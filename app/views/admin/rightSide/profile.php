@@ -183,6 +183,61 @@
 						</div><!-- /.tab-content -->
 					</div><!-- /.nav-tabs-custom -->
 				</section><!-- /.col-md-3 -->
+
+				<section class="col-md-3 no-padding">
+					<div id="updatePassword" class="box box-primary">
+						<div title="" data-toggle="tooltip" class="box-header" data-original-title="Header tooltip">
+							<h3 class="box-title"><?=_('Password Update')?></h3>
+							<div class="box-tools pull-right">
+								<button data-widget="collapse" class="btn btn-primary btn-xs"><i class="fa fa-minus"></i></button>
+							</div>
+						</div>
+						<div class="box-body" style="display: block;">
+							<?=Form::open( array(
+									'role'   => 'form',
+									'class'  => 'ajaxFormPassword',
+									'action' => 'AdminController@postUpdateUserPassword',
+									'method' => 'post'
+							) )?>
+							<?=Form::hidden('id',$user->id)?>
+							<!-- Current Password -->
+							<div id="currentPassword" class="form-group col-md-12">
+								<div class="input-group col-md-12">
+									<div class="input-group-addon">
+										<i class="fa fa-lock"></i>
+									</div>
+									<?=Form::password('currentPassword',array('class'=>'form-control','placeholder'=>_('Current Password')))?>
+								</div><!-- /.input group -->
+							</div><!-- /.form group -->
+
+							<!-- New Password -->
+							<div id="password" class="form-group col-md-12">
+								<div class="input-group col-md-12">
+									<div class="input-group-addon">
+										<i class="fa fa-lock"></i>
+									</div>
+									<?=Form::password('password',array('class'=>'form-control','placeholder'=>_('New Password')))?>
+								</div><!-- /.input group -->
+							</div><!-- /.form group -->
+
+							<!-- Confirmation Password -->
+							<div id="password_confirmation" class="form-group col-md-12">
+								<div class="input-group col-md-12">
+									<div class="input-group-addon">
+										<i class="fa fa-lock"></i>
+									</div>
+									<?=Form::password('password_confirmation',array('class'=>'form-control','placeholder'=>_('Confirmation Password')))?>
+								</div><!-- /.input group -->
+							</div><!-- /.form group -->
+							<div class="clearfix"></div>
+						</div><!-- /.box-body -->
+						<div class="box-footer" style="display: block;">
+							<?=Form::submit(_('Update'),array('class' => 'btn btn-primary pull-right'))?>
+							<div class="clearfix"></div>
+						</div><!-- /.box-footer-->
+						<?=Form::close()?>
+					</div><!-- /.box box-primary-->
+				</section><!-- /.col-md-3 -->
 			</div>
 
 		</div>

@@ -72,6 +72,41 @@ $(function () {
 		});
 		return false;
 	});
+	$('.ajaxFormPassword').on('submit', function () {
+		$('#updatePassword').append('<div class="overlay">' +
+		'<div class="spinner">' +
+		'<div class="rect1"></div>' +
+		'<div class="rect2"></div>' +
+		'<div class="rect3"></div>' +
+		'<div class="rect4"></div>' +
+		'<div class="rect5"></div>' +
+		'</div>' +
+		'</div>');
+		$.ajax({
+			type   : 'POST',
+			url    : $(this).attr('action'),
+			data   : $(this).serializeArray(),
+			success: function (returnData) {
+				if (jQuery.type(returnData['msg']) == "object") {
+					$('#updatePassword > .overlay').remove();
+					$('.ajaxFormPassword label').remove();
+					$('.ajaxFormPassword .form-group').removeClass('has-error');
+					$.each(returnData['msg'], function (key, value) {
+						$('.ajaxFormPassword #' + key).addClass('has-error');
+						$('.ajaxFormPassword #' + key).prepend('<label for="inputError" class="control-label"><i class="fa fa-times-circle-o"></i>' + value + '</label>')
+					});
+				} else {
+					$('#updatePassword > .overlay').html('<span class="glyphicon glyphicon-ok"></span>');
+					$('#updatePassword > .overlay').click(function () {
+						$(this).remove();
+						$('.ajaxFormPassword input').val('');
+					});
+
+				}
+			}
+		});
+		return false;
+	});
 
 	/**
 	 *  data-mask özelliği olan nesneye input mask uygular

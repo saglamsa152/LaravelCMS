@@ -1,6 +1,7 @@
 #ajaxResult{
 	position: fixed;
 }
+
 /* yükleniyor animasyonu */
 .spinner {
 	margin: 10px auto;
@@ -8,6 +9,19 @@
 	height: 30px;
 	text-align: center;
 	font-size: 10px;
+}
+
+.overlay .spinner{
+	position: relative;
+	top:40%;
+}
+
+.overlay span.glyphicon {
+	font-size: 41px;
+	position: absolute;
+	right: 40%;
+	top: 40%;
+	color:#3c763d;
 }
 
 .spinner > div {
