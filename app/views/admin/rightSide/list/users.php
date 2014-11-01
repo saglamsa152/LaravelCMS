@@ -61,10 +61,13 @@
 													</a>
 												</li>
 												<li>
-													<a href="#">
+													<?=Form::open(array('id'=>'deleteForm-'.$user->id,'method'=>'post','action'=>'AdminController@postDeleteUser','class'=>'ajaxForm'))?>
+													<?=Form::hidden('id',$user->id)?>
+													<?=Form::close()?>
+													<a href="#" onclick="$('#deleteForm-<?=$user->id?>').submit()">
 														<i class="fa fa-trash-o"></i>
-														<?= _( 'Delete' ) ?>
-													</a></li>
+														<?=_( 'Delete' )?>
+													</a>
 											</ul>
 										</div>
 									</td>

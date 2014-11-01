@@ -90,25 +90,48 @@ class AdminController extends BaseController {
 		$rightSide = 'add/user';
 		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
 	}
+
 	/**
 	 * @return \Illuminate\Http\JsonResponse
 	 */
 	public function postUpdateUser() {
 		if ( Request::ajax() ) {
 			$postData = Input::all();
-			$user     = User::find( $postData['id'] );
-			// meta bilgilerini  dizinen çıkartalım
-			$metas = array_pull( $postData, 'meta' );
-			// yeni bilgileri güncelleyelim
-			$user->fill( $postData )->push();
-			//userMeta modelini statik olmayan metodlarını kullanmak değişkene aktarıyoruz
-			$userMeta = new UserMeta();
-			foreach ( $metas as $key => $value ) {
-				if ( $value == '' ) continue;
-				$userMeta->setMeta( $postData['id'], $key, $value );
+			//kurallar
+			$rules = array(
+				//'username' => 'required|min:3',todo üye ekleme sayfası düzenleme sayfasına taşınınca açılacak
+					'email' => 'required|email'
+			);
+			// todo  ingilzce  tercüme
+			$messages  = array(
+					'username.required' => _( 'Bir kullanıcı adı tanımlamalısınız' ),
+					'content.required'  => _( 'Bir e-mail belirtmelisiniz' ),
+					'username.unique'   => _( 'Kullanıcı adı kullanılıyor' ),
+					'email.unique'      => _( 'Mail adresi kullanılıyor' ),
+					'username.min'      => _( 'Kullanıcını adınız en az 3 karakterden oluşmalıdır' ),
+			);
+			$validator = Validator::make( $postData, $rules, $messages );
+
+			if ( $validator->fails() ) {
+				$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() ); //todo  burası  olmuyor
+				return Response::json( $ajaxResponse );
 			}
-			$response = array( 'status' => 'success', 'msg' => 'Saved successfully' );
-			return Response::json( $response );
+			else {
+				$user = User::find( $postData['id'] );
+				// meta bilgilerini  dizinen çıkartalım
+				$metas = array_pull( $postData, 'meta' );
+				// yeni bilgileri güncelleyelim
+				$user->fill( $postData )->push();
+				//userMeta modelini statik olmayan metodlarını kullanmak için değişkene aktarıyoruz
+				$userMeta = new UserMeta();
+				foreach ( $metas as $key => $value ) {
+					if ( $value == '' ) continue;
+					$userMeta->setMeta( $postData['id'], $key, $value );
+				}
+				$response = array( 'status' => 'success', 'msg' => 'Saved successfully' );
+				//todo hata mesajı
+				return Response::json( $response );
+			}
 		}
 	}
 
@@ -132,13 +155,16 @@ class AdminController extends BaseController {
 			$validator = Validator::make( $postData, $rules, $messages );
 
 			if ( $validator->fails() ) {
-				$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() ); //todo  burası  olmuyor
+				$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() );
 				return Response::json( $ajaxResponse );
 			}
 			else {
 				$password = str_random( 6 );
 				$user     = User::create( array(
 						'username'   => $postData['username'],
+						'name'       => $postData['name'],
+						'lastName'   => $postData['lastName'],
+						'birthday'   => $postData['birthday'],
 						'email'      => $postData['email'],
 						'password'   => Hash::make( $password ),
 						'role'       => $postData['role'],
@@ -146,8 +172,8 @@ class AdminController extends BaseController {
 				) );
 				$mailData = array( 'username' => $postData['username'],
 													 'password' => $password );
-				Mail::send( 'emails.welcome', $mailData, function ( $message ) use($postData) {
-					$message->to( $postData['email'], $postData['name'].' '.$postData['lastName'] )->subject( 'Hoş geldiniz!' );
+				Mail::send( 'emails.welcome', $mailData, function ( $message ) use ( $postData ) {
+					$message->to( $postData['email'], $postData['name'] . ' ' . $postData['lastName'] )->subject( 'Hoş geldiniz!' );
 				} );
 
 				if ( isset( $postData['meta'] ) ) {
@@ -160,6 +186,21 @@ class AdminController extends BaseController {
 				}
 				$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Yeni Üye oluşturuldu' ) );
 				return Response::json( $ajaxResponse );
+			}
+		}
+	}
+
+	public function postDeleteUser() {
+		if ( Request::ajax() ) {
+			$id = Input::get( 'id' );
+			if ( !is_null( $id ) ) {
+				if ( $id != 1 ):
+					User::destroy( $id );
+					$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully' );
+				else:
+					$response = array( 'status' => 'danger', 'msg' => 'Admin can not be delete' );
+				endif;
+				return Response::json( $response );
 			}
 		}
 	}
@@ -606,7 +647,6 @@ class AdminController extends BaseController {
 			return Redirect::back(); //todo burada bunu kullanmak doğrumu
 		}
 	}
-
 
 
 	/**
