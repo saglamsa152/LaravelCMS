@@ -4,12 +4,12 @@
 	<section class="content-header">
 		<h1>
 			<?= $title ?>
-			<small><?= _( 'Menage Profile' ) ?></small>
+			<small><?= _( 'Add New User' ) ?></small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="<?= URL::action( 'AdminController@getIndex' ) ?>"><i class="fa fa-dashboard"></i> <?= _( 'Home' ) ?>
 				</a></li>
-			<li class="active"><?= _( 'Profile page' ) ?></li>
+			<li class="active"><?= _( 'Add User' ) ?></li>
 		</ol>
 	</section>
 
@@ -90,9 +90,9 @@
 
 					<!-- Counties -->
 					<div class="form-group col-md-6">
-						<?= Form::label( 'meta[counties]', _( 'County :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
+						<?= Form::label( 'meta[county]', _( 'County :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
-							<?= Form::select( 'meta[counties]', array(_('First select a city')), null, array( 'class' => 'form-control ' ) ) ?>
+							<?= Form::select( 'meta[county]', array(_('First select a city')), null, array( 'class' => 'form-control ' ) ) ?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
 
@@ -139,7 +139,7 @@
 							<div class="input-group-addon">
 								<i class="fa fa-twitter-square"></i>
 							</div>
-							<?=Form::text('meta[facebook]','',array('class'=>'form-control'))?>
+							<?=Form::text('meta[twitter]','',array('class'=>'form-control'))?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
 
@@ -150,7 +150,7 @@
 							<div class="input-group-addon">
 								<i class="fa fa-facebook-square"></i>
 							</div>
-							<?=Form::text('meta[twitter]','',array('class'=>'form-control'))?>
+							<?=Form::text('meta[facebook]','',array('class'=>'form-control'))?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
 					<div class="clearfix"></div>

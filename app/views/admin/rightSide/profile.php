@@ -27,11 +27,27 @@
 					) )?>
 					<?=Form::hidden('id',$user->id)?>
 					<h4 class="page-header"><?= _( 'Personal Information' ) ?></h4>
+					<!-- Username -->
+					<div class="form-group col-md-6">
+						<?= Form::label( 'username', _( 'User Name :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
+						<div class="input-group col-md-8">
+							<?= Form::text( 'username',$user->username, array( 'class' => 'form-control ' ) ) ?>
+						</div><!-- /.input group -->
+					</div><!-- /.form group -->
+
+					<!-- Role -->
+					<div class="form-group col-md-6">
+						<?= Form::label( 'role', _( 'User Role :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
+						<div class="input-group col-md-8">
+							<?= Form::select('role',User::getRoles(),$user->role,array( 'class' => 'form-control ' ))?>
+						</div><!-- /.input group -->
+					</div><!-- /.form group -->
+
 					<!-- Name -->
 					<div class="form-group col-md-6">
 						<?= Form::label( 'name', _( 'Name :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
-							<?= Form::text( 'name', $user->name, array( 'class' => 'form-control ' ) ) ?>
+							<?= Form::text( 'name',$user->name, array( 'class' => 'form-control ' ) ) ?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
 
@@ -39,7 +55,7 @@
 					<div class="form-group col-md-6">
 						<?= Form::label( 'lastName', _( 'Last Name :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
-							<?= Form::text( 'lastName', $user->lastName, array( 'class' => 'form-control ' ) ) ?>
+							<?= Form::text( 'lastName',$user->lastName, array( 'class' => 'form-control ' ) ) ?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
 
@@ -54,11 +70,41 @@
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
 					<div class="clearfix"></div>
-				<h4 class="page-header"><?= _( 'Contact Information' ) ?></h4>
+
+					<h4 class="page-header"><?= _( 'Contact Information' ) ?></h4>
+
+					<!-- Address -->
+					<div class="form-group col-md-6">
+						<?= Form::label( 'meta[address]', _( 'Address :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
+						<div class="input-group col-md-8">
+							<?= Form::textarea( 'meta[address]',$user->address, array( 'class' => 'form-control', 'rows' => 3 ) ) ?>
+						</div><!-- /.input group -->
+					</div><!-- /.form group -->
+
+					<!-- City -->
+					<div class="form-group col-md-6">
+						<?= Form::label( 'meta[city]', _( 'City :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
+						<div class="input-group col-md-8">
+							<?= Form::select( 'meta[city]', unserialize(Option::getOption('cities')), $user->city, array( 'class' => 'form-control ','data'=>'cities' ) ) ?>
+						</div><!-- /.input group -->
+					</div><!-- /.form group -->
+
+					<!-- Counties -->
+					<?php
+					$counties = unserialize( Option::getOption( 'counties' ) );
+					asort($counties[$user->city]);
+					$counties = $counties[$user->city];
+					?>
+					<div class="form-group col-md-6">
+						<?= Form::label( 'meta[county]', _( 'County :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
+						<div class="input-group col-md-8">
+							<?= Form::select( 'meta[county]', $counties, $user->county, array( 'class' => 'form-control ' ) ) ?>
+						</div><!-- /.input group -->
+					</div><!-- /.form group -->
 
 					<!-- GSM -->
 					<div class="form-group col-md-6">
-						<?=Form::label('meta[gsm]',_('GSM :'),array('class'=>'control-label col-md-4'))?>
+						<?= Form::label( 'meta[gsm]', _( 'GSM :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
 							<div class="input-group-addon">
 								<i class="fa fa-phone"></i>
@@ -69,7 +115,7 @@
 
 					<!-- Phone -->
 					<div class="form-group col-md-6">
-						<?=Form::label('meta[phone]',_('Phone :'),array('class'=>'control-label col-md-4'))?>
+						<?= Form::label( 'meta[phone]', _( 'Phone :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
 							<div class="input-group-addon">
 								<span class="glyphicon glyphicon-phone-alt"></span>
@@ -80,29 +126,21 @@
 
 					<!-- Email -->
 					<div class="form-group col-md-6">
-						<?=Form::label('email',_('e-mail :'),array('class'=>'control-label col-md-4'))?>
+						<?= Form::label( 'email', _( 'e-mail :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
 							<div class="input-group-addon">
 								<b>@</b>
 							</div>
-							<?=Form::text('email',$user->email,array('class'=>'form-control'))?>
+							<?= Form::text( 'email',$user->email, array( 'class' => 'form-control' ) ) ?>
 						</div>
 					</div>
 
-					<!-- Facebook -->
-					<div class="form-group col-md-6">
-						<?=Form::label('meta[facebook]','Facebook :',array('class'=>'control-label col-md-4'))?>
-						<div class="input-group col-md-8">
-							<div class="input-group-addon">
-								<i class="fa fa-facebook-square"></i>
-							</div>
-							<?=Form::text('meta[facebook]',$user->facebook,array('class'=>'form-control'))?>
-						</div><!-- /.input group -->
-					</div><!-- /.form group -->
+					<div class="clearfix"></div>
+					<h4 class="page-header"><?= _( 'Social Information' ) ?></h4>
 
 					<!-- Twitter -->
 					<div class="form-group col-md-6">
-						<?=Form::label('meta[twitter]','Twitter :',array('class'=>'control-label col-md-4'))?>
+						<?= Form::label( 'meta[twitter]', 'Twitter :', array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
 							<div class="input-group-addon">
 								<i class="fa fa-twitter-square"></i>
@@ -110,11 +148,23 @@
 							<?=Form::text('meta[twitter]',$user->twitter,array('class'=>'form-control'))?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
+
+					<!-- Facebook -->
+					<div class="form-group col-md-6">
+						<?= Form::label( 'meta[facebook]', 'Facebook :', array( 'class' => 'control-label col-md-4' ) ) ?>
+						<div class="input-group col-md-8">
+							<div class="input-group-addon">
+								<i class="fa fa-facebook-square"></i>
+							</div>
+							<?=Form::text('meta[facebook]',$user->facebook,array('class'=>'form-control'))?>
+						</div><!-- /.input group -->
+					</div><!-- /.form group -->
 					<div class="clearfix"></div>
-					<?=Form::submit(_('Save'),array('class'=>'btn btn-primary pull-right'))?>
+					<?= Form::submit( _( 'Save' ), array( 'class' => 'btn btn-primary pull-right' ) ) ?>
 
 					<?= Form::close() ?>
 				</section><!-- /.col-md-9 -->
+
 				<section class="col-md-3 no-padding">
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs pull-right">
@@ -124,7 +174,7 @@
 						</ul>
 						<div class="tab-content">
 							<div id="view" class="tab-pane active">
-								<?= HTML::image( get_gravatar( null, 150 ), 'User Image', array( 'class' => 'img-circle  center-block' ) ) ?>
+								<?= HTML::image( get_gravatar( $user->email, 150 ), 'User Image', array( 'class' => 'img-circle  center-block' ) ) ?>
 							</div><!-- /#view .tab-pane -->
 							<div id="upload" class="tab-pane">
 								<!-- todo avatar yükleme sayfası-->

@@ -99,8 +99,8 @@ class AdminController extends BaseController {
 			$postData = Input::all();
 			//kurallar
 			$rules = array(
-				//'username' => 'required|min:3',todo üye ekleme sayfası düzenleme sayfasına taşınınca açılacak
-					'email' => 'required|email'
+					'username' => 'required|min:3',
+					'email'    => 'required|email'
 			);
 			// todo  ingilzce  tercüme
 			$messages  = array(

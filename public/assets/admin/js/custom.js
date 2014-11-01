@@ -110,8 +110,8 @@ $(function () {
 			$.each(counties, function (key, value) {
 				out += '<option value="' + key + '">' + value + '</option>';
 			});
-			$("select[name='meta[counties]'] option").remove();
-			$("select[name='meta[counties]'] ").append(out);
+			$("select[name='meta[county]'] option").remove();
+			$("select[name='meta[county]'] ").append(out);
 		});
 	});
 

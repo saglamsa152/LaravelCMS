@@ -48,7 +48,8 @@ class OptionsController extends BaseController {
 		$city_id = Input::get('city_id');
 		if ( is_null( $city_id ) ) return;
 		$counties = unserialize( Option::getOption( 'counties' ) );
-		sort($counties[$city_id]);
+		asort($counties[$city_id]);
+		array_unshift($counties[$city_id],_('Select County'));
 		return Response::json( $counties[$city_id] );
 	}
 
