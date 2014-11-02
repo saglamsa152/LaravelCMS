@@ -174,16 +174,17 @@
 						</ul>
 						<div class="tab-content">
 							<div id="view" class="tab-pane active">
-								<?= HTML::image( get_gravatar( $user->email, 150 ), 'User Image', array( 'class' => 'img-circle  center-block' ) ) ?>
+								<?= HTML::image( $user->getAvatarUrl(150), 'User Image', array( 'class' => 'img-circle  center-block' ) ) ?>
 							</div><!-- /#view .tab-pane -->
 							<div id="upload" class="tab-pane">
 								<!-- todo avatar yükleme sayfası-->
 								henüz hazır değil
+
 							</div><!-- /#upload .tab-pane -->
 						</div><!-- /.tab-content -->
 					</div><!-- /.nav-tabs-custom -->
 				</section><!-- /.col-md-3 -->
-
+				<!-- Password Update -->
 				<section class="col-md-3 no-padding">
 					<div id="updatePassword" class="box box-primary">
 						<div title="" data-toggle="tooltip" class="box-header" data-original-title="Header tooltip">

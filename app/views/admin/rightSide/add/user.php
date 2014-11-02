@@ -168,7 +168,7 @@
 						</ul>
 						<div class="tab-content">
 							<div id="view" class="tab-pane active">
-								<?= HTML::image( get_gravatar( '', 150 ), 'User Image', array( 'class' => 'img-circle  center-block' ) ) ?>
+								resim ekleme
 							</div><!-- /#view .tab-pane -->
 							<div id="upload" class="tab-pane">
 								<!-- todo avatar yükleme sayfası-->

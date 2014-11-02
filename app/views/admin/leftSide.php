@@ -5,7 +5,7 @@
 		<!-- Sidebar user panel -->
 		<div class="user-panel">
 			<div class="pull-left image">
-				<?= HTML::image( get_gravatar(), 'User Image', array( 'class' => 'img-circle' ) ) ?>
+				<?= HTML::image( $user->getAvatarUrl(), 'User Image', array( 'class' => 'img-circle' ) ) ?>
 			</div>
 			<div class="pull-left info">
 				<p><?=_('Hello')?> </br> <?php if (Auth::user()->name==''):
