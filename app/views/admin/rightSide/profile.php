@@ -227,7 +227,7 @@
 									<div class="input-group-addon">
 										<i class="fa fa-lock"></i>
 									</div>
-									<?=Form::password('password_confirmation',array('class'=>'form-control','placeholder'=>_('Confirmation Password')))?>
+									<?=Form::password('password_confirmation',array('class'=>'form-control','placeholder'=>_('Password Confirmation')))?>
 								</div><!-- /.input group -->
 							</div><!-- /.form group -->
 							<div class="clearfix"></div>

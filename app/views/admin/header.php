@@ -222,7 +222,7 @@
 	<ul class="dropdown-menu">
 		<!-- User image todo usermeta tablosu  ile resim gösterilecek ve gravatar varsa gravatar gözükecek -->
 		<li class="user-header bg-light-blue">
-			<?= HTML::image( $user->getAvatarUrl(), 'User Image', array( 'class' => 'img-circle' ) ) ?>
+			<?= HTML::image( Auth::user()->getAvatarUrl(), 'User Image', array( 'class' => 'img-circle' ) ) ?>
 			<p>
 				<?= Auth::user()->username ?> - Web Developer <!-- todo user meta tablosu ile kullanıcı ünvanı gelecek -->
 				<small><!--todo -->Member since Nov. 2012</small>

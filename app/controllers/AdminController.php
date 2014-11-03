@@ -674,7 +674,7 @@ class AdminController extends BaseController {
 					$post->postMeta()->where( 'metaKey', '=', $key )->update( array( 'metaValue' => $value ) );
 				}
 			}
-			$post->push();
+			$post->push();//todo value eksik diyor güncellendikten sonra fonksiyon değişmiş olabilir
 
 			return Redirect::back(); //todo burada bunu kullanmak doğrumu
 		}
