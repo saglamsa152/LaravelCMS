@@ -38,7 +38,7 @@
 			</li>
 			<!-- /Dashboard -->
 			<!-- Users -->
-			<li class="treeview <?php if(str_contains(URL::current(),'/users')) echo ' active'?>">
+			<li class="treeview <?php if(str_contains(URL::current(),'user')) echo ' active'?>">
 				<a href="">
 					<i class="fa fa-users"></i>
 					<span><?=_('Users')?></span>
@@ -51,7 +51,7 @@
 			</li>
 			<!-- /Users -->
 			<!-- News -->
-			<li class="treeview <?php if(str_contains(URL::current(),'/news')) echo ' active'?>">
+			<li class="treeview <?php if(str_contains(URL::current(),'news')) echo ' active'?>">
 				<a href="">
 					<i class="fa  fa-laptop"></i>
 					<span><?=_('News')?></span>
@@ -64,7 +64,7 @@
 			</li>
 			<!-- /News -->
 			<!-- Slider -->
-			<li class="treeview <?php if(str_contains(URL::current(),'/slider')) echo ' active'?>">
+			<li class="treeview <?php if(str_contains(URL::current(),'slider')) echo ' active'?>">
 				<a href="">
 					<i class="fa fa-ellipsis-h"></i>
 					<span><?=_('Slider')?></span>
@@ -77,7 +77,7 @@
 			</li>
 			<!-- /Slider -->
 			<!-- Product -->
-			<li class="treeview <?php if(str_contains(URL::current(),'/product')) echo ' active'?>">
+			<li class="treeview <?php if(str_contains(URL::current(),'product')) echo ' active'?>">
 				<a href="">
 					<i class="fa fa-shopping-cart"></i>
 					<span><?=_('Products')?></span>
@@ -90,7 +90,7 @@
 			</li>
 			<!-- /Product -->
 			<!-- Services -->
-			<li class="treeview <?php if(str_contains(URL::current(),'/services')) echo ' active'?>">
+			<li class="treeview <?php if(str_contains(URL::current(),'service')) echo ' active'?>">
 				<a href="">
 					<i class="fa  fa-globe"></i>
 					<span><?=_('Services')?></span>
@@ -103,7 +103,7 @@
 			</li>
 			<!-- /Services -->
 			<!-- Orders -->
-			<li class="treeview <?php if(str_contains(URL::current(),'/orders')) echo ' active'?>">
+			<li class="treeview <?php if(str_contains(URL::current(),'order')) echo ' active'?>">
 				<a href="">
 					<i class="fa fa-credit-card"></i>
 					<span><?=_('Orders')?></span>
@@ -115,7 +115,7 @@
 			</li>
 			<!-- /Orders -->
 			<!-- Contact -->
-			<li class="treeview <?php if(str_contains(URL::current(),'/contact')) echo ' active'?>">
+			<li class="treeview <?php if(str_contains(URL::current(),'contact')) echo ' active'?>">
 				<a href="">
 					<i class="fa fa-envelope"></i>
 					<span><?=_('Contact')?></span>
@@ -127,7 +127,7 @@
 			</li>
 			<!-- /Contact -->
 			<!-- Options -->
-			<li class="treeview <?php if(str_contains(URL::current(),'/options')) echo ' active'?>">
+			<li class="treeview <?php if(str_contains(URL::current(),'options')) echo ' active'?>">
 				<a href="">
 					<i class="fa  fa-cogs"></i>
 					<span><?=_('Options')?></span>
