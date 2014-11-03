@@ -64,10 +64,15 @@ $(function () {
 					$(this).children('.close').click(function () {
 						$(this).parent().fadeOut('slow', function () {
 							$(this).remove()
+							if (jQuery.type(returnData['redirect'] != 'undefined')) {
+								window.location.replace(returnData['redirect']);
+							}
 						});
 					});
 				});
 				$('#ajaxResult').fadeIn('slow');
+
+
 			}
 		});
 		return false;

@@ -34,7 +34,17 @@
 <?=HTML::script('assets/admin/js/plugins/input-mask/jquery.inputmask.date.extensions.js')?>
 <?=HTML::script('assets/admin/js/plugins/input-mask/jquery.inputmask.extensions.js')?>
 
+<!-- mini-upload-form (assets/admin/js/plugins) -->
+	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.knob.js')?>
 
+	<!-- jQuery File Upload Dependencies -->
+	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.ui.widget.js')?>
+	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.iframe-transport.js')?>
+	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.fileupload.js')?>
+
+	<!-- Our main JS file -->
+	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/script.js')?>
+<!--/ mini-upload-form (assets/admin/js/plugins) -->
 <!-- Custom Js-->
 <?=HTML::script('assets/admin/js/custom.js')?>
 

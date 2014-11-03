@@ -177,7 +177,7 @@ class AdminController extends BaseController {
 					$modelUserMeta[] = new UserMeta( array( 'metaKey' => $key, 'metaValue' => $value ) );
 				}
 				$user->userMeta()->saveMany( $modelUserMeta );
-				$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Yeni Üye oluşturuldu' ) );
+				$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Yeni Üye oluşturuldu' ), 'redirect' => URL::action( 'AdminController@getProfile', $user->id ) );
 				return Response::json( $ajaxResponse );
 			}
 		}
@@ -207,7 +207,7 @@ class AdminController extends BaseController {
 		else {
 			if ( isset( $postData['id'] ) ) {
 				$user = User::findOrFail( $postData['id'] );
-				if($postData['currentPassword']!==$postData['password']) {
+				if ( $postData['currentPassword'] !== $postData['password'] ) {
 					if ( Hash::check( $postData['currentPassword'], $user->getAuthPassword() ) ) {
 						$user->password = Hash::make( $postData['password'] );
 						$user->save();
@@ -216,7 +216,8 @@ class AdminController extends BaseController {
 					else {
 						$ajaxResponse = array( 'status' => 'danger', 'msg' => array( 'currentPassword' => _( 'Incorrect Password' ) ) );
 					}
-				}else $ajaxResponse = array( 'status' => 'danger', 'msg' => array( 'password' => _( 'Passwords mustn\'t same' ) ) );
+				}
+				else $ajaxResponse = array( 'status' => 'danger', 'msg' => array( 'password' => _( 'Passwords mustn\'t same' ) ) );
 			}
 			return Response::json( $ajaxResponse );
 		}
@@ -228,7 +229,7 @@ class AdminController extends BaseController {
 			if ( !is_null( $id ) ) {
 				if ( $id != 1 ):
 					User::destroy( $id );
-					$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully' );
+					$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully','redirect'=> URL::action('AdminController@getUsers') );
 				else:
 					$response = array( 'status' => 'danger', 'msg' => 'Admin can not be delete' );
 				endif;
@@ -686,7 +687,7 @@ class AdminController extends BaseController {
 	 * mini-ajx-upload-file uygulamasını upload işlemi
 	 * resim yükleme işlemini gerçekleştiriyor
 	 */
-	public function postMiniAjaxUpload() {
+	public function postAvatarUpload() {
 		// A list of permitted file extensions
 		$allowed = array( 'png', 'jpg', 'gif', 'zip' );
 		$file    = Input::file( 'upl' );
@@ -698,8 +699,7 @@ class AdminController extends BaseController {
 				echo '{"status":"error"}';
 				exit;
 			}
-			//Input::file('upl')->move(public_path().'/uploads/', time());// todo  if  ile  bunu  kullanımını  bulmak lazım
-			if ( Input::file( 'upl' )->move( public_path() . '/uploads/', time() . '_' . $file->getClientOriginalName() . '.' . $extension ) ) {
+			if ( Input::file( 'upl' )->move( public_path() . '/assets/uploads/profile_image/', $file->getClientOriginalName() ) ) {
 				echo '{"status":"success"}';
 				exit;
 			}

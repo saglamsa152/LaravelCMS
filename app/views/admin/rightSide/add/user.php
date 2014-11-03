@@ -21,10 +21,12 @@
 					<?=
 					Form::open( array(
 							'role'   => 'form',
+							'id'     => 'user-form',
 							'class'  => 'ajaxForm form-horizontal',
 							'action' => 'AdminController@postAddUser',
 							'method' => 'post'
 					) ) ?>
+					<?=Form::hidden('meta[avatar]','')?>
 					<h4 class="page-header"><?= _( 'Personal Information' ) ?></h4>
 					<!-- Username -->
 					<div class="form-group col-md-6">
@@ -162,17 +164,32 @@
 				<section class="col-md-3 no-padding">
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs pull-right">
-							<li class="active"><a data-toggle="tab" href="#view"><?= _( 'View' ) ?></a></li>
-							<li><a data-toggle="tab" href="#upload"><i class="fa fa-cloud-upload"></i> </a></li>
+							<li><a data-toggle="tab" href="#view-tab"><?= _( 'View' ) ?></a></li>
+							<li class="active"><a data-toggle="tab" href="#upload-tab"><i class="fa fa-cloud-upload"></i> </a></li>
 							<li class="pull-left header"><?= _( 'Avatar' ) ?></li>
 						</ul>
 						<div class="tab-content">
-							<div id="view" class="tab-pane active">
-								resim ekleme
+							<div id="view-tab" class="tab-pane">
+								<?= HTML::image( '', 'User Image', array( 'class' => 'img-circle  center-block','width'=>'150px' ) ) ?>
 							</div><!-- /#view .tab-pane -->
-							<div id="upload" class="tab-pane">
-								<!-- todo avatar yükleme sayfası-->
-								henüz hazır değil
+							<div id="upload-tab" class="tab-pane active">
+								<?= Form::open( array(
+										'role'    => 'form',
+										'id'      => 'upload',
+										'action'  => 'AdminController@postAvatarUpload',
+										'method'  => 'post',
+										'enctype' => 'multipart/form-data' ) ) ?>
+								<div id="drop">
+									<?=_('Drop Here')?>
+
+									<a><?=_('Browse')?></a>
+									<input type="file" name="upl" />
+								</div>
+
+								<ul>
+									<!-- The file uploads will be shown here -->
+								</ul>
+								<?=Form::close()?>
 							</div><!-- /#upload .tab-pane -->
 						</div><!-- /.tab-content -->
 					</div><!-- /.nav-tabs-custom -->

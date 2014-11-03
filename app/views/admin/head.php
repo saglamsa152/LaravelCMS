@@ -24,6 +24,12 @@
 <?= HTML::style( 'assets/admin/css/AdminLTE.css' ) ?>
 <!-- DATA TABLES -->
 <?= HTML::style( 'assets/admin/css/datatables/dataTables.bootstrap.css' ) ?>
+<!-- mini-upload-form -->
+	<!-- Google web fonts -->
+	<?=HTML::style('//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700')?>
+	<!-- The main CSS file -->
+	<?=HTML::style('assets/admin/js/plugins/mini-upload-form/assets/css/style.css')?>
+<!--/ mini-upload-form -->
 <!-- Custom CSS -->
 <?= HTML::style( 'assets/admin/css/custom.css' ) ?>
 

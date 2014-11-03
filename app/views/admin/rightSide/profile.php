@@ -21,11 +21,13 @@
 					<?=
 					Form::open( array(
 							'role'   => 'form',
+							'id'     => 'user-form',
 							'class'  => 'ajaxForm form-horizontal',
 							'action' => 'AdminController@postUpdateUser',
 							'method' => 'post'
 					) )?>
 					<?=Form::hidden('id',$user->id)?>
+					<?=Form::hidden('meta[avatar]',$user->avatar)?>
 					<h4 class="page-header"><?= _( 'Personal Information' ) ?></h4>
 					<!-- Username -->
 					<div class="form-group col-md-6">
@@ -92,8 +94,12 @@
 					<!-- Counties -->
 					<?php
 					$counties = unserialize( Option::getOption( 'counties' ) );
-					asort($counties[$user->city]);
-					$counties = $counties[$user->city];
+					if ( !empty( $user->city ) ) {
+						asort( $counties[$user->city] );
+						$counties = $counties[$user->city];
+					}else{
+						$counties= array(_('First select a city'));
+					}
 					?>
 					<div class="form-group col-md-6">
 						<?= Form::label( 'meta[county]', _( 'County :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
@@ -168,18 +174,32 @@
 				<section class="col-md-3 no-padding">
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs pull-right">
-							<li class="active"><a data-toggle="tab" href="#view"><?= _( 'View' ) ?></a></li>
-							<li><a data-toggle="tab" href="#upload"><i class="fa fa-cloud-upload"></i> </a></li>
+							<li class="active"><a data-toggle="tab" href="#view-tab"><?= _( 'View' ) ?></a></li>
+							<li><a data-toggle="tab" href="#upload-tab"><i class="fa fa-cloud-upload"></i> </a></li>
 							<li class="pull-left header"><?= _( 'Avatar' ) ?></li>
 						</ul>
 						<div class="tab-content">
-							<div id="view" class="tab-pane active">
-								<?= HTML::image( $user->getAvatarUrl(150), 'User Image', array( 'class' => 'img-circle  center-block' ) ) ?>
+							<div id="view-tab" class="tab-pane active">
+								<?= HTML::image( $user->getAvatarUrl(150), 'User Image', array( 'class' => 'img-circle  center-block','width'=>'150px' ) ) ?>
 							</div><!-- /#view .tab-pane -->
-							<div id="upload" class="tab-pane">
-								<!-- todo avatar yükleme sayfası-->
-								henüz hazır değil
+							<div id="upload-tab" class="tab-pane">
+								<?= Form::open( array(
+										'role'    => 'form',
+										'id'      => 'upload',
+										'action'  => 'AdminController@postAvatarUpload',
+										'method'  => 'post',
+										'enctype' => 'multipart/form-data' ) ) ?>
+								<div id="drop">
+									<?=_('Drop Here')?>
 
+									<a><?=_('Browse')?></a>
+									<input type="file" name="upl" />
+								</div>
+
+								<ul>
+									<!-- The file uploads will be shown here -->
+								</ul>
+								<?=Form::close()?>
 							</div><!-- /#upload .tab-pane -->
 						</div><!-- /.tab-content -->
 					</div><!-- /.nav-tabs-custom -->
@@ -187,7 +207,7 @@
 				<!-- Password Update -->
 				<section class="col-md-3 no-padding">
 					<div id="updatePassword" class="box box-primary">
-						<div title="" data-toggle="tooltip" class="box-header" data-original-title="Header tooltip">
+						<div class="box-header" >
 							<h3 class="box-title"><?=_('Password Update')?></h3>
 							<div class="box-tools pull-right">
 								<button data-widget="collapse" class="btn btn-primary btn-xs"><i class="fa fa-minus"></i></button>
