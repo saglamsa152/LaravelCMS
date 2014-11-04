@@ -18,7 +18,7 @@ $(function(){
         // either via the browse button, or via drag/drop:
         add: function (e, data) {
 
-					$('#view-tab img').attr('src','/assets/uploads/profile_image/'+data.files[0].name+'');
+					$('#view-tab img').attr('src','http://'+window.location.host+'/assets/uploads/profile_image/'+data.files[0].name+'');
 					$('a[href="#view-tab"]').trigger('click');
 					$('#user-form input[name="meta[avatar]"]').val('/assets/uploads/profile_image/'+data.files[0].name+'');
 						var tpl = $('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
