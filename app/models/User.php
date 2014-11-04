@@ -91,7 +91,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		foreach ( $user->userMeta as $meta ) {
 			$user = array_add( $user, $meta->metaKey, $meta->metaValue );
 		}
-		if ( $user->avatar =='' ) { //get_gravatar
+		if ( $user->avatar === null) { //get_gravatar
 			$avatar_url = 'http://www.gravatar.com/avatar/';
 			$avatar_url .= md5( strtolower( trim( $user->email ) ) );
 			$avatar_url .= "?s=$s&d=$d&r=$r";

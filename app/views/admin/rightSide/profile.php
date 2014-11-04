@@ -181,8 +181,13 @@
 						<div class="tab-content">
 							<div id="view-tab" class="tab-pane active">
 								<?= HTML::image( $user->getAvatarUrl(150), 'User Image', array( 'class' => 'img-circle  center-block','width'=>'150px' ) ) ?>
+								<button id="clear" type="button" class="btn btn-danger pull-right"><?= _( 'Clear' ) ?></button>
+								<div class="clearfix"></div>
 							</div><!-- /#view .tab-pane -->
-							<div id="upload-tab" class="tab-pane">
+							<div id="upload-tab" class="tab-pane" data-trigger="hover" data-placement="left" data-title="Gravatar">
+								<div class="hidden" id="gravatar-message">
+									<?=_('Eğer Gravatar kullanıyosanız resim yüklemenize gerek yok.Gravatar resminiz gözükecektir ')?>
+								</div>
 								<?= Form::open( array(
 										'role'    => 'form',
 										'id'      => 'upload',
@@ -200,6 +205,11 @@
 									<!-- The file uploads will be shown here -->
 								</ul>
 								<?=Form::close()?>
+								<script type="text/javascript">
+									$(function(){
+										$('#upload-tab').popover({content:$('#gravatar-message').html()});
+									});
+								</script>
 							</div><!-- /#upload .tab-pane -->
 						</div><!-- /.tab-content -->
 					</div><!-- /.nav-tabs-custom -->
@@ -210,7 +220,7 @@
 						<div class="box-header" >
 							<h3 class="box-title"><?=_('Password Update')?></h3>
 							<div class="box-tools pull-right">
-								<button data-widget="collapse" class="btn btn-primary btn-xs"><i class="fa fa-minus"></i></button>
+								<button id="collapseButton" data-widget="collapse" class="btn btn-primary btn-xs"><i class="fa fa-minus"></i></button>
 							</div>
 						</div>
 						<div class="box-body" style="display: block;">

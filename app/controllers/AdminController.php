@@ -128,7 +128,7 @@ class AdminController extends BaseController {
 					if ( $value == '' ) continue;
 					$userMeta->setMeta( $postData['id'], $key, $value );
 				}
-				$response = array( 'status' => 'success', 'msg' => 'Saved successfully' );
+				$response = array( 'status' => 'success', 'msg' => 'Saved successfully','redirect'=>'#' );
 				//todo hata mesajı
 				return Response::json( $response );
 			}

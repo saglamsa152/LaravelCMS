@@ -26,7 +26,7 @@
 							'action' => 'AdminController@postAddUser',
 							'method' => 'post'
 					) ) ?>
-					<?=Form::hidden('meta[avatar]','')?>
+					<?=Form::hidden('meta[avatar]',null)?>
 					<h4 class="page-header"><?= _( 'Personal Information' ) ?></h4>
 					<!-- Username -->
 					<div class="form-group col-md-6">
@@ -160,7 +160,7 @@
 
 					<?= Form::close() ?>
 				</section><!-- /.col-md-9 -->
-
+				<!-- Avatar upload -->
 				<section class="col-md-3 no-padding">
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs pull-right">
@@ -170,9 +170,16 @@
 						</ul>
 						<div class="tab-content">
 							<div id="view-tab" class="tab-pane">
-								<?= HTML::image( '', 'User Image', array( 'class' => 'img-circle  center-block','width'=>'150px' ) ) ?>
+								<div class="tab-content">
+									<?= HTML::image( '', 'User Image', array( 'class' => 'img-circle  center-block', 'width' => '150px' ) ) ?>
+									<button id="clear" type="button" class="btn btn-danger pull-right"><?= _( 'Clear' ) ?></button>
+									<div class="clearfix"></div>
+								</div>
 							</div><!-- /#view .tab-pane -->
-							<div id="upload-tab" class="tab-pane active">
+							<div id="upload-tab" class="tab-pane active" data-trigger="hover" data-placement="left" data-title="Gravatar">
+								<div class="hidden" id="gravatar-message">
+									<?=_('Eğer Gravatar kullanıyosanız resim yüklemenize gerek yok.Gravatar resminiz gözükecektir ')?>
+								</div>
 								<?= Form::open( array(
 										'role'    => 'form',
 										'id'      => 'upload',
@@ -190,6 +197,11 @@
 									<!-- The file uploads will be shown here -->
 								</ul>
 								<?=Form::close()?>
+								<script type="text/javascript">
+									$(function(){
+										$('#upload-tab').popover({content:$('#gravatar-message').html()});
+									});
+								</script>
 							</div><!-- /#upload .tab-pane -->
 						</div><!-- /.tab-content -->
 					</div><!-- /.nav-tabs-custom -->

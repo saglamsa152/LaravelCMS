@@ -64,7 +64,7 @@ $(function () {
 					$(this).children('.close').click(function () {
 						$(this).parent().fadeOut('slow', function () {
 							$(this).remove()
-							if (jQuery.type(returnData['redirect'] != 'undefined')) {
+							if (jQuery.type(returnData['redirect']) != 'undefined') {
 								window.location.replace(returnData['redirect']);
 							}
 						});
@@ -77,6 +77,9 @@ $(function () {
 		});
 		return false;
 	});
+	//Şifre değiştirme kutusu sayfa yüklendiğinde kapalı olsun
+	setTimeout(function(){$('#collapseButton').trigger('click');},500);
+
 	$('.ajaxFormPassword').on('submit', function () {
 		$('#updatePassword').append('<div class="overlay">' +
 		'<div class="spinner">' +
@@ -153,6 +156,14 @@ $(function () {
 			$("select[name='meta[county]'] option").remove();
 			$("select[name='meta[county]'] ").append(out);
 		});
+	});
+
+	/**
+	 * üye ekleme ve profil düzenleme sayfasında avatarı kaldırma işlemini yapar
+	 */
+	$('#view-tab #clear').click(function(){
+		$('#view-tab img').attr('src',null);
+		$('#user-form input[name="meta[avatar]"]').val(null);
 	});
 
 });//ready function
