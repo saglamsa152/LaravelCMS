@@ -24,6 +24,8 @@
 <?= HTML::style( 'assets/admin/css/AdminLTE.css' ) ?>
 <!-- DATA TABLES -->
 <?= HTML::style( 'assets/admin/css/datatables/dataTables.bootstrap.css' ) ?>
+<?= HTML::style( 'assets/admin/css/datatables/jquery.dataTables.min.css' ) ?>
+<?= HTML::style( 'assets/admin/css/datatables/jquery.dataTables_themeroller.css' ) ?>
 <!-- mini-upload-form -->
 	<!-- Google web fonts -->
 	<?=HTML::style('//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700')?>

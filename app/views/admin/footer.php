@@ -23,7 +23,7 @@
 <!-- iCheck -->
 <?=HTML::script('assets/admin/js/plugins/iCheck/icheck.min.js')?>
 <!-- DATA TABES SCRIPT -->
-<?=HTML::script('assets/admin/js/plugins/datatables/jquery.dataTables.js')?>
+<?=HTML::script('assets/admin/js/plugins/datatables/jquery.dataTables.min.js')?>
 <?=HTML::script('assets/admin/js/plugins/datatables/dataTables.bootstrap.js')?>
 <!-- CK Editor -->
 <?=HTML::script('assets/admin/js/plugins/ckeditor/ckeditor.js')?>
