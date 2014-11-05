@@ -188,8 +188,6 @@ $(function() {
             }
         ],
         buttonText: {//This is to add icons to the visible buttons
-            prev: "<span class='fa fa-caret-left'></span>",
-            next: "<span class='fa fa-caret-right'></span>",
             today: 'today',
             month: 'month',
             week: 'week',
