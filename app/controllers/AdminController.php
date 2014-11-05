@@ -125,11 +125,10 @@ class AdminController extends BaseController {
 				//userMeta modelini statik olmayan metodlarını kullanmak için değişkene aktarıyoruz
 				$userMeta = new UserMeta();
 				foreach ( $metas as $key => $value ) {
-					if ( $value == '' ) continue;
+					if ( is_null($value) ) continue;
 					$userMeta->setMeta( $postData['id'], $key, $value );
 				}
-				$response = array( 'status' => 'success', 'msg' => 'Saved successfully','redirect'=>'#' );
-				//todo hata mesajı
+				$response = array( 'status' => 'success', 'msg' => 'Saved successfully','redirect'=>URL::action('AdminController@getProfile',$postData['id']) );
 				return Response::json( $response );
 			}
 		}
