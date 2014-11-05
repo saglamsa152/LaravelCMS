@@ -17,7 +17,7 @@
 <!-- jvectormap -->
 <?= HTML::style( 'assets/admin/css/jvectormap/jquery-jvectormap-1.2.2.css' ) ?>
 <!-- fullCalendar -->
-<?= HTML::style( 'assets/admin/css/fullcalendar/fullcalendar.css' ) ?>
+<?= HTML::style( 'assets/admin/css/fullcalendar/fullcalendar.min.css' ) ?>
 <!-- Daterange picker -->
 <?= HTML::style( 'assets/admin/css/daterangepicker/daterangepicker-bs3.css' ) ?>
 <!-- Theme style -->

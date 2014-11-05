@@ -13,6 +13,7 @@
 <?=HTML::script('assets/admin/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')?>
 <?=HTML::script('assets/admin/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')?>
 <!-- fullCalendar -->
+<?=HTML::script('assets/admin/js/plugins/fullcalendar/lib/moment.min.js')?>
 <?=HTML::script('assets/admin/js/plugins/fullcalendar/fullcalendar.min.js')?>
 <!-- jQuery Knob Chart -->
 <?=HTML::script('assets/admin/js/plugins/jqueryKnob/jquery.knob.js')?>
