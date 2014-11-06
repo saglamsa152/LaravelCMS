@@ -44,6 +44,11 @@ class OptionsController extends BaseController {
 		}
 	}
 
+	/**
+	 * post metodu ile gönderilen il koduna göre ilçeleri döner
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
 	public function postCounties() {
 		$city_id = Input::get('city_id');
 		if ( is_null( $city_id ) ) return;

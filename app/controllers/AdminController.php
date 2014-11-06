@@ -228,12 +228,27 @@ class AdminController extends BaseController {
 			if ( !is_null( $id ) ) {
 				if ( $id != 1 && !in_array( '1', $id ) ):
 					User::destroy( $id );
-					$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully', 'redirect' => URL::action( 'AdminController@getUsers' ) );
+					$response = array( 'status' => 'success', 'msg' => _( 'Deleted Successfully' ), 'redirect' => URL::action( 'AdminController@getUsers' ) );
 				else:
-					$response = array( 'status' => 'danger', 'msg' => 'Admin can not be delete' );
+					$response = array( 'status' => 'danger', 'msg' => _( 'Admin can not be delete' ) );
 				endif;
-				return Response::json( $response );
 			}
+			return Response::json( $response );
+		}
+	}
+
+	public function postApproveUser() {
+		if ( Request::ajax() ) {
+			$id  = Input::get( 'id' );
+			$ids = array();
+			( !empty( $id ) && !is_array( $id ) ) ? $ids[] = $id : $ids = $id; //tekil işlemler için değişkeni dizi yapıyoruz
+			if ( User::whereIn( 'id', $ids )->where( 'role', '=', 'unapproved' )->update( array( 'role' => 'user' ) ) ):
+				$response = array( 'status' => 'success', 'msg' => _( 'Approved Successfully' ), 'redirect' => URL::action( 'AdminController@getUsers' ) );
+			else:
+				$response = array( 'status' => 'danger', 'msg' => _( 'Already approved' ) );
+			endif;
+
+			return Response::json( $response );
 		}
 	}
 
@@ -558,13 +573,13 @@ class AdminController extends BaseController {
 					'username'   => $postData['username'],
 					'email'      => $postData['email'],
 					'password'   => Hash::make( $postData['password'] ),
-					'role'       => 'user',
+					'role'       => 'unapproved',
 					'created_ip' => Request::getClientIp()
 			) );
 
 			//oturum açalım
 			Auth::Login( $user );
-			return Redirect::action( 'AdminController@getIndex' );
+			return Redirect::action( 'AdminController@getProfile' );
 		}
 	}
 

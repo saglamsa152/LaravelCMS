@@ -78,20 +78,25 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasMany( 'UserMeta', 'userId' );
 	}
 
+	public function getHtmlStatus() {
+		$labelClass = array( 'unapproved' => 'label-danger', 'admin' => 'label-success', 'user' => 'label-primary', 'editor' => 'label-warning' );
+		return '<span class="label ' . $labelClass[$this->role] . '">' . $this->role . '</span>';
+	}
+
 	/**
 	 * Kullanıcı rolleri
 	 * @return array
 	 */
 	public static function getRoles() {
-		return array( 'user' => _( 'User' ), 'admin' => _( 'Admin' ) );
+		return array( 'unapproved' => _( 'Unapproved' ), 'user' => _( 'User' ), 'editor' => _( 'Editor' ), 'admin' => _( 'Admin' ) );
 	}
 
-	public function getAvatarUrl( $s = 80, $d = 'mm', $r = 'g') {
+	public function getAvatarUrl( $s = 80, $d = 'mm', $r = 'g' ) {
 		$user = $this;
 		foreach ( $user->userMeta as $meta ) {
 			$user = array_add( $user, $meta->metaKey, $meta->metaValue );
 		}
-		if ( $user->avatar == null) { //get_gravatar
+		if ( $user->avatar == null ) { //get_gravatar
 			$avatar_url = 'http://www.gravatar.com/avatar/';
 			$avatar_url .= md5( strtolower( trim( $user->email ) ) );
 			$avatar_url .= "?s=$s&d=$d&r=$r";
