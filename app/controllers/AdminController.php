@@ -125,10 +125,10 @@ class AdminController extends BaseController {
 				//userMeta modelini statik olmayan metodlarını kullanmak için değişkene aktarıyoruz
 				$userMeta = new UserMeta();
 				foreach ( $metas as $key => $value ) {
-					if ( is_null($value) ) continue;
+					if ( is_null( $value ) ) continue;
 					$userMeta->setMeta( $postData['id'], $key, $value );
 				}
-				$response = array( 'status' => 'success', 'msg' => 'Saved successfully','redirect'=>URL::action('AdminController@getProfile',$postData['id']) );
+				$response = array( 'status' => 'success', 'msg' => 'Saved successfully', 'redirect' => URL::action( 'AdminController@getProfile', $postData['id'] ) );
 				return Response::json( $response );
 			}
 		}
@@ -226,9 +226,9 @@ class AdminController extends BaseController {
 		if ( Request::ajax() ) {
 			$id = Input::get( 'id' );
 			if ( !is_null( $id ) ) {
-				if ( $id != 1 ):
+				if ( $id != 1 && !in_array( '1', $id ) ):
 					User::destroy( $id );
-					$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully','redirect'=> URL::action('AdminController@getUsers') );
+					$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully', 'redirect' => URL::action( 'AdminController@getUsers' ) );
 				else:
 					$response = array( 'status' => 'danger', 'msg' => 'Admin can not be delete' );
 				endif;

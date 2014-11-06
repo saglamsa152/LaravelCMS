@@ -24,7 +24,6 @@
 <?= HTML::style( 'assets/admin/css/AdminLTE.css' ) ?>
 <!-- DATA TABLES -->
 <?= HTML::style( 'assets/admin/css/datatables/dataTables.bootstrap.css' ) ?>
-<?= HTML::style( 'assets/admin/css/datatables/jquery.dataTables.min.css' ) ?>
 <?= HTML::style( 'assets/admin/css/datatables/jquery.dataTables_themeroller.css' ) ?>
 <!-- mini-upload-form -->
 	<!-- Google web fonts -->
@@ -32,6 +31,8 @@
 	<!-- The main CSS file -->
 	<?=HTML::style('assets/admin/js/plugins/mini-upload-form/assets/css/style.css')?>
 <!--/ mini-upload-form -->
+<!-- iCheck -->
+<?= HTML::style( 'assets/admin/css/iCheck/minimal/_all.css' ) ?>
 <!-- Custom CSS -->
 <?= HTML::style( 'assets/admin/css/custom.css' ) ?>
 

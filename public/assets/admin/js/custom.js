@@ -161,9 +161,23 @@ $(function () {
 	/**
 	 * üye ekleme ve profil düzenleme sayfasında avatarı kaldırma işlemini yapar
 	 */
-	$('#view-tab #clear').click(function(){
-		$('#view-tab img').attr('src',null);
+	$('#view-tab #clear').click(function () {
+		$('#view-tab img').attr('src', null);
 		$('#user-form input[name="meta[avatar]"]').val(null);
 	});
 
+	/**
+	 * tablolardaki hepsini seç checkbox ı için
+	 */
+		//When unchecking the checkbox
+	var table= $("#check-all").parents('table');
+	$("#check-all").on('ifUnchecked', function (event) {
+		//Uncheck all checkboxes
+		$("input[type='checkbox']",table).iCheck("uncheck");
+	});
+	//When checking the checkbox
+	$("#check-all").on('ifChecked', function (event) {
+		//Check all checkboxes
+		$("input[type='checkbox']",table).iCheck("check");
+	});
 });//ready function

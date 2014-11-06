@@ -130,8 +130,8 @@ $(function() {
      * You can find the documentation at http://fronteed.com/iCheck/
      */
     $("input[type='checkbox'], input[type='radio']").iCheck({
-        checkboxClass: 'icheckbox_minimal',
-        radioClass: 'iradio_minimal'
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
     });
 
     /* For demo purposes */
