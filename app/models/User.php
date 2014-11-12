@@ -78,6 +78,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasMany( 'UserMeta', 'userId' );
 	}
 
+	/**
+	 * Kullanıcıların listelendiği tabloda kullanmak için kullanıcı rolüne uygun olarak
+	 * bootstrap labeli döndürür
+	 * @return string
+	 */
 	public function getHtmlStatus() {
 		$labelClass = array( 'unapproved' => 'label-danger', 'admin' => 'label-success', 'user' => 'label-primary', 'editor' => 'label-warning' );
 		return '<span class="label ' . $labelClass[$this->role] . '">' . $this->role . '</span>';
@@ -91,6 +96,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return array( 'unapproved' => _( 'Unapproved' ), 'user' => _( 'User' ), 'editor' => _( 'Editor' ), 'admin' => _( 'Admin' ) );
 	}
 
+	/**
+	 * Kulllanıcının profil resminin adresini döndürür
+	 *
+	 * eğer bir avatar yüklenmemişse gravatar adresini döndürür
+	 * @param int    $s
+	 * @param string $d
+	 * @param string $r
+	 *
+	 * @return mixed|string
+	 */
 	public function getAvatarUrl( $s = 80, $d = 'mm', $r = 'g' ) {
 		$user = $this;
 		foreach ( $user->userMeta as $meta ) {
