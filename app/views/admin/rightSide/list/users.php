@@ -27,7 +27,7 @@
 						<table id="users-table" class="table table-bordered table-striped dataTable text-center">
 							<thead>
 							<tr>
-								<th>Id</th>
+								<th>Id<?= $errors->count()?></th>
 								<th><?= _( 'Username' ) ?></th>
 								<th><?= _( 'Name - Lastname' ) ?></th>
 								<th><?= _( 'email' ) ?></th>
@@ -69,6 +69,7 @@
 														<?= _( 'Approve' ) ?>
 													</a>
 												</li>
+												<?php if ( userCan( 'deleteUser' ) ): ?>
 												<li>
 													<?= Form::open( array( 'id' => 'deleteForm-' . $user->id, 'method' => 'post', 'action' => 'AdminController@postDeleteUser', 'class' => 'ajaxForm' ) ) ?>
 													<?= Form::hidden( 'id', $user->id ) ?>
@@ -78,6 +79,7 @@
 														<?= _( 'Delete' ) ?>
 													</a>
 												</li>
+												<?php endif ?>
 											</ul>
 										</div>
 										<?= Form::checkbox( 'deleteID-' . $user->id, $user->id ) ?>

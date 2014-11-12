@@ -54,16 +54,17 @@ class AdminController extends BaseController {
 	 * @return mixed
 	 */
 	public function getUsers() {
-		$title     = _( 'Users' );
-		$rightSide = 'list/users';
-		$users     = User::all();
-		/* User meta tablosu  eklenince  aktif  edilecek
-		 * foreach ( $users as $user ) {
-			foreach($user->userMeta as $meta){
-				$user=array_add($user,$meta->metaKey,$meta->metaValue);
-			}
-		}*/
-		return View::make( 'admin.index' )->with( compact( 'users', 'title', 'rightSide' ) );
+		if(userCan('manageUsers')) {
+			$title     = _( 'Users' );
+			$rightSide = 'list/users';
+			$users     = User::all();
+			$error     = null;
+		}else{
+			$title= _('Permition Error');
+			$rightSide = 'error';
+			$error=_('You do not have permission to access this page');
+		}
+		return View::make( 'admin.index' )->with( compact( 'users', 'title', 'rightSide' ) )->withErrors($error);
 	}
 
 	/**
@@ -72,7 +73,13 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getProfile( $id = null ) {
-		is_null( $id ) ? $id = Auth::user()->id : $id = $id;
+		/*
+		 * Eğer kullanıcının kullanıcıları düzenleme yetkisi yok ise
+		 * veya id değeri null  ise kullanıcının kendi  sayfası gösterilsin
+		 */
+		if ( !userCan( 'manageUsers' ) || is_null( $id ) ) {
+			$id = Auth::user()->id;
+		}
 		$user = User::with( 'post' )->find( $id );
 		foreach ( $user->userMeta as $meta ) {
 			$user = array_add( $user, $meta->metaKey, $meta->metaValue );

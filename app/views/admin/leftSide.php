@@ -37,7 +37,8 @@
 				</a>
 			</li>
 			<!-- /Dashboard -->
-			<!-- Users -->
+			<!-- Users or Profile -->
+			<?php if(userCan('manageUsers')):?>
 			<li class="treeview <?php if(str_contains(URL::current(),'user')) echo ' active'?>">
 				<a href="">
 					<i class="fa fa-users"></i>
@@ -49,7 +50,14 @@
 					<li><a href="<?=URL::action('AdminController@getAddUser')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
 				</ul>
 			</li>
-			<!-- /Users -->
+			<?php else: ?>
+				<li class="<?php if(str_contains(URL::current(),'/profile')) echo ' active'?>">
+					<a href="<?=URL::action('AdminController@getProfile')?>">
+						<i class="fa fa-user"></i> <span><?=_('Profile')?></span>
+					</a>
+				</li>
+			<?php endif; ?>
+			<!-- /Users or Profile-->
 			<!-- News -->
 			<li class="treeview <?php if(str_contains(URL::current(),'news')) echo ' active'?>">
 				<a href="">

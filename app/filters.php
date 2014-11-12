@@ -32,6 +32,43 @@ App::before( function ( $request ) {
 
 // burada da kataloğumuzun adını belirtiyoruz.
 	textdomain( $katalog );
+	/**
+	 * kullanıcı yetkisine göre yapabileceği işlemleri  belirliyen fonksiyon
+	 * todo bu işle  Auth sınıfı  genişletilerek yapılmalı
+	 *
+	 * @param $action
+	 *
+	 * @return bool
+	 */
+	function userCan( $action ) {
+		$user    = Auth::user();
+		$result  = false;
+		$actions = array(
+				'manageUsers'    => [ 'admin', 'editor' ],
+				'editUserRole'   => [ 'admin' ],
+				'deleteUser'     => [ 'admin' ],
+				'managePost'     => [ 'admin', 'editor' ],
+				'manageUserRole' => [ 'admin' ],
+				'manageOptions'  => [ 'admin' ]
+		);
+		if ( is_array( $action ) ) {
+			foreach ( $action as $a ) {
+				if ( array_key_exists( $a, $actions ) ) {
+					$acceptRoles = $actions[$a];
+					if ( in_array( $user->role, $acceptRoles ) ) $result = true;
+				}
+			}
+		}
+		else {
+			if ( array_key_exists( $action, $actions ) ) {
+				$acceptRoles = $actions[$action];
+				if ( in_array( $user->role, $acceptRoles ) ) $result = true;
+			}
+		}
+
+		return $result;
+	}
+
 } );
 
 

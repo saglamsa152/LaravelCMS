@@ -42,5 +42,5 @@
 <?=HTML::script('https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')?>
 <?=HTML::script('https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js')?>
 <![endif]-->
-<!-- jQuery 2.0.2 -->
-<?=HTML::script('http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js')?>
+<!-- jQuery 2.1.1 -->
+<?=HTML::script('assets/js/jquery-2.1.1.min.js')?>

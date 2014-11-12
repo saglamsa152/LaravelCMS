@@ -38,13 +38,14 @@
 					</div><!-- /.form group -->
 
 					<!-- Role -->
+					<?php if ( userCan( 'editUserRole' ) ): ?>
 					<div class="form-group col-md-6">
 						<?= Form::label( 'role', _( 'User Role :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
 							<?= Form::select('role',User::getRoles(),$user->role,array( 'class' => 'form-control ' ))?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
-
+					<?php endif ?>
 					<!-- Name -->
 					<div class="form-group col-md-6">
 						<?= Form::label( 'name', _( 'Name :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
@@ -215,6 +216,7 @@
 					</div><!-- /.nav-tabs-custom -->
 				</section><!-- /.col-md-3 -->
 				<!-- Password Update -->
+				<?php if ( Auth::user()->id == $user->id ): ?>
 				<section class="col-md-3 no-padding">
 					<div id="updatePassword" class="box box-primary">
 						<div class="box-header" >
@@ -269,6 +271,7 @@
 						<?=Form::close()?>
 					</div><!-- /.box box-primary-->
 				</section><!-- /.col-md-3 -->
+			<?php endif;?>
 			</div>
 
 		</div>
