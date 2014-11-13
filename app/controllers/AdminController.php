@@ -54,17 +54,18 @@ class AdminController extends BaseController {
 	 * @return mixed
 	 */
 	public function getUsers() {
-		if(userCan('manageUsers')) {
+		if ( userCan( 'manageUsers' ) ) {
 			$title     = _( 'Users' );
 			$rightSide = 'list/users';
 			$users     = User::all();
 			$error     = null;
-		}else{
-			$title= _('Permition Error');
-			$rightSide = 'error';
-			$error=_('You do not have permission to access this page');
 		}
-		return View::make( 'admin.index' )->with( compact( 'users', 'title', 'rightSide' ) )->withErrors($error);
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'users', 'title', 'rightSide' ) )->withErrors( $error );
 	}
 
 	/**
@@ -93,9 +94,17 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getAddUser() {
-		$title     = _( 'Add New User' );
-		$rightSide = 'add/user';
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
+		if ( userCan( 'addUser' ) ) {
+			$title     = _( 'Add New User' );
+			$rightSide = 'add/user';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
 	}
 
 	/**
@@ -264,23 +273,40 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getNews() {
-		$title = _( 'News Management Page' );
-		$news  = Post::news()->with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->get();
-		foreach ( $news as $new ) {
-			foreach ( $new->postMeta as $meta ) {
-				$new = array_add( $new, $meta->metaKey, $meta->metaValue );
+		if ( userCan( 'manageNews' ) ) {
+			$title     = _( 'News Management Page' );
+			$rightSide = 'list/news';
+			$news      = Post::news()->with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->get();
+			foreach ( $news as $new ) {
+				foreach ( $new->postMeta as $meta ) {
+					$new = array_add( $new, $meta->metaKey, $meta->metaValue );
+				}
 			}
+			$error = null;
 		}
-		return View::make( 'admin.index' )->with( array( 'news' => $news, 'title' => $title, 'rightSide' => 'list/news' ) );
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide', 'news' ) )->withErrors( $error );
 	}
 
 	/**
 	 * Yeni gönderi oluşturma sayfası
 	 */
 	public function getAddNews() {
-		$title     = 'New Post';
-		$rightSide = 'add/news';
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
+		if ( userCan( 'manageNews' ) ) {
+			$title     = 'New Post';
+			$rightSide = 'add/news';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
 	}
 
 	/**
@@ -289,13 +315,22 @@ class AdminController extends BaseController {
 	 * @return bool|\Illuminate\View\View
 	 */
 	public function getUpdateNews( $id = null ) {
-		if ( is_null( $id ) ) return false; //todo hata sayfası
-		$title = _( 'Update News' );
-		$news  = Post::news()->with( 'postMeta' )->find( $id );
-		foreach ( $news->postMeta as $meta ) {
-			$news = array_add( $news, $meta->metaKey, $meta->metaValue );
+		if ( is_null( $id ) ) return false;
+		if ( userCan( 'manageNews' ) ) {
+			$title     = _( 'Update News' );
+			$news      = Post::news()->with( 'postMeta' )->find( $id );
+			$rightSide = 'update/news';
+			foreach ( $news->postMeta as $meta ) {
+				$news = array_add( $news, $meta->metaKey, $meta->metaValue );
+			}
+			$error = null;
 		}
-		return View::make( 'admin.update.news' )->with( array( 'news' => $news, 'title' => $title ) );
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide', 'news' ) )->withErrors( $error );
 	}
 
 	/* Slider */
@@ -304,25 +339,40 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getSlider() {
-		$title     = _( 'Slider Management Page' );
-		$slides    = Post::slider()->with( 'postMeta' )->orderBy( 'created_at', 'desc' )->get();
-		$rightSide = 'list/slider';
-		foreach ( $slides as $slide ) {
-			foreach ( $slide->postMeta as $meta ) {
-				$slide = array_add( $slide, $meta->metaKey, $meta->metaValue );
+		if ( userCan( 'manageSlider' ) ) {
+			$title     = _( 'Slider Management Page' );
+			$slides    = Post::slider()->with( 'postMeta' )->orderBy( 'created_at', 'desc' )->get();
+			$rightSide = 'list/slider';
+			foreach ( $slides as $slide ) {
+				foreach ( $slide->postMeta as $meta ) {
+					$slide = array_add( $slide, $meta->metaKey, $meta->metaValue );
+				}
 			}
+			$error = null;
 		}
-
-		return View::make( 'admin.index' )->with( compact( 'title', 'slides', 'rightSide' ) );
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'slides', 'rightSide' ) )->withErrors( $error );
 	}
 
 	/**
 	 * @return \Illuminate\View\View
 	 */
 	public function getAddSlide() {
-		$title     = _( 'Add New Slide' );
-		$rightSide = 'add/slide';
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
+		if ( userCan( 'manageSlider' ) ) {
+			$title     = _( 'Add New Slide' );
+			$rightSide = 'add/slide';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
 	}
 
 	/**
@@ -331,13 +381,22 @@ class AdminController extends BaseController {
 	 * @return bool|\Illuminate\View\View
 	 */
 	public function getUpdateSlide( $id = null ) {
-		if ( is_null( $id ) ) return false; //todo hata sayfası
-		$title = _( 'Update Slide' );
-		$slide = Post::slider()->with( 'postMeta' )->find( $id );
-		foreach ( $slide->postMeta as $meta ) {
-			$slide = array_add( $slide, $meta->metaKey, $meta->metaValue );
+		if ( is_null( $id ) ) return false;
+		if ( userCan( 'manageSlider' ) ) {
+			$title     = _( 'Update Slide' );
+			$rightSide = 'update/slide';
+			$slide     = Post::slider()->with( 'postMeta' )->find( $id );
+			foreach ( $slide->postMeta as $meta ) {
+				$slide = array_add( $slide, $meta->metaKey, $meta->metaValue );
+			}
+			$error = null;
 		}
-		return View::make( 'admin.update.slide' )->with( array( 'slide' => $slide, 'title' => $title ) );
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide', 'slide' ) )->withErrors( $error );
 	}
 
 	/* Services */
@@ -346,34 +405,59 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getServices() {
-		$title     = _( 'Services' );
-		$services  = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->service()->get();
-		$rightSide = 'list/services';
-		foreach ( $services as $service ) {
-			foreach ( $service->postMeta as $meta ) {
-				$service = array_add( $service, $meta->metaKey, $meta->metaValue );
+		if ( userCan( 'manageService' ) ) {
+			$title     = _( 'Services' );
+			$services  = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->service()->get();
+			$rightSide = 'list/services';
+			foreach ( $services as $service ) {
+				foreach ( $service->postMeta as $meta ) {
+					$service = array_add( $service, $meta->metaKey, $meta->metaValue );
+				}
 			}
+			$error = null;
 		}
-		return View::make( 'admin.index' )->with( compact( 'title', 'services', 'rightSide' ) );
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'services', 'rightSide' ) )->withErrors( $error );
 	}
 
 	/**
 	 * @return \Illuminate\View\View
 	 */
 	public function getAddService() {
-		$title     = _( 'Add New Service' );
-		$rightSide = 'add/service';
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
+		if ( userCan( 'manageService' ) ) {
+			$title     = _( 'Add New Service' );
+			$rightSide = 'add/service';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
 	}
 
 	public function getUpdateService( $id = null ) {
-		if ( is_null( $id ) ) return false; //todo hata sayfası
-		$title   = _( 'Update News' );
-		$service = Post::service()->with( 'postMeta' )->find( $id );
-		foreach ( $service->postMeta as $meta ) {
-			$service = array_add( $service, $meta->metaKey, $meta->metaValue );
+		if ( is_null( $id ) ) return false;
+		if ( userCan( 'manageService' ) ) {
+			$title     = _( 'Update News' );
+			$rightSide = 'update/service';
+			$service   = Post::service()->with( 'postMeta' )->find( $id );
+			foreach ( $service->postMeta as $meta ) {
+				$service = array_add( $service, $meta->metaKey, $meta->metaValue );
+			}
+			$error = null;
 		}
-		return View::make( 'admin.update.service' )->with( array( 'service' => $service, 'title' => $title ) );
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide', 'service' ) )->withErrors( $error );
 	}
 
 	/* Products */
@@ -382,34 +466,59 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getProducts() {
-		$title     = _( 'Products' );
-		$products  = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->product()->get();
-		$rightSide = 'list/products';
-		foreach ( $products as $product ) {
-			foreach ( $product->postMeta as $meta ) {
-				$product = array_add( $product, $meta->metaKey, $meta->metaValue );
+		if ( userCan( 'manageProduct' ) ) {
+			$title     = _( 'Products' );
+			$products  = Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->product()->get();
+			$rightSide = 'list/products';
+			foreach ( $products as $product ) {
+				foreach ( $product->postMeta as $meta ) {
+					$product = array_add( $product, $meta->metaKey, $meta->metaValue );
+				}
 			}
+			$error = null;
 		}
-		return View::make( 'admin.index' )->with( compact( 'title', 'products', 'rightSide' ) );
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'products', 'rightSide' ) )->withErrors( $error );
 	}
 
 	/**
 	 * @return \Illuminate\View\View
 	 */
 	public function getAddProduct() {
-		$title     = _( 'Add New Product' );
-		$rightSide = 'add/product';
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
+		if ( userCan( 'namageProduct' ) ) {
+			$title     = _( 'Add New Product' );
+			$rightSide = 'add/product';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
 	}
 
 	public function getUpdateProduct( $id = null ) {
-		if ( is_null( $id ) ) return false; //todo hata sayfası
-		$title   = _( 'Update News' );
-		$product = Post::product()->with( 'postMeta' )->find( $id );
-		foreach ( $product->postMeta as $meta ) {
-			$product = array_add( $product, $meta->metaKey, $meta->metaValue );
+		if ( is_null( $id ) ) return false;
+		if ( userCan( 'namageProduct' ) ) {
+			$title     = _( 'Update News' );
+			$rightSide = 'update/product';
+			$product   = Post::product()->with( 'postMeta' )->find( $id );
+			foreach ( $product->postMeta as $meta ) {
+				$product = array_add( $product, $meta->metaKey, $meta->metaValue );
+			}
+			$error = null;
 		}
-		return View::make( 'admin.update.product' )->with( array( 'product' => $product, 'title' => $title ) );
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.update.product' )->with( compact( 'title', 'rightSide', 'product' ) )->withErrors( $error );
 	}
 
 	/* Contacts */
@@ -492,13 +601,21 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getOrders() {
-		$title     = _( 'Orders' );
-		$rightSide = 'list/orders';
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
+		if ( userCan( 'manageOrders' ) ) {
+			$title     = _( 'Orders' );
+			$rightSide = 'list/orders';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
 	}
 
 	/*
-	 * post işlemleri
+	 * post istekleri
 	 */
 
 	/**
