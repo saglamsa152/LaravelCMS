@@ -47,7 +47,9 @@
 				</a>
 				<ul class="treeview-menu">
 					<li><a href="<?=URL::action('AdminController@getUsers')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
+					<?php if(userCan('addUser')): ?>
 					<li><a href="<?=URL::action('AdminController@getAddUser')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
+					<?php endif ?>
 				</ul>
 			</li>
 			<?php else: ?>
@@ -59,68 +61,78 @@
 			<?php endif; ?>
 			<!-- /Users or Profile-->
 			<!-- News -->
-			<li class="treeview <?php if(str_contains(URL::current(),'news')) echo ' active'?>">
-				<a href="">
-					<i class="fa  fa-laptop"></i>
-					<span><?=_('News')?></span>
-					<i class="fa fa-angle-left pull-right"></i>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="<?=URL::action('AdminController@getNews')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-					<li><a href="<?=URL::action('AdminController@getAddNews')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
-				</ul>
-			</li>
+			<?php if(userCan('manageNews')):?>
+				<li class="treeview <?php if(str_contains(URL::current(),'news')) echo ' active'?>">
+					<a href="">
+						<i class="fa  fa-laptop"></i>
+						<span><?=_('News')?></span>
+						<i class="fa fa-angle-left pull-right"></i>
+					</a>
+					<ul class="treeview-menu">
+						<li><a href="<?=URL::action('AdminController@getNews')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
+						<li><a href="<?=URL::action('AdminController@getAddNews')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
+					</ul>
+				</li>
+			<?php endif; ?>
 			<!-- /News -->
 			<!-- Slider -->
-			<li class="treeview <?php if(str_contains(URL::current(),'slider')) echo ' active'?>">
-				<a href="">
-					<i class="fa fa-ellipsis-h"></i>
-					<span><?=_('Slider')?></span>
-					<i class="fa fa-angle-left pull-right"></i>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="<?=URL::action('AdminController@getSlider')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-					<li><a href="<?=URL::action('AdminController@getAddSlide')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
-				</ul>
-			</li>
+			<?php if(userCan('manageSlider')): ?>
+				<li class="treeview <?php if(str_contains(URL::current(),'slider')) echo ' active'?>">
+					<a href="">
+						<i class="fa fa-ellipsis-h"></i>
+						<span><?=_('Slider')?></span>
+						<i class="fa fa-angle-left pull-right"></i>
+					</a>
+					<ul class="treeview-menu">
+						<li><a href="<?=URL::action('AdminController@getSlider')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
+						<li><a href="<?=URL::action('AdminController@getAddSlide')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
+					</ul>
+				</li>
+			<?php endif; ?>
 			<!-- /Slider -->
 			<!-- Product -->
-			<li class="treeview <?php if(str_contains(URL::current(),'product')) echo ' active'?>">
-				<a href="">
-					<i class="fa fa-shopping-cart"></i>
-					<span><?=_('Products')?></span>
-					<i class="fa fa-angle-left pull-right"></i>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="<?=URL::action('AdminController@getProducts')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-					<li><a href="<?=URL::action('AdminController@getAddProduct')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
-				</ul>
-			</li>
+			<?php if(userCan('manageProduct')): ?>
+				<li class="treeview <?php if(str_contains(URL::current(),'product')) echo ' active'?>">
+					<a href="">
+						<i class="fa fa-shopping-cart"></i>
+						<span><?=_('Products')?></span>
+						<i class="fa fa-angle-left pull-right"></i>
+					</a>
+					<ul class="treeview-menu">
+						<li><a href="<?=URL::action('AdminController@getProducts')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
+						<li><a href="<?=URL::action('AdminController@getAddProduct')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
+					</ul>
+				</li>
+			<?php  endif; ?>
 			<!-- /Product -->
 			<!-- Services -->
-			<li class="treeview <?php if(str_contains(URL::current(),'service')) echo ' active'?>">
-				<a href="">
-					<i class="fa  fa-globe"></i>
-					<span><?=_('Services')?></span>
-					<i class="fa fa-angle-left pull-right"></i>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="<?=URL::action('AdminController@getServices')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-					<li><a href="<?=URL::action('AdminController@getAddService')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
-				</ul>
-			</li>
+			<?php if(userCan('manageService')): ?>
+				<li class="treeview <?php if(str_contains(URL::current(),'service')) echo ' active'?>">
+					<a href="">
+						<i class="fa  fa-globe"></i>
+						<span><?=_('Services')?></span>
+						<i class="fa fa-angle-left pull-right"></i>
+					</a>
+					<ul class="treeview-menu">
+						<li><a href="<?=URL::action('AdminController@getServices')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
+						<li><a href="<?=URL::action('AdminController@getAddService')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
+					</ul>
+				</li>
+			<?php endif; ?>
 			<!-- /Services -->
 			<!-- Orders -->
-			<li class="treeview <?php if(str_contains(URL::current(),'order')) echo ' active'?>">
-				<a href="">
-					<i class="fa fa-credit-card"></i>
-					<span><?=_('Orders')?></span>
-					<i class="fa fa-angle-left pull-right"></i>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="<?=URL::action('AdminController@getOrders')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-				</ul>
-			</li>
+			<?php if(userCan('manageOrders')): ?>
+				<li class="treeview <?php if(str_contains(URL::current(),'order')) echo ' active'?>">
+					<a href="">
+						<i class="fa fa-credit-card"></i>
+						<span><?=_('Orders')?></span>
+						<i class="fa fa-angle-left pull-right"></i>
+					</a>
+					<ul class="treeview-menu">
+						<li><a href="<?=URL::action('AdminController@getOrders')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
+					</ul>
+				</li>
+			<?php endif; ?>
 			<!-- /Orders -->
 			<!-- Contact -->
 			<li class="treeview <?php if(str_contains(URL::current(),'contact')) echo ' active'?>">
@@ -135,16 +147,18 @@
 			</li>
 			<!-- /Contact -->
 			<!-- Options -->
-			<li class="treeview <?php if(str_contains(URL::current(),'options')) echo ' active'?>">
-				<a href="">
-					<i class="fa  fa-cogs"></i>
-					<span><?=_('Options')?></span>
-					<i class="fa fa-angle-left pull-right"></i>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="<?=URL::action('OptionsController@getIndex')?>"><i class="fa fa-angle-double-right"></i> <?=_('General')?></a></li>
-				</ul>
-			</li>
+			<?php if(userCan('manageOptions')): ?>
+				<li class="treeview <?php if(str_contains(URL::current(),'options')) echo ' active'?>">
+					<a href="">
+						<i class="fa  fa-cogs"></i>
+						<span><?=_('Options')?></span>
+						<i class="fa fa-angle-left pull-right"></i>
+					</a>
+					<ul class="treeview-menu">
+						<li><a href="<?=URL::action('OptionsController@getIndex')?>"><i class="fa fa-angle-double-right"></i> <?=_('General')?></a></li>
+					</ul>
+				</li>
+			<?php endif; ?>
 			<!-- /Options -->
 		</ul>
 	</section>

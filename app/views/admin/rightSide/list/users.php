@@ -104,12 +104,14 @@
 											<span class="sr-only">Toggle Dropdown</span>
 										</button>
 										<ul role="menu" class="dropdown-menu">
+											<?php if(userCan('deleteUser')) :?>
 											<li>
 												<a href="#" data-link="<?= URL::action( 'AdminController@postDeleteUser' ) ?>">
 													<i class="fa fa-trash-o"></i>
 													<?= _( 'Delete' ) ?>
 												</a>
 											</li>
+											<?php endif ?>
 											<li>
 												<a href="#" data-link="<?= URL::action( 'AdminController@postApproveUser' ) ?>">
 													<i class="fa fa-check"></i>
