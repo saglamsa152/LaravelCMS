@@ -148,7 +148,7 @@ $(function () {
 	 * şehir seçildiğinde otomatik olark ilçe listesini getirmek için
 	 */
 	$("select[name='meta[city]']").change(function () {
-		$.post('http://www.ilklaravel.loc/admin/options/counties', {city_id: this.value}, function (counties) {
+		$.post('/admin/options/counties', {city_id: this.value}, function (counties) {
 			out = '';
 			$.each(counties, function (key, value) {
 				out += '<option value="' + key + '">' + value + '</option>';
