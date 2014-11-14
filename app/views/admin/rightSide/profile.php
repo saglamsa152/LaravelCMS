@@ -88,13 +88,13 @@
 					<div class="form-group col-md-6">
 						<?= Form::label( 'meta[city]', _( 'City :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
-							<?= Form::select( 'meta[city]', unserialize(Option::getOption('cities')), $user->city, array( 'class' => 'form-control ','data'=>'cities' ) ) ?>
+							<?= Form::select( 'meta[city]', Option::getOption('cities',null,true), $user->city, array( 'class' => 'form-control ','data'=>'cities' ) ) ?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
 
 					<!-- Counties -->
 					<?php
-					$counties = unserialize( Option::getOption( 'counties' ) );
+					$counties = Option::getOption( 'counties',null,true );
 					if ( !empty( $user->city ) ) {
 						asort( $counties[$user->city] );
 						$counties = $counties[$user->city];

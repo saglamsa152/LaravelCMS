@@ -17,22 +17,32 @@ class Option extends Eloquent {
 	public function scopeGeneral( $query ) {
 		return $query->where( 'optionType', '=', 'general' );
 	}
+
 	/**
-	 * @param string $key
-	 * @param string $type
+	 * @param      $key
+	 * @param null $type
+	 * @param bool $unserialize
 	 *
 	 * @return bool|mixed
 	 */
-	public static function getOption( $key, $type = null ) {
+	public static function getOption( $key, $type = null, $unserialize = false ) {
 		//todo statik olmaları tavsiye edilmiyor FACEDES olayi iyi anlaşılmalı
 		if ( is_null( $type ) ) $type = 'general';
 		$value = self::where( 'optionKey', '=', $key )->where( 'optionType', '=', $type )->pluck( 'optionValue' );
+		if ( $unserialize ) $value = unserialize( $value );
 		return is_null( $value ) ? false : $value;
 	}
 
-	public static function setOption( $key, $value, $type = null ) {
+	/**
+	 * @param      $key
+	 * @param      $value
+	 * @param null $type
+	 * @param bool $serialize
+	 */
+	public static function setOption( $key, $value, $type = null, $serialize = false ) {
 		//todo statik olmaları tavsiye edilmiyor FACEDES olayi iyi anlaşılmalı
 		if ( is_null( $type ) ) $type = 'general';
+		if ( $serialize ) $value = serialize( $value );
 		if ( self::getOption( $key, $type ) !== false ) {
 			self::where( 'optionKey', '=', $key )->update( array( 'optionValue' => $value ) );
 		}
