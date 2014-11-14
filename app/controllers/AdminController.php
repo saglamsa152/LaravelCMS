@@ -240,10 +240,10 @@ class AdminController extends BaseController {
 
 	public function postDeleteUser() {
 		if ( Request::ajax() ) {
-			$id = (array)Input::get( 'id' );
-			if ( !is_null( $id ) ) {
-				if ( $id != 1 && !in_array( '1', $id ) ):
-					User::destroy( $id );
+			$ids = (array) Input::get( 'id' );
+			if ( !is_null( $ids ) ) {
+				if ( !in_array( '1', $ids ) ):
+					User::destroy( $ids );
 					$response = array( 'status' => 'success', 'msg' => _( 'Deleted Successfully' ), 'redirect' => URL::action( 'AdminController@getUsers' ) );
 				else:
 					$response = array( 'status' => 'danger', 'msg' => _( 'Admin can not be delete' ) );
@@ -750,7 +750,9 @@ class AdminController extends BaseController {
 					}
 					$post->postMeta()->saveMany( $modelPostMeta );
 				}
-				$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Processing was carried out successfully' ) );
+				$actionToType=Option::getOption('postTypes','general',true);
+				$redirectAction='AdminController@get'.$actionToType[$postData['type']];//gönderinin türü ne ise o türün listesine yönlendirme için
+				$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Processing was carried out successfully' ),'redirect'=>URL::action($redirectAction) );
 				return Response::json( $ajaxResponse );
 			}
 		}
@@ -763,10 +765,10 @@ class AdminController extends BaseController {
 	 */
 	public function postDeletePost() {
 		if ( Request::ajax() ) {
-			$id = Input::get( 'id' );
-			if ( !is_null( $id ) ) {
-				Post::destroy( $id );
-				$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully' );
+			$ids = (array) Input::get( 'id' );
+			if ( !is_null( $ids || !empty( $ids ) ) ) {
+					Post::destroy( $ids );
+				$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully','redirect' => '' );
 				return Response::json( $response );
 			}
 		}
@@ -819,6 +821,26 @@ class AdminController extends BaseController {
 		}
 	}
 
+	/**
+	 * id bilgisi  verilen gönderinin durumunu değiştirir
+	 * publish ise task, task ise punlish
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function postTogglePostStatus() {
+		if ( Request::ajax() ) {
+			$ids = (array) Input::get( 'id' );
+			if ( !is_null( $ids ) || empty( $ids ) ) {
+				$status = [ 'publish' => 'task', 'task' => 'publish' ];
+				foreach ( $ids as $id ) {
+					$post         = Post::find( $id );
+					$post->status = $status[$post->status];
+					$post->save();
+				}
+				$response = array( 'status' => 'success', 'msg' => 'Status Changed', 'redirect' => '' );
+			}
+			return Response::json( $response );
+		}
+	}
 
 	/**
 	 * todo upload işlemleri  yapılınca taşınacak
