@@ -11,7 +11,7 @@
 	Kullanıcı Adınız:<?=$username?><br>
 	Şifreniz :<?=$password?>
 
-
+<?=URL::action('AdminController@getLogin')?>
 </div>
 </body>
 </html>
