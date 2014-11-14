@@ -21,13 +21,12 @@
 				<div class="box">
 					<div class="box-header">
 						<h3 class="box-title"><?= _( 'Users' ) ?></h3>
-					</div>
-					<!-- /.box-header -->
+					</div><!-- /.box-header -->
 					<div class="box-body table-responsive">
 						<table id="users-table" class="table table-bordered table-striped dataTable text-center">
 							<thead>
 							<tr>
-								<th>Id<?= $errors->count()?></th>
+								<th>Id</th>
 								<th><?= _( 'Username' ) ?></th>
 								<th><?= _( 'Name - Lastname' ) ?></th>
 								<th><?= _( 'email' ) ?></th>
@@ -82,7 +81,7 @@
 												<?php endif ?>
 											</ul>
 										</div>
-										<?= Form::checkbox( 'deleteID-' . $user->id, $user->id ) ?>
+										<?= Form::checkbox( 'bulk-' . $user->id, $user->id ) ?>
 									</td>
 								</tr>
 							<?php endforeach ?>
@@ -122,6 +121,7 @@
 									</div>
 									<input type="checkbox" id="check-all" />
 								</th>
+							</tr>
 							</tfoot>
 						</table>
 					</div><!-- /.box-body -->
@@ -132,5 +132,3 @@
 	</section>
 	<!-- /.content -->
 </aside><!-- /.right-side -->
-
-
