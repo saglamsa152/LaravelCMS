@@ -58,10 +58,9 @@
 								'status',
 								array(
 										'task'    => _( 'Task' ),
-										'trash=>' => _( 'Trash' ),
-										'public'  => _( 'Public' )
+										'publish'  => _( 'Publish' )
 								),
-								'public',
+								'publish',
 								array( 'class' => 'form-control' )
 						) ?>
 						</div>
