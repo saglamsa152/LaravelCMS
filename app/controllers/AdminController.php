@@ -240,7 +240,7 @@ class AdminController extends BaseController {
 
 	public function postDeleteUser() {
 		if ( Request::ajax() ) {
-			$id = Input::get( 'id' );
+			$id = (array)Input::get( 'id' );
 			if ( !is_null( $id ) ) {
 				if ( $id != 1 && !in_array( '1', $id ) ):
 					User::destroy( $id );
