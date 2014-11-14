@@ -1,5 +1,4 @@
 <?php
-use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 /**
  * Created by PhpStorm.
@@ -15,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletingTrait;
  *
  * Post Status:
  * -publish
+ * -task
  */
 class Post extends Eloquent {
 
@@ -23,11 +23,7 @@ class Post extends Eloquent {
 	 * @var array
 	 */
 	protected $fillable = array( 'author', 'content', 'title', 'excerpt', 'status', 'type', 'url', 'created_ip' );
-	/**
-	 * Belirsiz silme aktif
-	 *
-	 */
-	use SoftDeletingTrait;
+
 	/*
 	 * 4.1 den 4.2 ye güncellleme klavuzunda yazıyor
 	 */
@@ -86,5 +82,15 @@ class Post extends Eloquent {
 	 */
 	public function scopeService( $query ) {
 		return $query->where( 'type', '=', 'service' );
+	}
+
+	/**
+	 * Gönderilerin listelendiği tabloda kullanmak için gönderi durumuna uygun olarak
+	 * bootstrap labeli döndürür
+	 * @return string
+	 */
+	public function getHtmlStatus() {
+		$labelClass = array( 'publish' => 'label-success', 'task' => 'label-primary' );
+		return '<span class="label ' . $labelClass[$this->status] . '">' . $this->status . '</span>';
 	}
 }
