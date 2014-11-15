@@ -81,7 +81,7 @@ class AdminController extends BaseController {
 		if ( !userCan( 'manageUsers' ) || is_null( $id ) ) {
 			$id = Auth::user()->id;
 		}
-		$user = User::with( 'post' )->find( $id );
+		$user = User::with( 'post' )->find( $id );//Kullanıcıya ait  gönderilerle birlikte kullanıcıyı getiriyoruz
 		foreach ( $user->userMeta as $meta ) {
 			$user = array_add( $user, $meta->metaKey, $meta->metaValue );
 		}
@@ -750,9 +750,9 @@ class AdminController extends BaseController {
 					}
 					$post->postMeta()->saveMany( $modelPostMeta );
 				}
-				$actionToType=Option::getOption('postTypes','general',true);
-				$redirectAction='AdminController@get'.$actionToType[$postData['type']];//gönderinin türü ne ise o türün listesine yönlendirme için
-				$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Processing was carried out successfully' ),'redirect'=>URL::action($redirectAction) );
+				$actionToType   = Option::getOption( 'postTypes', 'general', true );
+				$redirectAction = 'AdminController@get' . $actionToType[$postData['type']];//gönderinin türü ne ise o türün listesine yönlendirme için
+				$ajaxResponse   = array( 'status' => 'success', 'msg' => _( 'Processing was carried out successfully' ), 'redirect' => URL::action( $redirectAction ) );
 				return Response::json( $ajaxResponse );
 			}
 		}
@@ -767,8 +767,8 @@ class AdminController extends BaseController {
 		if ( Request::ajax() ) {
 			$ids = (array) Input::get( 'id' );
 			if ( !is_null( $ids || !empty( $ids ) ) ) {
-					Post::destroy( $ids );
-				$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully','redirect' => '' );
+				Post::destroy( $ids );
+				$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully', 'redirect' => '' );
 				return Response::json( $response );
 			}
 		}
@@ -780,44 +780,46 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function postUpdatePost() {
-		$postData = Input::all();
-		$id       = $postData['id'];
-		$rules    = array(
-				'title'   => 'required',
-				'content' => 'required'
-		);
-		// todo  ingilzce  tercüme
-		$messages  = array(
-				'title.required'   => _( 'Başlık boş bırakılamaz' ),
-				'content.required' => _( 'İçerik boş bırakılamaz' )
-		);
-		$validator = Validator::make( $postData, $rules, $messages );
+		if ( Request::ajax() ) {
+			$postData = Input::all();
+			$rules    = array(
+					'title'   => 'required',
+					'content' => 'required'
+			);
+			// todo  ingilzce  tercüme
+			$messages  = array(
+					'title.required'   => _( 'Başlık boş bırakılamaz' ),
+					'content.required' => _( 'İçerik boş bırakılamaz' )
+			);
+			$validator = Validator::make( $postData, $rules, $messages );
 
-
-		if ( $validator->fails() ) {
-			return Redirect::back()->withInput()->withErrors( $validator->messages() );
-		}
-		else {
-			$post = Post::find( $id );
-
-			$post->author     = Auth::user()->id;
-			$post->content    = $postData['content'];
-			$post->title      = $postData['title'];
-			$post->excerpt    = mb_substr( $postData['content'], 0, 450, 'UTF-8' );
-			$post->status     = $postData['status'];
-			$post->type       = $postData['type'];
-			$post->url        = Str::slug( $postData['title'] );
-			$post->created_ip = Request::getClientIp();
-
-			if ( isset( $postData['postMeta'] ) ) {
-				$postMeta = $postData['postMeta'];
-				foreach ( $postMeta as $key => $value ) {
-					$post->postMeta()->where( 'metaKey', '=', $key )->update( array( 'metaValue' => $value ) );
-				}
+			if ( $validator->fails() ) {
+				$response = array( 'status' => 'danger', 'msg' => $validator->messages() );
+				return Response::json( $response );
 			}
-			$post->push();//todo value eksik diyor güncellendikten sonra fonksiyon değişmiş olabilir
+			else {
+				$post = Post::find( $postData['id'] );
 
-			return Redirect::back(); //todo burada bunu kullanmak doğrumu
+				$postData = array_add( $postData, 'author', Auth::user()->id );
+				$postData = array_add( $postData, 'excerpt', mb_substr( $postData['content'], 0, 450, 'UTF-8' ) );
+				$postData = array_add( $postData, 'url', Str::slug( $postData['title'] ) );
+				$postData = array_add( $postData, 'created_ip', Request::getClientIp() );
+				// meta bilgilerini  dizinen çıkartalım
+				$metas = array_pull( $postData, 'meta' );
+				// yeni bilgileri güncelleyelim
+				$post->fill( $postData )->push();
+
+				//userMeta modelini statik olmayan metodlarını kullanmak için değişkene aktarıyoruz
+				$postMeta = new PostMeta();
+				if ( !empty( $metas ) ) {
+					foreach ( $metas as $key => $value ) {
+						if ( is_null( $value ) ) continue;
+						$postMeta->setMeta( $postData['id'], $key, $value );
+					}
+				}
+				$response = array( 'status' => 'success', 'msg' => _( 'Update Successfully' ), 'redirect' => '' );
+				return Response::json($response);
+			}
 		}
 	}
 
