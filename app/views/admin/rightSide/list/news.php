@@ -59,6 +59,12 @@
 													</a>
 												</li>
 												<li>
+													<a href="<?= URL::action( 'AdminController@getUpdateNews', $new->id ) ?>">
+														<i class="fa fa-edit"></i>
+														<?= _( 'Edit' ) ?>
+													</a>
+												</li>
+												<li>
 													<?= Form::open( array( 'id' => 'publishForm-' . $new->id, 'method' => 'post', 'action' => 'AdminController@postTogglePostStatus', 'class' => 'ajaxForm' ) ) ?>
 													<?= Form::hidden( 'id', $new->id ) ?>
 													<?= Form::close() ?>
@@ -67,7 +73,6 @@
 														<?php if($new->status=='publish') echo _('Make Task'); else echo _( 'Publish' ) ?>
 													</a>
 												</li>
-												<?php if ( userCan( 'deleteUser' ) ): ?>
 													<li>
 														<?= Form::open( array( 'id' => 'deleteForm-' . $new->id, 'method' => 'post', 'action' => 'AdminController@postDeletePost', 'class' => 'ajaxForm' ) ) ?>
 														<?= Form::hidden( 'id', $new->id ) ?>
@@ -77,7 +82,6 @@
 															<?= _( 'Delete' ) ?>
 														</a>
 													</li>
-												<?php endif ?>
 											</ul>
 										</div>
 										<?= Form::checkbox( 'bulk-' . $new->id, $new->id ) ?>
