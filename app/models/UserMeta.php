@@ -25,8 +25,9 @@ class UserMeta extends Eloquent {
 	 *
 	 * @return bool|mixed
 	 */
-	public function getMeta( $id, $key ) {
+	public function getMeta( $id, $key, $unserialize = false ) {
 		$meta = $this->where( 'metaKey', '=', $key )->where( 'userId', '=', $id )->pluck( 'metaValue' );
+		if ( $unserialize ) $meta = unserialize( $meta );
 		return is_null( $meta ) ? false : $meta;
 	}
 
@@ -35,7 +36,8 @@ class UserMeta extends Eloquent {
 	 * @param $key
 	 * @param $value
 	 */
-	public function setMeta( $id, $key, $value ) {
+	public function setMeta( $id, $key, $value, $serialize = false ) {
+		if ( $serialize ) $value = serialize( $value );
 		if ( false !== $this->getMeta( $id, $key ) ) {
 			$this->where( 'userId', '=', $id )->where( 'metaKey', '=', $key )->update( array( 'metaValue' => $value ) );
 		}
