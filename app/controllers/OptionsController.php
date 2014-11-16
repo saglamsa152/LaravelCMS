@@ -22,9 +22,17 @@ class OptionsController extends BaseController {
 	 * genel  ayarlar
 	 */
 	public function getIndex() {
-		$title     = _( 'General Options' );
-		$rightSide = 'options/index';
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
+		if ( userCan( 'manageOptions' ) ) {
+			$title     = _( 'General Options' );
+			$rightSide = 'options/index';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
 	}
 
 	/**

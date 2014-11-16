@@ -31,11 +31,13 @@
 		<!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu">
 			<!-- Dashboard -->
+			<?php if(userCan('viewDashboard')):?>
 			<li class="<?php if(str_contains(URL::current(),'/index')) echo ' active'?>">
 				<a href="<?=URL::action('AdminController@getIndex')?>">
 					<i class="fa fa-dashboard"></i> <span><?=_('Dashboard')?></span>
 				</a>
 			</li>
+			<?php endif?>
 			<!-- /Dashboard -->
 			<!-- Users or Profile -->
 			<?php if(userCan('manageUsers')):?>
@@ -135,6 +137,7 @@
 			<?php endif; ?>
 			<!-- /Orders -->
 			<!-- Contact -->
+			<?php if(userCan('manageContact')): ?>
 			<li class="treeview <?php if(str_contains(URL::current(),'contact')) echo ' active'?>">
 				<a href="">
 					<i class="fa fa-envelope"></i>
@@ -145,6 +148,7 @@
 					<li><a href="<?=URL::action('AdminController@getContacts')?>"><i class="fa fa-inbox"></i> <?=_('İnbox')?></a></li>
 				</ul>
 			</li>
+			<?php endif; ?>
 			<!-- /Contact -->
 			<!-- Options -->
 			<?php if(userCan('manageOptions')): ?>

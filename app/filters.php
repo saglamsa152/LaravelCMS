@@ -54,7 +54,9 @@ App::before( function ( $request ) {
 				'manageSlider'   => [ 'admin', 'editor' ],
 				'manageService'  => [ 'admin', 'editor' ],
 				'manageProduct'  => [ 'admin', 'editor' ],
-				'manageOrders'   => [ 'admin', 'editor' ]
+				'manageOrders'   => [ 'admin', 'editor' ],
+				'manageContact'  => [ 'admin', 'editor' ],
+				'viewDashboard'  => [ 'admin', 'editor', 'user' ]
 		);
 		if ( is_array( $action ) ) {
 			foreach ( $action as $a ) {

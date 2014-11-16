@@ -17,8 +17,17 @@ class AdminController extends BaseController {
 	 * @return mixed
 	 */
 	public function getIndex() {
-		$title = _( 'Admin Panel' );
-		return View::make( 'admin/index' )->with( array( 'title' => $title, 'rightSide' => 'default' ) );
+		if ( userCan( 'viewDashboard' ) ) {
+			$title     = _( 'Admin Panel' );
+			$rightSide = 'default';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin/index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
 	}
 
 	/**
@@ -489,7 +498,7 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getAddProduct() {
-		if ( userCan( 'namageProduct' ) ) {
+		if ( userCan( 'manageProduct' ) ) {
 			$title     = _( 'Add New Product' );
 			$rightSide = 'add/product';
 			$error     = null;
@@ -504,7 +513,7 @@ class AdminController extends BaseController {
 
 	public function getUpdateProduct( $id = null ) {
 		if ( is_null( $id ) ) return false;
-		if ( userCan( 'namageProduct' ) ) {
+		if ( userCan( 'manageProduct' ) ) {
 			$title     = _( 'Update News' );
 			$rightSide = 'update/product';
 			$product   = Post::product()->with( 'postMeta' )->find( $id );
@@ -527,10 +536,18 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\View\View
 	 */
 	public function getContacts() {
-		$title     = _( 'Cotacts' );
-		$contacts  = Contact::all();
-		$rightSide = 'list/contacts';
-		return View::make( 'admin.index' )->with( compact( 'title', 'contacts', 'rightSide' ) );
+		if ( userCan( 'manageContact' ) ) {
+			$title     = _( 'Cotacts' );
+			$contacts  = Contact::all();
+			$rightSide = 'list/contacts';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'contacts', 'rightSide' ) )->withErrors( $error );
 	}
 
 	/**
@@ -818,7 +835,7 @@ class AdminController extends BaseController {
 					}
 				}
 				$response = array( 'status' => 'success', 'msg' => _( 'Update Successfully' ), 'redirect' => '' );
-				return Response::json($response);
+				return Response::json( $response );
 			}
 		}
 	}
