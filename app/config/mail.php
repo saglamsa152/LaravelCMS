@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'laravel@gencbilisim.net', 'name' => 'GençBilişim'),
+	'from' => array('address' => Option::getOption('mainMailAddress'), 'name' => Option::getOption('siteName')),
 
 	/*
 	|--------------------------------------------------------------------------
