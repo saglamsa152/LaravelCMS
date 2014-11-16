@@ -25,8 +25,6 @@
 						<div class="box-tools pull-right">
 							<button title="" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-sm" data-original-title="Collapse">
 								<i class="fa fa-minus"></i></button>
-							<button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-sm" data-original-title="Remove">
-								<i class="fa fa-times"></i></button>
 						</div>
 					</div>
 					<!-- /.box-header-->
@@ -51,9 +49,14 @@
 								<?= Form::textarea( 'options[siteDescription]', Option::getOption('siteDescription'), array( 'class' => 'form-control', 'rows' => '3' ) ) ?>
 							</div>
 						</div>
-						<div id="sonuc"></div>
-					</div>
-					<!-- /.box-body-->
+						<hr>
+						<div class="form-group">
+							<?= Form::label( 'options[mainMailAddress]', _( 'Main mail address' ), array( 'class' => 'control-label col-md-2' ) ) ?>
+							<div class="col-md-4">
+								<?= Form::email( 'options[mainMailAddress]', Option::getOption('mainMailAddress'), array( 'class' => 'form-control' ) ) ?>
+							</div>
+						</div>
+					</div><!-- /.box-body-->
 					<div class="box-footer clearfix">
 						<?= Form::button( _( 'Save' ) . ' <i class="fa fa-arrow-circle-right"></i>', array( 'class' => 'pull-right btn btn-default', 'type' => 'submit' ) ) ?>
 						<?= Form::close(); ?>
