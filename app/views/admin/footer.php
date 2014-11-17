@@ -34,7 +34,8 @@
 <?=HTML::script('assets/admin/js/plugins/input-mask/jquery.inputmask.js')?>
 <?=HTML::script('assets/admin/js/plugins/input-mask/jquery.inputmask.date.extensions.js')?>
 <?=HTML::script('assets/admin/js/plugins/input-mask/jquery.inputmask.extensions.js')?>
-
+<!-- slimScroll -->
+<?=HTML::script('assets/admin/js/plugins/slimScroll/jquery.slimscroll.min.js')?>
 <!-- mini-upload-form (assets/admin/js/plugins) -->
 	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.knob.js')?>
 
