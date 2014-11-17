@@ -22,9 +22,23 @@ class OptionsController extends BaseController {
 	 * genel  ayarlar
 	 */
 	public function getIndex() {
-		if ( userCan( 'manageOptions' ) ) {
+		if ( userCan( 'manageGeneralOptions' ) ) {
 			$title     = _( 'General Options' );
 			$rightSide = 'options/index';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
+	}
+
+	public function getUserPreferences() {
+		if ( userCan( 'manageOptions' ) ) {
+			$title     = _( 'Site Preferences' );
+			$rightSide = 'options/preferences';
 			$error     = null;
 		}
 		else {
@@ -42,12 +56,21 @@ class OptionsController extends BaseController {
 		if ( Request::ajax() ) {
 			$postData = Input::all();
 			//todo validation yapılır gerekirse
-			//todo save işlemi yapılacak
 			$type = $postData['type'];
-			foreach ( $postData['options'] as $key => $value ) {
-				Option::setOption( $key, $value, $type );
+			switch ( $type ) {
+				case 'general':
+					foreach ( $postData['options'] as $key => $value ) {
+						Option::setOption( $key, $value, $type );
+					}
+					$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Options Saved' ), 'redirect' => '' );
+					break;
+				case 'preference':
+					foreach ( $postData['options'] as $key => $value ) {
+						UserMeta::setMeta( Auth::user()->id, $key, $value );
+					}
+					$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Options Saved' ), 'redirect' => '' );
+					break;
 			}
-			$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Options Saved' ), 'redirect' => '' );
 			return Response::json( $ajaxResponse );
 		}
 	}

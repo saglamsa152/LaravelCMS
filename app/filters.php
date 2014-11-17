@@ -44,19 +44,20 @@ App::before( function ( $request ) {
 		$user    = Auth::user();
 		$result  = false;
 		$actions = array(
-				'manageUsers'    => [ 'admin', 'editor' ],
-				'editUserRole'   => [ 'admin' ],
-				'deleteUser'     => [ 'admin' ],
-				'addUser'        => [ 'admin' ],
-				'manageNews'     => [ 'admin', 'editor' ],
-				'manageUserRole' => [ 'admin' ],
-				'manageOptions'  => [ 'admin', 'editor', 'user' ],
-				'manageSlider'   => [ 'admin', 'editor' ],
-				'manageService'  => [ 'admin', 'editor' ],
-				'manageProduct'  => [ 'admin', 'editor' ],
-				'manageOrders'   => [ 'admin', 'editor' ],
-				'manageContact'  => [ 'admin', 'editor' ],
-				'viewDashboard'  => [ 'admin', 'editor', 'user' ]
+				'manageUsers'          => [ 'admin', 'editor' ],
+				'editUserRole'         => [ 'admin' ],
+				'deleteUser'           => [ 'admin' ],
+				'addUser'              => [ 'admin' ],
+				'manageNews'           => [ 'admin', 'editor' ],
+				'manageUserRole'       => [ 'admin' ],
+				'manageOptions'        => [ 'admin', 'editor', 'user' ],
+				'manageGeneralOptions' => [ 'admin', 'editor' ],
+				'manageSlider'         => [ 'admin', 'editor' ],
+				'manageService'        => [ 'admin', 'editor' ],
+				'manageProduct'        => [ 'admin', 'editor' ],
+				'manageOrders'         => [ 'admin', 'editor' ],
+				'manageContact'        => [ 'admin', 'editor' ],
+				'viewDashboard'        => [ 'admin', 'editor', 'user' ]
 		);
 		if ( is_array( $action ) ) {
 			foreach ( $action as $a ) {

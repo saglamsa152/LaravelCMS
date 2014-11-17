@@ -159,7 +159,10 @@
 						<i class="fa fa-angle-left pull-right"></i>
 					</a>
 					<ul class="treeview-menu">
-						<li><a href="<?=URL::action('OptionsController@getIndex')?>"><i class="fa fa-angle-double-right"></i> <?=_('General')?></a></li>
+						<?php if (userCan( 'manageGeneralOptions' )): ?>
+							<li><a href="<?=URL::action('OptionsController@getIndex')?>"><i class="fa fa-angle-double-right"></i> <?=_('General')?></a></li>
+						<?php endif ?>
+						<li><a href="<?=URL::action('OptionsController@getUserPreferences')?>"><i class="fa fa-angle-double-right"></i> <?=_('Site Preferences')?></a></li>
 					</ul>
 				</li>
 			<?php endif; ?>

@@ -23,7 +23,7 @@
 				<h3><?=$error?></h3>
 				<a href="#" onclick="history.back()" class="btn btn-primary"><i class="fa fa-reply"></i> <?=_('Go Back')?></a>
 				<?php if ( userCan( 'viewDashboard' )): ?>
-					<a href="<?= URL::action( 'AdminController@getIndex' ) ?>" class="btn btn-primary"><i class="fa fa-dashboard"></i><?=_('Dashboard')?></a>
+					<a href="<?= URL::action( 'AdminController@getIndex' ) ?>" class="btn btn-primary"><i class="fa fa-dashboard"></i> <?=_('Dashboard')?></a>
 				<?php else: ?>
 					<a href="<?= URL::action( 'AdminController@getProfile' ) ?>" class="btn btn-primary"><i class="fa fa-user"></i> <?=_('Profile')?></a>
 				<?php endif ?>

@@ -26,45 +26,46 @@
 							<button title="" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-sm" data-original-title="Collapse">
 								<i class="fa fa-minus"></i></button>
 						</div>
-					</div>
-					<!-- /.box-header-->
+					</div><!-- /.box-header-->
 					<div class="box-body">
-						<?=
-						Form::open( array(
+						<?=	Form::open( array(
 								'role'   => 'form',
 								'id'     => 'siteOptions',
 								'class'  => 'form-horizontal ajaxForm',
 								'method' => 'post',
-								'action' => 'OptionsController@postSave' ) )?>
+								'action' => 'OptionsController@postSave' ) )
+						?>
+						<?= Form::hidden( 'type', 'general' ) ?>
+						<!-- Site Name -->
 						<div class="form-group">
-							<?= Form::hidden( 'type', 'general' ) ?>
 							<?= Form::label( 'options[siteName]', _( 'Site Name' ), array( 'class' => 'control-label col-md-2' ) ) ?>
 							<div class=" col-md-4">
-								<?= Form::text( 'options[siteName]', Option::getOption('siteName'), array( 'class' => 'form-control', 'id' => 'siteName' ) ) ?>
+								<?= Form::text( 'options[siteName]', Option::getOption( 'siteName' ), array( 'class' => 'form-control', 'id' => 'siteName' ) ) ?>
 							</div>
 						</div>
+						<!-- Site description -->
 						<div class="form-group">
 							<?= Form::label( 'options[siteDescription]', _( 'Site Description' ), array( 'class' => 'control-label col-md-2' ) ) ?>
 							<div class="col-md-4">
-								<?= Form::textarea( 'options[siteDescription]', Option::getOption('siteDescription'), array( 'class' => 'form-control', 'rows' => '3' ) ) ?>
+								<?= Form::textarea( 'options[siteDescription]', Option::getOption( 'siteDescription' ), array( 'class' => 'form-control', 'rows' => '3' ) ) ?>
 							</div>
 						</div>
 						<hr>
+						<!-- Main mail address -->
 						<div class="form-group">
 							<?= Form::label( 'options[mainMailAddress]', _( 'Main mail address' ), array( 'class' => 'control-label col-md-2' ) ) ?>
 							<div class="col-md-4">
-								<?= Form::email( 'options[mainMailAddress]', Option::getOption('mainMailAddress'), array( 'class' => 'form-control' ) ) ?>
+								<?= Form::email( 'options[mainMailAddress]', Option::getOption( 'mainMailAddress' ), array( 'class' => 'form-control' ) ) ?>
 							</div>
 						</div>
 					</div><!-- /.box-body-->
 					<div class="box-footer clearfix">
 						<?= Form::button( _( 'Save' ) . ' <i class="fa fa-arrow-circle-right"></i>', array( 'class' => 'pull-right btn btn-default', 'type' => 'submit' ) ) ?>
 						<?= Form::close(); ?>
-					</div>
-				</div>
-				<!-- /.box -->
-			</div>
-		</div>
-	</section>
-	<!-- /.content -->
+
+					</div><!-- /.box-footer -->
+				</div><!-- /.box -->
+			</div><!-- /.col-md-12 -->
+		</div><!-- /.row -->
+	</section><!-- /.content -->
 </aside><!-- /.right-side -->

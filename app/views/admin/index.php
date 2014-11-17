@@ -3,7 +3,9 @@
 <head>
 	<?php include_once "head.php" ?>
 </head>
-<body class="skin-blue">
+<?php if(!$skin = UserMeta::getMeta( Auth::user()->id, 'themeSkin' )) $skin = 'skin-blue' ;
+?>
+<body class="<?=$skin?>">
 <?php include_once "header.php" ?>
 
 <div class="wrapper row-offcanvas row-offcanvas-left">
