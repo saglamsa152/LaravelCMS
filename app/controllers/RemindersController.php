@@ -18,13 +18,15 @@ class RemindersController extends Controller {
 	 */
 	public function postRemind() {
 		if ( Request::ajax() ) {
-			switch ( $response = Password::remind( Input::only( 'email' ) ) ) {
+			switch ( $response = Password::remind( Input::only( 'email' ), function ( $message ) {
+				$message->subject( _('Password Reminder') );
+			} ) ) {
 				case Password::INVALID_USER:
-					$ajaxResponse = array( 'status' => 'danger', 'msg' => _('E-mail not found') );
+					$ajaxResponse = array( 'status' => 'danger', 'msg' => _( 'E-mail not found' ) );
 					return Response::json( $ajaxResponse );
 
 				case Password::REMINDER_SENT:
-					$ajaxResponse = array( 'status' => 'success', 'msg' => _('Your request received. Please check your e-mails') );
+					$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Your request received. Please check your e-mails' ) );
 					return Response::json( $ajaxResponse );
 			}
 		}
@@ -54,10 +56,9 @@ class RemindersController extends Controller {
 					'email', 'password', 'password_confirmation', 'token'
 			);
 
-			Password::validator(function($credentials)
-			{
-				return strlen($credentials['password']) >= 4; //minumum 4 karakter
-			});
+			Password::validator( function ( $credentials ) {
+				return strlen( $credentials['password'] ) >= 4; //minumum 4 karakter
+			} );
 
 			$response = Password::reset( $credentials, function ( $user, $password ) {
 				$user->password = Hash::make( $password );
@@ -68,12 +69,12 @@ class RemindersController extends Controller {
 				case Password::INVALID_PASSWORD:
 				case Password::INVALID_TOKEN:
 				case Password::INVALID_USER:
-				$ajaxResponse = array( 'status' => 'danger', 'msg' => Lang::get( $response ) );
-				return Response::json($ajaxResponse);
+					$ajaxResponse = array( 'status' => 'danger', 'msg' => Lang::get( $response ) );
+					return Response::json( $ajaxResponse );
 
 				case Password::PASSWORD_RESET:
-					$ajaxResponse = array( 'status' => 'success', 'msg' => Lang::get( $response ),'redirect'=>URL::action('AdminController@getLogin'));
-					return Response::json($ajaxResponse);
+					$ajaxResponse = array( 'status' => 'success', 'msg' => Lang::get( $response ), 'redirect' => URL::action( 'AdminController@getLogin' ) );
+					return Response::json( $ajaxResponse );
 			}
 		}
 	}
