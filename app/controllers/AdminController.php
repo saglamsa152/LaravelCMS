@@ -147,11 +147,9 @@ class AdminController extends BaseController {
 				$metas = array_pull( $postData, 'meta' );
 				// yeni bilgileri güncelleyelim
 				$user->fill( $postData )->push();
-				//userMeta modelini statik olmayan metodlarını kullanmak için değişkene aktarıyoruz
-				$userMeta = new UserMeta();
 				foreach ( $metas as $key => $value ) {
 					if ( is_null( $value ) ) continue;
-					$userMeta->setMeta( $postData['id'], $key, $value );
+					UserMeta::setMeta( $postData['id'], $key, $value );
 				}
 				$response = array( 'status' => 'success', 'msg' => 'Saved successfully', 'redirect' => URL::action( 'AdminController@getProfile', $postData['id'] ) );
 				return Response::json( $response );
@@ -826,12 +824,10 @@ class AdminController extends BaseController {
 				// yeni bilgileri güncelleyelim
 				$post->fill( $postData )->push();
 
-				//userMeta modelini statik olmayan metodlarını kullanmak için değişkene aktarıyoruz
-				$postMeta = new PostMeta();
 				if ( !empty( $metas ) ) {
 					foreach ( $metas as $key => $value ) {
 						if ( is_null( $value ) ) continue;
-						$postMeta->setMeta( $postData['id'], $key, $value );
+						PostMeta::setMeta( $postData['id'], $key, $value );
 					}
 				}
 				$response = array( 'status' => 'success', 'msg' => _( 'Update Successfully' ), 'redirect' => '' );
