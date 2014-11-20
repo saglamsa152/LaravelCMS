@@ -6,127 +6,28 @@ $(function () {
 	/**
 	 * dataTable sınıflı  tablolar DataTeble ile düzenleniyor
 	 */
-	if ( $.isFunction($.fn.dataTable) ) {
+	if ($.isFunction($.fn.dataTable)) {
 		$('.dataTable').dataTable();
 	}
 	/**
 	 * ajaxForm sınıflı  formların işlemini ajax ile yapıyor
 	 */
 
-	$('.ajaxForm').on('submit', function () {
-
-		if (typeof(CKEDITOR) != 'undefined' && $('.ckeditor').length > 0) {//CKEDİTOR tanımlanmış ve sayfada ckeditör aktif edilmişse
-			var editorName = $('.ckeditor').attr('name');//ckeditor sınıflı  nesnenin name özelliği
-			//ckeditor deki verilerin textarea ya aktar
-			CKEDITOR.instances[editorName].updateElement();
-		}
-		/* waiting animation */
-		$('body').fadeIn('slow', function () {
-			$(this).append(
-					'<div id="ajaxResult" class="alert alert-info">' +
-					'<div class="spinner">' +
-					'<div class="rect1"></div>' +
-					'<div class="rect2"></div>' +
-					'<div class="rect3"></div>' +
-					'<div class="rect4"></div>' +
-					'<div class="rect5"></div>' +
-					'</div>' +
-					'</div>'
-			);
-		});
-		$('#ajaxResult').css({
-			'left': (window.innerWidth - jQuery('#ajaxResult').width()) / 2,
-			'top' : (window.innerHeight - jQuery('#ajaxResult').height()) / 2
-		});
-		/* / waiting animation */
-		$.ajax({
-			type   : 'POST',
-			url    : $(this).attr('action'),
-			data   : $(this).serializeArray(),
-			success: function (returnData) {
-				var cevap = '<ul>';
-				if (jQuery.type(returnData['msg']) == "object") {
-					$.each(returnData['msg'], function (key, value) {
-						cevap += '<li>' + key + '-' + value + '</li>';
-					});
-					cevap += '</ul>';
-				} else cevap = returnData['msg'];
-				$('#ajaxResult').fadeOut('slow', function () {
-					$(this).removeClass('alert-info').addClass(' alert-' + returnData['status'] + ' alert-dismissable');
-					$(this).html(
-							'<i class="fa fa-check"></i>' +
-							'<button aria-hidden="true"  class="close" type="button">×</button>' +
-							'' + cevap + ''
-					).css({
-								'left': (window.innerWidth - $(this).width()) / 2,
-								'top' : (window.innerHeight - $(this).height()) / 2
-							});
-					// fadeout effect on click close button
-					$(this).children('.close').click(function () {
-						$(this).parent().fadeOut('slow', function () {
-							$(this).remove()
-							if (jQuery.type(returnData['redirect']) != 'undefined') {
-								window.location.replace(returnData['redirect']);
-							}
-						});
-					});
-				});
-				$('#ajaxResult').fadeIn('slow');
-
-
-			}
-		});
-		return false;
-	});
-	//Şifre değiştirme kutusu sayfa yüklendiğinde kapalı olsun
-	setTimeout(function(){$('#collapseButton').trigger('click');},500);
-
-	$('.ajaxFormPassword').on('submit', function () {
-		$('#updatePassword').append('<div class="overlay">' +
-		'<div class="spinner">' +
-		'<div class="rect1"></div>' +
-		'<div class="rect2"></div>' +
-		'<div class="rect3"></div>' +
-		'<div class="rect4"></div>' +
-		'<div class="rect5"></div>' +
-		'</div>' +
-		'</div>');
-		$.ajax({
-			type   : 'POST',
-			url    : $(this).attr('action'),
-			data   : $(this).serializeArray(),
-			success: function (returnData) {
-				if (jQuery.type(returnData['msg']) == "object") {
-					$('#updatePassword > .overlay').remove();
-					$('.ajaxFormPassword label').remove();
-					$('.ajaxFormPassword .form-group').removeClass('has-error');
-					$.each(returnData['msg'], function (key, value) {
-						$('.ajaxFormPassword #' + key).addClass('has-error');
-						$('.ajaxFormPassword #' + key).prepend('<label for="inputError" class="control-label"><i class="fa fa-times-circle-o"></i>' + value + '</label>')
-					});
-				} else {
-					$('#updatePassword > .overlay').html('<span class="glyphicon glyphicon-ok"></span>');
-					$('#updatePassword > .overlay').click(function () {
-						$(this).remove();
-						$('.ajaxFormPassword input').val('');
-					});
-
-				}
-			}
-		});
-		return false;
-	});
+  //Şifre değiştirme kutusu sayfa yüklendiğinde kapalı olsun
+	setTimeout(function () {
+		$('#collapseButton').trigger('click');
+	}, 500);
 
 	/**
 	 *  data-mask özelliği olan nesneye input mask uygular
 	 */
-	if ( $.isFunction($.fn.inputmask) ) {
+	if ($.isFunction($.fn.inputmask)) {
 		$("[data-mask]").inputmask();
 	}
 	/**
 	 * TinyMCE tinymce sınıflı  textarea üzerine yerleşecek
 	 */
-	if ( $.isFunction($.fn.tinymce) ) {
+	if ($.isFunction($.fn.tinymce)) {
 		tinymce.init({
 			selector                 : "textarea.tinymce",
 			menubar                  : false,
@@ -184,81 +85,4 @@ $(function () {
 		//Check all checkboxes
 		$("input[type='checkbox']", table).iCheck("check");
 	});
-
-	/*
-	 * Tablolardaki  toplu  işlemler (Bulk Actions)
-	 * Toplu işlemlerin hepsi post olarak sadece id bilgisini yollamalı
-	 */
-
-	$('#bulkAction a[data-link]').click(function () {
-		var ids = new Array();
-		var table=$('#bulkAction').parents('table');
-		// tablodaki seçili elemenların id bilgisini ids dizisine aktarıyoruz
-		$("input[type='checkbox']",table).each(function (index, e) {
-			if (!$(e).is('#check-all')) { //hepsini seçmemize yarıyan checbox ı  atlıyoruz
-				if ($(e).parent().hasClass('checked')) //seçilmiş olan checkbox değerlerini ids dizisine aktarıyoruz
-					ids.push(e.value)
-			}
-		});
-		if($.isEmptyObject(ids)){
-			alert('Seçim Yapmadınız'); return false;
-		}
-		/* waiting animation */
-		$('body').fadeIn('slow', function () {
-			$(this).append(
-					'<div id="ajaxResult" class="alert alert-info">' +
-					'<div class="spinner">' +
-					'<div class="rect1"></div>' +
-					'<div class="rect2"></div>' +
-					'<div class="rect3"></div>' +
-					'<div class="rect4"></div>' +
-					'<div class="rect5"></div>' +
-					'</div>' +
-					'</div>'
-			);
-		});
-		$('#ajaxResult').css({
-			'left': (window.innerWidth - jQuery('#ajaxResult').width()) / 2,
-			'top' : (window.innerHeight - jQuery('#ajaxResult').height()) / 2
-		});
-		/* / waiting animation */
-		var token=$('#bulkAction input[name="_token"]').val();
-		$.ajax({
-			type   : 'POST',
-			url    : $(this).attr('data-link'),
-			data   : {id: ids, '_token': token},
-			success: function (returnData) {
-				var cevap = '<ul>';
-				if (jQuery.type(returnData['msg']) == "object") {
-					$.each(returnData['msg'], function (key, value) {
-						cevap += '<li>' + key + '-' + value + '</li>';
-					});
-					cevap += '</ul>';
-				} else cevap = returnData['msg'];
-				$('#ajaxResult').fadeOut('slow', function () {
-					$(this).removeClass('alert-info').addClass(' alert-' + returnData['status'] + ' alert-dismissable');
-					$(this).html(
-							'<i class="fa fa-check"></i>' +
-							'<button aria-hidden="true"  class="close" type="button">×</button>' +
-							'' + cevap + ''
-					).css({
-								'left': (window.innerWidth - $(this).width()) / 2,
-								'top' : (window.innerHeight - $(this).height()) / 2
-							});
-					// fadeout effect on click close button
-					$(this).children('.close').click(function () {
-						$(this).parent().fadeOut('slow', function () {
-							$(this).remove()
-							if (jQuery.type(returnData['redirect']) != 'undefined') {
-								window.location.replace(returnData['redirect']);
-							}
-						});
-					});
-				});
-				$('#ajaxResult').fadeIn('slow');
-			}
-		});
-	});
-
-
 });//ready function

@@ -23,12 +23,13 @@
 						<h3 class="box-title"><?= _( 'Site Preferences' ) ?></h3>
 					</div><!-- /.box-header-->
 					<div class="box-body">
-						<?=	Form::open( array(
+						<?= Form::open( array(
 								'role'   => 'form',
 								'id'     => 'siteOptions',
 								'class'  => 'form-horizontal ajaxForm',
 								'method' => 'post',
-								'action' => 'OptionsController@postSave' ) )
+								'action' => 'OptionsController@postSave',
+								'title'  => _( 'Save Options' ) ) )
 						?>
 						<?= Form::hidden( 'type', 'preference' ) ?>
 						<!-- Theme Skin -->

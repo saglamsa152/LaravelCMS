@@ -33,7 +33,8 @@
 								'id'     => 'siteOptions',
 								'class'  => 'form-horizontal ajaxForm',
 								'method' => 'post',
-								'action' => 'OptionsController@postSave' ) )
+								'action' => 'OptionsController@postSave',
+								'title'  => _( 'Save Options' ) ) )
 						?>
 						<?= Form::hidden( 'type', 'general' ) ?>
 						<!-- Site Name -->

@@ -21,8 +21,8 @@
 					<div class="box-header">
 						<h3 class="box-title"><?= _( 'News' ) ?></h3>
 					</div><!-- /.box-header -->
-					<div class="box-body table-responsive">
-						<table id="news-table" class="table table-bordered table-striped dataTable text-center">
+					<div class="box-body">
+						<table id="news-table" class="table table-responsive table-bordered table-striped dataTable text-center">
 							<thead>
 							<tr>
 								<th>Id</th>
@@ -65,7 +65,7 @@
 													</a>
 												</li>
 												<li>
-													<?= Form::open( array( 'id' => 'publishForm-' . $new->id, 'method' => 'post', 'action' => 'AdminController@postTogglePostStatus', 'class' => 'ajaxForm' ) ) ?>
+													<?= Form::open( array( 'id' => 'publishForm-' . $new->id, 'method' => 'post', 'action' => 'AdminController@postTogglePostStatus', 'class' => 'ajaxForm','title'=>_('Change Status') ) ) ?>
 													<?= Form::hidden( 'id', $new->id ) ?>
 													<?= Form::close() ?>
 													<a href="#" onclick="$('#publishForm-<?= $new->id ?>').submit()">
@@ -74,7 +74,7 @@
 													</a>
 												</li>
 													<li>
-														<?= Form::open( array( 'id' => 'deleteForm-' . $new->id, 'method' => 'post', 'action' => 'AdminController@postDeletePost', 'class' => 'ajaxForm' ) ) ?>
+														<?= Form::open( array( 'id' => 'deleteForm-' . $new->id, 'method' => 'post', 'action' => 'AdminController@postDeletePost', 'class' => 'ajaxFormDelete' ) ) ?>
 														<?= Form::hidden( 'id', $new->id ) ?>
 														<?= Form::close() ?>
 														<a href="#" onclick="$('#deleteForm-<?= $new->id ?>').submit()">
@@ -112,7 +112,7 @@
 												</a>
 											</li>
 											<li>
-												<a href="#" data-link="<?= URL::action( 'AdminController@postDeletePost' ) ?>">
+												<a href="#" data-action="delete" data-link="<?= URL::action( 'AdminController@postDeletePost' ) ?>">
 													<i class="fa fa-trash-o"></i>
 													<?= _( 'Delete' ) ?>
 												</a>

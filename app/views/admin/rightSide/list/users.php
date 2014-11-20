@@ -22,8 +22,8 @@
 					<div class="box-header">
 						<h3 class="box-title"><?= _( 'Users' ) ?></h3>
 					</div><!-- /.box-header -->
-					<div class="box-body table-responsive">
-						<table id="users-table" class="table table-bordered table-striped dataTable text-center">
+					<div class="box-body">
+						<table id="users-table" class="table table-responsive table-bordered table-striped dataTable text-center">
 							<thead>
 							<tr>
 								<th>Id</th>
@@ -60,7 +60,7 @@
 													</a>
 												</li>
 												<li>
-													<?= Form::open( array( 'id' => 'approveForm-' . $user->id, 'method' => 'post', 'action' => 'AdminController@postApproveUser', 'class' => 'ajaxForm' ) ) ?>
+													<?= Form::open( array( 'id' => 'approveForm-' . $user->id, 'method' => 'post', 'action' => 'AdminController@postApproveUser', 'class' => 'ajaxForm','title'=>_('Approve User') ) ) ?>
 													<?= Form::hidden( 'id', $user->id ) ?>
 													<?= Form::close() ?>
 													<a href="#" onclick="$('#approveForm-<?= $user->id ?>').submit()">
@@ -70,7 +70,7 @@
 												</li>
 												<?php if ( userCan( 'deleteUser' ) ): ?>
 												<li>
-													<?= Form::open( array( 'id' => 'deleteForm-' . $user->id, 'method' => 'post', 'action' => 'AdminController@postDeleteUser', 'class' => 'ajaxForm' ) ) ?>
+													<?= Form::open( array( 'id' => 'deleteForm-' . $user->id, 'method' => 'post', 'action' => 'AdminController@postDeleteUser', 'class' => 'ajaxFormDelete' ) ) ?>
 													<?= Form::hidden( 'id', $user->id ) ?>
 													<?= Form::close() ?>
 													<a href="#" onclick="$('#deleteForm-<?= $user->id ?>').submit()">
@@ -105,7 +105,7 @@
 										<ul role="menu" class="dropdown-menu">
 											<?php if(userCan('deleteUser')) :?>
 											<li>
-												<a href="#" data-link="<?= URL::action( 'AdminController@postDeleteUser' ) ?>">
+												<a href="#" data-action="delete" data-link="<?= URL::action( 'AdminController@postDeleteUser' ) ?>">
 													<i class="fa fa-trash-o"></i>
 													<?= _( 'Delete' ) ?>
 												</a>

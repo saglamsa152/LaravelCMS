@@ -49,6 +49,8 @@
 <!--/ mini-upload-form (assets/admin/js/plugins) -->
 <!-- Custom Js-->
 <?=HTML::script('assets/admin/js/custom.js')?>
+<?=HTML::script('assets/admin/js/gettext.php')?>
+<?=HTML::script('assets/admin/js/ajaxForm.js')?>
 
 <!-- AdminLTE App -->
 <?=HTML::script('assets/admin/js/AdminLTE/app.js')?>

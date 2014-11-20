@@ -24,8 +24,9 @@
 							'id'     => 'user-form',
 							'class'  => 'ajaxForm form-horizontal',
 							'action' => 'AdminController@postUpdateUser',
-							'method' => 'post'
-					) )?>
+							'method' => 'post',
+							'title'  => _( 'Save Profile' )
+					) ) ?>
 					<?=Form::hidden('id',$user->id)?>
 					<?=Form::hidden('meta[avatar]',$user->avatar)?>
 					<h4 class="page-header"><?= _( 'Personal Information' ) ?></h4>
