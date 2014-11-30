@@ -50,7 +50,7 @@
 											<button data-toggle="dropdown" class="btn btn-default btn-flat dropdown-toggle" type="button">
 												<?= _( 'Actions' ) ?>
 												<span class="caret"></span>
-												<span class="sr-only">Toggle Dropdown</span>
+												<span class="sr-only"><?=_('Toggle Dropdown')?></span>
 											</button>
 											<ul role="menu" class="dropdown-menu">
 												<li>

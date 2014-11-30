@@ -50,7 +50,7 @@
 <!-- Custom Js-->
 <?=HTML::script('assets/admin/js/custom.js')?>
 <?=HTML::script('assets/admin/js/gettext.php')?>
-<?=HTML::script('assets/admin/js/ajaxForm.js')?>
+<?=HTML::script('assets/admin/js/ajax.js')?>
 
 <!-- AdminLTE App -->
 <?=HTML::script('assets/admin/js/AdminLTE/app.js')?>

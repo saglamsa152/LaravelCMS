@@ -9,7 +9,7 @@ class AdminController extends BaseController {
 		/**
 		 * Post istelkerinde CSRF güvenlik kontrolü
 		 */
-		$this->beforeFilter( 'csrf', array( 'on' => 'post' ) );
+		$this->beforeFilter( 'csrf', array( 'on' => 'post','except'=>'postMarkAsReadContact' ) );
 	}
 
 	/**
@@ -592,21 +592,54 @@ class AdminController extends BaseController {
 	}
 
 	/**
-	 * İletişim mesajını  okundu yada okunmadı olarak işaretler
+	 * İletişim mesajını okundu yada okunmadı olarak işaretler
 	 *
-	 * @param null $id
-	 *
-	 * @return \Illuminate\Http\RedirectResponse
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function getMarkAsReadContact( $id = null ) {
-		if ( !is_null( $id ) ) {
-			$contact         = Contact::find( $id );
-			$contact->isRead = !$contact->isRead;
-			$contact->save();
-			return Redirect::back();
+	public function postMarkAsReadContact() {
+		if ( Request::ajax() ) {
+			$ids = (array) Input::get( 'id' );
+			is_null( Input::get( 'toggle' ) ) ? $toggle = true : $toggle = Input::get( 'toggle' );
+			if ( !is_null( $ids || !empty( $ids ) ) ) {
+				$contacts = Contact::find( $ids );
+				foreach ( $contacts as $contact ) {
+					$toggle ? $contact->isRead = !$contact->isRead : $contact->isRead = true;
+					$contact->save();
+				}
+				$response = array( 'status' => 'success', 'msg' => _( 'Successful' ), 'redirect' => '' );
+				return Response::json( $response );
+			}
 		}
-		else {
-			return Redirect::intended();
+	}
+
+	public function postAnswerContact() {
+		if ( Request::ajax() ) {
+			try {
+				$postData = Input::only( array( 'email', 'subject', 'answer', 'name' ) );
+				$mailData = array( 'answer' => $postData['answer'] );
+				Mail::send( 'emails.contact', $mailData, function ( $message ) use ( $postData ) {
+					$message->to( $postData['email'], $postData['name'] )->subject( $postData['subject'] );
+				} );
+				$response = array( 'status' => 'success', 'msg' => _( 'Mail send Successfully' ), 'redirect' => '' );
+			} catch ( Exception $e ) {
+				$response = array( 'status' => 'danger', 'msg' => $e->getMessage() );
+			}
+			return Response::json( $response );
+		}
+	}
+
+	public function postDeleteContact(){
+		if(Request::ajax()){
+			try{
+				$ids = (array) Input::get( 'id' );
+				if ( !is_null( $ids || !empty( $ids ) ) ) {
+					Contact::destroy( $ids );
+					$response = array( 'status' => 'success', 'msg' => _( 'Mail Delete Successfully' ), 'redirect' => '' );
+				}
+			}catch (Exception $e){
+				$response = array( 'status' => 'danger', 'msg' => $e->getMessage() );
+			}
+			return Response::json($response);
 		}
 	}
 
