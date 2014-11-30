@@ -21,6 +21,11 @@
 				<div class="box">
 					<div class="box-header">
 						<h3 class="box-title"><?= _( 'Users' ) ?></h3>
+						<div class="box-tools">
+							<button class="btn btn-success pull-right" onclick="window.location.replace('<?=URL::action('AdminController@getAddUser')?>')">
+								<i class="fa fa-plus"></i> <?=_('Add New')?>
+							</button>
+						</div><!-- &.box-tools -->
 					</div><!-- /.box-header -->
 					<div class="box-body">
 						<table id="users-table" class="table table-responsive table-bordered table-striped dataTable text-center">
