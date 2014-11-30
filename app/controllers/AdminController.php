@@ -9,7 +9,7 @@ class AdminController extends BaseController {
 		/**
 		 * Post istelkerinde CSRF güvenlik kontrolü
 		 */
-		$this->beforeFilter( 'csrf', array( 'on' => 'post','except'=>'postMarkAsReadContact' ) );
+		$this->beforeFilter( 'csrf', array( 'on' => 'post', 'except' => 'postMarkAsReadContact' ) );
 	}
 
 	/**
@@ -261,18 +261,23 @@ class AdminController extends BaseController {
 	}
 
 	public function postApproveUser() {
-		if ( Request::ajax() ) {
-			$id  = Input::get( 'id' );
-			$ids = array();
-			( !empty( $id ) && !is_array( $id ) ) ? $ids[] = $id : $ids = $id; //tekil işlemler için değişkeni dizi yapıyoruz
-			if ( User::whereIn( 'id', $ids )->where( 'role', '=', 'unapproved' )->update( array( 'role' => 'user' ) ) ):
-				$response = array( 'status' => 'success', 'msg' => _( 'Approved Successfully' ), 'redirect' => URL::action( 'AdminController@getUsers' ) );
-			else:
-				$response = array( 'status' => 'danger', 'msg' => _( 'Already approved' ) );
-			endif;
-
-			return Response::json( $response );
+		try {
+			if ( Request::ajax() ) {
+				$ids = (array) Input::get( 'id' );
+				if ( !is_null( $ids || !empty( $ids ) ) ) {
+					$users= User::find($ids);
+					foreach($users as $user){
+						if($user->role=='unapproved') $user->role='user';
+						else if($user->role!='admin') $user->role='unapproved';
+						$user->save();
+					}
+					$response = array( 'status' => 'success', 'msg' => _( 'Successful' ), 'redirect' => URL::action( 'AdminController@getUsers' ) );
+				}
+			}
+		} catch ( Exception $e ) {
+			$response = array( 'status' => 'danger', 'msg' => $e->getMessage() );
 		}
+		return Response::json( $response );
 	}
 
 	/* News */
@@ -628,18 +633,18 @@ class AdminController extends BaseController {
 		}
 	}
 
-	public function postDeleteContact(){
-		if(Request::ajax()){
-			try{
+	public function postDeleteContact() {
+		if ( Request::ajax() ) {
+			try {
 				$ids = (array) Input::get( 'id' );
 				if ( !is_null( $ids || !empty( $ids ) ) ) {
 					Contact::destroy( $ids );
 					$response = array( 'status' => 'success', 'msg' => _( 'Mail Delete Successfully' ), 'redirect' => '' );
 				}
-			}catch (Exception $e){
+			} catch ( Exception $e ) {
 				$response = array( 'status' => 'danger', 'msg' => $e->getMessage() );
 			}
-			return Response::json($response);
+			return Response::json( $response );
 		}
 	}
 

@@ -65,7 +65,7 @@
 													<?= Form::close() ?>
 													<a href="#" onclick="$('#approveForm-<?= $user->id ?>').submit()">
 														<i class="fa fa-check"></i>
-														<?= _( 'Approve' ) ?>
+														<?php if ($user->role=='unapproved') echo  _( 'Approve' );else echo _( 'Unapprove' ); ?>
 													</a>
 												</li>
 												<?php if ( userCan( 'deleteUser' ) ): ?>
@@ -112,9 +112,9 @@
 											</li>
 											<?php endif ?>
 											<li>
-												<a href="#" data-link="<?= URL::action( 'AdminController@postApproveUser' ) ?>">
+												<a href="#" data-link="<?= URL::action( 'AdminController@postApproveUser' ) ?>" data-toggle="tooltip" data-placement="bottom" title="<?= _( 'Warning! Bu işlem seçilen kullanıcılar arasındaki onaylı kullanıcıları onaysız,onaysız kullanıcıları onaylı  duruma getirir. ' ) ?>">
 													<i class="fa fa-check"></i>
-													<?= _( 'Approve' ) ?>
+													<?= _( 'Approve / Unapprove' ) ?>
 												</a>
 											</li>
 										</ul>
