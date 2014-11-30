@@ -268,7 +268,7 @@ class AdminController extends BaseController {
 					$users= User::find($ids);
 					foreach($users as $user){
 						if($user->role=='unapproved') $user->role='user';
-						else if($user->role!='admin') $user->role='unapproved';
+						else if($user->id!='1') $user->role='unapproved';
 						$user->save();
 					}
 					$response = array( 'status' => 'success', 'msg' => _( 'Successful' ), 'redirect' => URL::action( 'AdminController@getUsers' ) );
