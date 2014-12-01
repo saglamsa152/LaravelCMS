@@ -12,7 +12,7 @@ $slides = Post::slider()->with('postMeta')->orderBy( 'created_at', 'desc' )->get
 		<div class="rslides_container">
 			<ul class="rslides" id="slider">
 				@foreach($slides as $slide)
-				<li><img src="{{URL::asset($slide->postMeta()->where('metaKey', '=', 'image')->first()->metaValue)}}" alt=""></li>
+				<li><a href="{{$slide->url}}"><img src="{{URL::asset($slide->postMeta()->where('metaKey', '=', 'image')->first()->metaValue)}}" alt=""></a></li>
 				@endforeach
 			</ul>
 		</div>

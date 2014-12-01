@@ -364,4 +364,24 @@ $(function () {
 			$('#contactAnswer-' + message.id).trigger('click');
 		});
 	});
+	$('.ajaxButton').on('submit',function(){
+		var form = $(this);
+		var submitButton= $('input[type="submit"]',$(this));
+		submitButton.attr('disabled','disabled');
+		submitButton.val(gettext.saving);
+		$.ajax({
+			type   : 'POST',
+			url    : form.attr('action'),
+			data   : form.serializeArray(),
+			success: function (returnData) {
+				submitButton.val(gettext.saved);
+				setTimeout(function(){
+					submitButton.removeAttr('disabled');
+					submitButton.val(gettext.save);
+				},1000);
+
+			}
+		});
+		return false;
+	});
 })//ready Function

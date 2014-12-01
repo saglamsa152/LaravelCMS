@@ -9,5 +9,8 @@ var gettext= {
 'subject'				: "<?= _( 'Subject' ) ?>",
 'submit'				: "<?= _( 'Submit' ) ?>",
 'reply'					: "<?= _( 'Reply' ) ?>",
-'answer'				: "<?= _( 'Answer' )?>"
+'answer'				: "<?= _( 'Answer' )?>",
+'save'					: "<?= _( 'Save' ) ?>",
+'saving'				: "<?= _( 'Saving...' ) ?>",
+'saved'					: "<?= _( 'Saved' ) ?>",
 };

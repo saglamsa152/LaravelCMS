@@ -388,27 +388,23 @@ class AdminController extends BaseController {
 	}
 
 	/**
-	 * @param null $id
 	 *
-	 * @return bool|\Illuminate\View\View
+	 *
+	 *
 	 */
-	public function getUpdateSlide( $id = null ) {
-		if ( is_null( $id ) ) return false;
-		if ( userCan( 'manageSlider' ) ) {
-			$title     = _( 'Update Slide' );
-			$rightSide = 'update/slide';
-			$slide     = Post::slider()->with( 'postMeta' )->find( $id );
-			foreach ( $slide->postMeta as $meta ) {
-				$slide = array_add( $slide, $meta->metaKey, $meta->metaValue );
+	public function postUpdateSlide() {
+		try{
+			$slides= Input::only('slide');
+			$slides=$slides['slide'];
+			foreach($slides as $id=>$slide){
+				$post=Post::find($id);
+				$post->fill($slide)->push();
 			}
-			$error = null;
+			$response=array('status'=>'danger','msg'=>'');
+		}catch (Exception $e){
+			$response=array('status'=>'danger','msg'=>$e->getMessage());
 		}
-		else {
-			$title     = _( 'Permission Error' );
-			$rightSide = 'error';
-			$error     = _( 'You do not have permission to access this page' );
-		}
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide', 'slide' ) )->withErrors( $error );
+		return Response::json($response);
 	}
 
 	/* Services */
