@@ -90,11 +90,13 @@
 										var slide_form = $('#carousel-slider-form')
 										$('#slide-prev').click(function () {
 											slide_form.carousel('prev');
-											slide.carousel('pause')
+											slide.carousel('pause');
+											slide_form.carousel('pause');
 										});
 										$('#slide-next').click(function () {
 											slide_form.carousel('next');
 											slide.carousel('pause');
+											slide_form.carousel('pause');
 										});
 										$('.slide-input').change(function () {
 											var show = $(this).attr('data-show');
