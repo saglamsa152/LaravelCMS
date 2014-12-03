@@ -37,7 +37,6 @@
 <!-- slimScroll -->
 <?=HTML::script('assets/admin/js/plugins/slimScroll/jquery.slimscroll.min.js')?>
 <!-- mini-upload-form (assets/admin/js/plugins) -->
-	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.knob.js')?>
 
 	<!-- jQuery File Upload Dependencies -->
 	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.ui.widget.js')?>
