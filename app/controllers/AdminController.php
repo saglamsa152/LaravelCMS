@@ -371,23 +371,6 @@ class AdminController extends BaseController {
 	}
 
 	/**
-	 * @return \Illuminate\View\View
-	 */
-	public function getAddSlide() {
-		if ( userCan( 'manageSlider' ) ) {
-			$title     = _( 'Add New Slide' );
-			$rightSide = 'add/slide';
-			$error     = null;
-		}
-		else {
-			$title     = _( 'Permission Error' );
-			$rightSide = 'error';
-			$error     = _( 'You do not have permission to access this page' );
-		}
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
-	}
-
-	/**
 	 *
 	 *
 	 *
@@ -398,13 +381,42 @@ class AdminController extends BaseController {
 			$slides=$slides['slide'];
 			foreach($slides as $id=>$slide){
 				$post=Post::find($id);
-				$post->fill($slide)->push();
+				$metas= array_pull($slide,'meta');// diziden metaların tutulduğu diziyi  alıyoruz
+				$post->fill($slide)->push();// meta hariç  diğer bilgileri  kaydediyoruz.
+				if ( !empty( $metas ) ) {
+					foreach ( $metas as $key => $value ) {
+						if ( is_null( $value ) ) continue;
+						PostMeta::setMeta( $id, $key, $value );// meta varsa ve boş değilse metaları kaydediyoruz
+					}
+				}
 			}
-			$response=array('status'=>'danger','msg'=>'');
+			$response=array('status'=>'success','msg'=>'');
 		}catch (Exception $e){
 			$response=array('status'=>'danger','msg'=>$e->getMessage());
 		}
 		return Response::json($response);
+	}
+
+	public function postUploadSliderImage(){
+		$allowed = array( 'png', 'jpg', 'gif' );
+		$file    = Input::file( 'fileupload' );
+		if ( Input::hasFile( 'fileupload' ) && $file->getError() == 0 ) {
+
+			$extension = $file->getClientOriginalExtension();
+
+			if ( !in_array( strtolower( $extension ), $allowed ) ) {
+				$response= array('status'=>'danger','msg'=>_('Extension not allowed'));
+				return Response::json($response);
+			}
+			if ( $file->move( public_path() . '/assets/uploads/slider/', $file->getClientOriginalName() ) ) {
+				$response= array('status'=>'success','msg'=>_('File uploaded successfully'),'url'=>'/assets/uploads/slider/'.$file->getClientOriginalName());
+				return Response::json($response);
+			}
+
+		}else{
+			$response= array('status'=>'danger','msg'=>Input::file('fileupload')->getErrorMessage());
+			return Response::json($response);
+		}
 	}
 
 	/* Services */
@@ -898,7 +910,7 @@ class AdminController extends BaseController {
 	 */
 	public function postAvatarUpload() {
 		// A list of permitted file extensions
-		$allowed = array( 'png', 'jpg', 'gif', 'zip' );
+		$allowed = array( 'png', 'jpg', 'gif' );
 		$file    = Input::file( 'upl' );
 		if ( Input::hasFile( 'upl' ) && Input::file( 'upl' )->getError() == 0 ) {
 
@@ -918,5 +930,4 @@ class AdminController extends BaseController {
 		echo '{"status":"error"}';
 		exit;
 	}
-
 }

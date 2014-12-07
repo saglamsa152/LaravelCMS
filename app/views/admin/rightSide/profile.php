@@ -172,7 +172,7 @@
 
 					<?= Form::close() ?>
 				</section><!-- /.col-md-9 -->
-
+				<!-- Avatar tab-->
 				<section class="col-md-3 no-padding">
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs pull-right">
