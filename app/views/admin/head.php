@@ -31,6 +31,9 @@
 	<!-- The main CSS file -->
 	<?=HTML::style('assets/admin/js/plugins/mini-upload-form/assets/css/style.css')?>
 <!--/ mini-upload-form -->
+<!-- jquery-file-upload -->
+<?= HTML::style('assets/admin/js/plugins/jquery-file-upload/css/jquery.fileupload.css')?>
+<!--/ jquery-file-upload -->
 <!-- iCheck -->
 <?= HTML::style( 'assets/admin/css/iCheck/minimal/_all.css' ) ?>
 <!-- Custom CSS -->

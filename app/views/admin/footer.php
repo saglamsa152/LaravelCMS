@@ -41,7 +41,7 @@
 	<!-- jQuery File Upload Dependencies -->
 	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.ui.widget.js')?>
 	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.iframe-transport.js')?>
-	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.fileupload.js')?>
+	<?=HTML::script('assets/admin/js/plugins/jquery-file-upload/js/jquery.fileupload.js')?>
 
 	<!-- Our main JS file -->
 	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/script.js')?>
