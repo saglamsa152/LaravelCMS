@@ -13,4 +13,5 @@ var gettext= {
 'save'					: "<?= _( 'Save' ) ?>",
 'saving'				: "<?= _( 'Saving...' ) ?>",
 'saved'					: "<?= _( 'Saved' ) ?>",
+'add'						: "<?= _( 'Add' ) ?>"
 };
