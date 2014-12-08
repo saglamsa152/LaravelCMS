@@ -57,6 +57,7 @@ App::before( function ( $request ) {
 				'manageProduct'        => [ 'admin', 'editor' ],
 				'manageOrders'         => [ 'admin', 'editor' ],
 				'manageContact'        => [ 'admin', 'editor' ],
+				'manageDues'           => [ 'admin' ],
 				'viewDashboard'        => [ 'admin', 'editor', 'user' ]
 		);
 		if ( is_array( $action ) ) {

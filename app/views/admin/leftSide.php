@@ -80,50 +80,22 @@
 				</li>
 			<?php endif; ?>
 			<!-- /Slider -->
-			<!-- Product -->
-			<?php if(userCan('manageProduct')): ?>
-				<li class="treeview <?php if(str_contains(URL::current(),'product')) echo ' active'?>">
+			<!-- Dues -->
+			<?php if(userCan('manageDues')):?>
+				<li class="treeview <?php if(str_contains(URL::current(),'dues')) echo ' active'?>">
 					<a href="">
-						<i class="fa fa-shopping-cart"></i>
-						<span><?=_('Products')?></span>
+						<i class="fa  fa-credit-card"></i>
+						<span><?=_('Dues')?></span>
 						<i class="fa fa-angle-left pull-right"></i>
 					</a>
 					<ul class="treeview-menu">
-						<li><a href="<?=URL::action('AdminController@getProducts')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-						<li><a href="<?=URL::action('AdminController@getAddProduct')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
-					</ul>
-				</li>
-			<?php  endif; ?>
-			<!-- /Product -->
-			<!-- Services -->
-			<?php if(userCan('manageService')): ?>
-				<li class="treeview <?php if(str_contains(URL::current(),'service')) echo ' active'?>">
-					<a href="">
-						<i class="fa  fa-globe"></i>
-						<span><?=_('Services')?></span>
-						<i class="fa fa-angle-left pull-right"></i>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="<?=URL::action('AdminController@getServices')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-						<li><a href="<?=URL::action('AdminController@getAddService')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
+						<li><a href=""><i class="fa fa-list"></i> <?=_('Check')?></a></li>
+						<li><a href=""><i class="fa fa-plus"></i> <?=_('Pay Dues')?></a></li>
+						<li><a href=""><i class="fa fa-plus"></i> <?=_('Update Dues')?></a></li>
 					</ul>
 				</li>
 			<?php endif; ?>
-			<!-- /Services -->
-			<!-- Orders -->
-			<?php if(userCan('manageOrders')): ?>
-				<li class="treeview <?php if(str_contains(URL::current(),'order')) echo ' active'?>">
-					<a href="">
-						<i class="fa fa-credit-card"></i>
-						<span><?=_('Orders')?></span>
-						<i class="fa fa-angle-left pull-right"></i>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="<?=URL::action('AdminController@getOrders')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-					</ul>
-				</li>
-			<?php endif; ?>
-			<!-- /Orders -->
+			<!-- /Dues -->
 			<!-- Contact -->
 			<?php if(userCan('manageContact')): ?>
 			<li class="treeview <?php if(str_contains(URL::current(),'contact')) echo ' active'?>">
