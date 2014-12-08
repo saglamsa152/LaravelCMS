@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'laravel@gencbilisim.net',
+	'username' => 'dernek@gencbilisim.net',
 
 	/*
 	|--------------------------------------------------------------------------
