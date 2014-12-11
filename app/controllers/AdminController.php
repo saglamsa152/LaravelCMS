@@ -10,6 +10,14 @@ class AdminController extends BaseController {
 		 * Post istelkerinde CSRF güvenlik kontrolü
 		 */
 		$this->beforeFilter( 'csrf', array( 'on' => 'post', 'except' => 'postMarkAsReadContact' ) );
+		if ( userCan( 'manageContact' ) ) {
+			/**
+			 * eğer kullanıcının iletişim mesajlarını  yönetme yetkisi varsa contacts değişkenini  tüm viewler de paylaş
+			 *
+			 * Contact bilgisi  admin palen üst barda da gösterileceği için tüm admin paneli viewlerinde gözükecek
+			 */
+			View::share( 'contacts', new Contact );
+		}
 	}
 
 	/**
@@ -265,10 +273,10 @@ class AdminController extends BaseController {
 			if ( Request::ajax() ) {
 				$ids = (array) Input::get( 'id' );
 				if ( !is_null( $ids || !empty( $ids ) ) ) {
-					$users= User::find($ids);
-					foreach($users as $user){
-						if($user->role=='unapproved') $user->role='user';
-						else if($user->id!='1') $user->role='unapproved';
+					$users = User::find( $ids );
+					foreach ( $users as $user ) {
+						if ( $user->role == 'unapproved' ) $user->role = 'user';
+						else if ( $user->id != '1' ) $user->role = 'unapproved';
 						$user->save();
 					}
 					$response = array( 'status' => 'success', 'msg' => _( 'Successful' ), 'redirect' => URL::action( 'AdminController@getUsers' ) );
@@ -376,13 +384,13 @@ class AdminController extends BaseController {
 	 *
 	 */
 	public function postUpdateSlide() {
-		try{
-			$slides= Input::only('slide');
-			$slides=$slides['slide'];
-			foreach($slides as $id=>$slide){
-				$post=Post::find($id);
-				$metas= array_pull($slide,'meta');// diziden metaların tutulduğu diziyi  alıyoruz
-				$post->fill($slide)->push();// meta hariç  diğer bilgileri  kaydediyoruz.
+		try {
+			$slides = Input::only( 'slide' );
+			$slides = $slides['slide'];
+			foreach ( $slides as $id => $slide ) {
+				$post  = Post::find( $id );
+				$metas = array_pull( $slide, 'meta' );// diziden metaların tutulduğu diziyi  alıyoruz
+				$post->fill( $slide )->push();// meta hariç  diğer bilgileri  kaydediyoruz.
 				if ( !empty( $metas ) ) {
 					foreach ( $metas as $key => $value ) {
 						if ( is_null( $value ) ) continue;
@@ -390,14 +398,14 @@ class AdminController extends BaseController {
 					}
 				}
 			}
-			$response=array('status'=>'success','msg'=>'');
-		}catch (Exception $e){
-			$response=array('status'=>'danger','msg'=>$e->getMessage());
+			$response = array( 'status' => 'success', 'msg' => '' );
+		} catch ( Exception $e ) {
+			$response = array( 'status' => 'danger', 'msg' => $e->getMessage() );
 		}
-		return Response::json($response);
+		return Response::json( $response );
 	}
 
-	public function postUploadSliderImage(){
+	public function postUploadSliderImage() {
 		$allowed = array( 'png', 'jpg', 'gif' );
 		$file    = Input::file( 'fileupload' );
 		if ( Input::hasFile( 'fileupload' ) && $file->getError() == 0 ) {
@@ -405,17 +413,18 @@ class AdminController extends BaseController {
 			$extension = $file->getClientOriginalExtension();
 
 			if ( !in_array( strtolower( $extension ), $allowed ) ) {
-				$response= array('status'=>'danger','msg'=>_('Extension not allowed'));
-				return Response::json($response);
+				$response = array( 'status' => 'danger', 'msg' => _( 'Extension not allowed' ) );
+				return Response::json( $response );
 			}
 			if ( $file->move( public_path() . '/assets/uploads/slider/', $file->getClientOriginalName() ) ) {
-				$response= array('status'=>'success','msg'=>_('File uploaded successfully'),'url'=>'/assets/uploads/slider/'.$file->getClientOriginalName());
-				return Response::json($response);
+				$response = array( 'status' => 'success', 'msg' => _( 'File uploaded successfully' ), 'url' => '/assets/uploads/slider/' . $file->getClientOriginalName() );
+				return Response::json( $response );
 			}
 
-		}else{
-			$response= array('status'=>'danger','msg'=>Input::file('fileupload')->getErrorMessage());
-			return Response::json($response);
+		}
+		else {
+			$response = array( 'status' => 'danger', 'msg' => Input::file( 'fileupload' )->getErrorMessage() );
+			return Response::json( $response );
 		}
 	}
 
@@ -549,7 +558,6 @@ class AdminController extends BaseController {
 	public function getContacts() {
 		if ( userCan( 'manageContact' ) ) {
 			$title     = _( 'Cotacts' );
-			$contacts  = Contact::all();
 			$rightSide = 'list/contacts';
 			$error     = null;
 		}
@@ -558,7 +566,7 @@ class AdminController extends BaseController {
 			$rightSide = 'error';
 			$error     = _( 'You do not have permission to access this page' );
 		}
-		return View::make( 'admin.index' )->with( compact( 'title', 'contacts', 'rightSide' ) )->withErrors( $error );
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
 	}
 
 	/**
@@ -612,14 +620,14 @@ class AdminController extends BaseController {
 	public function postMarkAsReadContact() {
 		if ( Request::ajax() ) {
 			$ids = (array) Input::get( 'id' );
-			is_null( Input::get( 'toggle' ) ) ? $toggle = true : $toggle = Input::get( 'toggle' );
+			is_null( Input::get( 'toggle' ) ) ? $toggle = true : $toggle =  Input::get( 'toggle' );
 			if ( !is_null( $ids || !empty( $ids ) ) ) {
 				$contacts = Contact::find( $ids );
 				foreach ( $contacts as $contact ) {
-					$toggle ? $contact->isRead = !$contact->isRead : $contact->isRead = true;
+					filter_var( $toggle, FILTER_VALIDATE_BOOLEAN ) ? $contact->isRead = !$contact->isRead : $contact->isRead = true;
 					$contact->save();
 				}
-				$response = array( 'status' => 'success', 'msg' => _( 'Successful' ), 'redirect' => '' );
+				$response = array( 'status' => 'success', 'msg' => _( 'Successful' ) . $toggle, 'redirect' => '' );
 				return Response::json( $response );
 			}
 		}

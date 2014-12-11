@@ -33,7 +33,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							<?php foreach ( $contacts as $contact ): ?>
+							<?php foreach ( $contacts->all() as $contact ): ?>
 								<?php $contact->meta=unserialize($contact->meta); // veritabanındaki bilgiyi diziye döndirmek için?>
 								<tr class="<?php if(!$contact->isRead): echo 'info';endif?>">
 									<td><?= $contact->id ?></td>
@@ -41,7 +41,7 @@
 									<td><?= $contact->meta['email'] ?></td>
 									<td><?= $contact->created_at ?></td>
 									<td>
-										<div class="message" data-toggle="tooltip" data-placement="bottom" title="<?= _( 'Click to read more' ) ?>" data-value='{"id":"<?= $contact->id ?>","name":"<?= $contact->meta['name'] ?>","content":"<?= $contact->message ?>"}'><?= mb_substr( $contact->message, 0, 450, 'UTF-8' ) ?></div>
+										<div class="clickToRead" data-toggle="tooltip" data-placement="bottom" title="<?= _( 'Click to read more' ) ?>" data-value='{"id":"<?= $contact->id ?>","name":"<?= $contact->meta['name'] ?>","content":"<?= $contact->message ?>"}'><?= mb_substr( $contact->message, 0, 250, 'UTF-8' ).'...' ?></div>
 									</td>
 									<td>
 										<div class="btn-group">

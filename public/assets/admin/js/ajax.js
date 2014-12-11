@@ -352,10 +352,10 @@ $(function () {
 	/**
 	 * İletişim sayfasındaki mesaja tıklandığında modal içerisinde mesajı açar
 	 */
-	$('#inbox-table .message').click(function () {
+	$('.clickToRead').click(function () {
 		var message = $.parseJSON($(this).attr('data-value'));// id,name,content
 		var contact = $(this);// tıklanan mesaja ait <div>
-		var data = $.parseJSON('{"id":"'+message.id+'","toggle":"false"}');
+		var data = $.parseJSON('{"id":"'+message.id+'","toggle":false}');
 		$.post('/admin/mark-as-read-contact',data).done(function(){
 			contact.parents('tr').removeClass('info');// mesaj satırının arka planın beyaz yapılıyor(okundu manası)
 		})

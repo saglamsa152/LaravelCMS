@@ -67,3 +67,10 @@
 }
 /* /yükleniyor animasyonu */
 #inbox-table .message{cursor: pointer;}
+
+.navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > h4 {
+	margin: 0
+}
+.navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > p {
+	margin: 0 ;
+}
