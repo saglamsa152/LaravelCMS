@@ -43,6 +43,7 @@ App::before( function ( $request ) {
 	function userCan( $action ) {
 		$user    = Auth::user();
 		$result  = false;
+		if(is_null($user))return $result;
 		$actions = array(
 				'manageUsers'          => [ 'admin', 'editor' ],
 				'editUserRole'         => [ 'admin' ],
