@@ -8,7 +8,7 @@
 		<ol class="breadcrumb">
 			<li><a href="<?= URL::action( 'AdminController@getIndex' ) ?>"><i class="fa fa-dashboard"></i> <?= _( 'Home' ) ?>
 				</a></li>
-			<li><a href="<?= URL::action( 'AdminController@getUsers' ) ?>"><?= _( 'Users' ) ?></a></li>
+			<li><a href="<?= URL::action( 'AdminController@getUsers' ) ?>"><?= _( 'Members' ) ?></a></li>
 			<li class="active"><?= _( 'List' ) ?></li>
 		</ol>
 	</section>

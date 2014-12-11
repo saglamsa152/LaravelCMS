@@ -4,12 +4,12 @@
 	<section class="content-header">
 		<h1>
 			<?= $title ?>
-			<small><?= _( 'Add New User' ) ?></small>
+			<small><?= _( 'Add New Member' ) ?></small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="<?= URL::action( 'AdminController@getIndex' ) ?>"><i class="fa fa-dashboard"></i> <?= _( 'Home' ) ?>
 				</a></li>
-			<li class="active"><?= _( 'Add User' ) ?></li>
+			<li class="active"><?= _( 'Add Member' ) ?></li>
 		</ol>
 	</section>
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
-"POT-Creation-Date: 2014-12-07 23:19+0200\n"
-"PO-Revision-Date: 2014-12-07 23:20+0200\n"
+"POT-Creation-Date: 2014-12-11 13:57+0200\n"
+"PO-Revision-Date: 2014-12-11 14:00+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: TR\n"
@@ -18,12 +18,12 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../controllers\n"
 "X-Poedit-SearchPath-3: ../../../public/assets/admin/js\n"
 
-#: ../../views/admin/header.php:246 ../../views/admin/leftSide.php:60
+#: ../../views/admin/header.php:130 ../../views/admin/leftSide.php:49
 #: ../../views/admin/rightSide/error.php:28
 msgid "Profile"
 msgstr "Profil"
 
-#: ../../views/admin/header.php:249
+#: ../../views/admin/header.php:133
 msgid "Sign out"
 msgstr "Çıkış yap"
 
@@ -70,20 +70,18 @@ msgstr "Sosyal ağları kullanarak giriş yap"
 msgid "Hello"
 msgstr "Selam"
 
-#: ../../views/admin/leftSide.php:37 ../../views/admin/rightSide/error.php:26
+#: ../../views/admin/leftSide.php:26 ../../views/admin/rightSide/error.php:26
 msgid "Dashboard"
 msgstr "Başlangıç"
 
-#: ../../views/admin/leftSide.php:47
+#: ../../views/admin/leftSide.php:36
 #: ../../views/admin/rightSide/list/users.php:11
-#: ../../views/admin/rightSide/list/users.php:23
 #: ../../controllers/AdminController.php:67
-msgid "Users"
-msgstr "Kullanıcılar"
+msgid "Members"
+msgstr "Üyeler"
 
-#: ../../views/admin/leftSide.php:51 ../../views/admin/leftSide.php:74
-#: ../../views/admin/leftSide.php:89 ../../views/admin/leftSide.php:103
-#: ../../views/admin/leftSide.php:118 ../../views/admin/leftSide.php:133
+#: ../../views/admin/leftSide.php:40 ../../views/admin/leftSide.php:63
+#: ../../views/admin/leftSide.php:78
 #: ../../views/admin/rightSide/list/slider.php:12
 #: ../../views/admin/rightSide/list/news.php:11
 #: ../../views/admin/rightSide/list/users.php:12
@@ -92,67 +90,66 @@ msgstr "Kullanıcılar"
 msgid "List"
 msgstr "Liste"
 
-#: ../../views/admin/leftSide.php:53 ../../views/admin/leftSide.php:75
-#: ../../views/admin/leftSide.php:104 ../../views/admin/leftSide.php:119
-#: ../../views/admin/rightSide/list/slider.php:26
-#: ../../views/admin/rightSide/list/news.php:25
-#: ../../views/admin/rightSide/list/users.php:26
-msgid "Add New"
-msgstr "Yeni Ekle"
+#: ../../views/admin/leftSide.php:42
+#: ../../views/admin/rightSide/add/user.php:7
+#: ../../controllers/AdminController.php:107
+msgid "Add New Member"
+msgstr "Yeni Üye Ekle"
 
-#: ../../views/admin/leftSide.php:70
+#: ../../views/admin/leftSide.php:59
 #: ../../views/admin/rightSide/list/news.php:10
 #: ../../views/admin/rightSide/list/news.php:22
 #: ../../views/template/menu.blade.php:9
 msgid "News"
 msgstr "Haberler"
 
-#: ../../views/admin/leftSide.php:85
+#: ../../views/admin/leftSide.php:64
+#: ../../views/admin/rightSide/list/slider.php:26
+#: ../../views/admin/rightSide/list/news.php:25
+#: ../../views/admin/rightSide/list/users.php:26
+msgid "Add New"
+msgstr "Yeni Ekle"
+
+#: ../../views/admin/leftSide.php:74
 msgid "Slider"
 msgstr "Slider"
 
-#: ../../views/admin/leftSide.php:99
-#: ../../views/admin/rightSide/list/products.php:10
-#: ../../views/admin/rightSide/list/products.php:22
-#: ../../views/template/menu.blade.php:13
-#: ../../controllers/HomeController.php:52
-#: ../../controllers/AdminController.php:490
-msgid "Products"
-msgstr "Ürünler"
+#: ../../views/admin/leftSide.php:88
+msgid "Dues"
+msgstr "Aidat"
 
-#: ../../views/admin/leftSide.php:114
-#: ../../views/admin/rightSide/list/services.php:10
-#: ../../views/admin/rightSide/list/services.php:22
-#: ../../views/template/menu.blade.php:11
-#: ../../controllers/HomeController.php:57
-#: ../../controllers/AdminController.php:429
-msgid "Services"
-msgstr "Hizmeler"
+#: ../../views/admin/leftSide.php:92
+msgid "Check"
+msgstr ""
 
-#: ../../views/admin/leftSide.php:129
-#: ../../controllers/AdminController.php:666
-msgid "Orders"
-msgstr "Siparişler"
+#: ../../views/admin/leftSide.php:93
+msgid "Pay Dues"
+msgstr "aidat öde"
 
-#: ../../views/admin/leftSide.php:143
+#: ../../views/admin/leftSide.php:94
+#, fuzzy
+msgid "Update Dues"
+msgstr "Haberi Güncelle"
+
+#: ../../views/admin/leftSide.php:104
 #: ../../views/admin/rightSide/list/contacts.php:10
 #: ../../controllers/HomeController.php:47
 msgid "Contact"
 msgstr "İletişim"
 
-#: ../../views/admin/leftSide.php:147
+#: ../../views/admin/leftSide.php:108
 msgid "İnbox"
 msgstr "Gelen Kutusu"
 
-#: ../../views/admin/leftSide.php:157
+#: ../../views/admin/leftSide.php:118
 msgid "Options"
 msgstr "Ayarlar"
 
-#: ../../views/admin/leftSide.php:162
+#: ../../views/admin/leftSide.php:123
 msgid "General"
 msgstr "Genel"
 
-#: ../../views/admin/leftSide.php:164
+#: ../../views/admin/leftSide.php:125
 #: ../../views/admin/rightSide/options/preferences.php:23
 #: ../../controllers/OptionsController.php:40
 msgid "Site Preferences"
@@ -543,6 +540,10 @@ msgstr "Cevap"
 msgid "Delete Message"
 msgstr "Mesajı Sil"
 
+#: ../../views/admin/rightSide/list/users.php:23
+msgid "Users"
+msgstr "Kullanıcılar"
+
 #: ../../views/admin/rightSide/list/users.php:36
 #: ../../views/admin/rightSide/list/users.php:98
 msgid "Name - Lastname"
@@ -588,6 +589,22 @@ msgstr ""
 msgid "Approve / Unapprove"
 msgstr "Onayla / Onayı kaldır"
 
+#: ../../views/admin/rightSide/list/services.php:10
+#: ../../views/admin/rightSide/list/services.php:22
+#: ../../views/template/menu.blade.php:11
+#: ../../controllers/HomeController.php:57
+#: ../../controllers/AdminController.php:429
+msgid "Services"
+msgstr "Hizmeler"
+
+#: ../../views/admin/rightSide/list/products.php:10
+#: ../../views/admin/rightSide/list/products.php:22
+#: ../../views/template/menu.blade.php:13
+#: ../../controllers/HomeController.php:52
+#: ../../controllers/AdminController.php:490
+msgid "Products"
+msgstr "Ürünler"
+
 #: ../../views/admin/rightSide/add/news.php:6
 msgid "Creat New News"
 msgstr "Yeni Haber oluştur"
@@ -608,14 +625,9 @@ msgstr "Yeni Haber"
 msgid "Task"
 msgstr "Taslak"
 
-#: ../../views/admin/rightSide/add/user.php:7
-#: ../../controllers/AdminController.php:107
-msgid "Add New User"
-msgstr "Yeni  Kullanıcı Ekle"
-
 #: ../../views/admin/rightSide/add/user.php:12
-msgid "Add User"
-msgstr "Kullanıcı Ekle"
+msgid "Add Member"
+msgstr "Üye Ekle"
 
 #: ../../views/admin/rightSide/options/index.php:6
 msgid "Menage General Options"
@@ -778,9 +790,8 @@ msgid "User"
 msgstr "Kullanıcı"
 
 #: ../../models/User.php:96
-#, fuzzy
 msgid "Editor"
-msgstr "Düzenle"
+msgstr "Editör"
 
 #: ../../models/User.php:96
 msgid "Admin"
@@ -935,7 +946,7 @@ msgstr "Slider  Yönetim  Sayfası"
 
 #: ../../controllers/AdminController.php:408
 msgid "Extension not allowed"
-msgstr ""
+msgstr "Geçersiz dosya uzantısı"
 
 #: ../../controllers/AdminController.php:412
 msgid "File uploaded successfully"
@@ -985,11 +996,15 @@ msgstr ""
 
 #: ../../controllers/AdminController.php:636
 msgid "Mail send Successfully"
-msgstr ""
+msgstr "Mail başarıyla gönderildi"
 
 #: ../../controllers/AdminController.php:650
 msgid "Mail Delete Successfully"
 msgstr "Mail başarıyla silindi"
+
+#: ../../controllers/AdminController.php:666
+msgid "Orders"
+msgstr "Siparişler"
 
 #: ../../controllers/AdminController.php:700
 msgid "Please enter user name"
@@ -1091,6 +1106,9 @@ msgstr "Kaydedildi"
 msgid "Add"
 msgstr "Ekle"
 
+#~ msgid "Add User"
+#~ msgstr "Kullanıcı Ekle"
+
 #~ msgid "Add New Slide"
 #~ msgstr "Yeni  slide ekle"
 
@@ -1180,9 +1198,6 @@ msgstr "Ekle"
 
 #~ msgid "Add Service"
 #~ msgstr "Yeni Hizmet Ekle"
-
-#~ msgid "Members"
-#~ msgstr "Kullanıcılar"
 
 #~ msgid "Add Product"
 #~ msgstr "Ürün Ekle"

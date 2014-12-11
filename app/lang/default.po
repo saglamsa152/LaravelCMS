@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
-"POT-Creation-Date: 2014-12-07 23:21+0200\n"
-"PO-Revision-Date: 2014-12-07 23:21+0200\n"
+"POT-Creation-Date: 2014-12-11 14:00+0200\n"
+"PO-Revision-Date: 2014-12-11 14:00+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: en_EN\n"
@@ -18,12 +18,12 @@ msgstr ""
 "X-Poedit-SearchPath-2: controllers\n"
 "X-Poedit-SearchPath-3: ../public/assets/admin/js\n"
 
-#: views/admin/header.php:246 views/admin/leftSide.php:60
+#: views/admin/header.php:130 views/admin/leftSide.php:49
 #: views/admin/rightSide/error.php:28
 msgid "Profile"
 msgstr ""
 
-#: views/admin/header.php:249
+#: views/admin/header.php:133
 msgid "Sign out"
 msgstr ""
 
@@ -70,19 +70,17 @@ msgstr ""
 msgid "Hello"
 msgstr ""
 
-#: views/admin/leftSide.php:37 views/admin/rightSide/error.php:26
+#: views/admin/leftSide.php:26 views/admin/rightSide/error.php:26
 msgid "Dashboard"
 msgstr ""
 
-#: views/admin/leftSide.php:47 views/admin/rightSide/list/users.php:11
-#: views/admin/rightSide/list/users.php:23 controllers/AdminController.php:67
-msgid "Users"
+#: views/admin/leftSide.php:36 views/admin/rightSide/list/users.php:11
+#: controllers/AdminController.php:67
+msgid "Members"
 msgstr ""
 
-#: views/admin/leftSide.php:51 views/admin/leftSide.php:74
-#: views/admin/leftSide.php:89 views/admin/leftSide.php:103
-#: views/admin/leftSide.php:118 views/admin/leftSide.php:133
-#: views/admin/rightSide/list/slider.php:12
+#: views/admin/leftSide.php:40 views/admin/leftSide.php:63
+#: views/admin/leftSide.php:78 views/admin/rightSide/list/slider.php:12
 #: views/admin/rightSide/list/news.php:11
 #: views/admin/rightSide/list/users.php:12
 #: views/admin/rightSide/list/services.php:11
@@ -90,57 +88,60 @@ msgstr ""
 msgid "List"
 msgstr ""
 
-#: views/admin/leftSide.php:53 views/admin/leftSide.php:75
-#: views/admin/leftSide.php:104 views/admin/leftSide.php:119
-#: views/admin/rightSide/list/slider.php:26
+#: views/admin/leftSide.php:42 views/admin/rightSide/add/user.php:7
+#: controllers/AdminController.php:107
+msgid "Add New Member"
+msgstr ""
+
+#: views/admin/leftSide.php:59 views/admin/rightSide/list/news.php:10
+#: views/admin/rightSide/list/news.php:22 views/template/menu.blade.php:9
+msgid "News"
+msgstr ""
+
+#: views/admin/leftSide.php:64 views/admin/rightSide/list/slider.php:26
 #: views/admin/rightSide/list/news.php:25
 #: views/admin/rightSide/list/users.php:26
 msgid "Add New"
 msgstr ""
 
-#: views/admin/leftSide.php:70 views/admin/rightSide/list/news.php:10
-#: views/admin/rightSide/list/news.php:22 views/template/menu.blade.php:9
-msgid "News"
-msgstr ""
-
-#: views/admin/leftSide.php:85
+#: views/admin/leftSide.php:74
 msgid "Slider"
 msgstr ""
 
-#: views/admin/leftSide.php:99 views/admin/rightSide/list/products.php:10
-#: views/admin/rightSide/list/products.php:22 views/template/menu.blade.php:13
-#: controllers/HomeController.php:52 controllers/AdminController.php:490
-msgid "Products"
+#: views/admin/leftSide.php:88
+msgid "Dues"
 msgstr ""
 
-#: views/admin/leftSide.php:114 views/admin/rightSide/list/services.php:10
-#: views/admin/rightSide/list/services.php:22 views/template/menu.blade.php:11
-#: controllers/HomeController.php:57 controllers/AdminController.php:429
-msgid "Services"
+#: views/admin/leftSide.php:92
+msgid "Check"
 msgstr ""
 
-#: views/admin/leftSide.php:129 controllers/AdminController.php:666
-msgid "Orders"
+#: views/admin/leftSide.php:93
+msgid "Pay Dues"
 msgstr ""
 
-#: views/admin/leftSide.php:143 views/admin/rightSide/list/contacts.php:10
+#: views/admin/leftSide.php:94
+msgid "Update Dues"
+msgstr ""
+
+#: views/admin/leftSide.php:104 views/admin/rightSide/list/contacts.php:10
 #: controllers/HomeController.php:47
 msgid "Contact"
 msgstr ""
 
-#: views/admin/leftSide.php:147
+#: views/admin/leftSide.php:108
 msgid "İnbox"
 msgstr ""
 
-#: views/admin/leftSide.php:157
+#: views/admin/leftSide.php:118
 msgid "Options"
 msgstr ""
 
-#: views/admin/leftSide.php:162
+#: views/admin/leftSide.php:123
 msgid "General"
 msgstr ""
 
-#: views/admin/leftSide.php:164
+#: views/admin/leftSide.php:125
 #: views/admin/rightSide/options/preferences.php:23
 #: controllers/OptionsController.php:40
 msgid "Site Preferences"
@@ -516,6 +517,10 @@ msgstr ""
 msgid "Delete Message"
 msgstr ""
 
+#: views/admin/rightSide/list/users.php:23
+msgid "Users"
+msgstr ""
+
 #: views/admin/rightSide/list/users.php:36
 #: views/admin/rightSide/list/users.php:98
 msgid "Name - Lastname"
@@ -561,6 +566,18 @@ msgstr ""
 msgid "Approve / Unapprove"
 msgstr ""
 
+#: views/admin/rightSide/list/services.php:10
+#: views/admin/rightSide/list/services.php:22 views/template/menu.blade.php:11
+#: controllers/HomeController.php:57 controllers/AdminController.php:429
+msgid "Services"
+msgstr ""
+
+#: views/admin/rightSide/list/products.php:10
+#: views/admin/rightSide/list/products.php:22 views/template/menu.blade.php:13
+#: controllers/HomeController.php:52 controllers/AdminController.php:490
+msgid "Products"
+msgstr ""
+
 #: views/admin/rightSide/add/news.php:6
 msgid "Creat New News"
 msgstr ""
@@ -581,12 +598,8 @@ msgstr ""
 msgid "Task"
 msgstr ""
 
-#: views/admin/rightSide/add/user.php:7 controllers/AdminController.php:107
-msgid "Add New User"
-msgstr ""
-
 #: views/admin/rightSide/add/user.php:12
-msgid "Add User"
+msgid "Add Member"
 msgstr ""
 
 #: views/admin/rightSide/options/index.php:6
@@ -924,6 +937,10 @@ msgstr ""
 
 #: controllers/AdminController.php:650
 msgid "Mail Delete Successfully"
+msgstr ""
+
+#: controllers/AdminController.php:666
+msgid "Orders"
 msgstr ""
 
 #: controllers/AdminController.php:700

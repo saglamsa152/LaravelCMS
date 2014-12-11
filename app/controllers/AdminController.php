@@ -64,7 +64,7 @@ class AdminController extends BaseController {
 	 */
 	public function getUsers() {
 		if ( userCan( 'manageUsers' ) ) {
-			$title     = _( 'Users' );
+			$title     = _( 'Members' );
 			$rightSide = 'list/users';
 			$users     = User::all();
 			$error     = null;
@@ -104,7 +104,7 @@ class AdminController extends BaseController {
 	 */
 	public function getAddUser() {
 		if ( userCan( 'addUser' ) ) {
-			$title     = _( 'Add New User' );
+			$title     = _( 'Add New Member' );
 			$rightSide = 'add/user';
 			$error     = null;
 		}

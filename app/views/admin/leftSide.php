@@ -28,18 +28,18 @@
 			</li>
 			<?php endif?>
 			<!-- /Dashboard -->
-			<!-- Users or Profile -->
+			<!-- Members or Profile -->
 			<?php if(userCan('manageUsers')):?>
 			<li class="treeview <?php if(str_contains(URL::current(),'user')) echo ' active'?>">
 				<a href="">
 					<i class="fa fa-users"></i>
-					<span><?=_('Users')?></span>
+					<span><?=_('Members')?></span>
 					<i class="fa fa-angle-left pull-right"></i>
 				</a>
 				<ul class="treeview-menu">
 					<li><a href="<?=URL::action('AdminController@getUsers')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
 					<?php if(userCan('addUser')): ?>
-					<li><a href="<?=URL::action('AdminController@getAddUser')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
+					<li><a href="<?=URL::action('AdminController@getAddUser')?>"><i class="fa fa-plus"></i> <?=_('Add New Member')?></a></li>
 					<?php endif ?>
 				</ul>
 			</li>
@@ -50,7 +50,7 @@
 					</a>
 				</li>
 			<?php endif; ?>
-			<!-- /Users or Profile-->
+			<!-- /Members or Profile-->
 			<!-- News -->
 			<?php if(userCan('manageNews')):?>
 				<li class="treeview <?php if(str_contains(URL::current(),'news')) echo ' active'?>">
