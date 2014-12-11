@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
-"POT-Creation-Date: 2014-12-11 13:57+0200\n"
-"PO-Revision-Date: 2014-12-11 14:00+0200\n"
+"POT-Creation-Date: 2014-12-11 16:14+0200\n"
+"PO-Revision-Date: 2014-12-11 19:54+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: TR\n"
@@ -18,12 +18,17 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../controllers\n"
 "X-Poedit-SearchPath-3: ../../../public/assets/admin/js\n"
 
-#: ../../views/admin/header.php:130 ../../views/admin/leftSide.php:49
+#: ../../views/admin/header.php:112
+#, php-format
+msgid "Member since %s"
+msgstr "%s den beri üye"
+
+#: ../../views/admin/header.php:120 ../../views/admin/leftSide.php:49
 #: ../../views/admin/rightSide/error.php:28
 msgid "Profile"
 msgstr "Profil"
 
-#: ../../views/admin/header.php:133
+#: ../../views/admin/header.php:123
 msgid "Sign out"
 msgstr "Çıkış yap"
 
@@ -934,7 +939,7 @@ msgstr "Yönetici Silinemez"
 #: ../../controllers/AdminController.php:274
 #: ../../controllers/AdminController.php:622
 msgid "Successful"
-msgstr "Başarılı!"
+msgstr "Başarılı"
 
 #: ../../controllers/AdminController.php:289
 msgid "News Management Page"

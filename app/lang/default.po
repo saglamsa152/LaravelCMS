@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
-"POT-Creation-Date: 2014-12-11 14:00+0200\n"
-"PO-Revision-Date: 2014-12-11 14:00+0200\n"
+"POT-Creation-Date: 2014-12-11 16:14+0200\n"
+"PO-Revision-Date: 2014-12-11 16:14+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: en_EN\n"
@@ -18,12 +18,17 @@ msgstr ""
 "X-Poedit-SearchPath-2: controllers\n"
 "X-Poedit-SearchPath-3: ../public/assets/admin/js\n"
 
-#: views/admin/header.php:130 views/admin/leftSide.php:49
+#: views/admin/header.php:112
+#, php-format
+msgid "Member since %s"
+msgstr ""
+
+#: views/admin/header.php:120 views/admin/leftSide.php:49
 #: views/admin/rightSide/error.php:28
 msgid "Profile"
 msgstr ""
 
-#: views/admin/header.php:133
+#: views/admin/header.php:123
 msgid "Sign out"
 msgstr ""
 
