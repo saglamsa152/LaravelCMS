@@ -782,48 +782,54 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function postAddPost() {
-		if ( Request::ajax() ) {
-			$postData = Input::all();
-			$rules    = array(
-					'title'   => 'required|unique:posts',
-					'content' => 'required'
-			);
-			// todo  ingilzce  tercüme
-			$messages  = array(
-					'title.required'   => _( 'Başlık boş bırakılamaz' ),
-					'content.required' => _( 'İçerik boş bırakılamaz' )
-			);
-			$validator = Validator::make( $postData, $rules, $messages );
+		try {
+			if ( Request::ajax() ) {
+				$postData = Input::all();
+				$rules    = array(
+						'title'   => 'required|unique:posts',
+						'content' => 'required'
+				);
+				// todo  ingilzce  tercüme
+				$messages  = array(
+						'title.required'   => _( 'Başlık boş bırakılamaz' ),
+						'content.required' => _( 'İçerik boş bırakılamaz' )
+				);
+				$validator = Validator::make( $postData, $rules, $messages );
 
-			if ( $validator->fails() ) {
-				$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() ); //todo  burası  olmuyor
-				return Response::json( $ajaxResponse );
-			}
-			else {
-				$post = Post::create( array(
-						'author'     => Auth::user()->id,
-						'content'    => $postData['content'],
-						'title'      => $postData['title'],
-						'excerpt'    => mb_substr( $postData['content'], 0, 450, 'UTF-8' ),
-						'status'     => $postData['status'],
-						'type'       => $postData['type'],
-						'url'        => Str::slug( $postData['title'] ),
-						'created_ip' => Request::getClientIp()
-				) );
-
-				if ( isset( $postData['postMeta'] ) ) {
-					$postMeta      = $postData['postMeta'];
-					$modelPostMeta = array();
-					foreach ( $postMeta as $key => $value ) {
-						$modelPostMeta[] = new PostMeta( array( 'metaKey' => $key, 'metaValue' => $value ) );
-					}
-					$post->postMeta()->saveMany( $modelPostMeta );
+				if ( $validator->fails() ) {
+					$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() ); //todo  burası  olmuyor
+					return Response::json( $ajaxResponse );
 				}
-				$actionToType   = Option::getOption( 'postTypes', 'general', true );
-				$redirectAction = 'AdminController@get' . $actionToType[$postData['type']];//gönderinin türü ne ise o türün listesine yönlendirme için
-				$ajaxResponse   = array( 'status' => 'success', 'msg' => _( 'Processing was carried out successfully' ), 'redirect' => URL::action( $redirectAction ) );
-				return Response::json( $ajaxResponse );
+				else {
+					$postData['type'] === 'slider' ? $url = $postData['url'] : $url = Str::slug( $postData['title'] );
+					$post = Post::create( array(
+							'author'     => Auth::user()->id,
+							'content'    => $postData['content'],
+							'title'      => $postData['title'],
+							'excerpt'    => mb_substr( $postData['content'], 0, 450, 'UTF-8' ),
+							'status'     => $postData['status'],
+							'type'       => $postData['type'],
+							'url'        => $url,
+							'created_ip' => Request::getClientIp()
+					) );
+
+					if ( isset( $postData['postMeta'] ) ) {
+						$postMeta      = $postData['postMeta'];
+						$modelPostMeta = array();
+						foreach ( $postMeta as $key => $value ) {
+							$modelPostMeta[] = new PostMeta( array( 'metaKey' => $key, 'metaValue' => $value ) );
+						}
+						$post->postMeta()->saveMany( $modelPostMeta );
+					}
+					$actionToType   = Option::getOption( 'postTypes', 'general', true );
+					$redirectAction = 'AdminController@get' . $actionToType[$postData['type']];//gönderinin türü ne ise o türün listesine yönlendirme için
+					$ajaxResponse   = array( 'status' => 'success', 'msg' => _( 'Processing was carried out successfully' ), 'redirect' => URL::action( $redirectAction ) );
+					return Response::json( $ajaxResponse );
+				}
 			}
+		}catch (Exception $e){
+			$ajaxResponse   = array( 'status' => 'danger', 'msg' => $e->getMessage() );
+			return Response::json( $ajaxResponse );
 		}
 	}
 
