@@ -100,7 +100,8 @@ $(function () {
 	 * Şifre değiştirme formunu  çalıştırır
 	 */
 	$('.ajaxFormPassword').on('submit', function () {
-		$('#updatePassword').append('<div id="ajaxResult" class="alert alert-info">' + waitingAnimationHtml + '</div>');
+		console.log('şifre')
+		$('#updatePassword').append('<div class="overlay">' + waitingAnimationHtml + '</div>');
 		$.ajax({
 			type   : 'POST',
 			url    : $(this).attr('action'),
