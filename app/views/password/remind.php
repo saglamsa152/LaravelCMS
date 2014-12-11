@@ -68,6 +68,8 @@
 <?= HTML::script( 'assets/admin/js/bootstrap.min.js' ) ?>
 <!-- Custom Js-->
 <?=HTML::script('assets/admin/js/custom.js')?>
+<?=HTML::script('assets/admin/js/gettext.php')?>
+<?=HTML::script('assets/admin/js/ajax.js')?>
 
 </body>
 </html>
