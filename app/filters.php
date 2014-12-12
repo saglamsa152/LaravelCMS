@@ -78,6 +78,14 @@ App::before( function ( $request ) {
 
 		return $result;
 	}
+	/**
+	 * eğer kullanıcının iletişim mesajlarını  yönetme yetkisi varsa contacts değişkenini  tüm viewler de paylaş
+	 *
+	 * Contact bilgisi  admin palen üst barda da gösterileceği için tüm admin paneli viewlerinde gözükecek
+	 */
+	if ( userCan( 'manageContact' ) ) {
+		View::share( 'contacts', new Contact );
+	}
 
 } );
 

@@ -10,14 +10,6 @@ class AdminController extends BaseController {
 		 * Post istelkerinde CSRF güvenlik kontrolü
 		 */
 		$this->beforeFilter( 'csrf', array( 'on' => 'post', 'except' => 'postMarkAsReadContact' ) );
-		if ( userCan( 'manageContact' ) ) {
-			/**
-			 * eğer kullanıcının iletişim mesajlarını  yönetme yetkisi varsa contacts değişkenini  tüm viewler de paylaş
-			 *
-			 * Contact bilgisi  admin palen üst barda da gösterileceği için tüm admin paneli viewlerinde gözükecek
-			 */
-			View::share( 'contacts', new Contact );
-		}
 	}
 
 	/**
