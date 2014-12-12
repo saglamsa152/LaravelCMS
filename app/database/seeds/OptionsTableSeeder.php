@@ -6,6 +6,9 @@ class OptionsTableSeeder extends Seeder {
 		DB::table( 'options' )->delete();
 		// Konsol çıktısını verelim
 		$this->command->info( 'options tablosu temizlendi' );
+		// Birincil mail adresi oluşturalım
+		preg_match('(([a-zA-Z0-9-]+\.)([a-zA-Z]+)$)',Config::get('app.url') , $mainMailAddress);
+		$mainMailAddress= 'info@'.$mainMailAddress[0];
 		//Veri tabanına verilerimizi ekleyelim
 		DB::table( 'options' )->insert( array(
 				array(
@@ -1249,7 +1252,7 @@ class OptionsTableSeeder extends Seeder {
 							 'optionType'  => 'general',
 							 'created_at'  => date( 'Y-m-d H:i:s' )
 				),
-				array( 'optionKey' => 'mainMailAddress', 'optionValue' => null, 'optionType' => 'general', 'created_at' => date( 'Y-m-d H:i:s' ) )
+				array( 'optionKey' => 'mainMailAddress', 'optionValue' => $mainMailAddress, 'optionType' => 'general', 'created_at' => date( 'Y-m-d H:i:s' ) )
 		) );
 		// Konsol çıktısını verelim
 		$this->command->info( 'Örnek veriler eklendi' );

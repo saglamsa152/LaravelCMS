@@ -159,49 +159,56 @@ class AdminController extends BaseController {
 
 
 	public function postAddUser() {
-		if ( Request::ajax() ) {
-			$postData = Input::all();
-			//kurallar
-			$rules = array(
-					'username' => 'required|min:3|unique:users,username',
-					'email'    => 'required|email|unique:users,email'
-			);
-			// todo  ingilzce  tercüme
-			$messages  = array(
-					'username.required' => _( 'Bir kullanıcı adı tanımlamalısınız' ),
-					'content.required'  => _( 'Bir e-mail belirtmelisiniz' ),
-					'username.unique'   => _( 'Kullanıcı adı kullanılıyor' ),
-					'email.unique'      => _( 'Mail adresi kullanılıyor' ),
-					'username.min'      => _( 'Kullanıcını adınız en az 3 karakterden oluşmalıdır' ),
-			);
-			$validator = Validator::make( $postData, $rules, $messages );
+		try {
+			if ( Request::ajax() ) {
+				$postData = Input::all();
+				//kurallar
+				$rules = array(
+						'username' => 'required|min:3|unique:users,username',
+						'email'    => 'required|email|unique:users,email'
+				);
+				// todo  ingilzce  tercüme
+				$messages  = array(
+						'username.required' => _( 'Bir kullanıcı adı tanımlamalısınız' ),
+						'content.required'  => _( 'Bir e-mail belirtmelisiniz' ),
+						'username.unique'   => _( 'Kullanıcı adı kullanılıyor' ),
+						'email.unique'      => _( 'Mail adresi kullanılıyor' ),
+						'username.min'      => _( 'Kullanıcını adınız en az 3 karakterden oluşmalıdır' ),
+				);
+				$validator = Validator::make( $postData, $rules, $messages );
 
-			if ( $validator->fails() ) {
-				$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() );
-				return Response::json( $ajaxResponse );
-			}
-			else {
-				$password = str_random( 6 );
-				//meta verileini diziden çıkartalım ve $userMeta değişkenine atayalım
-				$userMeta = array_pull( $postData, 'meta' );
-				//password ve created_ip alanlarını  diziye ekleyelim
-				$postData['password']   = Hash::make( $password );
-				$postData['created_ip'] = Request::getClientIp();
-				$user                   = User::create( $postData );
-
-				$mailData = array( 'username' => $postData['username'], 'password' => $password );
-				Mail::send( 'emails.welcome', $mailData, function ( $message ) use ( $postData ) {
-					$message->to( $postData['email'], $postData['name'] . ' ' . $postData['lastName'] )->subject( 'Hoş geldiniz!' );
-				} );
-
-				$modelUserMeta = array();
-				foreach ( $userMeta as $key => $value ) {
-					$modelUserMeta[] = new UserMeta( array( 'metaKey' => $key, 'metaValue' => $value ) );
+				if ( $validator->fails() ) {
+					$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() );
+					return Response::json( $ajaxResponse );
 				}
-				$user->userMeta()->saveMany( $modelUserMeta );
-				$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Yeni Üye oluşturuldu' ), 'redirect' => URL::action( 'AdminController@getProfile', $user->id ) );
-				return Response::json( $ajaxResponse );
+				else {
+					$password = str_random( 6 );
+					//meta verileini diziden çıkartalım ve $userMeta değişkenine atayalım
+					$userMeta = array_pull( $postData, 'meta' );
+					//password ve created_ip alanlarını  diziye ekleyelim
+					$postData['password']   = Hash::make( $password );
+					$postData['created_ip'] = Request::getClientIp();
+					/**
+					 * yeni oluşturulan kullanıcının şifresini kullanıcının mail adresime mail olark gönderelim
+					 */
+					$mailData = array( 'username' => $postData['username'], 'password' => $password );
+					Mail::send( 'emails.welcome', $mailData, function ( $message ) use ( $postData ) {
+						$message->to( $postData['email'], $postData['name'] . ' ' . $postData['lastName'] )->subject( 'Hoş geldiniz!' );
+					} );
+
+					$user          = User::create( $postData );//kulllanıcıyı kaydedelim
+					//kullanıcı meta verilerini  kaydedelim
+					foreach ( $userMeta as $key => $value ) {
+						UserMeta::setMeta($user->id,$key,$value);
+					}
+
+					$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Yeni Üye oluşturuldu' ), 'redirect' => URL::action( 'AdminController@getProfile', $user->id ) );
+					return Response::json( $ajaxResponse );
+				}
 			}
+		} catch ( Exception $e ) {
+			$ajaxResponse = array( 'status' => 'danger', 'msg' => $e->getMessage() );
+			return Response::json( $ajaxResponse );
 		}
 	}
 
@@ -612,7 +619,7 @@ class AdminController extends BaseController {
 	public function postMarkAsReadContact() {
 		if ( Request::ajax() ) {
 			$ids = (array) Input::get( 'id' );
-			is_null( Input::get( 'toggle' ) ) ? $toggle = true : $toggle =  Input::get( 'toggle' );
+			is_null( Input::get( 'toggle' ) ) ? $toggle = true : $toggle = Input::get( 'toggle' );
 			if ( !is_null( $ids || !empty( $ids ) ) ) {
 				$contacts = Contact::find( $ids );
 				foreach ( $contacts as $contact ) {
@@ -819,8 +826,8 @@ class AdminController extends BaseController {
 					return Response::json( $ajaxResponse );
 				}
 			}
-		}catch (Exception $e){
-			$ajaxResponse   = array( 'status' => 'danger', 'msg' => $e->getMessage() );
+		} catch ( Exception $e ) {
+			$ajaxResponse = array( 'status' => 'danger', 'msg' => $e->getMessage() );
 			return Response::json( $ajaxResponse );
 		}
 	}
