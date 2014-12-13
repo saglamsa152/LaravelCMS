@@ -800,7 +800,7 @@ class AdminController extends BaseController {
 					return Response::json( $ajaxResponse );
 				}
 				else {
-					$postData['type'] === 'slider' ? $url = $postData['url'] : $url = Str::slug( $postData['title'] );
+					$postData['type'] === 'slider' ? $url = $postData['url'] : $url = Str::slug_utf8( $postData['title'] );
 					$post = Post::create( array(
 							'author'     => Auth::user()->id,
 							'content'    => $postData['content'],
