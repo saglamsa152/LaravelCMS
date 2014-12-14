@@ -21,7 +21,7 @@
 			<h2 class="headline text-info">&nbsp; <i class="fa fa-minus-circle text-red"></i></h2>
 			<div class="error-content">
 				<h3><?=$error?></h3>
-				<a href="#" onclick="history.back()" class="btn btn-primary"><i class="fa fa-reply"></i> <?=_('Go Back')?></a>
+				<button onclick="history.back()" class="btn btn-primary"><i class="fa fa-reply"></i> <?=_('Go Back')?></button>
 				<?php if ( userCan( 'viewDashboard' )): ?>
 					<a href="<?= URL::action( 'AdminController@getIndex' ) ?>" class="btn btn-primary"><i class="fa fa-dashboard"></i> <?=_('Dashboard')?></a>
 				<?php else: ?>
