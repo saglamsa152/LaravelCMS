@@ -21,7 +21,7 @@
 		<ul class="sidebar-menu">
 			<!-- Dashboard -->
 			<?php if(userCan('viewDashboard')):?>
-			<li class="<?php if(str_contains(URL::current(),'/index')) echo ' active'?>">
+			<li class="<?php if(str_contains(URL::current(),'index') or str_contains(URL::current(),'') ) echo ' active'?>">
 				<a href="<?=URL::action('AdminController@getIndex')?>">
 					<i class="fa fa-dashboard"></i> <span><?=_('Dashboard')?></span>
 				</a>
@@ -30,7 +30,7 @@
 			<!-- /Dashboard -->
 			<!-- Members or Profile -->
 			<?php if(userCan('manageUsers')):?>
-			<li class="treeview <?php if(str_contains(URL::current(),'user')) echo ' active'?>">
+			<li class="treeview <?php if(str_contains(URL::current(),'user') and !str_contains(URL::current(),'preferences')) echo ' active'?>">
 				<a href="">
 					<i class="fa fa-users"></i>
 					<span><?=_('Members')?></span>
