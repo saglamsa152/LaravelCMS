@@ -34,7 +34,7 @@ App::before( function ( $request ) {
 	textdomain( $katalog );
 	/**
 	 * kullanıcı yetkisine göre yapabileceği işlemleri  belirliyen fonksiyon
-	 * todo bu işle  Auth sınıfı  genişletilerek yapılmalı
+	 * todo bu işlem  Auth sınıfı  genişletilerek yapılmalı
 	 *
 	 * @param $action
 	 *

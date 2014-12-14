@@ -74,3 +74,9 @@
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > p {
 	margin: 0 ;
 }
+.error-page-without-headline{
+	width: 450px;
+}
+.error-page-without-headline >.error-content {
+	margin: 0;
+}

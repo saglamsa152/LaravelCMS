@@ -68,32 +68,12 @@
 			<!-- /News -->
 			<!-- Slider -->
 			<?php if(userCan('manageSlider')): ?>
-				<li class="treeview <?php if(str_contains(URL::current(),'slider')) echo ' active'?>">
-					<a href="">
-						<i class="fa fa-ellipsis-h"></i>
-						<span><?=_('Slider')?></span>
-						<i class="fa fa-angle-left pull-right"></i>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="<?=URL::action('AdminController@getSlider')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-					</ul>
-				</li>
+				<li><a href="<?=URL::action('AdminController@getSlider')?>"><i class="fa fa-ellipsis-h <?php if(str_contains(URL::current(),'slider')) echo ' active'?>"></i> <?=_('Slider')?></a></li>
 			<?php endif; ?>
 			<!-- /Slider -->
 			<!-- Dues -->
 			<?php if(userCan('manageDues')):?>
-				<li class="treeview <?php if(str_contains(URL::current(),'dues')) echo ' active'?>">
-					<a href="">
-						<i class="fa  fa-credit-card"></i>
-						<span><?=_('Dues')?></span>
-						<i class="fa fa-angle-left pull-right"></i>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href=""><i class="fa fa-list"></i> <?=_('Check')?></a></li>
-						<li><a href=""><i class="fa fa-plus"></i> <?=_('Pay Dues')?></a></li>
-						<li><a href=""><i class="fa fa-plus"></i> <?=_('Update Dues')?></a></li>
-					</ul>
-				</li>
+				<li><a href="<?=URL::action('AdminController@getDues')?>"><i class="fa fa-credit-card <?php if(str_contains(URL::current(),'dues')) echo ' active'?>"></i> <?=_('Dues')?></a></li>
 			<?php endif; ?>
 			<!-- /Dues -->
 			<!-- Contact -->

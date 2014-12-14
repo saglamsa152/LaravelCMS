@@ -94,7 +94,7 @@ class AdminController extends BaseController {
 		foreach ( $user->userMeta as $meta ) {
 			$user = array_add( $user, $meta->metaKey, $meta->metaValue );
 		}
-		$user->name != '' ? $title = $user->name . ' ' . $user->lastName . ( ' Profile Page' ) : $title = $user->username . ( ' Profile Page' );
+		$title = $user->name != '' ?  $user->name . ' ' . $user->lastName . ( ' Profile Page' ) : $user->username . ( ' Profile Page' );
 		$rightSide = 'profile';
 		return View::make( 'admin.index' )->with( compact( 'user', 'title', 'rightSide' ) );
 	}
@@ -680,6 +680,24 @@ class AdminController extends BaseController {
 			$error     = _( 'You do not have permission to access this page' );
 		}
 		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
+	}
+
+	/*
+	 * Dues
+	 */
+	public function getDues(){
+		if ( userCan( 'manageDues' ) ) {
+			$title     = _( 'Dues' );
+			$rightSide = 'dues';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
+
 	}
 
 	/*
