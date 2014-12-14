@@ -15,8 +15,13 @@ class PostMeta extends Eloquent {
 	 */
 	protected $guarded = array( 'id', 'created_at', 'updated_at' );
 
+	/**
+	 * post tablosu ile ilişki ayarı
+	 * postMeta.postId => post.id
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
 	public function post() {
-		return $this->belongsTo( 'Post', 'id' );
+		return $this->belongsTo( 'Post', 'postId' );
 	}
 
 	/**

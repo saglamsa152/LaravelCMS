@@ -30,12 +30,19 @@ class Post extends Eloquent {
 	protected $dates = [ 'deleted_at' ];
 
 	/**
+	 * postMeta tablosu ile ilişki ayarı
+	 * post.id => postMeta.postId
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
 	public function postMeta() {
 		return $this->hasMany( 'PostMeta', 'postId' );
 	}
 
+	/**
+	 * user tablosu ile ilişki ayarı
+	 * post.author => user.id
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
 	public function user() {
 		return $this->belongsTo( 'User', 'author' );
 	}

@@ -13,7 +13,7 @@ class PostsCreateTable extends Migration {
 	{
 		Schema::create('posts',function($table){
 			$table->increments('id');
-			$table->integer('author')->unsigned();
+			$table->integer('author');
 			$table->text('content');
 			$table->string('title',255)->unique();
 			$table->text('excerpt');
@@ -23,7 +23,6 @@ class PostsCreateTable extends Migration {
 			$table->timestamps();
 			$table->softDeletes();
 			$table->string('created_ip', 15);
-
 		});
 	}
 

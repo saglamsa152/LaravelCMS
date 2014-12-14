@@ -15,8 +15,13 @@ class UserMeta extends Eloquent {
 	 */
 	protected $guarded = array( 'id', 'created_at', 'updated_at' );
 
+	/**
+	 * user tablosu ile ilişki ayarı
+	 * userMeta.userId => user.id
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
 	public function user() {
-		return $this->belongsTo( 'User', 'id' );
+		return $this->belongsTo( 'User', 'userId' );
 	}
 
 	/**

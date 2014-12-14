@@ -70,14 +70,32 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return 'remember_token';
 	}
 
+	/**
+	 * post tablosu ile ilişki ayarı
+	 * user.id => post.author
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
 	public function post() {
 		return $this->hasMany( 'Post', 'author' );
 	}
 
+	/**
+	 * userMeta tablosu ile ilişki ayarı
+	 * user.id => userMeta.userID
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
 	public function userMeta() {
 		return $this->hasMany( 'UserMeta', 'userId' );
 	}
 
+	/**
+	 * dues tablosu ile ilişki ayarı
+	 * user.id => dues.userID
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function dues() {
+		return $this->hasMany('Dues','userID');
+	}
 	/**
 	 * Kullanıcıların listelendiği tabloda kullanmak için kullanıcı rolüne uygun olarak
 	 * bootstrap labeli döndürür

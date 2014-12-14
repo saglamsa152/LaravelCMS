@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call( 'UserTableSeeder' );
 		$this->call( 'PostTableSeeder' );
 		$this->call( 'PostMetaTableSeeder' );
-		$this->call('OptionsTableSeeder');
+		$this->call( 'OptionsTableSeeder' );
+		$this->call( 'DuesTableSeeder' );
 	}
 
 }
