@@ -94,8 +94,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
 	 */
 	public function dues() {
-		return $this->hasMany('Dues','userID');
+		return $this->hasMany( 'Dues', 'userID' );
 	}
+
 	/**
 	 * Kullanıcıların listelendiği tabloda kullanmak için kullanıcı rolüne uygun olarak
 	 * bootstrap labeli döndürür
@@ -118,6 +119,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * Kulllanıcının profil resminin adresini döndürür
 	 *
 	 * eğer bir avatar yüklenmemişse gravatar adresini döndürür
+	 *
 	 * @param int    $s
 	 * @param string $d
 	 * @param string $r
@@ -136,5 +138,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		}
 		else $avatar_url = $user->avatar;
 		return $avatar_url;
+	}
+
+	public function getScreenName() {
+		return $this->name != '' ? $this->name . ' ' . $this->lastName : $this->username;
 	}
 }
