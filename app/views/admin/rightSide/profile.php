@@ -177,7 +177,7 @@
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs pull-right">
 							<li class="active"><a data-toggle="tab" href="#view-tab"><?= _( 'View' ) ?></a></li>
-							<li><a data-toggle="tab" href="#upload-tab"><i class="fa fa-cloud-upload"></i> </a></li>
+							<li><a data-toggle="tab" href="#upload-tab"><i class="fa fa-cloud-upload"></i> <?=_('Upload')?> </a></li>
 							<li class="pull-left header"><?= _( 'Avatar' ) ?></li>
 						</ul>
 						<div class="tab-content">
