@@ -20,12 +20,12 @@
 	<section class="content">
 		<div class="box box-info">
 			<div class="box-header">
-				<h4 class="box-title"><?=_('Dues')?></h4>
+				<h4 class="box-title"><?= isset($user) ? $user->getScreenName() : _('Dues')?></h4>
 
 				<div class="box-tools">
 					<form class="search-form">
 						<div class="input-group col-md-3 input-group-sm pull-right">
-							<input type="text" class="form-control input-sm" placeholder="<?=_('Search')?>">
+							<input type="text" class="form-control input-sm typeahead" placeholder="<?=_('Search')?>">
 							<div class="input-group-btn">
 								<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-search"></i>
 									<span class="caret"></span></button>
@@ -39,16 +39,15 @@
 					</form><!-- /search-form -->
 				</div><!-- /.box-tools -->
 			</div><!-- /.box-header -->
-			<div class="box-body">
+			<div class="box-body clearfix">
+				<?php if($error=$errors->getMessages()):?>
 				<div class="error-page error-page-without-headline">
 					<div class="error-content text-center">
-						<h3><i class="fa fa-warning text-yellow"></i> <?=_('You should select a member')?></h3>
-						<p>
-							<?=_('To view the dues information you must first select a user.')?>
-						</p>
+						<h3><i class="fa fa-warning text-yellow"></i><?=$error['title'][0]?> </h3>
+						<p><?=$error['content'][0]?></p>
 						<form class="search-form">
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="<?=_('Search')?>">
+								<input type="text" class="form-control typeahead" placeholder="<?=_('Search')?>">
 								<div class="input-group-btn">
 									<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-search"></i>
 										<span class="caret"></span></button>
@@ -59,8 +58,44 @@
 									</ul>
 								</div><!-- /.input-group-btn -->
 						</form><!-- /search-form -->
-					</div>
-				</div>
+					</div><!-- /.error-content .text-center -->
+				</div><!-- /.error-page .error-page-without-headline -->
+				<?php else:?>
+					<section class="col-md-3">
+						<?= HTML::image( $user->getAvatarUrl(150), 'User Image', array( 'class' => 'img-circle  center-block','width'=>'150px' ) ) ?>
+					</section>
+					<section class="col-md-9">
+						<p class="profile-info">
+							<span><?=_('Name - Lastname')?></span> : <?=$user->name.' - '.$user->lastName?>
+						</p>
+						<p class="profile-info">
+							<span><?=_('User Role')?></span> : <?=$user->role?>
+						</p>
+						<p class="profile-info">
+							<span><?=URL::action('AdminController@getUserTypeAhead',array('column'=>'username','value'=>'admi'))?></span> :
+						</p>
+					</section>
+					<section class="col-md-12">
+
+					</section>
+				<?php endif?>
+				<script>
+					$(function () {
+						var values = new Bloodhound({
+							datumTokenizer: Bloodhound.tokenizers.obj.whitespace('username'),
+							queryTokenizer: Bloodhound.tokenizers.whitespace,
+							remote        : '<?=URL::action('AdminController@getUserTypeAhead',array('column'=>'username','value'=>'a'))?>'
+						});
+
+						values.initialize();
+
+						$('.typeahead').typeahead(null, {
+							name      : 'username',
+							displayKey: 'username',
+							source    : values.ttAdapter()
+						});
+					});
+				</script>
 			</div><!-- /.box-body -->
 		</div>
 	</section>

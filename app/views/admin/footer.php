@@ -51,6 +51,10 @@
 <?=HTML::script('assets/admin/js/gettext.php')?>
 <?=HTML::script('assets/admin/js/ajax.js')?>
 
+<!-- Typeahead -->
+<?=HTML::script('assets/admin/js/plugins/typeahead/bloodhound.min.js')?>
+<?=HTML::script('assets/admin/js/plugins/typeahead/typeahead.jquery.js')?>
+<!-- /Typeahead -->
 <!-- AdminLTE App -->
 <?=HTML::script('assets/admin/js/AdminLTE/app.js')?>
 

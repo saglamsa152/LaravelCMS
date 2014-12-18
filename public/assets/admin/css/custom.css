@@ -80,3 +80,17 @@
 .error-page-without-headline >.error-content {
 	margin: 0;
 }
+.profile-info{
+	float: left;
+	width: 50%;
+}
+.profile-info > span{
+	font-weight: bold;
+	display: inline-block;
+	width: 100px;
+}
+
+/* typeahead  */
+.twitter-typeahead{
+	padding: 0;
+}

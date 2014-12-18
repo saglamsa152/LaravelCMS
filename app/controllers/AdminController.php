@@ -90,11 +90,11 @@ class AdminController extends BaseController {
 		if ( !userCan( 'manageUsers' ) || is_null( $id ) ) {
 			$id = Auth::user()->id;
 		}
-		$user = User::with( 'post' )->find( $id );//Kullanıcıya ait  gönderilerle birlikte kullanıcıyı getiriyoruz
+		$user = User::find( $id );//kullanıcıyı getiriyoruz
 		foreach ( $user->userMeta as $meta ) {
 			$user = array_add( $user, $meta->metaKey, $meta->metaValue );
 		}
-		$title = $user->name != '' ?  $user->name . ' ' . $user->lastName . ( ' Profile Page' ) : $user->username . ( ' Profile Page' );
+		$title     = $user->getScreenName() . ( ' Profile Page' );
 		$rightSide = 'profile';
 		return View::make( 'admin.index' )->with( compact( 'user', 'title', 'rightSide' ) );
 	}
@@ -196,10 +196,10 @@ class AdminController extends BaseController {
 						$message->to( $postData['email'], $postData['name'] . ' ' . $postData['lastName'] )->subject( 'Hoş geldiniz!' );
 					} );
 
-					$user          = User::create( $postData );//kulllanıcıyı kaydedelim
+					$user = User::create( $postData );//kulllanıcıyı kaydedelim
 					//kullanıcı meta verilerini  kaydedelim
 					foreach ( $userMeta as $key => $value ) {
-						UserMeta::setMeta($user->id,$key,$value);
+						UserMeta::setMeta( $user->id, $key, $value );
 					}
 
 					$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Yeni Üye oluşturuldu' ), 'redirect' => URL::action( 'AdminController@getProfile', $user->id ) );
@@ -685,19 +685,47 @@ class AdminController extends BaseController {
 	/*
 	 * Dues
 	 */
-	public function getDues(){
-		if ( userCan( 'manageDues' ) ) {
-			$title     = _( 'Dues' );
-			$rightSide = 'dues';
-			$error     = null;
-		}
-		else {
+	public function getDues( $column = null, $value = null ) {
+		try {
+			if ( userCan( 'manageDues' ) ) {
+				$title     = _( 'Dues' );
+				$rightSide = 'dues';
+				$error     = null;
+				if ( is_null( $column ) or is_null( $value ) ) {
+					$error = array( 'title' => _( 'You should select a member' ), 'content' => _( 'To view the dues information you must first select a user.' ) );
+					$View  = View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
+				}
+				else {
+					$user = User::where( $column, '=', $value )->with('dues')->first();
+					if ( !$user ) {
+						$error = array( 'title' => _( 'Member not found' ), 'content' => _( 'Aradığınız kriterlere uygun kullanıcı bulunamadı' ) );
+					}
+					$View = View::make( 'admin.index' )->with( compact( 'title', 'rightSide', 'user' ) )->withErrors( $error );
+				}
+
+			}
+			else {
+				throw new Exception(_( 'You do not have permission to access this page' ));
+			}
+		} catch ( Exception $e ) {
 			$title     = _( 'Permission Error' );
 			$rightSide = 'error';
-			$error     = _( 'You do not have permission to access this page' );
+			$View = View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $e->getMessage() );
 		}
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
+		return $View;
 
+	}
+
+	/*
+	 * Type Ahead eklentisi  için json çıktıları
+	 */
+	public function getUserTypeAhead($column='',$value=''){
+		try{
+			$response = User::where( $column, 'like', "%".$value."%" )->get([$column]);
+		}catch (Exception $e){
+			$response= array('status'=>'danger','msg'=>$e->getMessage());
+		}
+		return Response::json($response);
 	}
 
 	/*
