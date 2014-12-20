@@ -61,7 +61,7 @@
 							<?= HTML::image( Auth::user()->getAvatarUrl(), 'User Image', array( 'class' => 'img-circle' ) ) ?>
 							<p>
 								<?= Auth::user()->username ?> - Web Developer <!-- todo user meta tablosu ile kullanıcı ünvanı gelecek -->
-								<small><!--todo  bu tarih Ocak 2015 şeklinde yazılabilir--><?php $date=date_parse(Auth::user()->created_at); printf(_('Member since %s'),$date['year']) ?></small>
+								<small><!--todo  bu tarih Ocak 2015 şeklinde yazılabilir--><?php printf(_('Member since %s'), Auth::user()->created_at->year) ?></small>
 							</p>
 						</li>
 						<!-- Menu Body -->
