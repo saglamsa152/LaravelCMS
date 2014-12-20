@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
-"POT-Creation-Date: 2014-12-11 16:14+0200\n"
-"PO-Revision-Date: 2014-12-11 19:54+0200\n"
+"POT-Creation-Date: 2014-12-20 18:59+0200\n"
+"PO-Revision-Date: 2014-12-20 19:00+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: TR\n"
@@ -18,17 +18,26 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../controllers\n"
 "X-Poedit-SearchPath-3: ../../../public/assets/admin/js\n"
 
-#: ../../views/admin/header.php:112
+#: ../../views/admin/header.php:26
+#, php-format
+msgid "You have %s messages"
+msgstr "%s Mesajın var"
+
+#: ../../views/admin/header.php:43
+msgid "See All Messages"
+msgstr "Tüm Mesajları Gör"
+
+#: ../../views/admin/header.php:64
 #, php-format
 msgid "Member since %s"
 msgstr "%s den beri üye"
 
-#: ../../views/admin/header.php:120 ../../views/admin/leftSide.php:49
+#: ../../views/admin/header.php:72 ../../views/admin/leftSide.php:49
 #: ../../views/admin/rightSide/error.php:28
 msgid "Profile"
 msgstr "Profil"
 
-#: ../../views/admin/header.php:123
+#: ../../views/admin/header.php:75
 msgid "Sign out"
 msgstr "Çıkış yap"
 
@@ -86,7 +95,6 @@ msgid "Members"
 msgstr "Üyeler"
 
 #: ../../views/admin/leftSide.php:40 ../../views/admin/leftSide.php:63
-#: ../../views/admin/leftSide.php:78
 #: ../../views/admin/rightSide/list/slider.php:12
 #: ../../views/admin/rightSide/list/news.php:11
 #: ../../views/admin/rightSide/list/users.php:12
@@ -115,46 +123,34 @@ msgstr "Haberler"
 msgid "Add New"
 msgstr "Yeni Ekle"
 
-#: ../../views/admin/leftSide.php:74
+#: ../../views/admin/leftSide.php:71
 msgid "Slider"
 msgstr "Slider"
 
-#: ../../views/admin/leftSide.php:88
+#: ../../views/admin/leftSide.php:76 ../../views/admin/rightSide/dues.php:23
+#: ../../controllers/AdminController.php:690
 msgid "Dues"
 msgstr "Aidat"
 
-#: ../../views/admin/leftSide.php:92
-msgid "Check"
-msgstr ""
-
-#: ../../views/admin/leftSide.php:93
-msgid "Pay Dues"
-msgstr "aidat öde"
-
-#: ../../views/admin/leftSide.php:94
-#, fuzzy
-msgid "Update Dues"
-msgstr "Haberi Güncelle"
-
-#: ../../views/admin/leftSide.php:104
+#: ../../views/admin/leftSide.php:84
 #: ../../views/admin/rightSide/list/contacts.php:10
 #: ../../controllers/HomeController.php:47
 msgid "Contact"
 msgstr "İletişim"
 
-#: ../../views/admin/leftSide.php:108
+#: ../../views/admin/leftSide.php:88
 msgid "İnbox"
 msgstr "Gelen Kutusu"
 
-#: ../../views/admin/leftSide.php:118
+#: ../../views/admin/leftSide.php:98
 msgid "Options"
 msgstr "Ayarlar"
 
-#: ../../views/admin/leftSide.php:123
+#: ../../views/admin/leftSide.php:103
 msgid "General"
 msgstr "Genel"
 
-#: ../../views/admin/leftSide.php:125
+#: ../../views/admin/leftSide.php:105
 #: ../../views/admin/rightSide/options/preferences.php:23
 #: ../../controllers/OptionsController.php:40
 msgid "Site Preferences"
@@ -186,6 +182,7 @@ msgid "Menage Profile"
 msgstr "Profili yönet"
 
 #: ../../views/admin/rightSide/profile.php:10
+#: ../../views/admin/rightSide/dues.php:12
 #: ../../views/admin/rightSide/error.php:10
 #: ../../views/admin/rightSide/list/slider.php:9
 #: ../../views/admin/rightSide/list/news.php:9
@@ -298,6 +295,10 @@ msgstr "Kaydet"
 msgid "View"
 msgstr "Göster"
 
+#: ../../views/admin/rightSide/profile.php:180
+msgid "Upload"
+msgstr "Yükle"
+
 #: ../../views/admin/rightSide/profile.php:181
 #: ../../views/admin/rightSide/add/user.php:169
 msgid "Avatar"
@@ -345,6 +346,56 @@ msgstr "Şifre Doğrulama"
 #: ../../views/admin/rightSide/update/news.php:54
 msgid "Update"
 msgstr "Güncelle"
+
+#: ../../views/admin/rightSide/dues.php:7
+msgid "Menage Dues"
+msgstr "Aidat yönetimi"
+
+#: ../../views/admin/rightSide/dues.php:15
+msgid "Dues page"
+msgstr "Aidat sayfası"
+
+#: ../../views/admin/rightSide/dues.php:32
+#: ../../views/admin/rightSide/dues.php:59
+msgid "User Name"
+msgstr "Kullanıcı Adı "
+
+#: ../../views/admin/rightSide/dues.php:32
+#: ../../views/admin/rightSide/dues.php:59
+#: ../../views/admin/rightSide/dues.php:81
+msgid "E-mail"
+msgstr "E-posta:"
+
+#: ../../views/admin/rightSide/dues.php:36
+#: ../../views/admin/rightSide/dues.php:63
+msgid "Search"
+msgstr "Ara"
+
+#: ../../views/admin/rightSide/dues.php:77
+#: ../../views/admin/rightSide/list/users.php:36
+#: ../../views/admin/rightSide/list/users.php:98
+msgid "Name - Lastname"
+msgstr "İsim - Soyisim"
+
+#: ../../views/admin/rightSide/dues.php:85
+msgid "User Role"
+msgstr "Kullanıcı Rolü"
+
+#: ../../views/admin/rightSide/dues.php:89
+msgid "GSM"
+msgstr ""
+
+#: ../../views/admin/rightSide/dues.php:93
+msgid "Member since"
+msgstr "Üyelik tarihi"
+
+#: ../../views/admin/rightSide/dues.php:97
+msgid "City / County"
+msgstr "İl / İlçe"
+
+#: ../../views/admin/rightSide/dues.php:105
+msgid "Year / Months"
+msgstr "Yıl / Ay"
 
 #: ../../views/admin/rightSide/error.php:12
 msgid "Error page"
@@ -549,11 +600,6 @@ msgstr "Mesajı Sil"
 msgid "Users"
 msgstr "Kullanıcılar"
 
-#: ../../views/admin/rightSide/list/users.php:36
-#: ../../views/admin/rightSide/list/users.php:98
-msgid "Name - Lastname"
-msgstr "İsim - Soyisim"
-
 #: ../../views/admin/rightSide/list/users.php:37
 #: ../../views/admin/rightSide/list/users.php:99
 msgid "email"
@@ -589,6 +635,8 @@ msgid ""
 "Warning! Bu işlem seçilen kullanıcılar arasındaki onaylı kullanıcıları "
 "onaysız,onaysız kullanıcıları onaylı  duruma getirir. "
 msgstr ""
+"Dikkat ! Bu işlem seçilen kullanıcılar arasındaki onaylı kullanıcıları "
+"onaysız,onaysız kullanıcıları onaylı  duruma getirir. "
 
 #: ../../views/admin/rightSide/list/users.php:122
 msgid "Approve / Unapprove"
@@ -598,7 +646,7 @@ msgstr "Onayla / Onayı kaldır"
 #: ../../views/admin/rightSide/list/services.php:22
 #: ../../views/template/menu.blade.php:11
 #: ../../controllers/HomeController.php:57
-#: ../../controllers/AdminController.php:429
+#: ../../controllers/AdminController.php:437
 msgid "Services"
 msgstr "Hizmeler"
 
@@ -606,7 +654,7 @@ msgstr "Hizmeler"
 #: ../../views/admin/rightSide/list/products.php:22
 #: ../../views/template/menu.blade.php:13
 #: ../../controllers/HomeController.php:52
-#: ../../controllers/AdminController.php:490
+#: ../../controllers/AdminController.php:498
 msgid "Products"
 msgstr "Ürünler"
 
@@ -664,15 +712,14 @@ msgid "Menage Site Preferences"
 msgstr "Site Tercihlerini Yönet"
 
 #: ../../views/admin/rightSide/options/preferences.php:37
-#, fuzzy
 msgid "Theme Skin"
 msgstr "Temayı değiştir"
 
 #: ../../views/admin/rightSide/update/news.php:6
 #: ../../views/admin/rightSide/update/news.php:31
-#: ../../controllers/AdminController.php:332
-#: ../../controllers/AdminController.php:467
-#: ../../controllers/AdminController.php:528
+#: ../../controllers/AdminController.php:339
+#: ../../controllers/AdminController.php:475
+#: ../../controllers/AdminController.php:536
 msgid "Update News"
 msgstr "Haberi Güncelle"
 
@@ -786,21 +833,69 @@ msgstr "Gönder"
 msgid "Reset My Password"
 msgstr "Şifremi Sıfırla"
 
-#: ../../models/User.php:96
+#: ../../models/User.php:115
 msgid "Unapproved"
 msgstr "Onaylanmamış"
 
-#: ../../models/User.php:96
+#: ../../models/User.php:115
 msgid "User"
 msgstr "Kullanıcı"
 
-#: ../../models/User.php:96
+#: ../../models/User.php:115
 msgid "Editor"
 msgstr "Editör"
 
-#: ../../models/User.php:96
+#: ../../models/User.php:115
 msgid "Admin"
 msgstr "Yönetici"
+
+#: ../../models/Dues.php:20
+msgid "January"
+msgstr "Ocak"
+
+#: ../../models/Dues.php:20
+msgid "February"
+msgstr "Şubat"
+
+#: ../../models/Dues.php:20
+msgid "March"
+msgstr "Mart"
+
+#: ../../models/Dues.php:20
+msgid "April"
+msgstr "Nisan"
+
+#: ../../models/Dues.php:20
+msgid "May"
+msgstr "Mayıs"
+
+#: ../../models/Dues.php:20
+msgid "June"
+msgstr "Haziran"
+
+#: ../../models/Dues.php:20
+msgid "July "
+msgstr "Temmuz"
+
+#: ../../models/Dues.php:20
+msgid "August"
+msgstr "Ağustos"
+
+#: ../../models/Dues.php:20
+msgid "September"
+msgstr "Eylül"
+
+#: ../../models/Dues.php:20
+msgid "October"
+msgstr "Ekim"
+
+#: ../../models/Dues.php:20
+msgid "November"
+msgstr "Kasım"
+
+#: ../../models/Dues.php:20
+msgid "December"
+msgstr "Aralık"
 
 #: ../../controllers/RemindersController.php:22
 msgid "Password Reminder"
@@ -812,7 +907,7 @@ msgstr "E-mail bulunamadı"
 
 #: ../../controllers/RemindersController.php:29
 msgid "Your request received. Please check your e-mails"
-msgstr ""
+msgstr "Talebiniz alındı.Maillerinizi kontrol edin"
 
 #: ../../controllers/AdminController.php:21
 msgid "Admin Panel"
@@ -821,18 +916,19 @@ msgstr "Yönetici Paneli"
 #: ../../controllers/AdminController.php:26
 #: ../../controllers/AdminController.php:73
 #: ../../controllers/AdminController.php:112
-#: ../../controllers/AdminController.php:300
-#: ../../controllers/AdminController.php:317
-#: ../../controllers/AdminController.php:341
-#: ../../controllers/AdminController.php:366
-#: ../../controllers/AdminController.php:440
-#: ../../controllers/AdminController.php:457
-#: ../../controllers/AdminController.php:476
-#: ../../controllers/AdminController.php:501
-#: ../../controllers/AdminController.php:518
-#: ../../controllers/AdminController.php:537
-#: ../../controllers/AdminController.php:557
-#: ../../controllers/AdminController.php:671
+#: ../../controllers/AdminController.php:307
+#: ../../controllers/AdminController.php:324
+#: ../../controllers/AdminController.php:348
+#: ../../controllers/AdminController.php:373
+#: ../../controllers/AdminController.php:448
+#: ../../controllers/AdminController.php:465
+#: ../../controllers/AdminController.php:484
+#: ../../controllers/AdminController.php:509
+#: ../../controllers/AdminController.php:526
+#: ../../controllers/AdminController.php:545
+#: ../../controllers/AdminController.php:564
+#: ../../controllers/AdminController.php:678
+#: ../../controllers/AdminController.php:732
 #: ../../controllers/OptionsController.php:31
 #: ../../controllers/OptionsController.php:45
 msgid "Permission Error"
@@ -841,18 +937,19 @@ msgstr "Yetki Hatası"
 #: ../../controllers/AdminController.php:28
 #: ../../controllers/AdminController.php:75
 #: ../../controllers/AdminController.php:114
-#: ../../controllers/AdminController.php:302
-#: ../../controllers/AdminController.php:319
-#: ../../controllers/AdminController.php:343
-#: ../../controllers/AdminController.php:368
-#: ../../controllers/AdminController.php:442
-#: ../../controllers/AdminController.php:459
-#: ../../controllers/AdminController.php:478
-#: ../../controllers/AdminController.php:503
-#: ../../controllers/AdminController.php:520
-#: ../../controllers/AdminController.php:539
-#: ../../controllers/AdminController.php:559
-#: ../../controllers/AdminController.php:673
+#: ../../controllers/AdminController.php:309
+#: ../../controllers/AdminController.php:326
+#: ../../controllers/AdminController.php:350
+#: ../../controllers/AdminController.php:375
+#: ../../controllers/AdminController.php:450
+#: ../../controllers/AdminController.php:467
+#: ../../controllers/AdminController.php:486
+#: ../../controllers/AdminController.php:511
+#: ../../controllers/AdminController.php:528
+#: ../../controllers/AdminController.php:547
+#: ../../controllers/AdminController.php:566
+#: ../../controllers/AdminController.php:680
+#: ../../controllers/AdminController.php:734
 #: ../../controllers/OptionsController.php:33
 #: ../../controllers/OptionsController.php:47
 msgid "You do not have permission to access this page"
@@ -867,190 +964,206 @@ msgid "Login Page"
 msgstr "Giriş Sayfası"
 
 #: ../../controllers/AdminController.php:132
-#: ../../controllers/AdminController.php:171
+#: ../../controllers/AdminController.php:172
 msgid "Bir kullanıcı adı tanımlamalısınız"
 msgstr ""
 
 #: ../../controllers/AdminController.php:133
-#: ../../controllers/AdminController.php:172
+#: ../../controllers/AdminController.php:173
 msgid "Bir e-mail belirtmelisiniz"
 msgstr ""
 
 #: ../../controllers/AdminController.php:134
-#: ../../controllers/AdminController.php:173
+#: ../../controllers/AdminController.php:174
 msgid "Kullanıcı adı kullanılıyor"
 msgstr ""
 
 #: ../../controllers/AdminController.php:135
-#: ../../controllers/AdminController.php:174
+#: ../../controllers/AdminController.php:175
 msgid "Mail adresi kullanılıyor"
 msgstr ""
 
 #: ../../controllers/AdminController.php:136
-#: ../../controllers/AdminController.php:175
-#: ../../controllers/AdminController.php:740
+#: ../../controllers/AdminController.php:176
+#: ../../controllers/AdminController.php:815
 msgid "Kullanıcını adınız en az 3 karakterden oluşmalıdır"
 msgstr ""
 
-#: ../../controllers/AdminController.php:202
+#: ../../controllers/AdminController.php:205
 msgid "Yeni Üye oluşturuldu"
 msgstr ""
 
-#: ../../controllers/AdminController.php:217
+#: ../../controllers/AdminController.php:224
 msgid "Lütfen şuanki şifrenizi yazın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:218
-#: ../../controllers/AdminController.php:746
+#: ../../controllers/AdminController.php:225
+#: ../../controllers/AdminController.php:821
 msgid "Lütfen şifrenizi yazın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:219
-#: ../../controllers/AdminController.php:747
+#: ../../controllers/AdminController.php:226
+#: ../../controllers/AdminController.php:822
 msgid "Şifreniz minumum 4 karakterden oluşmalıdır"
 msgstr ""
 
-#: ../../controllers/AdminController.php:220
-#: ../../controllers/AdminController.php:748
+#: ../../controllers/AdminController.php:227
+#: ../../controllers/AdminController.php:823
 msgid "Girdiğiniz şifreler birbiriyle eşleşmiyor"
 msgstr ""
 
-#: ../../controllers/AdminController.php:221
-#: ../../controllers/AdminController.php:749
+#: ../../controllers/AdminController.php:228
+#: ../../controllers/AdminController.php:824
 msgid "Lütfen şifrenizi doğrulayın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:239
+#: ../../controllers/AdminController.php:246
 msgid "Incorrect Password"
 msgstr "Yanlış şifre"
 
-#: ../../controllers/AdminController.php:242
+#: ../../controllers/AdminController.php:249
 msgid "Passwords mustn't same"
 msgstr "Şifreler aynı olamaz"
 
-#: ../../controllers/AdminController.php:254
+#: ../../controllers/AdminController.php:261
 msgid "Deleted Successfully"
 msgstr "Başarıyla Silindi"
 
-#: ../../controllers/AdminController.php:256
+#: ../../controllers/AdminController.php:263
 msgid "Admin can not be delete"
 msgstr "Yönetici Silinemez"
 
-#: ../../controllers/AdminController.php:274
-#: ../../controllers/AdminController.php:622
+#: ../../controllers/AdminController.php:281
+#: ../../controllers/AdminController.php:629
 msgid "Successful"
 msgstr "Başarılı"
 
-#: ../../controllers/AdminController.php:289
+#: ../../controllers/AdminController.php:296
 msgid "News Management Page"
 msgstr "Haberler  Yönetim  Sayfası"
 
-#: ../../controllers/AdminController.php:355
+#: ../../controllers/AdminController.php:362
 msgid "Slider Management Page"
 msgstr "Slider  Yönetim  Sayfası"
 
-#: ../../controllers/AdminController.php:408
+#: ../../controllers/AdminController.php:415
 msgid "Extension not allowed"
 msgstr "Geçersiz dosya uzantısı"
 
-#: ../../controllers/AdminController.php:412
+#: ../../controllers/AdminController.php:419
 msgid "File uploaded successfully"
 msgstr "Dosya başarıyla yüklendi"
 
-#: ../../controllers/AdminController.php:452
+#: ../../controllers/AdminController.php:460
 msgid "Add New Service"
 msgstr "Yeni Hizmet Ekle"
 
-#: ../../controllers/AdminController.php:513
+#: ../../controllers/AdminController.php:521
 msgid "Add New Product"
 msgstr "Yeni  Ürün Ekle"
 
-#: ../../controllers/AdminController.php:551
+#: ../../controllers/AdminController.php:559
 msgid "Cotacts"
 msgstr "İletişim"
 
-#: ../../controllers/AdminController.php:579
-#: ../../controllers/AdminController.php:743
+#: ../../controllers/AdminController.php:586
+#: ../../controllers/AdminController.php:818
 msgid "Lütfen mail adresinizi yazın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:580
-#: ../../controllers/AdminController.php:744
+#: ../../controllers/AdminController.php:587
+#: ../../controllers/AdminController.php:819
 msgid "Lütfen geçerli bir mail adresi yazın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:581
+#: ../../controllers/AdminController.php:588
 msgid "Please Enter Your Name"
 msgstr "Lütfen adınızı giriniz"
 
-#: ../../controllers/AdminController.php:582
+#: ../../controllers/AdminController.php:589
 msgid "İsim en az 3 karakter olabilir"
 msgstr ""
 
-#: ../../controllers/AdminController.php:583
+#: ../../controllers/AdminController.php:590
 msgid "İsimda sadece harf kullanınız"
 msgstr ""
 
-#: ../../controllers/AdminController.php:584
+#: ../../controllers/AdminController.php:591
 msgid "Please enter message"
 msgstr "Lütfen mesajınızı yazın"
 
-#: ../../controllers/AdminController.php:585
+#: ../../controllers/AdminController.php:592
 msgid "Mesaj en  az 10 karakter olabilir."
 msgstr ""
 
-#: ../../controllers/AdminController.php:636
+#: ../../controllers/AdminController.php:643
 msgid "Mail send Successfully"
 msgstr "Mail başarıyla gönderildi"
 
-#: ../../controllers/AdminController.php:650
+#: ../../controllers/AdminController.php:657
 msgid "Mail Delete Successfully"
 msgstr "Mail başarıyla silindi"
 
-#: ../../controllers/AdminController.php:666
+#: ../../controllers/AdminController.php:673
 msgid "Orders"
 msgstr "Siparişler"
 
-#: ../../controllers/AdminController.php:700
+#: ../../controllers/AdminController.php:696
+msgid "You should select a member"
+msgstr "Bir üye seçmelisiniz"
+
+#: ../../controllers/AdminController.php:696
+msgid "To view the dues information you must first select a user."
+msgstr "Aidat bilgilerini görebilmek için öncelikle bir üye seçmelisiniz."
+
+#: ../../controllers/AdminController.php:702
+msgid "Member not found"
+msgstr "Üye bulunamadı"
+
+#: ../../controllers/AdminController.php:702
+msgid "Aradığınız kriterlere uygun kullanıcı bulunamadı"
+msgstr ""
+
+#: ../../controllers/AdminController.php:775
 msgid "Please enter user name"
 msgstr "Lütfen kullanıcı adınızı giriniz"
 
-#: ../../controllers/AdminController.php:701
+#: ../../controllers/AdminController.php:776
 msgid "Please enter password"
 msgstr "Lütfen şifrenizi giriniz"
 
-#: ../../controllers/AdminController.php:739
+#: ../../controllers/AdminController.php:814
 msgid "Lütfen kullanıcı adınızı yazın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:741
+#: ../../controllers/AdminController.php:816
 msgid ""
 "Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı yazın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:742
+#: ../../controllers/AdminController.php:817
 msgid "Lütfen özel karakter ve boşluk içermeyen kullanıcı adı yazın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:745
+#: ../../controllers/AdminController.php:820
 msgid "Bu mail adresi zaten kullanılıyor. Lütfen başka bir mail adresi yazın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:785
-#: ../../controllers/AdminController.php:852
+#: ../../controllers/AdminController.php:861
+#: ../../controllers/AdminController.php:933
 msgid "Başlık boş bırakılamaz"
 msgstr ""
 
-#: ../../controllers/AdminController.php:786
-#: ../../controllers/AdminController.php:853
+#: ../../controllers/AdminController.php:862
+#: ../../controllers/AdminController.php:934
 msgid "İçerik boş bırakılamaz"
 msgstr ""
 
-#: ../../controllers/AdminController.php:816
+#: ../../controllers/AdminController.php:893
 msgid "Processing was carried out successfully"
 msgstr "İşleme başarıyla gerçekleştirildi"
 
-#: ../../controllers/AdminController.php:879
+#: ../../controllers/AdminController.php:960
 msgid "Update Successfully"
 msgstr "Başarıyla Güncellendi"
 
@@ -1111,6 +1224,19 @@ msgstr "Kaydedildi"
 msgid "Add"
 msgstr "Ekle"
 
+#~ msgid "Email"
+#~ msgstr "Eposta:"
+
+#~ msgid "User Email"
+#~ msgstr "Kullanıcı eposta"
+
+#~ msgid "Pay Dues"
+#~ msgstr "aidat öde"
+
+#, fuzzy
+#~ msgid "Update Dues"
+#~ msgstr "Haberi Güncelle"
+
 #~ msgid "Add User"
 #~ msgstr "Kullanıcı Ekle"
 
@@ -1141,9 +1267,6 @@ msgstr "Ekle"
 
 #~ msgid "Visit Site"
 #~ msgstr "Siteye git"
-
-#~ msgid "Search"
-#~ msgstr "Ara"
 
 #~ msgid "Ajax on menu"
 #~ msgstr "Ajax açık"
