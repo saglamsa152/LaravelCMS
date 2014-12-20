@@ -94,7 +94,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
 	 */
 	public function dues() {
-		return $this->hasMany( 'Dues', 'userID' );
+		return $this->hasMany( 'Dues', 'userId' );
 	}
 
 	/**
@@ -113,6 +113,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	public static function getRoles() {
 		return array( 'unapproved' => _( 'Unapproved' ), 'user' => _( 'User' ), 'editor' => _( 'Editor' ), 'admin' => _( 'Admin' ) );
+	}
+
+	/**
+	 * Kullanıcı Rolünü döndürür
+	 * @return mixed
+	 */
+	public function getRole() {
+		$roles = self::getRoles();
+		return $roles[$this->role];
 	}
 
 	/**
@@ -142,5 +151,28 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function getScreenName() {
 		return $this->name != '' ? $this->name . ' ' . $this->lastName : $this->username;
+	}
+
+	/**
+	 * Kullanıcı adına dues tablosnuna kaydedilmiş yılları döner
+	 * @return array
+	 */
+	public function getDuesYears() {
+		$years = array();
+		foreach ( $this->dues as $dues ):
+			$years[] = $dues->year;
+		endforeach;
+		return $years;
+	}
+
+	/**
+	 * Kullanıcı Şehir bilgisini metin olarak döner
+	 * @return mixed
+	 */
+	public function getCityName(){
+		if(isset($this->city)){
+			$cities=Option::getOption('cities',null,true);
+			return $cities[$this->city];
+		}
 	}
 }
