@@ -86,7 +86,7 @@
 }
 .profile-info > span{
 	font-weight: bold;
-	display: inline-block;
+	display: inline-flex;
 	width: 100px;
 }
 
