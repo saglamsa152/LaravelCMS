@@ -20,84 +20,156 @@
 	<section class="content">
 		<div class="box box-info">
 			<div class="box-header">
-				<h4 class="box-title"><?= isset($user) ? $user->getScreenName() : _('Dues')?></h4>
+				<h4 class="box-title"><?= isset( $user ) ? $user->getScreenName() : _( 'Dues' ) ?></h4>
 
-				<div class="box-tools">
-					<form class="search-form">
-						<div class="input-group col-md-3 input-group-sm pull-right">
-							<input type="text" class="form-control input-sm typeahead" placeholder="<?=_('Search')?>">
+				<div class="box-tools pull-right">
+					<?= Form::open( array(
+							'class'  => 'search-form form-inline',
+							'id'     => 'title-form',
+							'method' => 'get',
+							'action' => 'AdminController@getDues' ) ) ?>
+					<div class="form-group form-group-sm ">
+						<?= Form::select( 'column', array( 'username' => _( 'User Name' ), 'email' => _( 'E-mail' ), 'id' => 'ID' ), 'username', array( 'class' => 'form-control column' ) ) ?>
+					</div>
+					<div class="form-group form-group-sm ">
+						<div class="input-group input-group-sm">
+							<?= Form::text( 'value', '', array( 'class' => 'form-control input-sm typeahead', 'placeholder' => _( 'Search' ) ) ) ?>
 							<div class="input-group-btn">
-								<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-search"></i>
-									<span class="caret"></span></button>
-								<ul class="dropdown-menu dropdown-menu-right" role="group">
-									<li><a href="#">ID</a></li>
-									<li><a href="#"><?= _( 'User Name' ) ?></a></li>
-									<li><a href="#"><?= _( 'User Email' ) ?></a></li>
-								</ul>
+								<?= Form::button( '<i class="fa fa-search"></i>', array( 'class' => 'btn btn-info', 'type' => 'submit' ) ) ?>
 							</div><!-- /.input-group-btn -->
 						</div><!-- /input-group -->
-					</form><!-- /search-form -->
+					</div>
+					<?= Form::close() ?>
 				</div><!-- /.box-tools -->
 			</div><!-- /.box-header -->
 			<div class="box-body clearfix">
-				<?php if($error=$errors->getMessages()):?>
+				<?php if ($error = $errors->getMessages()): ?>
 				<div class="error-page error-page-without-headline">
 					<div class="error-content text-center">
-						<h3><i class="fa fa-warning text-yellow"></i><?=$error['title'][0]?> </h3>
-						<p><?=$error['content'][0]?></p>
-						<form class="search-form">
+						<h3><i class="fa fa-warning text-yellow"></i><?= $error['title'][0] ?> </h3>
+
+						<p><?= $error['content'][0] ?></p>
+						<?= Form::open( array(
+								'class'  => 'search-form form-inline',
+								'id'     => 'content-form',
+								'method' => 'get',
+								'action' => 'AdminController@getDues'
+						) ) ?>
+						<div class="form-group">
+							<?= Form::select( 'column', array( 'username' => _( 'User Name' ), 'email' => _( 'E-mail' ), 'id' => 'ID' ), 'username', array( 'class' => 'form-control column' ) ) ?>
+						</div>
+						<div class="form-group">
 							<div class="input-group">
-								<input type="text" class="form-control typeahead" placeholder="<?=_('Search')?>">
+								<?= Form::text( 'value', '', array( 'class' => 'form-control typeahead', 'placeholder' => _( 'Search' ) ) ) ?>
 								<div class="input-group-btn">
-									<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-search"></i>
-										<span class="caret"></span></button>
-									<ul class="dropdown-menu dropdown-menu-right" role="group">
-										<li><a href="#">ID</a></li>
-										<li><a href="#"><?= _( 'User Name' ) ?></a></li>
-										<li><a href="#"><?= _( 'User Email' ) ?></a></li>
-									</ul>
+									<?= Form::button( '<i class="fa fa-search"></i>', array( 'class' => 'btn btn-info','type'=>'submit' ) ) ?>
 								</div><!-- /.input-group-btn -->
-						</form><!-- /search-form -->
-					</div><!-- /.error-content .text-center -->
-				</div><!-- /.error-page .error-page-without-headline -->
-				<?php else:?>
-					<section class="col-md-3">
-						<?= HTML::image( $user->getAvatarUrl(150), 'User Image', array( 'class' => 'img-circle  center-block','width'=>'150px' ) ) ?>
-					</section>
-					<section class="col-md-9">
-						<p class="profile-info">
-							<span><?=_('Name - Lastname')?></span> : <?=$user->name.' - '.$user->lastName?>
-						</p>
-						<p class="profile-info">
-							<span><?=_('User Role')?></span> : <?=$user->role?>
-						</p>
-						<p class="profile-info">
-							<span><?=URL::action('AdminController@getUserTypeAhead',array('column'=>'username','value'=>'admi'))?></span> :
-						</p>
-					</section>
-					<section class="col-md-12">
+							</div>
+							<?= Form::close() ?>
+						</div><!-- /.error-content .text-center -->
+					</div><!-- /.error-page .error-page-without-headline -->
+					<?php else: ?>
+						<section class="col-md-3">
+							<?= HTML::image( $user->getAvatarUrl( 150 ), 'User Image', array( 'class' => 'img-circle  center-block', 'width' => '150px' ) ) ?>
+						</section>
+						<section class="col-md-9">
+							<p class="profile-info">
+								<span><?= _( 'Name - Lastname' ) ?></span> : <?= $user->name . ' - ' . $user->lastName ?>
+							</p>
 
-					</section>
-				<?php endif?>
-				<script>
-					$(function () {
-						var values = new Bloodhound({
-							datumTokenizer: Bloodhound.tokenizers.obj.whitespace('username'),
-							queryTokenizer: Bloodhound.tokenizers.whitespace,
-							remote        : '<?=URL::action('AdminController@getUserTypeAhead',array('column'=>'username','value'=>'a'))?>'
+							<p class="profile-info">
+								<span><?= _( 'E-mail' ) ?></span> : <?= $user->email ?>
+							</p>
+
+							<p class="profile-info">
+								<span><?= _( 'User Role' ) ?></span> : <?= $user->getRole() ?>
+							</p>
+
+							<p class="profile-info">
+								<span><?= _( 'GSM' ) ?></span> : <?= $user->gsm ?>
+							</p>
+
+							<p class="profile-info">
+								<span><?= _( 'Member since' ) ?></span> : <?= $user->created_at->year?>
+							</p>
+
+							<p class="profile-info">
+								<span><?= _( 'City / County' ) ?></span> : <?= $user->getCityName().' / '.$user->county ?>
+							</p>
+						</section>
+						<section class="col-md-12">
+							<hr>
+							<table class="table table-bordered">
+								<tbody>
+								<tr>
+									<th><?= _( 'Year / Months' ) ?></th>
+									<?php foreach ( Option::months() as $month ): ?>
+										<th><?= $month ?></th>
+									<?php endforeach ?>
+								</tr>
+								<?php foreach ( $duess as $dues ): ?>
+								<tr>
+									<td><?=$dues->year?></td>
+									<?php foreach ( unserialize($dues->month) as $month ): ?>
+										<td><span class="badge bg-<?=$month['statusColor']?>"><?= $month['price']?></span></td>
+									<?php endforeach ?>
+								</tr>
+								<?php endforeach ?>
+								</tbody>
+							</table>
+						</section>
+					<?php endif ?>
+					<script>
+						$(function () {
+							var column = $('#title-form .column').val();
+							var values = new Bloodhound({
+								datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+								queryTokenizer: Bloodhound.tokenizers.whitespace,
+								remote        : '<?=URL::action('AdminController@getUserTypeAhead')?>' + '/' + column + '/%QUERY'
+							});
+							$('#title-form .column').change(function (e) {
+								column = $(this).val();
+								console.log($(this).attr('class'));
+								values = new Bloodhound({
+									datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+									queryTokenizer: Bloodhound.tokenizers.whitespace,
+									remote        : '<?=URL::action('AdminController@getUserTypeAhead')?>' + '/' + column + '/%QUERY'
+								});
+								$('#title-form .typeahead').typeahead('destroy');
+								values.initialize();
+								$('#title-form .typeahead').typeahead(null, {
+									source: values.ttAdapter()
+								});
+							});
+							values.initialize();
+							$('#title-form .typeahead').typeahead(null, {
+								source: values.ttAdapter()
+							});
+							/* ----------*/
+							var column = $('#content-form .column').val();
+							$('#content-form .column').change(function (e) {
+								column = $(this).val();
+								console.log($(this).attr('class'));
+								values = new Bloodhound({
+									datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+									queryTokenizer: Bloodhound.tokenizers.whitespace,
+									remote        : '<?=URL::action('AdminController@getUserTypeAhead')?>' + '/' + column + '/%QUERY'
+								});
+								$('#content-form .typeahead').typeahead('destroy');
+								values.initialize();
+								$('#content-form .typeahead').typeahead(null, {
+									source: values.ttAdapter()
+								});
+							});
+							values.initialize();
+							$('#content-form .typeahead').typeahead(null, {
+								source: values.ttAdapter()
+							});
 						});
-
-						values.initialize();
-
-						$('.typeahead').typeahead(null, {
-							name      : 'username',
-							displayKey: 'username',
-							source    : values.ttAdapter()
-						});
-					});
-				</script>
-			</div><!-- /.box-body -->
-		</div>
+					</script>
+				</div>
+				<!-- /.box-body -->
+			</div>
 	</section>
 	<!-- /.content -->
 </aside><!-- /.right-side -->

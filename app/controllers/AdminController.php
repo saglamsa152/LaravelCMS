@@ -686,46 +686,68 @@ class AdminController extends BaseController {
 	 * Dues
 	 */
 	public function getDues( $column = null, $value = null ) {
-		try {
-			if ( userCan( 'manageDues' ) ) {
-				$title     = _( 'Dues' );
-				$rightSide = 'dues';
-				$error     = null;
-				if ( is_null( $column ) or is_null( $value ) ) {
-					$error = array( 'title' => _( 'You should select a member' ), 'content' => _( 'To view the dues information you must first select a user.' ) );
-					$View  = View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
-				}
-				else {
-					$user = User::where( $column, '=', $value )->with('dues')->first();
-					if ( !$user ) {
-						$error = array( 'title' => _( 'Member not found' ), 'content' => _( 'Aradığınız kriterlere uygun kullanıcı bulunamadı' ) );
-					}
-					$View = View::make( 'admin.index' )->with( compact( 'title', 'rightSide', 'user' ) )->withErrors( $error );
-				}
-
+		if ( userCan( 'manageDues' ) ) {
+			$title     = _( 'Dues' );
+			$rightSide = 'dues';
+			$error     = null;
+			$column    = is_null( $column ) ? Input::get( 'column' ) : $column;
+			$value     = is_null( $value ) ? Input::get( 'value' ) : $value;
+			if ( empty( $column ) or empty( $value ) ) {
+				$error = array( 'title' => _( 'You should select a member' ), 'content' => _( 'To view the dues information you must first select a user.' ) );
+				$View  = View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
 			}
 			else {
-				throw new Exception(_( 'You do not have permission to access this page' ));
+				$user = User::where( $column, '=', $value )->with( 'dues' )->first();
+				if ( !$user ) {
+					$error = array( 'title' => _( 'Member not found' ), 'content' => _( 'Aradığınız kriterlere uygun kullanıcı bulunamadı' ) );
+				}
+				else {
+					$newDuesMonth = array();
+					for ( $j = 1; $j <= 12; $j ++ ) {
+						$newDuesMonth[] = array( 'statusColor' => 'red', 'price' => 0 );
+					}
+
+					$now         = \Carbon\Carbon::now();
+					$memberSince = $user->created_at->copy();
+					$redirect    = false;
+					for ( $i = 0; $i <= $user->created_at->diffInYears( $now ); $i ++ ) {
+						if ( !in_array( $memberSince->year, $user->getDuesYears() ) ) {
+							$redirect = true;// veri tabanında değişiklik yapılmışsa yönlendirmek için
+							Dues::create( array(
+									'userId'     => $user->id,
+									'year'       => $memberSince->year,
+									'month'      => serialize( $newDuesMonth ),
+									'created_at' => date( 'Y-m-d H:i:s' )
+							) );
+							$memberSince->addYear();
+						}
+					}
+					if ( $redirect ) return Redirect::action( 'AdminController@getDues', array( $column, $value ) );
+					$duess = $user->dues->sortBy( 'year' );//todo üyelik tarihi ve bugünün tarihi karşılaştırılıp aradaki tüm aylar eklenmeli month=>price,statusColor,
+				}
+				$View = View::make( 'admin.index' )->with( compact( 'title', 'rightSide', 'user', 'duess' ) )->withErrors( $error );
 			}
-		} catch ( Exception $e ) {
+		}
+		else {
 			$title     = _( 'Permission Error' );
 			$rightSide = 'error';
-			$View = View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $e->getMessage() );
+			$error     = _( 'You do not have permission to access this page' );
+			$View      = View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
 		}
-		return $View;
 
+		return $View;
 	}
 
 	/*
 	 * Type Ahead eklentisi  için json çıktıları
 	 */
-	public function getUserTypeAhead($column='',$value=''){
-		try{
-			$response = User::where( $column, 'like', "%".$value."%" )->get([$column]);
-		}catch (Exception $e){
-			$response= array('status'=>'danger','msg'=>$e->getMessage());
+	public function getUserTypeAhead( $column = '', $value = '' ) {
+		try {
+			$response = User::where( $column, 'like', "%" . $value . "%" )->get( [ $column . ' as value' ] );
+		} catch ( Exception $e ) {
+			$response = array( 'status' => 'danger', 'msg' => $e->getMessage() );
 		}
-		return Response::json($response);
+		return Response::json( $response );
 	}
 
 	/*
