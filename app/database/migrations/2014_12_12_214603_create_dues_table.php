@@ -16,7 +16,7 @@ class CreateDuesTable extends Migration {
 			$table->increments('id');
 			$table->integer('userId')->unsigned();
 			$table->integer('year');
-			$table->text('month');
+			$table->text('months')->nullable();
 			$table->timestamps();
 			$table->foreign('userId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 		});

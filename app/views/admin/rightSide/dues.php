@@ -108,12 +108,17 @@
 									<?php endforeach ?>
 								</tr>
 								<?php foreach ( $duess as $dues ): ?>
-								<tr>
-									<td><?=$dues->year?></td>
-									<?php foreach ( unserialize($dues->month) as $month ): ?>
-										<td><span class="badge bg-<?=$month['statusColor']?>"><?= $month['price']?></span></td>
-									<?php endforeach ?>
-								</tr>
+									<tr>
+										<td><?= $dues->year ?></td>
+										<?php $months = unserialize( $dues->months );
+										for ( $i = 1; $i <= 12; $i ++ ):
+											if ( isset( $months[$i] ) ): $month=$months[$i] ?>
+												<td><span class="badge bg-<?= $month['statusColor'] ?>"><?= $month['price'] ?></span></td>
+											<?php else: ?>
+												<td></td>
+											<?php endif?>
+										<?php endfor ?>
+									</tr>
 								<?php endforeach ?>
 								</tbody>
 							</table>

@@ -702,28 +702,32 @@ class AdminController extends BaseController {
 					$error = array( 'title' => _( 'Member not found' ), 'content' => _( 'Aradığınız kriterlere uygun kullanıcı bulunamadı' ) );
 				}
 				else {
-					$newDuesMonth = array();
-					for ( $j = 1; $j <= 12; $j ++ ) {
-						$newDuesMonth[] = array( 'statusColor' => 'red', 'price' => 0 );
-					}
-
 					$now         = \Carbon\Carbon::now();
 					$memberSince = $user->created_at->copy();
 					$redirect    = false;
-					for ( $i = 0; $i <= $user->created_at->diffInYears( $now ); $i ++ ) {
-						if ( !in_array( $memberSince->year, $user->getDuesYears() ) ) {
+					$userDuesYears=$user->getDuesYears();
+					do{
+						if ( !in_array( $memberSince->year, $userDuesYears ) ) {
 							$redirect = true;// veri tabanında değişiklik yapılmışsa yönlendirmek için
-							Dues::create( array(
+							$dues = Dues::create( array(
 									'userId'     => $user->id,
 									'year'       => $memberSince->year,
-									'month'      => serialize( $newDuesMonth ),
+									'months'     => null,
 									'created_at' => date( 'Y-m-d H:i:s' )
 							) );
-							$memberSince->addYear();
+							$userDuesYears[]=$memberSince->year;
+						}else{
+							$dues=Dues::where('userId','=',$user->id)->where('year','=',$memberSince->year)->first();
 						}
-					}
+						$months = unserialize($dues->months);
+						$months[$memberSince->month]=array('statusColor'=>'red','price'=>0);
+						$dues->months=serialize($months);
+						$dues->save();
+						$memberSince->addMonth();
+					}while($now->diffInMonths($memberSince)!=0);
+
 					if ( $redirect ) return Redirect::action( 'AdminController@getDues', array( $column, $value ) );
-					$duess = $user->dues->sortBy( 'year' );//todo üyelik tarihi ve bugünün tarihi karşılaştırılıp aradaki tüm aylar eklenmeli month=>price,statusColor,
+					$duess = $user->dues->sortBy( 'year' );
 				}
 				$View = View::make( 'admin.index' )->with( compact( 'title', 'rightSide', 'user', 'duess' ) )->withErrors( $error );
 			}
