@@ -29,7 +29,11 @@
 					) ) ?>
 					<?=Form::hidden('id',$user->id)?>
 					<?=Form::hidden('meta[avatar]',$user->avatar)?>
-					<h4 class="page-header"><?= _( 'Personal Information' ) ?></h4>
+					<h4 class="page-header">
+						<?= _( 'Personal Information' ) ?>
+						<a href="<?=URL::action('AdminController@getDues',array('id',$user->id))?>" type="button" class="btn btn-primary pull-right"><?=_('View Dues')?></a>
+						<div class="clearfix"></div>
+					</h4>
 					<!-- Username -->
 					<div class="form-group col-md-6">
 						<?= Form::label( 'username', _( 'User Name :' ), array( 'class' => 'control-label col-md-4' ) ) ?>

@@ -96,6 +96,14 @@
 							<p class="profile-info">
 								<span><?= _( 'City / County' ) ?></span> : <?= $user->getCityName().' / '.$user->county ?>
 							</p>
+
+							<p class="profile-info">
+								<?=Form::button(_('Pay Dues'),array('class'=>'btn btn-success','type'=>'button','id'=>'payDues'))?>
+							</p>
+
+							<p class="profile-info">
+								<a href="<?=URL::action('AdminController@getProfile',$user->id)?>" type="button" class="btn btn-primary"><?=_('Edit Member')?></a>
+							</p>
 						</section>
 						<section class="col-md-12">
 							<hr>
