@@ -8,10 +8,10 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
-	 * toplu atama yaparken hangi alanların kullanılacağını belirler (laravel kitap s145)
+	 * toplu atama yaparken hangi alanların kullanılmayacağını belirler (laravel kitap s145)
 	 * @var array
 	 */
-	protected $guarded = array( 'id', 'created_at', 'created_ip' );
+	protected $guarded = array( 'id', 'created_ip' );
 	/**
 	 * The database table used by the model.
 	 *

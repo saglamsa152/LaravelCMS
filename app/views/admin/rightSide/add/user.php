@@ -70,6 +70,17 @@
 							<?= Form::text( 'birthday', '', array( 'class' => 'form-control ','data-inputmask'=>'"alias": "yyyy.mm.dd"','data-mask'=>'' ) ) ?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
+
+					<!-- Member since -->
+					<div class="form-group col-md-6">
+						<?= Form::label( 'created_at', _( 'Member since :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
+						<div class="input-group col-md-8">
+							<div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
+							</div>
+							<?= Form::text( 'created_at', date( 'Y-m-d H:i:s' ), array( 'class' => 'form-control ','data-inputmask'=>'"alias": "yyyy-mm-dd"','data-mask'=>'' ) ) ?>
+						</div><!-- /.input group -->
+					</div><!-- /.form group -->
 					<div class="clearfix"></div>
 
 					<h4 class="page-header"><?= _( 'Contact Information' ) ?></h4>

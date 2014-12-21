@@ -188,20 +188,21 @@ class AdminController extends BaseController {
 					//password ve created_ip alanlarını  diziye ekleyelim
 					$postData['password']   = Hash::make( $password );
 					$postData['created_ip'] = Request::getClientIp();
-					/**
-					 * yeni oluşturulan kullanıcının şifresini kullanıcının mail adresime mail olark gönderelim
-					 */
-					$mailData = array( 'username' => $postData['username'], 'password' => $password );
-					Mail::send( 'emails.welcome', $mailData, function ( $message ) use ( $postData ) {
-						$message->to( $postData['email'], $postData['name'] . ' ' . $postData['lastName'] )->subject( 'Hoş geldiniz!' );
-					} );
-
 					$user = User::create( $postData );//kulllanıcıyı kaydedelim
-					//kullanıcı meta verilerini  kaydedelim
-					foreach ( $userMeta as $key => $value ) {
-						UserMeta::setMeta( $user->id, $key, $value );
-					}
+					if($user) {
+						/**
+						 * yeni oluşturulan kullanıcının şifresini kullanıcının mail adresime mail olark gönderelim
+						 */
+						$mailData = array( 'username' => $postData['username'], 'password' => $password );
+						Mail::send( 'emails.welcome', $mailData, function ( $message ) use ( $postData ) {
+							$message->to( $postData['email'], $postData['name'] . ' ' . $postData['lastName'] )->subject( 'Hoş geldiniz!' );
+						} );
 
+						//kullanıcı meta verilerini  kaydedelim
+						foreach ( $userMeta as $key => $value ) {
+							UserMeta::setMeta( $user->id, $key, $value );
+						}
+					}
 					$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Yeni Üye oluşturuldu' ), 'redirect' => URL::action( 'AdminController@getProfile', $user->id ) );
 					return Response::json( $ajaxResponse );
 				}
