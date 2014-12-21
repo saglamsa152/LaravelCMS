@@ -98,7 +98,7 @@
 							</p>
 
 							<p class="profile-info">
-								<?=Form::button(_('Pay Dues'),array('class'=>'btn btn-success','type'=>'button','id'=>'payDues'))?>
+								<?=Form::button(_('Pay Dues'),array('class'=>'btn btn-success','type'=>'button','id'=>'payDues','data-target'=>'#payDuesForm'))?>
 							</p>
 
 							<p class="profile-info">
@@ -121,7 +121,7 @@
 										<?php $months = unserialize( $dues->months );
 										for ( $i = 1; $i <= 12; $i ++ ):
 											if ( isset( $months[$i] ) ): $month=$months[$i] ?>
-												<td><span class="badge bg-<?= $month['statusColor'] ?>"><?= $month['price'] ?></span></td>
+												<td><span class="badge bg-<?= $month['statusColor'] ?>"><?= $month['price'] ?> &nbsp; <i class="fa fa-try"></span></td>
 											<?php else: ?>
 												<td></td>
 											<?php endif?>
@@ -130,10 +130,35 @@
 								<?php endforeach ?>
 								</tbody>
 							</table>
+							<hr>
+							<div id="payDuesForm" class="hidden">
+								<?= Form::open( array(
+										'action' => 'AdminController@postDues',
+										'role'   => 'form',
+										'method' => 'post' ) ) ?>
+								<?=Form::hidden('userId',$user->id)?>
+								<div class="form-group col-md-6">
+									<?= Form::select( 'year', $user->getDuesYears(), null, array( 'class' => 'form-control' ) ) ?>
+								</div>
+								<div class="form-group col-md-6">
+									<?= Form::select( 'month', Option::months(), null, array( 'class' => 'form-control' ) ) ?>
+								</div>
+								<div class="form-group col-md-12">
+									<div class="input-group">
+										<?= Form::text( 'price', '', array( 'class' => 'form-control', 'placeholder' => _( 'price' ) ) ) ?>
+										<span class="input-group-addon"><i class="fa fa-try"></i></span>
+									</div>
+								</div>
+								<?= Form::close() ?>
+								<div class="clearfix"></div>
+							</div>
 						</section>
 					<?php endif ?>
 					<script>
 						$(function () {
+							/**
+							 * Arama çubuğunda otomatik tamamlama işlemleri
+							 */
 							var column = $('#title-form .column').val();
 							var values = new Bloodhound({
 								datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),

@@ -450,13 +450,16 @@ $(function () {
 		});
 
 	});
-
-	$('#newSlide').click(function () {
-		var target = $($(this).attr("data-target"));
+	/**
+	 * içeriği tada taeget ile belirtilmiş formları modal içerisinde açar ve işleme sokar
+	 */
+	$('[data-target]').click(function () {
+		var target = $($(this).attr("data-target")).clone();//
 		var title = $(this).html();
 		body.append(modal);
 		//modal  kapatıldığında sayfadan silinsin
 		modal.on('hidden.bs.modal', function (e) {
+			modalBody.empty();
 			$(modal,body).remove();
 		});
 		modalTitle.html(title);
@@ -495,9 +498,10 @@ $(function () {
 					// set Ok button
 					modalFooterButton1.html(gettext.ok).click(function () {
 						modal.modal('hide');
+						modalBody.removeClass('bg-' + returnData['status'] + ' text-' + returnData['status']);
 					});
 				}
 			});
 		})
-	})
+	});
 })//ready Function

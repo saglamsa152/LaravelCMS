@@ -188,8 +188,8 @@ class AdminController extends BaseController {
 					//password ve created_ip alanlarını  diziye ekleyelim
 					$postData['password']   = Hash::make( $password );
 					$postData['created_ip'] = Request::getClientIp();
-					$user = User::create( $postData );//kulllanıcıyı kaydedelim
-					if($user) {
+					$user                   = User::create( $postData );//kulllanıcıyı kaydedelim
+					if ( $user ) {
 						/**
 						 * yeni oluşturulan kullanıcının şifresini kullanıcının mail adresime mail olark gönderelim
 						 */
@@ -703,29 +703,33 @@ class AdminController extends BaseController {
 					$error = array( 'title' => _( 'Member not found' ), 'content' => _( 'Aradığınız kriterlere uygun kullanıcı bulunamadı' ) );
 				}
 				else {
-					$now         = \Carbon\Carbon::now();
-					$memberSince = $user->created_at->copy();
-					$redirect    = false;
-					$userDuesYears=$user->getDuesYears();
-					do{
+					$now           = \Carbon\Carbon::now();
+					$memberSince   = $user->created_at->copy();
+					$redirect      = false;
+					$userDuesYears = $user->getDuesYears();
+					do {
 						if ( !in_array( $memberSince->year, $userDuesYears ) ) {
-							$redirect = true;// veri tabanında değişiklik yapılmışsa yönlendirmek için
-							$dues = Dues::create( array(
+							$redirect        = true;// veri tabanında değişiklik yapılmışsa yönlendirmek için
+							$dues            = Dues::create( array(
 									'userId'     => $user->id,
 									'year'       => $memberSince->year,
 									'months'     => null,
 									'created_at' => date( 'Y-m-d H:i:s' )
 							) );
-							$userDuesYears[]=$memberSince->year;
-						}else{
-							$dues=Dues::where('userId','=',$user->id)->where('year','=',$memberSince->year)->first();
+							$userDuesYears[] = $memberSince->year;
 						}
-						$months = unserialize($dues->months);
-						$months[$memberSince->month]=array('statusColor'=>'red','price'=>0);
-						$dues->months=serialize($months);
-						$dues->save();
+						else {
+							$dues = Dues::where( 'userId', '=', $user->id )->where( 'year', '=', $memberSince->year )->first();
+						}
+						$months = unserialize( $dues->months );
+						if ( !isset( $months[$memberSince->month] ) ) {
+							$redirect                    = true;// veri tabanında değişiklik yapılmışsa yönlendirmek için
+							$months[$memberSince->month] = array( 'statusColor' => 'red', 'price' => 0 );
+							$dues->months = serialize( $months );
+							$dues->save();
+						}
 						$memberSince->addMonth();
-					}while($now->diffInMonths($memberSince)!=0);
+					} while ( $now->diffInMonths( $memberSince ) != 0 );
 
 					if ( $redirect ) return Redirect::action( 'AdminController@getDues', array( $column, $value ) );
 					$duess = $user->dues->sortBy( 'year' );
@@ -741,6 +745,28 @@ class AdminController extends BaseController {
 		}
 
 		return $View;
+	}
+
+	public function postDues() {
+		if ( Request::ajax() ) {
+			try {
+				$postData = Input::all();
+				$dues     = Dues::where( 'userId', '=', $postData['userId'] )->where( 'year', '=', $postData['year'] )->firstOrFail();
+				$months   = unserialize( $dues->months );
+				if ( isset( $months[$postData['month']] ) ) {
+					$months[$postData['month']] = array( 'statusColor' => 'green', 'price' => $postData['price'] );
+				}
+				else {
+					throw new Exception( 'Seçtiğiniz ay üyelik tarihleri dışında' );
+				}
+				$dues->months = serialize( $months );
+				$dues->save();
+				$response = array( 'status' => 'success', 'msg' => _( 'Payed Successfully' ), 'redirect' => '' );
+			} catch ( Exception $e ) {
+				$response = array( 'status' => 'danger', 'msg' => $e->getMessage() );
+			}
+			return Response::json( $response );
+		}
 	}
 
 	/*

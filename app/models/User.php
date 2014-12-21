@@ -160,7 +160,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getDuesYears() {
 		$years = array();
 		foreach ( $this->dues as $dues ):
-			$years[] = $dues->year;
+			$years[$dues->year] = $dues->year;
 		endforeach;
 		return $years;
 	}
