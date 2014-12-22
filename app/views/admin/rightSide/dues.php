@@ -150,6 +150,11 @@
 									</div>
 								</div>
 								<?= Form::close() ?>
+								<script>
+									$(function () {
+
+									});
+								</script>
 								<div class="clearfix"></div>
 							</div>
 						</section>

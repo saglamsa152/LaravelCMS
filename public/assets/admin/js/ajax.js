@@ -464,6 +464,7 @@ $(function () {
 		});
 		modalTitle.html(title);
 		modalBody.html(target);
+		$('input[name="price"]').inputmask("9{1,4}");//aidat için sayı maskesi
 		target.removeClass('hidden');
 		modalFooterButton0.html(gettext.close);
 		modalFooterButton1.html(gettext.ok);
