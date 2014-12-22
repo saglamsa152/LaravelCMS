@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
-"POT-Creation-Date: 2014-12-21 22:51+0200\n"
-"PO-Revision-Date: 2014-12-21 22:52+0200\n"
+"POT-Creation-Date: 2014-12-22 22:58+0200\n"
+"PO-Revision-Date: 2014-12-22 22:58+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: TR\n"
@@ -949,7 +949,7 @@ msgstr "Yönetici Paneli"
 #: ../../controllers/AdminController.php:546
 #: ../../controllers/AdminController.php:565
 #: ../../controllers/AdminController.php:679
-#: ../../controllers/AdminController.php:737
+#: ../../controllers/AdminController.php:761
 #: ../../controllers/OptionsController.php:31
 #: ../../controllers/OptionsController.php:45
 msgid "Permission Error"
@@ -970,7 +970,7 @@ msgstr "Yetki Hatası"
 #: ../../controllers/AdminController.php:548
 #: ../../controllers/AdminController.php:567
 #: ../../controllers/AdminController.php:681
-#: ../../controllers/AdminController.php:739
+#: ../../controllers/AdminController.php:763
 #: ../../controllers/OptionsController.php:33
 #: ../../controllers/OptionsController.php:47
 msgid "You do not have permission to access this page"
@@ -1006,7 +1006,7 @@ msgstr ""
 
 #: ../../controllers/AdminController.php:136
 #: ../../controllers/AdminController.php:176
-#: ../../controllers/AdminController.php:828
+#: ../../controllers/AdminController.php:868
 msgid "Kullanıcını adınız en az 3 karakterden oluşmalıdır"
 msgstr ""
 
@@ -1019,22 +1019,22 @@ msgid "Lütfen şuanki şifrenizi yazın"
 msgstr ""
 
 #: ../../controllers/AdminController.php:226
-#: ../../controllers/AdminController.php:834
+#: ../../controllers/AdminController.php:874
 msgid "Lütfen şifrenizi yazın"
 msgstr ""
 
 #: ../../controllers/AdminController.php:227
-#: ../../controllers/AdminController.php:835
+#: ../../controllers/AdminController.php:875
 msgid "Şifreniz minumum 4 karakterden oluşmalıdır"
 msgstr ""
 
 #: ../../controllers/AdminController.php:228
-#: ../../controllers/AdminController.php:836
+#: ../../controllers/AdminController.php:876
 msgid "Girdiğiniz şifreler birbiriyle eşleşmiyor"
 msgstr ""
 
 #: ../../controllers/AdminController.php:229
-#: ../../controllers/AdminController.php:837
+#: ../../controllers/AdminController.php:877
 msgid "Lütfen şifrenizi doğrulayın"
 msgstr ""
 
@@ -1088,12 +1088,12 @@ msgid "Cotacts"
 msgstr "İletişim"
 
 #: ../../controllers/AdminController.php:587
-#: ../../controllers/AdminController.php:831
+#: ../../controllers/AdminController.php:871
 msgid "Lütfen mail adresinizi yazın"
 msgstr ""
 
 #: ../../controllers/AdminController.php:588
-#: ../../controllers/AdminController.php:832
+#: ../../controllers/AdminController.php:872
 msgid "Lütfen geçerli bir mail adresi yazın"
 msgstr ""
 
@@ -1145,46 +1145,50 @@ msgstr "Üye bulunamadı"
 msgid "Aradığınız kriterlere uygun kullanıcı bulunamadı"
 msgstr ""
 
-#: ../../controllers/AdminController.php:788
+#: ../../controllers/AdminController.php:786
+msgid "Payed Successfully"
+msgstr "Başarıyla Ödendi"
+
+#: ../../controllers/AdminController.php:828
 msgid "Please enter user name"
 msgstr "Lütfen kullanıcı adınızı giriniz"
 
-#: ../../controllers/AdminController.php:789
+#: ../../controllers/AdminController.php:829
 msgid "Please enter password"
 msgstr "Lütfen şifrenizi giriniz"
 
-#: ../../controllers/AdminController.php:827
+#: ../../controllers/AdminController.php:867
 msgid "Lütfen kullanıcı adınızı yazın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:829
+#: ../../controllers/AdminController.php:869
 msgid ""
 "Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı yazın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:830
+#: ../../controllers/AdminController.php:870
 msgid "Lütfen özel karakter ve boşluk içermeyen kullanıcı adı yazın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:833
+#: ../../controllers/AdminController.php:873
 msgid "Bu mail adresi zaten kullanılıyor. Lütfen başka bir mail adresi yazın"
 msgstr ""
 
-#: ../../controllers/AdminController.php:874
-#: ../../controllers/AdminController.php:946
+#: ../../controllers/AdminController.php:914
+#: ../../controllers/AdminController.php:986
 msgid "Başlık boş bırakılamaz"
 msgstr ""
 
-#: ../../controllers/AdminController.php:875
-#: ../../controllers/AdminController.php:947
+#: ../../controllers/AdminController.php:915
+#: ../../controllers/AdminController.php:987
 msgid "İçerik boş bırakılamaz"
 msgstr ""
 
-#: ../../controllers/AdminController.php:906
+#: ../../controllers/AdminController.php:946
 msgid "Processing was carried out successfully"
 msgstr "İşleme başarıyla gerçekleştirildi"
 
-#: ../../controllers/AdminController.php:973
+#: ../../controllers/AdminController.php:1013
 msgid "Update Successfully"
 msgstr "Başarıyla Güncellendi"
 
