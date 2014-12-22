@@ -774,7 +774,8 @@ class AdminController extends BaseController {
 				$dues     = Dues::where( 'userId', '=', $postData['userId'] )->where( 'year', '=', $postData['year'] )->firstOrFail();
 				$months   = unserialize( $dues->months );
 				if ( isset( $months[$postData['month']] ) ) {
-					$months[$postData['month']] = array( 'statusColor' => 'green', 'price' => $postData['price'] );
+					$statusColor= 0<$postData['price'] ? 'green': 'red';
+					$months[$postData['month']] = array( 'statusColor' => $statusColor, 'price' => $postData['price'] );
 				}
 				else {
 					throw new Exception( 'Seçtiğiniz ay üyelik tarihleri dışında' );

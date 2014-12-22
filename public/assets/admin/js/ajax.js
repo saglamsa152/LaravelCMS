@@ -466,7 +466,7 @@ $(function () {
 		modalBody.html(target);
 		target.removeClass('hidden');
 		modalFooterButton0.html(gettext.close);
-		modalFooterButton1.html(gettext.add);
+		modalFooterButton1.html(gettext.ok);
 		modal.modal('show');
 		modalFooterButton1.click(function () {
 			var form = $('form',modalBody)
