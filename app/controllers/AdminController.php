@@ -703,13 +703,33 @@ class AdminController extends BaseController {
 					$error = array( 'title' => _( 'Member not found' ), 'content' => _( 'Aradığınız kriterlere uygun kullanıcı bulunamadı' ) );
 				}
 				else {
-					$now           = \Carbon\Carbon::now();
-					$memberSince   = $user->created_at->copy();
-					$redirect      = false;
-					$userDuesYears = $user->getDuesYears();
+					/*Set up Dues*/
+					$now              = \Carbon\Carbon::now();
+					$memberSince      = $user->created_at->copy();
+					$memberCreateYear = $memberSince->year;
+					$redirect         = false;
+					$userDuesYears    = $user->getDuesYears();
+					/*
+					 * kullnıcı üyelik tarihi ile bugün arasındaki yıl ve aylar dues tablosunda yok ise
+					 * bu tarihleri dues tablosuna ekler
+					 * döngü kullanıcı üyelik tarihi ile bu gün arasında ay farkı 0 olana kadar çalışır
+					 */
 					do {
+						/*
+						 * kullnıcı üyelik tarihi değişmişse güncel üyelik tarihinden önceki yılların aidat bilgilerini siliyoruz
+						 * todo ay bazında kontrol de yapılmalı
+						 */
+						foreach ( $userDuesYears as $year ) {
+							if ( (int) $year < (int) $memberCreateYear ) {
+								$redirect = true;// veri tabanında değişiklik yapılmışsa yönlendirmek için
+								array_except( $userDuesYears, $year );
+								Dues::where( 'userId', '=', $user->id )->where( 'year', '=', $year )->delete();
+							}
+						}
+
 						if ( !in_array( $memberSince->year, $userDuesYears ) ) {
-							$redirect        = true;// veri tabanında değişiklik yapılmışsa yönlendirmek için
+
+								$redirect        = true;// veri tabanında değişiklik yapılmışsa yönlendirmek için
 							$dues            = Dues::create( array(
 									'userId'     => $user->id,
 									'year'       => $memberSince->year,
@@ -725,13 +745,13 @@ class AdminController extends BaseController {
 						if ( !isset( $months[$memberSince->month] ) ) {
 							$redirect                    = true;// veri tabanında değişiklik yapılmışsa yönlendirmek için
 							$months[$memberSince->month] = array( 'statusColor' => 'red', 'price' => 0 );
-							$dues->months = serialize( $months );
+							$dues->months                = serialize( $months );
 							$dues->save();
 						}
 						$memberSince->addMonth();
 					} while ( $now->diffInMonths( $memberSince ) != 0 );
-
 					if ( $redirect ) return Redirect::action( 'AdminController@getDues', array( $column, $value ) );
+					/*/Set up Dues*/
 					$duess = $user->dues->sortBy( 'year' );
 				}
 				$View = View::make( 'admin.index' )->with( compact( 'title', 'rightSide', 'user', 'duess' ) )->withErrors( $error );
