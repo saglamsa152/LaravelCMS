@@ -6,7 +6,7 @@ mark, rp, rt, ruby, summary, time{display:inline }
 .right {float:right}
 .wrapper {width:100%;overflow:hidden}
 /* Global properties ======================================================== */
-body{background:#000;border:0;font:14px "Trebuchet MS", Arial, Helvetica, sans-serif;color:#696969;line-height:22px;font-style:italic}
+body{background:#000;border:0;font:14px Calibri,"Trebuchet MS", Arial, Helvetica, sans-serif;color:#696969;line-height:22px;font-style:italic}
 .ic, .ic a {border:0;float:right;background:#fff;color:#f00;width:50%;line-height:10px;font-size:10px;margin:-220% 0 0 0;overflow:hidden;padding:0}
 .css3{border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;box-shadow:0 0 4px rgba(0, 0, 0, .4);-moz-box-shadow:0 0 4px rgba(0, 0, 0, .4);-webkit-box-shadow:0 0 4px rgba(0, 0, 0, .4);position:relative}
 .body1{background:url(../images/bg.jpg) bottom center repeat}
@@ -37,7 +37,7 @@ p{padding-bottom:22px}
 header{padding-top:34px; min-height: 150px;}
 #logo{display:block; margin-left:10px;}
 #menu {float:right;padding-top:15px}
-#menu li {float:left;padding-left:51px}
+#menu li {float:left;padding-left:45px}
 #menu li a{display:block;font:20px "Trebuchet MS", Arial, Helvetica, sans-serif;line-height:1.2em;color:#bbb;text-transform:uppercase;text-decoration:none;text-align:center;letter-spacing:-1px;height:79px;font-style:normal;font-weight:700}
 #menu li a span{font-size:13px;line-height:1.2em;color:#666666;display:block;letter-spacing:-1px;margin-top:-3px;font-weight:normal}
 #menu li a:hover, #menu .active a{color:#497e04}

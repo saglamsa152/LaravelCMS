@@ -16,10 +16,6 @@
 	{{ HTML::style('assets/css/responsive.css')}}
 	{{ HTML::style('assets/css/responsiveslides.css')}}
 	{{ HTML::script('assets/js/jquery-1.6.js',array('type'=>'text/javascript'))}}
-	{{ HTML::script('assets/js/cufon-yui.js',array('type'=>'text/javascript'))}}
-	{{ HTML::script('assets/js/cufon-replace.js',array('type'=>'text/javascript'))}}
-	{{ HTML::script('assets/js/Swis721_Cn_BT_400.font.js',array('type'=>'text/javascript'))}}
-	{{ HTML::script('assets/js/Swis721_Cn_BT_700.font.js',array('type'=>'text/javascript'))}}
 	{{ HTML::script('assets/js/jquery.easing.1.3.js',array('type'=>'text/javascript'))}}
 	{{ HTML::script('assets/js/tms-0.3.js',array('type'=>'text/javascript'))}}
 	{{ HTML::script('assets/js/tms_presets.js',array('type'=>'text/javascript'))}}
