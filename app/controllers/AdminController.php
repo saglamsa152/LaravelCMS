@@ -151,7 +151,7 @@ class AdminController extends BaseController {
 					if ( is_null( $value ) ) continue;
 					UserMeta::setMeta( $postData['id'], $key, $value );
 				}
-				$response = array( 'status' => 'success', 'msg' => 'Saved successfully', 'redirect' => URL::action( 'AdminController@getProfile', $postData['id'] ) );
+				$response = array( 'status' => 'success', 'msg' => _('Saved successfully'), 'redirect' => URL::action( 'AdminController@getProfile', $postData['id'] ) );
 				return Response::json( $response );
 			}
 		}

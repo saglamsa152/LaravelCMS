@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
-"POT-Creation-Date: 2014-12-22 22:58+0200\n"
-"PO-Revision-Date: 2014-12-22 22:58+0200\n"
+"POT-Creation-Date: 2014-12-23 09:29+0200\n"
+"PO-Revision-Date: 2014-12-23 09:29+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: TR\n"
@@ -1009,6 +1009,10 @@ msgstr ""
 #: ../../controllers/AdminController.php:868
 msgid "Kullanıcını adınız en az 3 karakterden oluşmalıdır"
 msgstr ""
+
+#: ../../controllers/AdminController.php:154
+msgid "Saved successfully"
+msgstr "Başarıyla Kaydedildi"
 
 #: ../../controllers/AdminController.php:206
 msgid "Yeni Üye oluşturuldu"
