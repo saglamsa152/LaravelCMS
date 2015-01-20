@@ -57,12 +57,11 @@
 								<?php echo _('City:')?><br>
 								<?php echo _('Telephone:')?><br>
 								<?php echo _('Email:')?></span>
-							USA<br>
-							San Diego<br>
-							+354 5635600<br>
-							<a class="color2" href="mailto:">elenwhite@mail.com</a></div>
-						<h2 class="under"><?php echo _('Miscellaneous')?></h2>
-						<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium volupta- tum deleniti atque corrupti quos dolores et quas molestias excep- turi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
+							Türkiye<br>
+							Samsun<br>
+							+90555 555 5555<br>
+							<a class="color2" href="mailto:"><?=Option::getOption( 'mainMailAddress' )?></a>
+						</div>
 					</div>
 				</section>
 			</div>

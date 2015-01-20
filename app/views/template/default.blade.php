@@ -61,7 +61,7 @@
 	<div class="main zerogrid">
 		<article id="content2">
 			<div class="wrapper row">
-				<section class="col-1-4">
+				<section class="col-1-3">
 					<div class="wrap-col">
 						<h4> <?php echo _('Why Us?')?> </h4>
 						<ul class="list1">
@@ -72,18 +72,18 @@
 						</ul>
 					</div>
 				</section>
-				<section class="col-1-4">
+				<section class="col-1-3">
 					<div class="wrap-col">
 						<h4><?php echo _('Address')?></h4>
 						<ul class="address">
-							<li><span><?php echo _('Country:')?></span>USA</li>
-							<li><span><?php echo _('City:')?></span>San Diego</li>
-							<li><span><?php echo _('Phone:')?></span>8 800 154-45-67</li>
-							<li><span><?php echo _('Email:')?></span><a href="mailto:">progress@mail.com</a></li>
+							<li><span><?php echo _('Country:')?></span>Türkiye</li>
+							<li><span><?php echo _('City:')?></span>Samsun</li>
+							<li><span><?php echo _('Phone:')?></span>+90555 555 5555</li>
+							<li><span><?php echo _('Email:')?></span><a href="mailto:"><?=Option::getOption( 'mainMailAddress' )?></a></li>
 						</ul>
 					</div>
 				</section>
-				<section class="col-1-4">
+				<section class="col-1-3">
 					<div class="wrap-col">
 						<h4> <?php echo _('Follow Us')?></h4>
 						<ul id="icons">
@@ -92,19 +92,6 @@
 							<li><a href="#"><img alt="" src="{{ URL::asset('assets/images/icon3.jpg')}}">LinkedIn</a></li>
 							<li><a href="#"><img alt="" src="{{ URL::asset('assets/images/icon4.jpg')}}">Delicious</a></li>
 						</ul>
-					</div>
-				</section>
-				<section class="col-1-4">
-					<div class="wrap-col">
-						<h4><?php echo _('Newsletter')?></h4>
-						<form method="post" id="newsletter">
-							<div>
-								<div class="wrapper">
-									<input type="text" onfocus="if(this.value =='Type Your Email Here' ) this.value=''" onblur="if(this.value=='') this.value='Type Your Email Here'" value="Type Your Email Here" class="input">
-								</div>
-								<a onclick="document.getElementById('newsletter').submit()" class="button" href="#">Subscribe</a>
-							</div>
-						</form>
 					</div>
 				</section>
 			</div>
