@@ -37,7 +37,9 @@
 								<th><?= _( 'email' ) ?></th>
 								<th><?= _( 'Date registered' ) ?></th>
 								<th ><?= _( 'Status' ) ?></th>
+								<?php if(userCan('manageUsers')):?>
 								<th><?= _( 'Actions' ) ?></th>
+								<?php endif ?>
 							</tr>
 							</thead>
 							<tbody>
@@ -50,6 +52,7 @@
 									<td><?= $user->email ?></td>
 									<td><?= $user->created_at ?></td>
 									<td><?= $user->getHtmlStatus() ?></td>
+									<?php if(userCan('manageUsers')):?>
 									<td>
 										<div class="btn-group text-left" style="margin-right:5px">
 											<button data-toggle="dropdown" class="btn btn-default btn-flat dropdown-toggle" type="button">
@@ -88,6 +91,7 @@
 										</div>
 										<?= Form::checkbox( 'bulk-' . $user->id, $user->id ) ?>
 									</td>
+									<?php endif ?>
 								</tr>
 							<?php endforeach ?>
 							</tbody>
@@ -99,6 +103,7 @@
 								<th><?= _( 'email' ) ?></th>
 								<th><?= _( 'Date registered' ) ?></th>
 								<th><?= _( 'Status' ) ?></th>
+								<?php if(userCan('manageUsers')):?>
 								<th>
 									<div id="bulkAction" class="btn-group text-left" style="margin-right:5px">
 										<?=Form::token()?>
@@ -126,6 +131,7 @@
 									</div>
 									<input type="checkbox" id="check-all" />
 								</th>
+								<?php endif ?>
 							</tr>
 							</tfoot>
 						</table>

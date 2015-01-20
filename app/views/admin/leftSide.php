@@ -29,7 +29,7 @@
 			<?php endif?>
 			<!-- /Dashboard -->
 			<!-- Members or Profile -->
-			<?php if(userCan('manageUsers')):?>
+			<?php if(userCan('viewUsers')):?>
 			<li class="treeview <?php if(str_contains(URL::current(),'user') and !str_contains(URL::current(),'preferences')) echo ' active'?>">
 				<a href="">
 					<i class="fa fa-users"></i>

@@ -63,7 +63,7 @@ class AdminController extends BaseController {
 	 * @return mixed
 	 */
 	public function getUsers() {
-		if ( userCan( 'manageUsers' ) ) {
+		if ( userCan( 'viewUsers' ) ) {
 			$title     = _( 'Members' );
 			$rightSide = 'list/users';
 			$users     = User::all();
