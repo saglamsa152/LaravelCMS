@@ -996,7 +996,7 @@ class AdminController extends BaseController {
 				$post = Post::find( $postData['id'] );
 
 				$postData = array_add( $postData, 'author', Auth::user()->id );
-				$postData = array_add( $postData, 'excerpt', mb_substr( $postData['content'], 0, 450, 'UTF-8' ) );
+				$postData = array_add( $postData, 'excerpt', mb_substr( strip_tags($postData['content']), 0, 450, 'UTF-8' ) );
 				$postData = array_add( $postData, 'url', Str::slug( $postData['title'] ) );
 				$postData = array_add( $postData, 'created_ip', Request::getClientIp() );
 				// meta bilgilerini  dizinen çıkartalım
