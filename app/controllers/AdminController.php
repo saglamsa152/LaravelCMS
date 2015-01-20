@@ -926,7 +926,7 @@ class AdminController extends BaseController {
 							'author'     => Auth::user()->id,
 							'content'    => $postData['content'],
 							'title'      => $postData['title'],
-							'excerpt'    => mb_substr( $postData['content'], 0, 450, 'UTF-8' ),
+							'excerpt'    => mb_substr( strip_tags($postData['content']), 0, 450, 'UTF-8' ),
 							'status'     => $postData['status'],
 							'type'       => $postData['type'],
 							'url'        => $url,
