@@ -15,6 +15,7 @@
 <!-- fullCalendar -->
 <?=HTML::script('assets/admin/js/plugins/fullcalendar/lib/moment.min.js')?>
 <?=HTML::script('assets/admin/js/plugins/fullcalendar/fullcalendar.min.js')?>
+<?=HTML::script('assets/admin/js/plugins/fullcalendar/lang-all.js')?>
 <!-- jQuery Knob Chart -->
 <?=HTML::script('assets/admin/js/plugins/jqueryKnob/jquery.knob.js')?>
 <!-- daterangepicker -->

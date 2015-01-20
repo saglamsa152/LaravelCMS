@@ -595,7 +595,7 @@ class AdminController extends BaseController {
 		$validator = Validator::make( $postData, $rules, $messages );
 
 		if ( $validator->failed() ) {
-			return Redirect::action( 'HomeController@getContacts' )->withErrors( $validator->messages() )->withInput();
+			return Redirect::back()->withErrors( $validator->messages() )->withInput();
 		}
 		else {
 			$meta = array(
@@ -608,7 +608,7 @@ class AdminController extends BaseController {
 					'isRead'  => false
 			) );
 			//todo Options modelinden contact mail  adresini alıp  o  adrese mail  olarak  da  yollanacak
-			return Redirect::action( 'HomeController@getIndex' );
+			return Redirect::back();
 		}
 	}
 
