@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
-"POT-Creation-Date: 2014-12-23 09:29+0200\n"
-"PO-Revision-Date: 2014-12-23 09:29+0200\n"
+"POT-Creation-Date: 2015-01-20 19:55+0200\n"
+"PO-Revision-Date: 2015-01-20 19:55+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: TR\n"
@@ -52,7 +52,7 @@ msgstr "Giriş Yap"
 
 #: ../../views/admin/login.php:53 ../../views/admin/register.php:56
 #: ../../views/admin/rightSide/list/users.php:35
-#: ../../views/admin/rightSide/list/users.php:97
+#: ../../views/admin/rightSide/list/users.php:101
 msgid "Username"
 msgstr "Kullanıcı Adı"
 
@@ -85,6 +85,8 @@ msgid "Hello"
 msgstr "Selam"
 
 #: ../../views/admin/leftSide.php:26 ../../views/admin/rightSide/error.php:26
+#: ../../views/admin/rightSide/default.php:6
+#: ../../views/admin/rightSide/default.php:10
 msgid "Dashboard"
 msgstr "Başlangıç"
 
@@ -382,7 +384,7 @@ msgstr "Ara"
 
 #: ../../views/admin/rightSide/dues.php:77
 #: ../../views/admin/rightSide/list/users.php:36
-#: ../../views/admin/rightSide/list/users.php:98
+#: ../../views/admin/rightSide/list/users.php:102
 msgid "Name - Lastname"
 msgstr "İsim - Soyisim"
 
@@ -425,6 +427,53 @@ msgstr "Hata sayfası"
 #: ../../views/admin/rightSide/error.php:24
 msgid "Go Back"
 msgstr "Geri Dön"
+
+#: ../../views/admin/rightSide/default.php:7
+msgid "Control panel"
+msgstr "Kontrol paneli"
+
+#: ../../views/admin/rightSide/default.php:28
+msgid "Total News"
+msgstr "Toplam Haber"
+
+#: ../../views/admin/rightSide/default.php:35
+#: ../../views/admin/rightSide/default.php:55
+msgid "More info"
+msgstr "Detaylı bilgi"
+
+#: ../../views/admin/rightSide/default.php:48
+msgid "Total Member"
+msgstr "Toplam Üye"
+
+#: ../../views/admin/rightSide/default.php:71
+msgid "Calendar"
+msgstr "Takvim"
+
+#: ../../views/admin/rightSide/default.php:80
+msgid "Add new event"
+msgstr "Yeni etkinlik Ekle"
+
+#: ../../views/admin/rightSide/default.php:81
+msgid "Clear events"
+msgstr "Etkinlikleri temizle"
+
+#: ../../views/admin/rightSide/default.php:83
+msgid "View calendar"
+msgstr "Takvimi  göster"
+
+#: ../../views/admin/rightSide/default.php:105
+msgid "Send Message to Admin"
+msgstr "Yöneticiye mesaj gönder"
+
+#: ../../views/admin/rightSide/default.php:118
+#: ../../views/admin/rightSide/list/contacts.php:31
+#: ../../views/admin/rightSide/list/contacts.php:102
+msgid "Message"
+msgstr "Mesaj"
+
+#: ../../views/admin/rightSide/default.php:122
+msgid "Send"
+msgstr "Gönder"
 
 #: ../../views/admin/rightSide/list/slider.php:5
 #: ../../views/admin/rightSide/list/slider.php:11
@@ -471,8 +520,8 @@ msgstr "Slide içeriği"
 #: ../../views/admin/rightSide/list/news.php:122
 #: ../../views/admin/rightSide/list/contacts.php:87
 #: ../../views/admin/rightSide/list/contacts.php:115
-#: ../../views/admin/rightSide/list/users.php:83
-#: ../../views/admin/rightSide/list/users.php:115
+#: ../../views/admin/rightSide/list/users.php:86
+#: ../../views/admin/rightSide/list/users.php:120
 #: ../../views/admin/rightSide/list/services.php:67
 #: ../../views/admin/rightSide/list/products.php:67
 msgid "Delete"
@@ -519,16 +568,16 @@ msgstr "Tip"
 #: ../../views/admin/rightSide/list/news.php:38
 #: ../../views/admin/rightSide/list/news.php:104
 #: ../../views/admin/rightSide/list/users.php:39
-#: ../../views/admin/rightSide/list/users.php:101
+#: ../../views/admin/rightSide/list/users.php:105
 msgid "Status"
-msgstr "Durum"
+msgstr "Statü"
 
 #: ../../views/admin/rightSide/list/news.php:39
 #: ../../views/admin/rightSide/list/news.php:55
 #: ../../views/admin/rightSide/list/contacts.php:32
 #: ../../views/admin/rightSide/list/contacts.php:48
-#: ../../views/admin/rightSide/list/users.php:40
-#: ../../views/admin/rightSide/list/users.php:56
+#: ../../views/admin/rightSide/list/users.php:41
+#: ../../views/admin/rightSide/list/users.php:59
 #: ../../views/admin/rightSide/list/services.php:34
 #: ../../views/admin/rightSide/list/services.php:48
 #: ../../views/admin/rightSide/list/services.php:82
@@ -561,13 +610,13 @@ msgstr "Yayınla"
 
 #: ../../views/admin/rightSide/list/news.php:108
 #: ../../views/admin/rightSide/list/contacts.php:107
-#: ../../views/admin/rightSide/list/users.php:106
+#: ../../views/admin/rightSide/list/users.php:111
 msgid "Bulk Actions"
 msgstr "Toplu İşlemler"
 
 #: ../../views/admin/rightSide/list/news.php:116
 msgid "Toggle Status"
-msgstr ""
+msgstr "Statüyü değiştir"
 
 #: ../../views/admin/rightSide/list/contacts.php:11
 #: ../../views/admin/rightSide/list/contacts.php:21
@@ -588,11 +637,6 @@ msgstr "Gönderenin e-maili"
 #: ../../views/admin/rightSide/list/contacts.php:101
 msgid "Send Date"
 msgstr "Gönderme Tarihi"
-
-#: ../../views/admin/rightSide/list/contacts.php:31
-#: ../../views/admin/rightSide/list/contacts.php:102
-msgid "Message"
-msgstr "Mesaj"
 
 #: ../../views/admin/rightSide/list/contacts.php:44
 msgid "Click to read more"
@@ -622,36 +666,36 @@ msgid "Users"
 msgstr "Kullanıcılar"
 
 #: ../../views/admin/rightSide/list/users.php:37
-#: ../../views/admin/rightSide/list/users.php:99
+#: ../../views/admin/rightSide/list/users.php:103
 msgid "email"
 msgstr "eposta"
 
 #: ../../views/admin/rightSide/list/users.php:38
-#: ../../views/admin/rightSide/list/users.php:100
+#: ../../views/admin/rightSide/list/users.php:104
 msgid "Date registered"
 msgstr "Kayıt Tarihi"
 
-#: ../../views/admin/rightSide/list/users.php:58
+#: ../../views/admin/rightSide/list/users.php:61
 msgid "Toggle Dropdown"
 msgstr ""
 
-#: ../../views/admin/rightSide/list/users.php:64
+#: ../../views/admin/rightSide/list/users.php:67
 msgid "View/Edit"
 msgstr "Göster/Düzenle"
 
-#: ../../views/admin/rightSide/list/users.php:68
+#: ../../views/admin/rightSide/list/users.php:71
 msgid "Approve User"
 msgstr "Kullanıcıyı Onayla"
 
-#: ../../views/admin/rightSide/list/users.php:73
+#: ../../views/admin/rightSide/list/users.php:76
 msgid "Approve"
 msgstr "Onayla"
 
-#: ../../views/admin/rightSide/list/users.php:73
+#: ../../views/admin/rightSide/list/users.php:76
 msgid "Unapprove"
 msgstr "Onaylanmamış"
 
-#: ../../views/admin/rightSide/list/users.php:120
+#: ../../views/admin/rightSide/list/users.php:125
 msgid ""
 "Warning! Bu işlem seçilen kullanıcılar arasındaki onaylı kullanıcıları "
 "onaysız,onaysız kullanıcıları onaylı  duruma getirir. "
@@ -659,13 +703,12 @@ msgstr ""
 "Dikkat ! Bu işlem seçilen kullanıcılar arasındaki onaylı kullanıcıları "
 "onaysız,onaysız kullanıcıları onaylı  duruma getirir. "
 
-#: ../../views/admin/rightSide/list/users.php:122
+#: ../../views/admin/rightSide/list/users.php:127
 msgid "Approve / Unapprove"
 msgstr "Onayla / Onayı kaldır"
 
 #: ../../views/admin/rightSide/list/services.php:10
 #: ../../views/admin/rightSide/list/services.php:22
-#: ../../views/template/menu.blade.php:11
 #: ../../controllers/HomeController.php:57
 #: ../../controllers/AdminController.php:438
 msgid "Services"
@@ -761,40 +804,36 @@ msgstr "Şifre sıfırlama"
 msgid "To reset your password, complete this form:"
 msgstr "Şifrenizi  yenilemek için bu formu doldurun"
 
-#: ../../views/template/default.blade.php:70
+#: ../../views/template/default.blade.php:66
 msgid "Why Us?"
 msgstr "Neden biz?"
 
-#: ../../views/template/default.blade.php:81
+#: ../../views/template/default.blade.php:77
 msgid "Address"
 msgstr "Adres"
 
-#: ../../views/template/default.blade.php:83
+#: ../../views/template/default.blade.php:79
 #: ../../views/contacts/index.blade.php:56
 msgid "Country:"
 msgstr "Ülke:"
 
-#: ../../views/template/default.blade.php:84
+#: ../../views/template/default.blade.php:80
 #: ../../views/contacts/index.blade.php:57
 msgid "City:"
 msgstr "Şehir:"
 
-#: ../../views/template/default.blade.php:85
+#: ../../views/template/default.blade.php:81
 msgid "Phone:"
 msgstr "Telefon:"
 
-#: ../../views/template/default.blade.php:86
+#: ../../views/template/default.blade.php:82
 #: ../../views/contacts/index.blade.php:59
 msgid "Email:"
 msgstr "Eposta:"
 
-#: ../../views/template/default.blade.php:92
+#: ../../views/template/default.blade.php:88
 msgid "Follow Us"
 msgstr "Bizi takip edin"
-
-#: ../../views/template/default.blade.php:103
-msgid "Newsletter"
-msgstr ""
 
 #: ../../views/template/menu.blade.php:7
 msgid "Welcome!"
@@ -805,8 +844,12 @@ msgid "Fresh"
 msgstr "Temiz"
 
 #: ../../views/template/menu.blade.php:11
-msgid "for you"
-msgstr "sizin için"
+msgid "Bylaw"
+msgstr "Tüzük"
+
+#: ../../views/template/menu.blade.php:11
+msgid "law"
+msgstr "hukuk"
 
 #: ../../views/template/menu.blade.php:13
 msgid "The best"
@@ -828,10 +871,6 @@ msgstr "İletişim Formu"
 #: ../../views/contacts/index.blade.php:58
 msgid "Telephone:"
 msgstr "Telefon:"
-
-#: ../../views/contacts/index.blade.php:64
-msgid "Miscellaneous"
-msgstr ""
 
 #: ../../views/password/remind.php:41
 msgid "Success!"
@@ -1257,6 +1296,12 @@ msgstr "Ekle"
 msgid "Pay"
 msgstr "Öde"
 
+#~ msgid "Newsletter"
+#~ msgstr "Haber Bülteni"
+
+#~ msgid "for you"
+#~ msgstr "sizin için"
+
 #~ msgid "Email"
 #~ msgstr "Eposta:"
 
@@ -1306,9 +1351,6 @@ msgstr "Öde"
 
 #~ msgid "Register"
 #~ msgstr "Kayıt ol"
-
-#~ msgid "Total Members"
-#~ msgstr "Tüm Kullanıcılar"
 
 #~ msgid "Pro Members"
 #~ msgstr "Özel Kullanıcılar"
