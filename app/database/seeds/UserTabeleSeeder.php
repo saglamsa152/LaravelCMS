@@ -24,10 +24,10 @@ class UserTableSeeder extends Seeder {
 		$memberSince     = \Carbon\Carbon::now();
 		$lastPayableDues = \Carbon\Carbon::now()->addMonths( 6 );
 		$dues            = array();
-		do {
-			$dues[$memberSince->year][]=$memberSince->month;
+		while ( $memberSince->diffInMonths( $lastPayableDues ) != 0 ) {
+			$dues[$memberSince->year][$memberSince->month]=0;
 			$memberSince->addMonth();
-		} while ( $memberSince->diffInMonths( $lastPayableDues ) != 0 );
+		}
 		// aidat bilgilerini  meta tablosuna ekleyelim
 		UserMeta::setMeta( $id, 'dues', serialize( $dues ) );
 

@@ -1,5 +1,5 @@
 /**
- * Created by sametatabasch on 19.11.2014.
+ * Created by sametatabasch on 19.11.2014. todo Beta sürümünde bu  dosyanın  toparlanması  lazım
  */
 $(function () {
 	var body = $('body');
@@ -53,7 +53,7 @@ $(function () {
 		body.append(modal);
 		//modal  kapatıldığında sayfadan silinsin
 		modal.on('hidden.bs.modal', function (e) {
-			$(modal,body).remove();
+			$(modal, body).remove();
 		});
 		if (typeof($(this).attr('title')) != 'undefined') {
 			modalTitle.html($(this).attr('title'));
@@ -85,7 +85,7 @@ $(function () {
 					if (jQuery.type(returnData['redirect']) != 'undefined') {
 						window.location.replace(returnData['redirect']);
 					} else {
-						$(modal,body).remove();
+						$(modal, body).remove();
 					}
 				});
 				// set Ok button
@@ -135,7 +135,7 @@ $(function () {
 		body.append(modal);
 		//modal  kapatıldığında sayfadan silinsin
 		modal.on('hidden.bs.modal', function (e) {
-			$(modal,body).remove();
+			$(modal, body).remove();
 		});
 		//add Title
 		modalTitle.html(gettext.confirmDelete);
@@ -172,7 +172,7 @@ $(function () {
 						if (jQuery.type(returnData['redirect']) != 'undefined') {
 							window.location.replace(returnData['redirect']);
 						} else {
-							$(modal,body).remove();
+							$(modal, body).remove();
 						}
 					});
 				}
@@ -204,7 +204,7 @@ $(function () {
 		body.append(modal);
 		//modal  kapatıldığında sayfadan silinsin
 		modal.on('hidden.bs.modal', function (e) {
-			$(modal,body).remove();
+			$(modal, body).remove();
 		});
 		modalTitle.html(link.html());
 		if (link.attr('data-action') == 'delete') {
@@ -255,7 +255,7 @@ $(function () {
 						if (jQuery.type(returnData['redirect']) != 'undefined') {
 							window.location.replace(returnData['redirect']);
 						} else {
-							$(modal,body).remove();
+							$(modal, body).remove();
 						}
 					});
 					// set Ok button
@@ -276,7 +276,7 @@ $(function () {
 		body.append(modal);
 		//modal  kapatıldığında sayfadan silinsin
 		modal.on('hidden.bs.modal', function (e) {
-			$(modal,body).remove();
+			$(modal, body).remove();
 		});
 		$('.modal-dialog', modal).removeClass('modal-sm');// normal  boyutta olması için
 		//add Title
@@ -337,7 +337,7 @@ $(function () {
 						if (jQuery.type(returnData['redirect']) != 'undefined') {
 							window.location.replace(returnData['redirect']);
 						}
-						$(modal,body).remove();
+						$(modal, body).remove();
 					});
 					// set Ok button
 					modalFooterButton1.html(gettext.ok).click(function () {
@@ -355,8 +355,8 @@ $(function () {
 	$('.clickToRead').click(function () {
 		var message = $.parseJSON($(this).attr('data-value'));// id,name,content
 		var contact = $(this);// tıklanan mesaja ait <div>
-		var data = $.parseJSON('{"id":"'+message.id+'","toggle":false}');
-		$.post('/admin/mark-as-read-contact',data).done(function(){
+		var data = $.parseJSON('{"id":"' + message.id + '","toggle":false}');
+		$.post('/admin/mark-as-read-contact', data).done(function () {
 			contact.parents('tr').removeClass('info');// mesaj satırının arka planın beyaz yapılıyor(okundu manası)
 		})
 		body.append(modal);
@@ -367,17 +367,17 @@ $(function () {
 		modal.modal('show');
 		modalFooterButton1.click(function () {
 			modal.modal('hide');
-			$(modal,body).remove();
+			$(modal, body).remove();
 			$('#contactAnswer-' + message.id).trigger('click');
 		});
 	});
 	/**
 	 * Sadece buton üzerinde geri  bildirim veren ajax formlarını  çalıştırır
 	 */
-	$('.ajaxButton').on('submit',function(){
+	$('.ajaxButton').on('submit', function () {
 		var form = $(this);
-		var submitButton= $('input[type="submit"]',$(this));
-		submitButton.attr('disabled','disabled');
+		var submitButton = $('input[type="submit"]', $(this));
+		submitButton.attr('disabled', 'disabled');
 		submitButton.val(gettext.saving);
 		$.ajax({
 			type   : 'POST',
@@ -385,10 +385,10 @@ $(function () {
 			data   : form.serializeArray(),
 			success: function (returnData) {
 				submitButton.val(gettext.saved);
-				setTimeout(function(){
+				setTimeout(function () {
 					submitButton.removeAttr('disabled');
 					submitButton.val(gettext.save);
-				},1000);
+				}, 1000);
 
 			}
 		});
@@ -401,11 +401,11 @@ $(function () {
 	$('button[data-action="delete"]').click(function () {
 		var url = $(this).attr('data-url');
 		var id = $(this).attr('data-id');
-		var token =$($(this).attr('token')).val();
+		var token = $($(this).attr('token')).val();
 		body.append(modal);
 		//modal  kapatıldığında sayfadan silinsin
 		modal.on('hidden.bs.modal', function (e) {
-			$(modal,body).remove();
+			$(modal, body).remove();
 		});
 		//add Title
 		modalTitle.html(gettext.confirmDelete);
@@ -421,7 +421,7 @@ $(function () {
 			$.ajax({
 				type   : 'POST',
 				url    : url,
-				data   : {"id":id,"_token":token},
+				data   : {"id": id, "_token": token},
 				success: function (returnData) {
 					var cevap = '<ul>';
 					if (jQuery.type(returnData['msg']) == "object") {
@@ -442,7 +442,7 @@ $(function () {
 						if (jQuery.type(returnData['redirect']) != 'undefined') {
 							window.location.replace(returnData['redirect']);
 						} else {
-							$(modal,body).remove();
+							$(modal, body).remove();
 						}
 					});
 				}
@@ -460,7 +460,7 @@ $(function () {
 		//modal  kapatıldığında sayfadan silinsin
 		modal.on('hidden.bs.modal', function (e) {
 			modalBody.empty();
-			$(modal,body).remove();
+			$(modal, body).remove();
 		});
 		modalTitle.html(title);
 		modalBody.html(target);
@@ -470,7 +470,7 @@ $(function () {
 		modalFooterButton1.html(gettext.ok);
 		modal.modal('show');
 		modalFooterButton1.click(function () {
-			var form = $('form',modalBody)
+			var form = $('form', modalBody)
 			$.ajax({
 				type   : 'POST',
 				url    : form.attr('action'),
@@ -493,7 +493,7 @@ $(function () {
 						if (jQuery.type(returnData['redirect']) != 'undefined') {
 							window.location.replace(returnData['redirect']);
 						} else {
-							$(modal,body).remove();
+							$(modal, body).remove();
 						}
 					});
 					// set Ok button
@@ -505,4 +505,83 @@ $(function () {
 			});
 		})
 	});
+	/**
+	 * aidat sayfası formu  ödeme butonuna tıklayınca çalışan ajax
+	 */
+	$('.ajaxFormDues').on('submit', function (t) {
+		var form = $(this);
+		var formData = form.serializeArray();
+		var duesAmount = form.attr('data-duesAmount');
+		body.append(modal);
+		//modal  kapatıldığında sayfadan silinsin
+		modal.on('hidden.bs.modal', function (e) {
+			$(modal, body).remove();
+		});
+		//add modalTitle
+		modalTitle.html(form.attr('data-title'));
+		modalFooterButton1.show();//eğer hiç seçim yapılmayıp gizlendiyse tekrar açılması için
+		var months = new Array("Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık");
+		var out = '<table class="table table-striped"><tr><th>Açıklama</th><th>Miktar</th></tr>';
+		var donate = false;// bağış yapılmışmı yapılmamışmı  kontrolü
+		var total = 0;
+		$.each(formData, function (key, data) {
+			if (data.name == 'dues[]') {
+				var dues = data.value.split('-');
+				out += '<tr><td>' + dues[0] + ' ' + months[dues[1] - 1] + ' ayı aidatı </td><td>' + duesAmount + '</td></tr>';
+				total += parseInt(duesAmount);
+			}
+			if (data.name == 'donate') {
+				donate = data.value;
+			}
+			if (data.name == 'donateAmount' && donate) {
+				out += '<tr><td>Bağış</td><td>' + data.value + '</td></tr>';
+				total += parseInt(data.value);
+			}
+		});
+		out += '<tr><th>Toplam</th><th>' + total + '</th></tr></table>'
+		if (total == 0) {
+			modalBody.html('Hiç Seçim yapmadınız');
+			modalFooterButton1.hide();
+		} else {
+			modalBody.html(out);
+		}
+
+		modalFooterButton1.html(gettext.pay);
+		modalFooterButton0.html(gettext.close);
+		modal.modal('show');
+		modalFooterButton1.click(function () {
+			modalBody.html(waitingAnimationHtml);
+			$.ajax({
+				type   : 'POST',
+				url    : form.attr('action'),
+				data   : formData,
+				success: function (returnData) {
+					if (jQuery.type(returnData['msg']) == "object") {
+						$.each(returnData['msg'], function (key, value) {
+							cevap += '<li>' + key + '-' + value + '</li>';
+						});
+						cevap += '</ul>';
+					} else cevap = returnData['msg'];
+					modalBody.addClass('bg-' + returnData['status'] + ' text-' + returnData['status']);
+					modalBody.fadeOut(100, function () {
+						$(this).html(cevap).fadeIn('slow');
+					});
+					// hide no Button
+					modalFooterButton1.hide();
+					modalFooterButton0.html(gettext.ok);
+					//modal  kapatıldığında yönlendirme varsa  yönlendir.
+					modal.on('hidden.bs.modal', function (e) {
+						if (jQuery.type(returnData['redirect']) != 'undefined') {
+							window.location.replace(returnData['redirect']);
+						} else {
+							$(modal, body).remove();
+						}
+					});
+				}
+			});
+		});
+		return false;
+	});
+
+
 })//ready Function

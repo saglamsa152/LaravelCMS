@@ -1252,7 +1252,8 @@ class OptionsTableSeeder extends Seeder {
 							 'optionType'  => 'general',
 							 'created_at'  => date( 'Y-m-d H:i:s' )
 				),
-				array( 'optionKey' => 'mainMailAddress', 'optionValue' => $mainMailAddress, 'optionType' => 'general', 'created_at' => date( 'Y-m-d H:i:s' ) )
+				array( 'optionKey' => 'mainMailAddress', 'optionValue' => $mainMailAddress, 'optionType' => 'general', 'created_at' => date( 'Y-m-d H:i:s' ) ),
+				array('optionKey'=>'duesAmount','optionValue'=>10,'optionType'=>'general','created_at'  => date( 'Y-m-d H:i:s' ))
 		) );
 		// Konsol çıktısını verelim
 		$this->command->info( 'Örnek veriler eklendi' );

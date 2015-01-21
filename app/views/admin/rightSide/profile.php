@@ -221,24 +221,34 @@
 								<?= Form::open( array(
 										'action' => 'AdminController@postDues',
 										'role'   => 'form',
-										'method' => 'post' ) )
+										'method' => 'post',
+										'class' =>'ajaxFormDues',
+										'data-title'=>_('Payment summary'),
+										'data-duesAmount'=>Option::getOption('duesAmount')
+								) )
 								?>
+								<?=Form::hidden('userId',$user->id)?>
 								<div class="col-md-6">
 									<h3 class="page-header">
 										<?= _( 'Dues' ) ?>
 									</h3>
 									<?php $monthsString = Option::months();
-									foreach ( unserialize( $user->dues ) as $year => $months ):?>
-										<h4><?= $year ?></h4>
-										<?php foreach ( $months as $month ): ?>
-											<div class="checkbox">
-												<label>
-													<?= Form::checkbox( $year . '-' . $month, 0, null, array( 'class' => 'form-control', 'aria-label' => sprintf( _( 'Dues of %s ' ), $monthsString[$month] ) ) ) ?>
-													<?php printf( _( 'Dues of %s ' ), $monthsString[$month] ) ?>
-												</label>
-											</div>
-										<?php endforeach ?>
-									<?php endforeach ?>
+										$count=0;
+										foreach ( unserialize( $user->dues ) as $year => $months ):?>
+											<h4><?= $year ?></h4>
+											<?php foreach ( $months as $month => $value ): ?>
+												<?php if ( !$value ): $count++?>
+													<div class="checkbox">
+														<label>
+															<?= Form::checkbox( 'dues[]', $year . '-' . $month, null, array( 'class' => 'form-control', 'aria-label' => sprintf( _( 'Dues of %s ' ), $monthsString[$month] ) ) ) ?>
+															<?php printf( _( 'Dues of %s ' ), $monthsString[$month] ) ?>
+														</label>
+													</div>
+												<?php endif ?>
+											<?php endforeach ?>
+										<?php endforeach;
+									if(!$count)	echo _( 'You do not have unpaid dues' );
+									 ?>
 								</div>
 								<div class="col-md-6">
 									<h3 class="page-header">
@@ -250,6 +260,14 @@
 											<?=Form::checkbox('donate',1,null,array('aria-label'=>_('Donate')))?>
           					</span>
 										<?=Form::text('donateAmount','',array('class'=>'form-control','placeholder'=>_('Donate'),'aria-label'=>_('Donate')))?>
+									</div>
+									<!-- Description -->
+									<h3 class="page-header">
+										<?= _( 'Description' ) ?>
+									</h3>
+
+									<div class="form-group">
+										<?=Form::textarea('description',null,array('class'=>'form-control','placeholder'=>_('Write a description'),'rows'=>3))?>
 									</div>
 								</div>
 								<div class="clearfix"></div>

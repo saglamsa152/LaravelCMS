@@ -90,6 +90,19 @@ class AdminController extends BaseController {
 		if ( !userCan( 'manageUsers' ) || is_null( $id ) ) {
 			$id = Auth::user()->id;
 		}
+		/**
+		 * kullanıcı aidat bilgilerini güncel zamana göre güncelliyoruz.
+		 */
+		$userDues=UserMeta::getMeta($id,'dues',true);
+		$lastYear=end($userDues);
+		end($lastYear);
+		$currentLastPayableDate=\Carbon\Carbon::create(key($userDues),key($lastYear));
+		$lastPayableDate=\Carbon\Carbon::now()->addMonths(6);
+		while($currentLastPayableDate->diffInMonths($lastPayableDate)!=0){
+			$userDues[$currentLastPayableDate->year][$currentLastPayableDate->month]=0;
+			$currentLastPayableDate->addMonth();
+		}
+		UserMeta::setMeta($id,'dues',$userDues,true);
 		$user = User::find( $id );//kullanıcıyı getiriyoruz
 		foreach ( $user->userMeta as $meta ) {
 			$user = array_add( $user, $meta->metaKey, $meta->metaValue );
@@ -120,40 +133,64 @@ class AdminController extends BaseController {
 	 * @return \Illuminate\Http\JsonResponse
 	 */
 	public function postUpdateUser() {
-		if ( Request::ajax() ) {
-			$postData = Input::all();
-			//kurallar
-			$rules = array(
-					'username' => 'required|min:3',
-					'email'    => 'required|email'
-			);
-			// todo  ingilzce  tercüme
-			$messages  = array(
-					'username.required' => _( 'Bir kullanıcı adı tanımlamalısınız' ),
-					'content.required'  => _( 'Bir e-mail belirtmelisiniz' ),
-					'username.unique'   => _( 'Kullanıcı adı kullanılıyor' ),
-					'email.unique'      => _( 'Mail adresi kullanılıyor' ),
-					'username.min'      => _( 'Kullanıcını adınız en az 3 karakterden oluşmalıdır' ),
-			);
-			$validator = Validator::make( $postData, $rules, $messages );
+		try {
+			if ( Request::ajax() ) {
+				$postData = Input::all();
+				//kurallar
+				$rules = array(
+						'username' => 'required|min:3',
+						'email'    => 'required|email'
+				);
+				// todo  ingilzce  tercüme
+				$messages  = array(
+						'username.required' => _( 'Bir kullanıcı adı tanımlamalısınız' ),
+						'content.required'  => _( 'Bir e-mail belirtmelisiniz' ),
+						'username.unique'   => _( 'Kullanıcı adı kullanılıyor' ),
+						'email.unique'      => _( 'Mail adresi kullanılıyor' ),
+						'username.min'      => _( 'Kullanıcını adınız en az 3 karakterden oluşmalıdır' ),
+				);
+				$validator = Validator::make( $postData, $rules, $messages );
 
-			if ( $validator->fails() ) {
-				$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() ); //todo  burası  olmuyor
-				return Response::json( $ajaxResponse );
-			}
-			else {
-				$user = User::find( $postData['id'] );
-				// meta bilgilerini  dizinen çıkartalım
-				$metas = array_pull( $postData, 'meta' );
-				// yeni bilgileri güncelleyelim
-				$user->fill( $postData )->push();
-				foreach ( $metas as $key => $value ) {
-					if ( is_null( $value ) ) continue;
-					UserMeta::setMeta( $postData['id'], $key, $value );
+				if ( $validator->fails() ) {
+					$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() ); //todo  burası  olmuyor
+					return Response::json( $ajaxResponse );
 				}
-				$response = array( 'status' => 'success', 'msg' => _( 'Saved successfully' ), 'redirect' => URL::action( 'AdminController@getProfile', $postData['id'] ) );
-				return Response::json( $response );
+				else {
+					$user = User::find( $postData['id'] );
+					// meta bilgilerini  dizinen çıkartalım
+					$metas = array_pull( $postData, 'meta' );
+					// yeni bilgileri güncelleyelim
+					$user->fill( $postData )->push();
+					$newDate=\Carbon\Carbon::createFromFormat( 'Y-m-d', $postData['created_at'] );
+					if ( $newDate->ne($user->created_at)) {
+						$dues = UserMeta::getMeta( $user->id, 'dues', true );
+						$lastPayableDues = \Carbon\Carbon::now()->addMonths( 6 );
+						while ( $newDate->diffInMonths( $lastPayableDues ) != 0 ) {
+							if(!isset($dues[$newDate->year][$newDate->month]) || !$dues[$newDate->year][$newDate->month] ){
+								$dues[$newDate->year][$newDate->month] = 0;
+							}
+							$newDate->addMonth();
+						}
+						ksort($dues);
+						/*//yeni tarihin yılından küçük olan aidat bilgileri siliniyor.
+						$keys=array_keys($dues);
+						while($keys[0]<$newDate->year){
+							array_shift($dues);
+							array_shift($keys);
+						}*/
+						UserMeta::setMeta( $user->id, 'dues', $dues, true );
+					}
+					foreach ( $metas as $key => $value ) {
+						if ( is_null( $value ) ) continue;
+						UserMeta::setMeta( $postData['id'], $key, $value );
+					}
+					$response = array( 'status' => 'success', 'msg' => _( 'Saved successfully' ), 'redirect' => URL::action( 'AdminController@getProfile', $postData['id'] ) );
+					return Response::json( $response );
+				}
 			}
+		}catch (Exception $e){
+			$ajaxResponse = array( 'status' => 'danger', 'msg' => $e->getMessage() );
+			return Response::json( $ajaxResponse );
 		}
 	}
 
@@ -191,17 +228,17 @@ class AdminController extends BaseController {
 					/**
 					 * Kullanıcı  aidat bilgilerini oluşturalım
 					 */
-					$memberSince     = \Carbon\Carbon::createFromFormat('Y-m-d',$postData['created_at']);
+					$memberSince     = \Carbon\Carbon::createFromFormat( 'Y-m-d', $postData['created_at'] );
 					$lastPayableDues = \Carbon\Carbon::now()->addMonths( 6 );
 					$dues            = array();
-					do {
-						$dues[$memberSince->year][]=$memberSince->month;
+					while ( $memberSince->diffInMonths( $lastPayableDues ) != 0 ) {
+						$dues[$memberSince->year][$memberSince->month] = 0;
 						$memberSince->addMonth();
-					} while ( $memberSince->diffInMonths( $lastPayableDues ) != 0 );
+					}
 
 					$userMeta['dues'] = serialize( $dues );
 					// kullanıcıyı oluşturalım
-					$user                   = User::create( $postData );//kulllanıcıyı kaydedelim
+					$user = User::create( $postData );//kulllanıcıyı kaydedelim
 
 					if ( $user ) {
 						/**
@@ -222,7 +259,7 @@ class AdminController extends BaseController {
 				}
 			}
 		} catch ( Exception $e ) {
-			$ajaxResponse = array( 'status' => 'danger', 'msg' => $e->getMessage().$e->getFile().'line:'.$e->getLine() );
+			$ajaxResponse = array( 'status' => 'danger', 'msg' => $e->getMessage() );
 			return Response::json( $ajaxResponse );
 		}
 	}
@@ -703,143 +740,247 @@ class AdminController extends BaseController {
 	public function postDues() {
 		if ( Request::ajax() ) {
 			try {
-				$postData = Input::all();
-				$dues     = Dues::where( 'userId', '=', $postData['userId'] )->where( 'year', '=', $postData['year'] )->firstOrFail();
-				$months   = unserialize( $dues->months );
-				if ( isset( $months[$postData['month']] ) ) {
-					$statusColor                = 0 < $postData['price'] ? 'green' : 'red';
-					$price                      = empty( $postData['price'] ) ? 0 : $postData['price'];
-					$months[$postData['month']] = array( 'statusColor' => $statusColor, 'price' => $price );
+				$postData   = Input::all();
+				$duesAmount = Option::getOption( 'duesAmount' );
+
+				if ( isset( $postData['dues'] ) ) {
+					$userDues = UserMeta::getMeta( $postData['userId'], 'dues', true );
+					$total    = 0;
+					foreach ( $postData['dues'] as $dues ) {
+						$dues = explode( '-', $dues );
+						$total += $duesAmount;
+						if ( array_key_exists( $dues[0], $userDues ) ) {
+							$userDues[$dues[0]][$dues[1]]=1;// usrmeta tablosunda aidatı ödendi olarak ayarlayalım
+							UserMeta::setMeta( $postData['userId'], 'dues', $userDues, true );// güncel bilgileri veri tabanına kaydettik
+						}
+
+					}
+					//ödeme bilgisini  veri tabanına kaydedelim
+					$order = Orders::create( array(
+							'userId'      => $postData['userId'],
+							'type'        => 'dues',
+							'price'       => $total,
+							'description' => $postData['description'],
+							'meta'        => ''
+					) );
+					if ( $order ) {
+						UserMeta::setMeta( $postData['userId'], 'dues', $userDues, true );// güncel bilgileri veri tabanına kaydettik
+					}
 				}
-				else {
-					throw new Exception( 'Seçtiğiniz ay üyelik tarihleri dışında' );
+				if(isset($postData['donate']) && $postData['donate']){
+					//ödeme bilgisini  veri tabanına kaydedelim
+					$order = Orders::create( array(
+							'userId'      => $postData['userId'],
+							'type'        => 'donate',
+							'price'       => $postData['donateAmount'],
+							'description' => $postData['description'],
+							'meta'        => ''
+					) );
 				}
-				$dues->months = serialize( $months );
-				$dues->save();
-				$response = array( 'status' => 'success', 'msg' => _( 'Payed Successfully' ), 'redirect' => '' );
+					$response = array( 'status' => 'success', 'msg' => _( 'Payed Successfully' ), 'redirect' => '' );
+				}
+			catch
+				( Exception $e ) {
+					$response = array( 'status' => 'danger', 'msg' => $e->getMessage() );
+				}
+			return Response::json( $response );
+		}
+	}
+
+		/*
+		 * Type Ahead eklentisi  için json çıktıları
+		 */
+		public
+		function getUserTypeAhead( $column = '', $value = '' ) {
+			try {
+				$response = User::where( $column, 'like', "%" . $value . "%" )->get( [ $column . ' as value' ] );
 			} catch ( Exception $e ) {
 				$response = array( 'status' => 'danger', 'msg' => $e->getMessage() );
 			}
 			return Response::json( $response );
 		}
-	}
 
-	/*
-	 * Type Ahead eklentisi  için json çıktıları
-	 */
-	public function getUserTypeAhead( $column = '', $value = '' ) {
-		try {
-			$response = User::where( $column, 'like', "%" . $value . "%" )->get( [ $column . ' as value' ] );
-		} catch ( Exception $e ) {
-			$response = array( 'status' => 'danger', 'msg' => $e->getMessage() );
-		}
-		return Response::json( $response );
-	}
+		/*
+		 * post istekleri
+		 */
 
-	/*
-	 * post istekleri
-	 */
+		/**
+		 * Login işlemini denetler
+		 *
+		 * @return \Illuminate\Http\RedirectResponse
+		 */
+		public
+		function postLogin() {
+			// POST İLE GÖNDERİLEN DEĞERLERİ ALALIM.
+			$postData = Input::all();
+			isset( $postData['remember'] ) ? $remember = true : $remember = false;
 
-	/**
-	 * Login işlemini denetler
-	 *
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function postLogin() {
-		// POST İLE GÖNDERİLEN DEĞERLERİ ALALIM.
-		$postData = Input::all();
-		isset( $postData['remember'] ) ? $remember = true : $remember = false;
+			// FORM KONTROLLERİNİ BELİRLEYELİM
+			$rules = array(
+					'username' => 'required',
+					'password' => 'required'
+			);
 
-		// FORM KONTROLLERİNİ BELİRLEYELİM
-		$rules = array(
-				'username' => 'required',
-				'password' => 'required'
-		);
+			// HATA MESAJLARINI OLUŞTURALIM
+			$messages = array(
+					'username.required' => _( 'Please enter user name' ),
+					'password.required' => _( 'Please enter password' )
+			);
+			// Kontrol (Validation) işlemlerini gerçekleştirelim
+			$validator = Validator::make( $postData, $rules, $messages );
 
-		// HATA MESAJLARINI OLUŞTURALIM
-		$messages = array(
-				'username.required' => _( 'Please enter user name' ),
-				'password.required' => _( 'Please enter password' )
-		);
-		// Kontrol (Validation) işlemlerini gerçekleştirelim
-		$validator = Validator::make( $postData, $rules, $messages );
-
-		if ( $validator->fails() ) {
-			//validator işlemi  olumsuzsa hata mesajlarını ve input değerlerini
-			return Redirect::action( 'AdminController@getLogin' )->withInput()->withErrors( $validator->messages() );
-		}
-		else {
-			//kontroller doğruysa böyle bir kullanıcı olup olmadığına bakalım
-			if ( Auth::attempt( array( 'username' => $postData['username'], 'password' => $postData['password'] ), $remember ) ) {
-				//oturum açılmış oldu
-				return Redirect::intended( '/admin' ); //todo action kullanılacak  şekilde düzenlenmeli
+			if ( $validator->fails() ) {
+				//validator işlemi  olumsuzsa hata mesajlarını ve input değerlerini
+				return Redirect::action( 'AdminController@getLogin' )->withInput()->withErrors( $validator->messages() );
 			}
 			else {
-				//girilen bilgiler hatalı mesajı verelim
-				return Redirect::action( 'AdminController@getLogin' )->withInput()->withErrors( array( 'Girdiğiniz bilgiler yanlış' ) );
+				//kontroller doğruysa böyle bir kullanıcı olup olmadığına bakalım
+				if ( Auth::attempt( array( 'username' => $postData['username'], 'password' => $postData['password'] ), $remember ) ) {
+					//oturum açılmış oldu
+					return Redirect::intended( '/admin' ); //todo action kullanılacak  şekilde düzenlenmeli
+				}
+				else {
+					//girilen bilgiler hatalı mesajı verelim
+					return Redirect::action( 'AdminController@getLogin' )->withInput()->withErrors( array( 'Girdiğiniz bilgiler yanlış' ) );
+				}
 			}
 		}
-	}
 
-	/**
-	 * Yeni üye kaydını denetler
-	 *
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function postRegister() {
-		$postData = Input::all();
+		/**
+		 * Yeni üye kaydını denetler
+		 *
+		 * @return \Illuminate\Http\RedirectResponse
+		 */
+		public
+		function postRegister() {
+			$postData = Input::all();
 
-		$rules = array(
-				'email'                 => 'required|email|unique:users,email',
-				'username'              => 'required|min:3|unique:users,username',
-				'password'              => 'required|min:4|confirmed',
-				'password_confirmation' => 'required'
-		);
-		// todo  İngilizce  tercüme yapılacak
-		$messages  = array(
-				'username.required'              => _( 'Lütfen kullanıcı adınızı yazın' ),
-				'username.min'                   => _( 'Kullanıcını adınız en az 3 karakterden oluşmalıdır' ),
-				'username.unique'                => _( 'Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı yazın' ),
-				'username.alpha_dash'            => _( 'Lütfen özel karakter ve boşluk içermeyen kullanıcı adı yazın' ),
-				'email.required'                 => _( 'Lütfen mail adresinizi yazın' ),
-				'email.email'                    => _( 'Lütfen geçerli bir mail adresi yazın' ),
-				'email.unique'                   => _( 'Bu mail adresi zaten kullanılıyor. Lütfen başka bir mail adresi yazın' ),
-				'password.required'              => _( 'Lütfen şifrenizi yazın' ),
-				'password.min'                   => _( 'Şifreniz minumum 4 karakterden oluşmalıdır' ),
-				'password.confirmed'             => _( 'Girdiğiniz şifreler birbiriyle eşleşmiyor' ),
-				'password_confirmation.required' => _( 'Lütfen şifrenizi doğrulayın' )
-		);
-		$validator = Validator::make( $postData, $rules, $messages );
+			$rules = array(
+					'email'                 => 'required|email|unique:users,email',
+					'username'              => 'required|min:3|unique:users,username',
+					'password'              => 'required|min:4|confirmed',
+					'password_confirmation' => 'required'
+			);
+			// todo  İngilizce  tercüme yapılacak
+			$messages  = array(
+					'username.required'              => _( 'Lütfen kullanıcı adınızı yazın' ),
+					'username.min'                   => _( 'Kullanıcını adınız en az 3 karakterden oluşmalıdır' ),
+					'username.unique'                => _( 'Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı yazın' ),
+					'username.alpha_dash'            => _( 'Lütfen özel karakter ve boşluk içermeyen kullanıcı adı yazın' ),
+					'email.required'                 => _( 'Lütfen mail adresinizi yazın' ),
+					'email.email'                    => _( 'Lütfen geçerli bir mail adresi yazın' ),
+					'email.unique'                   => _( 'Bu mail adresi zaten kullanılıyor. Lütfen başka bir mail adresi yazın' ),
+					'password.required'              => _( 'Lütfen şifrenizi yazın' ),
+					'password.min'                   => _( 'Şifreniz minumum 4 karakterden oluşmalıdır' ),
+					'password.confirmed'             => _( 'Girdiğiniz şifreler birbiriyle eşleşmiyor' ),
+					'password_confirmation.required' => _( 'Lütfen şifrenizi doğrulayın' )
+			);
+			$validator = Validator::make( $postData, $rules, $messages );
 
-		if ( $validator->fails() ) {
-			return Redirect::action( 'AdminController@getRegister' )->withInput()->withErrors( $validator->messages() );
+			if ( $validator->fails() ) {
+				return Redirect::action( 'AdminController@getRegister' )->withInput()->withErrors( $validator->messages() );
+			}
+			else {
+				$user = User::create( array(
+						'username'   => $postData['username'],
+						'email'      => $postData['email'],
+						'password'   => Hash::make( $postData['password'] ),
+						'role'       => 'unapproved',
+						'created_ip' => Request::getClientIp()
+				) );
+
+				//oturum açalım
+				Auth::Login( $user );
+				return Redirect::action( 'AdminController@getProfile' );
+			}
 		}
-		else {
-			$user = User::create( array(
-					'username'   => $postData['username'],
-					'email'      => $postData['email'],
-					'password'   => Hash::make( $postData['password'] ),
-					'role'       => 'unapproved',
-					'created_ip' => Request::getClientIp()
-			) );
 
-			//oturum açalım
-			Auth::Login( $user );
-			return Redirect::action( 'AdminController@getProfile' );
+		/**
+		 * Yeni haber kaydını denetler
+		 *
+		 * @return \Illuminate\Http\RedirectResponse
+		 */
+		public
+		function postAddPost() {
+			try {
+				if ( Request::ajax() ) {
+					$postData = Input::all();
+					$rules    = array(
+							'title'   => 'required|unique:posts',
+							'content' => 'required'
+					);
+					// todo  ingilzce  tercüme
+					$messages  = array(
+							'title.required'   => _( 'Başlık boş bırakılamaz' ),
+							'content.required' => _( 'İçerik boş bırakılamaz' )
+					);
+					$validator = Validator::make( $postData, $rules, $messages );
+
+					if ( $validator->fails() ) {
+						$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() ); //todo  burası  olmuyor
+						return Response::json( $ajaxResponse );
+					}
+					else {
+						$postData['type'] === 'slider' ? $url = $postData['url'] : $url = Str::slug_utf8( $postData['title'] );
+						$post = Post::create( array(
+								'author'     => Auth::user()->id,
+								'content'    => $postData['content'],
+								'title'      => $postData['title'],
+								'excerpt'    => mb_substr( strip_tags( $postData['content'] ), 0, 450, 'UTF-8' ),
+								'status'     => $postData['status'],
+								'type'       => $postData['type'],
+								'url'        => $url,
+								'created_ip' => Request::getClientIp()
+						) );
+
+						if ( isset( $postData['postMeta'] ) ) {
+							$postMeta      = $postData['postMeta'];
+							$modelPostMeta = array();
+							foreach ( $postMeta as $key => $value ) {
+								$modelPostMeta[] = new PostMeta( array( 'metaKey' => $key, 'metaValue' => $value ) );
+							}
+							$post->postMeta()->saveMany( $modelPostMeta );
+						}
+						$actionToType   = Option::getOption( 'postTypes', 'general', true );
+						$redirectAction = 'AdminController@get' . $actionToType[$postData['type']];//gönderinin türü ne ise o türün listesine yönlendirme için
+						$ajaxResponse   = array( 'status' => 'success', 'msg' => _( 'Processing was carried out successfully' ), 'redirect' => URL::action( $redirectAction ) );
+						return Response::json( $ajaxResponse );
+					}
+				}
+			} catch ( Exception $e ) {
+				$ajaxResponse = array( 'status' => 'danger', 'msg' => $e->getMessage() );
+				return Response::json( $ajaxResponse );
+			}
 		}
-	}
 
-	/**
-	 * Yeni haber kaydını denetler
-	 *
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function postAddPost() {
-		try {
+		/**
+		 * Post sil işlemi
+		 *
+		 * @return \Illuminate\Http\RedirectResponse
+		 */
+		public
+		function postDeletePost() {
+			if ( Request::ajax() ) {
+				$ids = (array) Input::get( 'id' );
+				if ( !is_null( $ids || !empty( $ids ) ) ) {
+					Post::destroy( $ids );
+					$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully', 'redirect' => '' );
+					return Response::json( $response );
+				}
+			}
+		}
+
+		/**
+		 * Post Güncelleme işlemi
+		 *
+		 * @return \Illuminate\Http\RedirectResponse
+		 */
+		public
+		function postUpdatePost() {
 			if ( Request::ajax() ) {
 				$postData = Input::all();
 				$rules    = array(
-						'title'   => 'required|unique:posts',
+						'title'   => 'required',
 						'content' => 'required'
 				);
 				// todo  ingilzce  tercüme
@@ -850,151 +991,81 @@ class AdminController extends BaseController {
 				$validator = Validator::make( $postData, $rules, $messages );
 
 				if ( $validator->fails() ) {
-					$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() ); //todo  burası  olmuyor
-					return Response::json( $ajaxResponse );
+					$response = array( 'status' => 'danger', 'msg' => $validator->messages() );
+					return Response::json( $response );
 				}
 				else {
-					$postData['type'] === 'slider' ? $url = $postData['url'] : $url = Str::slug_utf8( $postData['title'] );
-					$post = Post::create( array(
-							'author'     => Auth::user()->id,
-							'content'    => $postData['content'],
-							'title'      => $postData['title'],
-							'excerpt'    => mb_substr( strip_tags( $postData['content'] ), 0, 450, 'UTF-8' ),
-							'status'     => $postData['status'],
-							'type'       => $postData['type'],
-							'url'        => $url,
-							'created_ip' => Request::getClientIp()
-					) );
+					$post = Post::find( $postData['id'] );
 
-					if ( isset( $postData['postMeta'] ) ) {
-						$postMeta      = $postData['postMeta'];
-						$modelPostMeta = array();
-						foreach ( $postMeta as $key => $value ) {
-							$modelPostMeta[] = new PostMeta( array( 'metaKey' => $key, 'metaValue' => $value ) );
+					$postData = array_add( $postData, 'author', Auth::user()->id );
+					$postData = array_add( $postData, 'excerpt', mb_substr( strip_tags( $postData['content'] ), 0, 450, 'UTF-8' ) );
+					$postData = array_add( $postData, 'url', Str::slug( $postData['title'] ) );
+					$postData = array_add( $postData, 'created_ip', Request::getClientIp() );
+					// meta bilgilerini  dizinen çıkartalım
+					$metas = array_pull( $postData, 'meta' );
+					// yeni bilgileri güncelleyelim
+					$post->fill( $postData )->push();
+
+					if ( !empty( $metas ) ) {
+						foreach ( $metas as $key => $value ) {
+							if ( is_null( $value ) ) continue;
+							PostMeta::setMeta( $postData['id'], $key, $value );
 						}
-						$post->postMeta()->saveMany( $modelPostMeta );
 					}
-					$actionToType   = Option::getOption( 'postTypes', 'general', true );
-					$redirectAction = 'AdminController@get' . $actionToType[$postData['type']];//gönderinin türü ne ise o türün listesine yönlendirme için
-					$ajaxResponse   = array( 'status' => 'success', 'msg' => _( 'Processing was carried out successfully' ), 'redirect' => URL::action( $redirectAction ) );
-					return Response::json( $ajaxResponse );
+					$response = array( 'status' => 'success', 'msg' => _( 'Update Successfully' ), 'redirect' => '' );
+					return Response::json( $response );
 				}
 			}
-		} catch ( Exception $e ) {
-			$ajaxResponse = array( 'status' => 'danger', 'msg' => $e->getMessage() );
-			return Response::json( $ajaxResponse );
 		}
-	}
 
-	/**
-	 * Post sil işlemi
-	 *
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function postDeletePost() {
-		if ( Request::ajax() ) {
-			$ids = (array) Input::get( 'id' );
-			if ( !is_null( $ids || !empty( $ids ) ) ) {
-				Post::destroy( $ids );
-				$response = array( 'status' => 'success', 'msg' => 'Deleted Successfully', 'redirect' => '' );
-				return Response::json( $response );
-			}
-		}
-	}
-
-	/**
-	 * Post Güncelleme işlemi
-	 *
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function postUpdatePost() {
-		if ( Request::ajax() ) {
-			$postData = Input::all();
-			$rules    = array(
-					'title'   => 'required',
-					'content' => 'required'
-			);
-			// todo  ingilzce  tercüme
-			$messages  = array(
-					'title.required'   => _( 'Başlık boş bırakılamaz' ),
-					'content.required' => _( 'İçerik boş bırakılamaz' )
-			);
-			$validator = Validator::make( $postData, $rules, $messages );
-
-			if ( $validator->fails() ) {
-				$response = array( 'status' => 'danger', 'msg' => $validator->messages() );
-				return Response::json( $response );
-			}
-			else {
-				$post = Post::find( $postData['id'] );
-
-				$postData = array_add( $postData, 'author', Auth::user()->id );
-				$postData = array_add( $postData, 'excerpt', mb_substr( strip_tags( $postData['content'] ), 0, 450, 'UTF-8' ) );
-				$postData = array_add( $postData, 'url', Str::slug( $postData['title'] ) );
-				$postData = array_add( $postData, 'created_ip', Request::getClientIp() );
-				// meta bilgilerini  dizinen çıkartalım
-				$metas = array_pull( $postData, 'meta' );
-				// yeni bilgileri güncelleyelim
-				$post->fill( $postData )->push();
-
-				if ( !empty( $metas ) ) {
-					foreach ( $metas as $key => $value ) {
-						if ( is_null( $value ) ) continue;
-						PostMeta::setMeta( $postData['id'], $key, $value );
+		/**
+		 * id bilgisi  verilen gönderinin durumunu değiştirir
+		 * publish ise task, task ise punlish
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public
+		function postTogglePostStatus() {
+			if ( Request::ajax() ) {
+				$ids = (array) Input::get( 'id' );
+				if ( !is_null( $ids ) || empty( $ids ) ) {
+					$status = [ 'publish' => 'task', 'task' => 'publish' ];
+					foreach ( $ids as $id ) {
+						$post         = Post::find( $id );
+						$post->status = $status[$post->status];
+						$post->save();
 					}
+					$response = array( 'status' => 'success', 'msg' => 'Status Changed', 'redirect' => '' );
 				}
-				$response = array( 'status' => 'success', 'msg' => _( 'Update Successfully' ), 'redirect' => '' );
 				return Response::json( $response );
 			}
 		}
-	}
 
-	/**
-	 * id bilgisi  verilen gönderinin durumunu değiştirir
-	 * publish ise task, task ise punlish
-	 * @return \Illuminate\Http\JsonResponse
-	 */
-	public function postTogglePostStatus() {
-		if ( Request::ajax() ) {
-			$ids = (array) Input::get( 'id' );
-			if ( !is_null( $ids ) || empty( $ids ) ) {
-				$status = [ 'publish' => 'task', 'task' => 'publish' ];
-				foreach ( $ids as $id ) {
-					$post         = Post::find( $id );
-					$post->status = $status[$post->status];
-					$post->save();
+		/**
+		 * todo upload işlemleri  yapılınca taşınacak
+		 * mini-ajx-upload-file uygulamasını upload işlemi
+		 * resim yükleme işlemini gerçekleştiriyor
+		 */
+		public
+		function postAvatarUpload() {
+			// A list of permitted file extensions
+			$allowed = array( 'png', 'jpg', 'gif' );
+			$file    = Input::file( 'upl' );
+			if ( Input::hasFile( 'upl' ) && Input::file( 'upl' )->getError() == 0 ) {
+
+				$extension = Input::file( 'upl' )->getClientOriginalExtension();
+
+				if ( !in_array( strtolower( $extension ), $allowed ) ) {
+					echo '{"status":"error"}';
+					exit;
 				}
-				$response = array( 'status' => 'success', 'msg' => 'Status Changed', 'redirect' => '' );
+				if ( Input::file( 'upl' )->move( public_path() . '/assets/uploads/profile_image/', $file->getClientOriginalName() ) ) {
+					echo '{"status":"success"}';
+					exit;
+				}
+
 			}
-			return Response::json( $response );
+
+			echo '{"status":"error"}';
+			exit;
 		}
 	}
-
-	/**
-	 * todo upload işlemleri  yapılınca taşınacak
-	 * mini-ajx-upload-file uygulamasını upload işlemi
-	 * resim yükleme işlemini gerçekleştiriyor
-	 */
-	public function postAvatarUpload() {
-		// A list of permitted file extensions
-		$allowed = array( 'png', 'jpg', 'gif' );
-		$file    = Input::file( 'upl' );
-		if ( Input::hasFile( 'upl' ) && Input::file( 'upl' )->getError() == 0 ) {
-
-			$extension = Input::file( 'upl' )->getClientOriginalExtension();
-
-			if ( !in_array( strtolower( $extension ), $allowed ) ) {
-				echo '{"status":"error"}';
-				exit;
-			}
-			if ( Input::file( 'upl' )->move( public_path() . '/assets/uploads/profile_image/', $file->getClientOriginalName() ) ) {
-				echo '{"status":"success"}';
-				exit;
-			}
-
-		}
-
-		echo '{"status":"error"}';
-		exit;
-	}
-}
