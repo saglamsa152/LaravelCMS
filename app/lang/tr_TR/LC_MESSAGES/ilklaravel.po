@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
-"POT-Creation-Date: 2015-01-21 22:37+0200\n"
-"PO-Revision-Date: 2015-01-21 22:39+0200\n"
+"POT-Creation-Date: 2015-01-22 01:29+0200\n"
+"PO-Revision-Date: 2015-01-22 01:29+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: TR\n"
@@ -826,13 +826,19 @@ msgid "law"
 msgstr "hukuk"
 
 #: ../../views/template/menu.blade.php:13
+#: ../../controllers/HomeController.php:62
+msgid "Membership"
+msgstr "Üyelik"
+
+#: ../../views/template/menu.blade.php:13
+#: ../../views/template/menu.blade.php:15
+msgid "Our Address"
+msgstr "Adresimiz"
+
+#: ../../views/template/menu.blade.php:15
 #: ../../views/contacts/index.blade.php:53
 msgid "Contacts"
 msgstr "İletişim"
-
-#: ../../views/template/menu.blade.php:13
-msgid "Our Address"
-msgstr "Adresimiz"
 
 #: ../../views/contacts/index.blade.php:26
 msgid "Contact Form"
