@@ -1,18 +1,18 @@
 <?php header( 'Content-Type: application/javascript' ); ?>
 var gettext= {
-'close'         : "<?= _( 'Close' ) ?>",
-'yes'           : "<?= _( 'Yes' ) ?>",
-'no'            : "<?= _( 'No' ) ?>",
-'ok'						: "<?= _( 'OK' ) ?>",
-'confirmDelete' : "<?= _( 'Confirm Delete' ) ?>",
-'deleteMessage' : "<?= _( 'This process can not be recovered. Do you want to continue ?' ) ?>",
-'subject'				: "<?= _( 'Subject' ) ?>",
-'submit'				: "<?= _( 'Submit' ) ?>",
-'reply'					: "<?= _( 'Reply' ) ?>",
-'answer'				: "<?= _( 'Answer' )?>",
-'save'					: "<?= _( 'Save' ) ?>",
-'saving'				: "<?= _( 'Saving...' ) ?>",
-'saved'					: "<?= _( 'Saved' ) ?>",
-'add'						: "<?= _( 'Add' ) ?>",
-'pay'						: "<?= _( 'Pay' ) ?>"
+'close'         : "<?= _( 'Kapat' ) ?>",
+'yes'           : "<?= _( 'Evet' ) ?>",
+'no'            : "<?= _( 'Hayır' ) ?>",
+'ok'						: "<?= _( 'Tamam' ) ?>",
+'confirmDelete' : "<?= _( 'Silme onayı' ) ?>",
+'deleteMessage' : "<?= _( 'Bu işlem geri  alınamaz. Devam etmek istiyormusunuz?' ) ?>",
+'subject'				: "<?= _( 'Konu' ) ?>",
+'submit'				: "<?= _( 'Gönder' ) ?>",
+'reply'					: "<?= _( 'Yanıtla' ) ?>",
+'answer'				: "<?= _( 'Cevapla' )?>",
+'save'					: "<?= _( 'Kaydet' ) ?>",
+'saving'				: "<?= _( 'Kaydediliyor...' ) ?>",
+'saved'					: "<?= _( 'Kaydedildi' ) ?>",
+'add'						: "<?= _( 'Ekle' ) ?>",
+'pay'						: "<?= _( 'Öde' ) ?>"
 };
