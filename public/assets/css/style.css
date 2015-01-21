@@ -48,8 +48,8 @@ header{padding-top:34px; min-height: 150px;}
 #menu #nav2 a:hover, #menu #nav2.active a{background:url(../images/menu_icon2_active.gif) bottom center no-repeat}
 #menu #nav3 a{background:url(../images/menu_icon3.gif) bottom center no-repeat}
 #menu #nav3 a:hover, #menu #nav3.active a{background:url(../images/menu_icon3_active.gif) bottom center no-repeat}
-#menu #nav4 a{background:url(../images/menu_icon4.gif) bottom center no-repeat}
-#menu #nav4 a:hover, #menu #nav4.active a{background:url(../images/menu_icon4_active.gif) bottom center no-repeat}
+#menu #nav4 a{background:url(../images/membership.png) bottom center no-repeat}
+#menu #nav4 a:hover, #menu #nav4.active a{background:url(../images/membership_active.png) bottom center no-repeat}
 #menu #nav5 a{background:url(../images/menu_icon5.gif) bottom center no-repeat}
 #menu #nav5 a:hover, #menu #nav5.active a{background:url(../images/menu_icon5_active.gif) bottom center no-repeat}
 .slider{margin-top: 30px; height:423px;}

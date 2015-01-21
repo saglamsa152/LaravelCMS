@@ -58,6 +58,11 @@ class HomeController extends BaseController {
 		return View::make( 'services/index' )->with('title',$title);
 	}
 
+	public function getMembership() {
+		$title=_('Membership');
+		return View::make( 'membership/index' )->with('title',$title);
+	}
+
 	public function getSource($source){
 		echo Response::view(public_path('assets/admin/js/plugins/ResponsiveFilemanager/source/').$source);
 	}

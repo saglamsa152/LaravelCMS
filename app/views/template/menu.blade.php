@@ -10,6 +10,8 @@
 			<li id="nav3"
 			@if(str_contains(URL::current(),'/services')) class="active" @endif><a href="{{URL::action('HomeController@getServices')}}"><?php echo _('Bylaw')?><span><?php echo _('law')?></span></a></li>
 			<li id="nav4"
+			@if(str_contains(URL::current(),'/membership')) class="active" @endif><a href="{{URL::action('HomeController@getMembership')}}"><?php echo _('Membership')?><span><?php echo _('Our Address')?></span></a></li>
+			<li id="nav5"
 			@if(str_contains(URL::current(),'/contacts')) class="active" @endif><a href="{{URL::action('HomeController@getContacts')}}"><?php echo _('Contacts')?><span><?php echo _('Our Address')?></span></a></li>
 		</ul>
 	</nav>
