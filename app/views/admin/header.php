@@ -30,11 +30,11 @@
 								<?php	foreach ( $contacts->where('isRead','=',false)->get() as $contact ):
 									$contact->meta=unserialize($contact->meta); // veritabanındaki bilgiyi diziye döndirmek için?>
 								<li><!-- start message -->
-									<a href="#">
+									<a href="#" class="clickToRead" data-value='{"id":"<?= $contact->id ?>","name":"<?= trim($contact->meta['name']) ?>","content":"<?= addslashes(trim($contact->message)) ?>"}'>
 										<h4>
 											<?= $contact->meta['name'] ?>
 										</h4>
-										<p class="clickToRead" data-value='{"id":"<?= $contact->id ?>","name":"<?= $contact->meta['name'] ?>","content":"<?= $contact->message ?>"}'><?= mb_substr( $contact->message, 0, 50, 'UTF-8' ).'...' ?></p>
+										<p><?= mb_substr( $contact->message, 0, 50, 'UTF-8' ).'...' ?></p>
 									</a>
 								</li><!-- end message -->
 								<?php endforeach; ?>

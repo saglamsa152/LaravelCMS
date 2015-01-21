@@ -41,7 +41,7 @@
 									<td><?= $contact->meta['email'] ?></td>
 									<td><?= $contact->created_at ?></td>
 									<td>
-										<div class="clickToRead" data-toggle="tooltip" data-placement="bottom" title="<?= _( 'Click to read more' ) ?>" data-value='{"id":"<?= $contact->id ?>","name":"<?= trim($contact->meta['name']) ?>","content":"<?= trim($contact->message) ?>"}'><?= mb_substr( $contact->message, 0, 250, 'UTF-8' ).'...' ?></div>
+										<div class="clickToRead" data-toggle="tooltip" data-placement="bottom" title="<?= _( 'Click to read more' ) ?>" data-value='{"id":"<?= $contact->id ?>","name":"<?= trim($contact->meta['name']) ?>","content":"<?= addslashes(trim($contact->message)) ?>"}'><?= mb_substr( $contact->message, 0, 250, 'UTF-8' ).'...' ?></div>
 									</td>
 									<td>
 										<div class="btn-group">
