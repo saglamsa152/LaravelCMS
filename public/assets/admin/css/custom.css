@@ -94,3 +94,10 @@
 .twitter-typeahead{
 	padding: 0;
 }
+
+/*
+input-group arkaplanını  beyaz yapmak için
+*/
+.input-group .white{
+	background-color: #ffffff;
+}

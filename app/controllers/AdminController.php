@@ -151,7 +151,7 @@ class AdminController extends BaseController {
 					if ( is_null( $value ) ) continue;
 					UserMeta::setMeta( $postData['id'], $key, $value );
 				}
-				$response = array( 'status' => 'success', 'msg' => _('Saved successfully'), 'redirect' => URL::action( 'AdminController@getProfile', $postData['id'] ) );
+				$response = array( 'status' => 'success', 'msg' => _( 'Saved successfully' ), 'redirect' => URL::action( 'AdminController@getProfile', $postData['id'] ) );
 				return Response::json( $response );
 			}
 		}
@@ -188,7 +188,21 @@ class AdminController extends BaseController {
 					//password ve created_ip alanlarını  diziye ekleyelim
 					$postData['password']   = Hash::make( $password );
 					$postData['created_ip'] = Request::getClientIp();
+					/**
+					 * Kullanıcı  aidat bilgilerini oluşturalım
+					 */
+					$memberSince     = \Carbon\Carbon::createFromFormat('Y-m-d',$postData['created_at']);
+					$lastPayableDues = \Carbon\Carbon::now()->addMonths( 6 );
+					$dues            = array();
+					do {
+						$dues[$memberSince->year][]=$memberSince->month;
+						$memberSince->addMonth();
+					} while ( $memberSince->diffInMonths( $lastPayableDues ) != 0 );
+
+					$userMeta['dues'] = serialize( $dues );
+					// kullanıcıyı oluşturalım
 					$user                   = User::create( $postData );//kulllanıcıyı kaydedelim
+
 					if ( $user ) {
 						/**
 						 * yeni oluşturulan kullanıcının şifresini kullanıcının mail adresime mail olark gönderelim
@@ -208,7 +222,7 @@ class AdminController extends BaseController {
 				}
 			}
 		} catch ( Exception $e ) {
-			$ajaxResponse = array( 'status' => 'danger', 'msg' => $e->getMessage() );
+			$ajaxResponse = array( 'status' => 'danger', 'msg' => $e->getMessage().$e->getFile().'line:'.$e->getLine() );
 			return Response::json( $ajaxResponse );
 		}
 	}
@@ -686,87 +700,6 @@ class AdminController extends BaseController {
 	/*
 	 * Dues
 	 */
-	public function getDues( $column = null, $value = null ) {
-		if ( userCan( 'manageDues' ) ) {
-			$title     = _( 'Dues' );
-			$rightSide = 'dues';
-			$error     = null;
-			$column    = is_null( $column ) ? Input::get( 'column' ) : $column;
-			$value     = is_null( $value ) ? Input::get( 'value' ) : $value;
-			if ( empty( $column ) or empty( $value ) ) {
-				$error = array( 'title' => _( 'You should select a member' ), 'content' => _( 'To view the dues information you must first select a user.' ) );
-				$View  = View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
-			}
-			else {
-				$user = User::where( $column, '=', $value )->with( 'dues' )->first();
-				if ( !$user ) {
-					$error = array( 'title' => _( 'Member not found' ), 'content' => _( 'Aradığınız kriterlere uygun kullanıcı bulunamadı' ) );
-				}
-				else {
-					/*Set up Dues*/
-					$now              = \Carbon\Carbon::now();
-					$memberSince      = $user->created_at->copy();
-					$memberCreateYear = $memberSince->year;
-					$redirect         = false;
-					$userDuesYears    = $user->getDuesYears();
-					/*
-					 * kullnıcı üyelik tarihi ile bugün arasındaki yıl ve aylar dues tablosunda yok ise
-					 * bu tarihleri dues tablosuna ekler
-					 * döngü kullanıcı üyelik tarihi ile bu gün arasında ay farkı 0 olana kadar çalışır
-					 */
-					do {
-						/*
-						 * kullnıcı üyelik tarihi değişmişse güncel üyelik tarihinden önceki yılların aidat bilgilerini siliyoruz
-						 * todo ay bazında kontrol de yapılmalı
-						 */
-						foreach ( $userDuesYears as $year ) {
-							if ( (int) $year < (int) $memberCreateYear ) {
-								$redirect = true;// veri tabanında değişiklik yapılmışsa yönlendirmek için
-								array_except( $userDuesYears, $year );
-								Dues::where( 'userId', '=', $user->id )->where( 'year', '=', $year )->delete();
-							}
-						}
-
-						if ( !in_array( $memberSince->year, $userDuesYears ) ) {
-
-								$redirect        = true;// veri tabanında değişiklik yapılmışsa yönlendirmek için
-							$dues            = Dues::create( array(
-									'userId'     => $user->id,
-									'year'       => $memberSince->year,
-									'months'     => null,
-									'created_at' => date( 'Y-m-d H:i:s' )
-							) );
-							$userDuesYears[] = $memberSince->year;
-						}
-						else {
-							$dues = Dues::where( 'userId', '=', $user->id )->where( 'year', '=', $memberSince->year )->first();
-						}
-						$months = unserialize( $dues->months );
-						if ( !isset( $months[$memberSince->month] ) ) {
-							$redirect                    = true;// veri tabanında değişiklik yapılmışsa yönlendirmek için
-							$months[$memberSince->month] = array( 'statusColor' => 'red', 'price' => 0 );
-							$dues->months                = serialize( $months );
-							$dues->save();
-						}
-						$memberSince->addMonth();
-					} while ( $now->diffInMonths( $memberSince ) != 0 );
-					if ( $redirect ) return Redirect::action( 'AdminController@getDues', array( $column, $value ) );
-					/*/Set up Dues*/
-					$duess = $user->dues->sortBy( 'year' );
-				}
-				$View = View::make( 'admin.index' )->with( compact( 'title', 'rightSide', 'user', 'duess' ) )->withErrors( $error );
-			}
-		}
-		else {
-			$title     = _( 'Permission Error' );
-			$rightSide = 'error';
-			$error     = _( 'You do not have permission to access this page' );
-			$View      = View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
-		}
-
-		return $View;
-	}
-
 	public function postDues() {
 		if ( Request::ajax() ) {
 			try {
@@ -774,8 +707,8 @@ class AdminController extends BaseController {
 				$dues     = Dues::where( 'userId', '=', $postData['userId'] )->where( 'year', '=', $postData['year'] )->firstOrFail();
 				$months   = unserialize( $dues->months );
 				if ( isset( $months[$postData['month']] ) ) {
-					$statusColor= 0<$postData['price'] ? 'green': 'red';
-					$price= empty($postData['price'])? 0: $postData['price'];
+					$statusColor                = 0 < $postData['price'] ? 'green' : 'red';
+					$price                      = empty( $postData['price'] ) ? 0 : $postData['price'];
 					$months[$postData['month']] = array( 'statusColor' => $statusColor, 'price' => $price );
 				}
 				else {
@@ -926,7 +859,7 @@ class AdminController extends BaseController {
 							'author'     => Auth::user()->id,
 							'content'    => $postData['content'],
 							'title'      => $postData['title'],
-							'excerpt'    => mb_substr( strip_tags($postData['content']), 0, 450, 'UTF-8' ),
+							'excerpt'    => mb_substr( strip_tags( $postData['content'] ), 0, 450, 'UTF-8' ),
 							'status'     => $postData['status'],
 							'type'       => $postData['type'],
 							'url'        => $url,
@@ -996,7 +929,7 @@ class AdminController extends BaseController {
 				$post = Post::find( $postData['id'] );
 
 				$postData = array_add( $postData, 'author', Auth::user()->id );
-				$postData = array_add( $postData, 'excerpt', mb_substr( strip_tags($postData['content']), 0, 450, 'UTF-8' ) );
+				$postData = array_add( $postData, 'excerpt', mb_substr( strip_tags( $postData['content'] ), 0, 450, 'UTF-8' ) );
 				$postData = array_add( $postData, 'url', Str::slug( $postData['title'] ) );
 				$postData = array_add( $postData, 'created_ip', Request::getClientIp() );
 				// meta bilgilerini  dizinen çıkartalım
