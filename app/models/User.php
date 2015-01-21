@@ -89,12 +89,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	/**
-	 * dues tablosu ile ilişki ayarı
-	 * user.id => dues.userID
+	 * orders tablosu ile ilişki ayarı
+	 * user.id => orders.userId
 	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
 	 */
-	public function dues() {
-		return $this->hasMany( 'Dues', 'userId' );
+	public function orders() {
+		return $this->hasMany( 'Orders', 'userId' );
 	}
 
 	/**

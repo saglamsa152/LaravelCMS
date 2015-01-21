@@ -71,11 +71,6 @@
 				<li><a href="<?=URL::action('AdminController@getSlider')?>"><i class="fa fa-ellipsis-h <?php if(str_contains(URL::current(),'slider')) echo ' active'?>"></i> <?=_('Slider')?></a></li>
 			<?php endif; ?>
 			<!-- /Slider -->
-			<!-- Dues -->
-			<?php if(userCan('manageDues')):?>
-				<li><a href="<?=URL::action('AdminController@getDues')?>"><i class="fa fa-credit-card <?php if(str_contains(URL::current(),'dues')) echo ' active'?>"></i> <?=_('Dues')?></a></li>
-			<?php endif; ?>
-			<!-- /Dues -->
 			<!-- Contact -->
 			<?php if(userCan('manageContact')): ?>
 			<li class="treeview <?php if(str_contains(URL::current(),'contact')) echo ' active'?>">
