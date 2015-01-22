@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
-"POT-Creation-Date: 2015-01-22 01:29+0200\n"
-"PO-Revision-Date: 2015-01-22 01:29+0200\n"
+"POT-Creation-Date: 2015-01-22 01:32+0200\n"
+"PO-Revision-Date: 2015-01-22 01:32+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
 "Language: en_EN\n"
@@ -792,12 +792,16 @@ msgstr ""
 msgid "Membership"
 msgstr ""
 
-#: views/template/menu.blade.php:13 views/template/menu.blade.php:15
-msgid "Our Address"
+#: views/template/menu.blade.php:13
+msgid "Join Us"
 msgstr ""
 
 #: views/template/menu.blade.php:15 views/contacts/index.blade.php:53
 msgid "Contacts"
+msgstr ""
+
+#: views/template/menu.blade.php:15
+msgid "Our Address"
 msgstr ""
 
 #: views/contacts/index.blade.php:26
