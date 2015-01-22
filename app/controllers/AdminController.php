@@ -368,7 +368,7 @@ class AdminController extends BaseController {
 	 */
 	public function getAddNews() {
 		if ( userCan( 'manageNews' ) ) {
-			$title     = 'New Post';
+			$title     = _('Add News');
 			$rightSide = 'add/news';
 			$error     = null;
 		}
