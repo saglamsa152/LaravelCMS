@@ -161,8 +161,8 @@ class AdminController extends BaseController {
 					$metas = array_pull( $postData, 'meta' );
 					// yeni bilgileri güncelleyelim
 					$user->fill( $postData )->push();
-					$newDate = \Carbon\Carbon::createFromFormat( 'Y-m-d', $postData['created_at'] );
-					$newDate2=$newDate->copy();// yeni tarihten öncesinin temizlenmesi işleminde kullanılmak için
+					$newDate  = \Carbon\Carbon::createFromFormat( 'Y-m-d', $postData['created_at'] );
+					$newDate2 = $newDate->copy();// yeni tarihten öncesinin temizlenmesi işleminde kullanılmak için
 					if ( $newDate->ne( $user->created_at ) ) {
 						$dues            = UserMeta::getMeta( $user->id, 'dues', true );
 						$lastPayableDues = \Carbon\Carbon::now()->addMonths( 6 );
@@ -175,10 +175,10 @@ class AdminController extends BaseController {
 						ksort( $dues );
 						//yeni tarihin yılından küçük olan aidat bilgileri siliniyor.
 						foreach ( $dues as $year => $months ) {
-								if ( $year < $newDate2->year ): unset( $dues[$year] );
-							else:
-								foreach ( $months as $month=>$value ) {
-										if ( $month < $newDate2->month ) unset( $dues[$year][$month] );
+							if ( $year < $newDate2->year ): unset( $dues[$year] );
+							elseif ( $year == $newDate2->year ):
+								foreach ( $months as $month => $value ) {
+									if ( $month < $newDate2->month ) unset( $dues[$year][$month] );
 								}
 							endif;
 						}
