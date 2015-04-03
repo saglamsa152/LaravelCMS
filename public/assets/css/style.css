@@ -6,7 +6,7 @@ mark, rp, rt, ruby, summary, time{display:inline }
 .right {float:right}
 .wrapper {width:100%;overflow:hidden}
 /* Global properties ======================================================== */
-body{background:#000;border:0;font:14px "Trebuchet MS", Arial, Helvetica, sans-serif;color:#696969;line-height:22px;font-style:italic}
+body{background:#000;border:0;font:14px Calibri,"Trebuchet MS", Arial, Helvetica, sans-serif;color:#696969;line-height:22px;font-style:italic}
 .ic, .ic a {border:0;float:right;background:#fff;color:#f00;width:50%;line-height:10px;font-size:10px;margin:-220% 0 0 0;overflow:hidden;padding:0}
 .css3{border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;box-shadow:0 0 4px rgba(0, 0, 0, .4);-moz-box-shadow:0 0 4px rgba(0, 0, 0, .4);-webkit-box-shadow:0 0 4px rgba(0, 0, 0, .4);position:relative}
 .body1{background:url(../images/bg.jpg) bottom center repeat}
@@ -37,7 +37,7 @@ p{padding-bottom:22px}
 header{padding-top:34px; min-height: 150px;}
 #logo{display:block; margin-left:10px;}
 #menu {float:right;padding-top:15px}
-#menu li {float:left;padding-left:51px}
+#menu li {float:left;padding-left:45px}
 #menu li a{display:block;font:20px "Trebuchet MS", Arial, Helvetica, sans-serif;line-height:1.2em;color:#bbb;text-transform:uppercase;text-decoration:none;text-align:center;letter-spacing:-1px;height:79px;font-style:normal;font-weight:700}
 #menu li a span{font-size:13px;line-height:1.2em;color:#666666;display:block;letter-spacing:-1px;margin-top:-3px;font-weight:normal}
 #menu li a:hover, #menu .active a{color:#497e04}
@@ -48,8 +48,8 @@ header{padding-top:34px; min-height: 150px;}
 #menu #nav2 a:hover, #menu #nav2.active a{background:url(../images/menu_icon2_active.gif) bottom center no-repeat}
 #menu #nav3 a{background:url(../images/menu_icon3.gif) bottom center no-repeat}
 #menu #nav3 a:hover, #menu #nav3.active a{background:url(../images/menu_icon3_active.gif) bottom center no-repeat}
-#menu #nav4 a{background:url(../images/menu_icon4.gif) bottom center no-repeat}
-#menu #nav4 a:hover, #menu #nav4.active a{background:url(../images/menu_icon4_active.gif) bottom center no-repeat}
+#menu #nav4 a{background:url(../images/membership.png) bottom center no-repeat}
+#menu #nav4 a:hover, #menu #nav4.active a{background:url(../images/membership_active.png) bottom center no-repeat}
 #menu #nav5 a{background:url(../images/menu_icon5.gif) bottom center no-repeat}
 #menu #nav5 a:hover, #menu #nav5.active a{background:url(../images/menu_icon5_active.gif) bottom center no-repeat}
 .slider{margin-top: 30px; height:423px;}
@@ -72,16 +72,16 @@ header{padding-top:34px; min-height: 150px;}
 .up:hover, .down:hover{background-position:bottom}
 .color1{color:#000}
 .color2{color:#60b000}
-.list1{background:url(../images/line_hor1.png) 10px 0 no-repeat;padding-top:1px}
-.list1 li{background:url(../images/line_hor1.png) 10px bottom no-repeat;line-height:29px}
+.list1{background:url(../images/line_hor1.png) 10px 0 repeat-x;padding-top:1px}
+.list1 li{background:url(../images/line_hor1.png) 10px bottom repeat-x;line-height:29px}
 .list1 a{color:#696969;text-decoration:none;font-style:normal;padding-left:14px;background:url(../images/marker_1.gif) 0 6px no-repeat}
 .list1 a:hover{color:#fff}
-.address{background:url(../images/line_hor1.png) 0px 0 no-repeat;padding-top:1px}
-.address li{background:url(../images/line_hor1.png) 0px bottom no-repeat;line-height:29px;font-style:normal}
+.address{background:url(../images/line_hor1.png) 0px 0 repeat-x;padding-top:1px}
+.address li{background:url(../images/line_hor1.png) 0px bottom repeat-x;line-height:29px;font-style:normal}
 .address span{padding-left:4px;float:left;width:62px}
 .address a{color:#fff}
-#icons{background:url(../images/line_hor1.png) 23px 0 no-repeat;padding-top:1px}
-#icons li{background:url(../images/line_hor1.png) 23px bottom no-repeat;line-height:29px}
+#icons{background:url(../images/line_hor1.png) 23px 0 repeat-x;padding-top:1px}
+#icons li{background:url(../images/line_hor1.png) 23px bottom repeat-x;line-height:29px}
 #icons a{color:#696969;text-decoration:none;font-style:normal;display:inline-block}
 #icons img{float:left;margin-right:9px;margin-top:5px}
 #icons a:hover{color:#fff}
@@ -118,3 +118,6 @@ footer a:hover{}
 #newsletter a:hover{background:#60b000;color:#fff}
 #newsletter .button{float : left;}
 .clear{clear: both;}
+.pad_bot2 ol{
+	list-style: inside none decimal;
+}

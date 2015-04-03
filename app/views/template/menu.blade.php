@@ -8,9 +8,9 @@
 			<li id="nav2"
 			@if(str_contains(URL::current(),'/news')) class="active" @endif><a href="{{URL::action('HomeController@getNews')}}"><?php echo _('News')?><span><?php echo _('Fresh')?></span></a></li>
 			<li id="nav3"
-			@if(str_contains(URL::current(),'/services')) class="active" @endif><a href="{{URL::action('HomeController@getServices')}}"><?php echo _('Services')?><span><?php echo _('for you')?></span></a></li>
+			@if(str_contains(URL::current(),'/services')) class="active" @endif><a href="{{URL::action('HomeController@getServices')}}"><?php echo _('Bylaw')?><span><?php echo _('law')?></span></a></li>
 			<li id="nav4"
-			@if(str_contains(URL::current(),'/products')) class="active" @endif><a href="{{URL::action('HomeController@getProducts')}}"><?php echo _('Products')?><span><?php echo _('The best')?></span></a></li>
+			@if(str_contains(URL::current(),'/membership')) class="active" @endif><a href="{{URL::action('HomeController@getMembership')}}"><?php echo _('Membership')?><span><?php echo _('Join Us')?></span></a></li>
 			<li id="nav5"
 			@if(str_contains(URL::current(),'/contacts')) class="active" @endif><a href="{{URL::action('HomeController@getContacts')}}"><?php echo _('Contacts')?><span><?php echo _('Our Address')?></span></a></li>
 		</ul>

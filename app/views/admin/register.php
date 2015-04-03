@@ -10,7 +10,7 @@ if ( Auth::check() ) {
 	<?php if ( isset( $title ) ): ?>
 		<title><?= $title ?></title>
 	<?php else : ?>
-		<title>AdminLTE | Log in</title>
+		<title><?=Option::getOption('siteName')?></title>
 	<?php endif; ?>
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 	<!-- bootstrap 3.0.2 -->
@@ -50,7 +50,7 @@ if ( Auth::check() ) {
 	) )?>
 	<div class="body bg-gray">
 		<div class="form-group">
-			<?=Form::text('email',Input::old('email'),array('class'=>'form-control','autofocus','id'=>'email','placeholder'=>'E-mail'))?>
+			<?=Form::email('email',Input::old('email'),array('class'=>'form-control','autofocus','id'=>'email','placeholder'=>'E-mail'))?>
 		</div>
 		<div class="form-group">
 			<?=Form::text('username',Input::old('username'),array('class'=>'form-control','id'=>'username','placeholder'=>_('Username')))?>
@@ -79,8 +79,8 @@ if ( Auth::check() ) {
 </div>
 
 
-<!-- jQuery 2.0.2 -->
-<?= HTML::script( 'http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js' ) ?>
+<!-- jQuery 2.1.1 -->
+<?=HTML::script('assets/js/jquery-2.1.1.min.js')?>
 <!-- Bootstrap -->
 <?= HTML::script( 'assets/admin/js/bootstrap.min.js' ) ?>
 

@@ -10,7 +10,7 @@ if ( Auth::check() ) {
 	<?php if ( isset( $title ) ): ?>
 		<title><?= $title ?></title>
 	<?php else : ?>
-		<title>AdminLTE | Log in</title>
+		<title><?=Option::getOption('siteName')?></title>
 	<?php endif; ?>
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 	<!-- bootstrap 3.0.2 -->
@@ -62,7 +62,7 @@ if ( Auth::check() ) {
 	<div class="footer">
 		<?= Form::button( _( 'Sing in' ), array( 'class' => 'btn bg-olive btn-block', 'type' => 'submit' ) ) ?>
 
-		<p><a href="#"><?= _( 'I forgot my password' ) ?></a></p>
+		<p><a href="<?=URL::action('RemindersController@getRemind')?>"><?= _( 'I forgot my password' ) ?></a></p>
 
 		<?= link_to_action( 'AdminController@getRegister', _( 'Register a new membership' ), '', array( 'class' => 'text-center' ) ) ?>
 	</div>
@@ -79,8 +79,8 @@ if ( Auth::check() ) {
 </div>
 
 
-<!-- jQuery 2.0.2 -->
-<?= HTML::script( 'http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js' ) ?>
+<!-- jQuery 2.1.1 -->
+<?=HTML::script('assets/js/jquery-2.1.1.min.js')?>
 <!-- Bootstrap -->
 <?= HTML::script( 'assets/admin/js/bootstrap.min.js' ) ?>
 

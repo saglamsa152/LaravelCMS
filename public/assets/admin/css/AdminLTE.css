@@ -200,6 +200,9 @@ img {
 .bg-light-blue {
   background-color: #3c8dbc !important;
 }
+.skin-black .bg-light-blue {/*siyeh temada arka plan siyah yapılıyor.Fazladan işlem yapmmamak içinclass ismi  değiştirilmiyor. */
+	background-color: #333333 !important;
+}
 .bg-green {
   background-color: #00a65a !important;
 }

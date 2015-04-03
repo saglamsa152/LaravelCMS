@@ -8,10 +8,10 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
-	 * toplu atama yaparken hangi alanların kullanılacağını belirler (laravel kitap s145)
+	 * toplu atama yaparken hangi alanların kullanılmayacağını belirler (laravel kitap s145)
 	 * @var array
 	 */
-	protected $guarded = array( 'id', 'created_at', 'created_ip' );
+	protected $guarded = array( 'id', 'created_ip' );
 	/**
 	 * The database table used by the model.
 	 *
@@ -70,12 +70,31 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return 'remember_token';
 	}
 
+	/**
+	 * post tablosu ile ilişki ayarı
+	 * user.id => post.author
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
 	public function post() {
 		return $this->hasMany( 'Post', 'author' );
 	}
 
+	/**
+	 * userMeta tablosu ile ilişki ayarı
+	 * user.id => userMeta.userID
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
 	public function userMeta() {
 		return $this->hasMany( 'UserMeta', 'userId' );
+	}
+
+	/**
+	 * orders tablosu ile ilişki ayarı
+	 * user.id => orders.userId
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function orders() {
+		return $this->hasMany( 'Orders', 'userId' );
 	}
 
 	/**
@@ -97,9 +116,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * Kullanıcı Rolünü döndürür
+	 * @return mixed
+	 */
+	public function getRole() {
+		$roles = self::getRoles();
+		return $roles[$this->role];
+	}
+
+	/**
 	 * Kulllanıcının profil resminin adresini döndürür
 	 *
 	 * eğer bir avatar yüklenmemişse gravatar adresini döndürür
+	 *
 	 * @param int    $s
 	 * @param string $d
 	 * @param string $r
@@ -118,5 +147,32 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		}
 		else $avatar_url = $user->avatar;
 		return $avatar_url;
+	}
+
+	public function getScreenName() {
+		return $this->name != '' ? $this->name . ' ' . $this->lastName : $this->username;
+	}
+
+	/**
+	 * Kullanıcı adına dues tablosnuna kaydedilmiş yılları döner
+	 * @return array
+	 */
+	public function getDuesYears() {
+		$years = array();
+		foreach ( $this->dues as $dues ):
+			$years[$dues->year] = $dues->year;
+		endforeach;
+		return $years;
+	}
+
+	/**
+	 * Kullanıcı Şehir bilgisini metin olarak döner
+	 * @return mixed
+	 */
+	public function getCityName(){
+		if(isset($this->city)){
+			$cities=Option::getOption('cities',null,true);
+			return $cities[$this->city];
+		}
 	}
 }

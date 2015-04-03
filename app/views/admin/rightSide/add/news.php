@@ -29,12 +29,6 @@
 					<div class="box-header">
 						<h3 class="box-title"><?= _( 'New News' ) ?></h3>
 
-						<div class="box-tools pull-right">
-							<button title="" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-sm" data-original-title="Collapse">
-								<i class="fa fa-minus"></i></button>
-							<button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-sm" data-original-title="Remove">
-								<i class="fa fa-times"></i></button>
-						</div>
 					</div>
 					<!-- /.box-header-->
 					<div class="box-body">
@@ -58,10 +52,9 @@
 								'status',
 								array(
 										'task'    => _( 'Task' ),
-										'trash=>' => _( 'Trash' ),
-										'public'  => _( 'Public' )
+										'publish'  => _( 'Publish' )
 								),
-								'public',
+								'publish',
 								array( 'class' => 'form-control' )
 						) ?>
 						</div>

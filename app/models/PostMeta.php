@@ -15,8 +15,39 @@ class PostMeta extends Eloquent {
 	 */
 	protected $guarded = array( 'id', 'created_at', 'updated_at' );
 
+	/**
+	 * post tablosu ile ilişki ayarı
+	 * postMeta.postId => post.id
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
 	public function post() {
-		return $this->belongsTo( 'Post','id' );
+		return $this->belongsTo( 'Post', 'postId' );
 	}
 
+	/**
+	 * @param $id  int "meta bilgisi alınacak  kullanıcı id"
+	 * @param $key string "istenilen meta key"
+	 *
+	 * @return bool|mixed
+	 */
+	public static  function getMeta( $id, $key, $unserialize = false ) {
+		$meta = self::where( 'metaKey', '=', $key )->where( 'postId', '=', $id )->pluck( 'metaValue' );
+		if ( $unserialize ) $meta = unserialize( $meta );
+		return is_null( $meta ) ? false : $meta;
+	}
+
+	/**
+	 * @param $id int "meta bilgisi  eklenecek  kullanıcının id numarası"
+	 * @param $key string
+	 * @param $value
+	 */
+	public static  function setMeta( $id, $key, $value,$serialize = false  ) {
+		if ( $serialize ) $value = serialize( $value );
+		if ( false !== self::getMeta( $id, $key ) ) {
+			self::where( 'postId', '=', $id )->where( 'metaKey', '=', $key )->update( array( 'metaValue' => $value ) );
+		}
+		else {
+			self::create( array( 'postId' => $id, 'metaKey' => $key, 'metaValue' => $value ) );
+		}
+	}
 }

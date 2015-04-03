@@ -15,6 +15,7 @@
 <!-- fullCalendar -->
 <?=HTML::script('assets/admin/js/plugins/fullcalendar/lib/moment.min.js')?>
 <?=HTML::script('assets/admin/js/plugins/fullcalendar/fullcalendar.min.js')?>
+<?=HTML::script('assets/admin/js/plugins/fullcalendar/lang-all.js')?>
 <!-- jQuery Knob Chart -->
 <?=HTML::script('assets/admin/js/plugins/jqueryKnob/jquery.knob.js')?>
 <!-- daterangepicker -->
@@ -34,21 +35,27 @@
 <?=HTML::script('assets/admin/js/plugins/input-mask/jquery.inputmask.js')?>
 <?=HTML::script('assets/admin/js/plugins/input-mask/jquery.inputmask.date.extensions.js')?>
 <?=HTML::script('assets/admin/js/plugins/input-mask/jquery.inputmask.extensions.js')?>
-
+<!-- slimScroll -->
+<?=HTML::script('assets/admin/js/plugins/slimScroll/jquery.slimscroll.min.js')?>
 <!-- mini-upload-form (assets/admin/js/plugins) -->
-	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.knob.js')?>
 
 	<!-- jQuery File Upload Dependencies -->
 	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.ui.widget.js')?>
 	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.iframe-transport.js')?>
-	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/jquery.fileupload.js')?>
+	<?=HTML::script('assets/admin/js/plugins/jquery-file-upload/js/jquery.fileupload.js')?>
 
 	<!-- Our main JS file -->
 	<?=HTML::script('assets/admin/js/plugins/mini-upload-form/assets/js/script.js')?>
 <!--/ mini-upload-form (assets/admin/js/plugins) -->
 <!-- Custom Js-->
 <?=HTML::script('assets/admin/js/custom.js')?>
+<?=HTML::script('assets/admin/js/gettext.php')?>
+<?=HTML::script('assets/admin/js/ajax.js')?>
 
+<!-- Typeahead -->
+<?=HTML::script('assets/admin/js/plugins/typeahead/bloodhound.min.js')?>
+<?=HTML::script('assets/admin/js/plugins/typeahead/typeahead.jquery.js')?>
+<!-- /Typeahead -->
 <!-- AdminLTE App -->
 <?=HTML::script('assets/admin/js/AdminLTE/app.js')?>
 

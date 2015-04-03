@@ -8,7 +8,7 @@
 		<ol class="breadcrumb">
 			<li><a href="<?= URL::action( 'AdminController@getIndex' ) ?>"><i class="fa fa-dashboard"></i> <?= _( 'Home' ) ?>
 				</a></li>
-			<li><a href="<?= URL::action( 'AdminController@getUsers' ) ?>"><?= _( 'Users' ) ?></a></li>
+			<li><a href="<?= URL::action( 'AdminController@getUsers' ) ?>"><?= _( 'Members' ) ?></a></li>
 			<li class="active"><?= _( 'List' ) ?></li>
 		</ol>
 	</section>
@@ -21,19 +21,25 @@
 				<div class="box">
 					<div class="box-header">
 						<h3 class="box-title"><?= _( 'Users' ) ?></h3>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body table-responsive">
-						<table id="users-table" class="table table-bordered table-striped dataTable text-center">
+						<div class="box-tools">
+							<button class="btn btn-success pull-right" onclick="window.location.replace('<?=URL::action('AdminController@getAddUser')?>')">
+								<i class="fa fa-plus"></i> <?=_('Add New')?>
+							</button>
+						</div><!-- &.box-tools -->
+					</div><!-- /.box-header -->
+					<div class="box-body">
+						<table id="users-table" class="table table-responsive table-bordered table-striped dataTable text-center">
 							<thead>
 							<tr>
-								<th>Id<?= $errors->count()?></th>
+								<th>Id</th>
 								<th><?= _( 'Username' ) ?></th>
 								<th><?= _( 'Name - Lastname' ) ?></th>
 								<th><?= _( 'email' ) ?></th>
 								<th><?= _( 'Date registered' ) ?></th>
 								<th ><?= _( 'Status' ) ?></th>
+								<?php if(userCan('manageUsers')):?>
 								<th><?= _( 'Actions' ) ?></th>
+								<?php endif ?>
 							</tr>
 							</thead>
 							<tbody>
@@ -46,12 +52,13 @@
 									<td><?= $user->email ?></td>
 									<td><?= $user->created_at ?></td>
 									<td><?= $user->getHtmlStatus() ?></td>
+									<?php if(userCan('manageUsers')):?>
 									<td>
 										<div class="btn-group text-left" style="margin-right:5px">
 											<button data-toggle="dropdown" class="btn btn-default btn-flat dropdown-toggle" type="button">
 												<?= _( 'Actions' ) ?>
 												<span class="caret"></span>
-												<span class="sr-only">Toggle Dropdown</span>
+												<span class="sr-only"><?=_('Toggle Dropdown')?></span>
 											</button>
 											<ul role="menu" class="dropdown-menu">
 												<li>
@@ -61,17 +68,17 @@
 													</a>
 												</li>
 												<li>
-													<?= Form::open( array( 'id' => 'approveForm-' . $user->id, 'method' => 'post', 'action' => 'AdminController@postApproveUser', 'class' => 'ajaxForm' ) ) ?>
+													<?= Form::open( array( 'id' => 'approveForm-' . $user->id, 'method' => 'post', 'action' => 'AdminController@postApproveUser', 'class' => 'ajaxForm','title'=>_('Approve User') ) ) ?>
 													<?= Form::hidden( 'id', $user->id ) ?>
 													<?= Form::close() ?>
 													<a href="#" onclick="$('#approveForm-<?= $user->id ?>').submit()">
 														<i class="fa fa-check"></i>
-														<?= _( 'Approve' ) ?>
+														<?php if ($user->role=='unapproved') echo  _( 'Approve' );else echo _( 'Unapprove' ); ?>
 													</a>
 												</li>
 												<?php if ( userCan( 'deleteUser' ) ): ?>
 												<li>
-													<?= Form::open( array( 'id' => 'deleteForm-' . $user->id, 'method' => 'post', 'action' => 'AdminController@postDeleteUser', 'class' => 'ajaxForm' ) ) ?>
+													<?= Form::open( array( 'id' => 'deleteForm-' . $user->id, 'method' => 'post', 'action' => 'AdminController@postDeleteUser', 'class' => 'ajaxFormDelete' ) ) ?>
 													<?= Form::hidden( 'id', $user->id ) ?>
 													<?= Form::close() ?>
 													<a href="#" onclick="$('#deleteForm-<?= $user->id ?>').submit()">
@@ -82,8 +89,9 @@
 												<?php endif ?>
 											</ul>
 										</div>
-										<?= Form::checkbox( 'deleteID-' . $user->id, $user->id ) ?>
+										<?= Form::checkbox( 'bulk-' . $user->id, $user->id ) ?>
 									</td>
+									<?php endif ?>
 								</tr>
 							<?php endforeach ?>
 							</tbody>
@@ -95,6 +103,7 @@
 								<th><?= _( 'email' ) ?></th>
 								<th><?= _( 'Date registered' ) ?></th>
 								<th><?= _( 'Status' ) ?></th>
+								<?php if(userCan('manageUsers')):?>
 								<th>
 									<div id="bulkAction" class="btn-group text-left" style="margin-right:5px">
 										<?=Form::token()?>
@@ -106,22 +115,24 @@
 										<ul role="menu" class="dropdown-menu">
 											<?php if(userCan('deleteUser')) :?>
 											<li>
-												<a href="#" data-link="<?= URL::action( 'AdminController@postDeleteUser' ) ?>">
+												<a href="#" data-action="delete" data-link="<?= URL::action( 'AdminController@postDeleteUser' ) ?>">
 													<i class="fa fa-trash-o"></i>
 													<?= _( 'Delete' ) ?>
 												</a>
 											</li>
 											<?php endif ?>
 											<li>
-												<a href="#" data-link="<?= URL::action( 'AdminController@postApproveUser' ) ?>">
+												<a href="#" data-link="<?= URL::action( 'AdminController@postApproveUser' ) ?>" data-toggle="tooltip" data-placement="bottom" title="<?= _( 'Warning! Bu işlem seçilen kullanıcılar arasındaki onaylı kullanıcıları onaysız,onaysız kullanıcıları onaylı  duruma getirir. ' ) ?>">
 													<i class="fa fa-check"></i>
-													<?= _( 'Approve' ) ?>
+													<?= _( 'Approve / Unapprove' ) ?>
 												</a>
 											</li>
 										</ul>
 									</div>
 									<input type="checkbox" id="check-all" />
 								</th>
+								<?php endif ?>
+							</tr>
 							</tfoot>
 						</table>
 					</div><!-- /.box-body -->
@@ -132,5 +143,3 @@
 	</section>
 	<!-- /.content -->
 </aside><!-- /.right-side -->
-
-

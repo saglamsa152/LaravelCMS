@@ -4,12 +4,12 @@
 	<section class="content-header">
 		<h1>
 			<?= $title ?>
-			<small><?= _( 'Add New User' ) ?></small>
+			<small><?= _( 'Add New Member' ) ?></small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="<?= URL::action( 'AdminController@getIndex' ) ?>"><i class="fa fa-dashboard"></i> <?= _( 'Home' ) ?>
 				</a></li>
-			<li class="active"><?= _( 'Add User' ) ?></li>
+			<li class="active"><?= _( 'Add Member' ) ?></li>
 		</ol>
 	</section>
 
@@ -70,6 +70,17 @@
 							<?= Form::text( 'birthday', '', array( 'class' => 'form-control ','data-inputmask'=>'"alias": "yyyy.mm.dd"','data-mask'=>'' ) ) ?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
+
+					<!-- Member since -->
+					<div class="form-group col-md-6">
+						<?= Form::label( 'created_at', _( 'Member since :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
+						<div class="input-group col-md-8">
+							<div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
+							</div>
+							<?= Form::text( 'created_at', date( 'Y-m-d H:i:s' ), array( 'class' => 'form-control ','data-inputmask'=>'"alias": "yyyy-mm-dd"','data-mask'=>'' ) ) ?>
+						</div><!-- /.input group -->
+					</div><!-- /.form group -->
 					<div class="clearfix"></div>
 
 					<h4 class="page-header"><?= _( 'Contact Information' ) ?></h4>
@@ -86,7 +97,7 @@
 					<div class="form-group col-md-6">
 						<?= Form::label( 'meta[city]', _( 'City :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
-							<?= Form::select( 'meta[city]', unserialize(Option::getOption('cities')), null, array( 'class' => 'form-control ','data'=>'cities' ) ) ?>
+							<?= Form::select( 'meta[city]', Option::getOption('cities',null,true), null, array( 'class' => 'form-control ','data'=>'cities' ) ) ?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
 

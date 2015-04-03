@@ -34,7 +34,7 @@ App::before( function ( $request ) {
 	textdomain( $katalog );
 	/**
 	 * kullanıcı yetkisine göre yapabileceği işlemleri  belirliyen fonksiyon
-	 * todo bu işle  Auth sınıfı  genişletilerek yapılmalı
+	 * todo bu işlem  Auth sınıfı  genişletilerek yapılmalı
 	 *
 	 * @param $action
 	 *
@@ -43,18 +43,23 @@ App::before( function ( $request ) {
 	function userCan( $action ) {
 		$user    = Auth::user();
 		$result  = false;
+		if(is_null($user))return $result;
 		$actions = array(
-				'manageUsers'    => [ 'admin', 'editor' ],
-				'editUserRole'   => [ 'admin' ],
-				'deleteUser'     => [ 'admin' ],
-				'addUser'        => [ 'admin' ],
-				'manageNews'     => [ 'admin', 'editor' ],
-				'manageUserRole' => [ 'admin' ],
-				'manageOptions'  => [ 'admin', 'editor', 'user' ],
-				'manageSlider'   => [ 'admin', 'editor' ],
-				'manageService'  => [ 'admin', 'editor' ],
-				'manageProduct'  => [ 'admin', 'editor' ],
-				'manageOrders'   => [ 'admin', 'editor' ]
+				'manageUsers'          => [ 'admin', 'editor' ],
+				'editUserRole'         => [ 'admin' ],
+				'deleteUser'           => [ 'admin' ],
+				'addUser'              => [ 'admin' ],
+				'viewUsers'            => [ 'admin', 'editor', 'user' ],
+				'manageNews'           => [ 'admin', 'editor' ],
+				'manageOptions'        => [ 'admin', 'editor', 'user' ],
+				'manageGeneralOptions' => [ 'admin', 'editor' ],
+				'manageSlider'         => [ 'admin', 'editor' ],
+				'manageService'        => [ 'admin', 'editor' ],
+				'manageProduct'        => [ 'admin', 'editor' ],
+				'manageOrders'         => [ 'admin', 'editor' ],
+				'manageContact'        => [ 'admin', 'editor' ],
+				'manageDues'           => [ 'admin' ],
+				'viewDashboard'        => [ 'admin', 'editor', 'user' ]
 		);
 		if ( is_array( $action ) ) {
 			foreach ( $action as $a ) {
@@ -72,6 +77,14 @@ App::before( function ( $request ) {
 		}
 
 		return $result;
+	}
+	/**
+	 * eğer kullanıcının iletişim mesajlarını  yönetme yetkisi varsa contacts değişkenini  tüm viewler de paylaş
+	 *
+	 * Contact bilgisi  admin palen üst barda da gösterileceği için tüm admin paneli viewlerinde gözükecek
+	 */
+	if ( userCan( 'manageContact' ) ) {
+		View::share( 'contacts', new Contact );
 	}
 
 } );

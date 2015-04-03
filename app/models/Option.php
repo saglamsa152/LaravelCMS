@@ -17,22 +17,32 @@ class Option extends Eloquent {
 	public function scopeGeneral( $query ) {
 		return $query->where( 'optionType', '=', 'general' );
 	}
+
 	/**
-	 * @param string $key
-	 * @param string $type
+	 * @param      $key
+	 * @param null $type
+	 * @param bool $unserialize
 	 *
 	 * @return bool|mixed
 	 */
-	public static function getOption( $key, $type = null ) {
+	public static function getOption( $key, $type = null, $unserialize = false ) {
 		//todo statik olmaları tavsiye edilmiyor FACEDES olayi iyi anlaşılmalı
 		if ( is_null( $type ) ) $type = 'general';
 		$value = self::where( 'optionKey', '=', $key )->where( 'optionType', '=', $type )->pluck( 'optionValue' );
+		if ( $unserialize ) $value = unserialize( $value );
 		return is_null( $value ) ? false : $value;
 	}
 
-	public static function setOption( $key, $value, $type = null ) {
+	/**
+	 * @param      $key
+	 * @param      $value
+	 * @param null $type
+	 * @param bool $serialize
+	 */
+	public static function setOption( $key, $value, $type = null, $serialize = false ) {
 		//todo statik olmaları tavsiye edilmiyor FACEDES olayi iyi anlaşılmalı
 		if ( is_null( $type ) ) $type = 'general';
+		if ( $serialize ) $value = serialize( $value );
 		if ( self::getOption( $key, $type ) !== false ) {
 			self::where( 'optionKey', '=', $key )->update( array( 'optionValue' => $value ) );
 		}
@@ -41,4 +51,11 @@ class Option extends Eloquent {
 		}
 	}
 
+	/**
+	 * Yılın aylarını dizi olarak döner
+	 * @return array
+	 */
+	public static function months() {
+		return array( '1' => _( 'January' ), '2' => _( 'February' ), '3' => _( 'March' ), '4' => _( 'April' ), '5' => _( 'May' ), '6' => _( 'June' ), '7' => _( 'July ' ), '8' => _( 'August' ), '9' => _( 'September' ), '10' => _( 'October' ), '11' => _( 'November' ), '12' => _( 'December' ) );
+	}
 }

@@ -22,9 +22,31 @@ class OptionsController extends BaseController {
 	 * genel  ayarlar
 	 */
 	public function getIndex() {
-		$title     = _( 'General Options' );
-		$rightSide = 'options/index';
-		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) );
+		if ( userCan( 'manageGeneralOptions' ) ) {
+			$title     = _( 'General Options' );
+			$rightSide = 'options/index';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
+	}
+
+	public function getUserPreferences() {
+		if ( userCan( 'manageOptions' ) ) {
+			$title     = _( 'Site Preferences' );
+			$rightSide = 'options/preferences';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
 	}
 
 	/**
@@ -34,12 +56,21 @@ class OptionsController extends BaseController {
 		if ( Request::ajax() ) {
 			$postData = Input::all();
 			//todo validation yapılır gerekirse
-			//todo save işlemi yapılacak
 			$type = $postData['type'];
-			foreach ( $postData['options'] as $key => $value ) {
-				Option::setOption( $key, $value, $type );
+			switch ( $type ) {
+				case 'general':
+					foreach ( $postData['options'] as $key => $value ) {
+						Option::setOption( $key, $value, $type );
+					}
+					$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Options Saved' ), 'redirect' => '' );
+					break;
+				case 'preference':
+					foreach ( $postData['options'] as $key => $value ) {
+						UserMeta::setMeta( Auth::user()->id, $key, $value );
+					}
+					$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Options Saved' ), 'redirect' => '' );
+					break;
 			}
-			$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Options Saved' ) );
 			return Response::json( $ajaxResponse );
 		}
 	}
@@ -50,11 +81,11 @@ class OptionsController extends BaseController {
 	 * @return \Illuminate\Http\JsonResponse
 	 */
 	public function postCounties() {
-		$city_id = Input::get('city_id');
+		$city_id = Input::get( 'city_id' );
 		if ( is_null( $city_id ) ) return;
-		$counties = unserialize( Option::getOption( 'counties' ) );
-		asort($counties[$city_id]);
-		array_unshift($counties[$city_id],_('Select County'));
+		$counties = Option::getOption( 'counties', null, true );
+		asort( $counties[$city_id] );
+		array_unshift( $counties[$city_id], _( 'Select County' ) );
 		return Response::json( $counties[$city_id] );
 	}
 

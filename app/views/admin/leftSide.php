@@ -17,38 +17,29 @@
 				<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 			</div>
 		</div>
-		<!-- search form -->
-		<form action="#" method="get" class="sidebar-form">
-			<div class="input-group">
-				<input type="text" name="q" class="form-control" placeholder="Search..." />
-                            <span class="input-group-btn">
-                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat">
-																	<i class="fa fa-search"></i></button>
-                            </span>
-			</div>
-		</form>
-		<!-- /.search form -->
 		<!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu">
 			<!-- Dashboard -->
-			<li class="<?php if(str_contains(URL::current(),'/index')) echo ' active'?>">
+			<?php if(userCan('viewDashboard')):?>
+			<li class="<?php if(str_contains(URL::current(),'index') or str_contains(URL::current(),'') ) echo ' active'?>">
 				<a href="<?=URL::action('AdminController@getIndex')?>">
 					<i class="fa fa-dashboard"></i> <span><?=_('Dashboard')?></span>
 				</a>
 			</li>
+			<?php endif?>
 			<!-- /Dashboard -->
-			<!-- Users or Profile -->
-			<?php if(userCan('manageUsers')):?>
-			<li class="treeview <?php if(str_contains(URL::current(),'user')) echo ' active'?>">
+			<!-- Members or Profile -->
+			<?php if(userCan('viewUsers')):?>
+			<li class="treeview <?php if(str_contains(URL::current(),'user') and !str_contains(URL::current(),'preferences')) echo ' active'?>">
 				<a href="">
 					<i class="fa fa-users"></i>
-					<span><?=_('Users')?></span>
+					<span><?=_('Members')?></span>
 					<i class="fa fa-angle-left pull-right"></i>
 				</a>
 				<ul class="treeview-menu">
 					<li><a href="<?=URL::action('AdminController@getUsers')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
 					<?php if(userCan('addUser')): ?>
-					<li><a href="<?=URL::action('AdminController@getAddUser')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
+					<li><a href="<?=URL::action('AdminController@getAddUser')?>"><i class="fa fa-plus"></i> <?=_('Add New Member')?></a></li>
 					<?php endif ?>
 				</ul>
 			</li>
@@ -59,7 +50,7 @@
 					</a>
 				</li>
 			<?php endif; ?>
-			<!-- /Users or Profile-->
+			<!-- /Members or Profile-->
 			<!-- News -->
 			<?php if(userCan('manageNews')):?>
 				<li class="treeview <?php if(str_contains(URL::current(),'news')) echo ' active'?>">
@@ -77,64 +68,11 @@
 			<!-- /News -->
 			<!-- Slider -->
 			<?php if(userCan('manageSlider')): ?>
-				<li class="treeview <?php if(str_contains(URL::current(),'slider')) echo ' active'?>">
-					<a href="">
-						<i class="fa fa-ellipsis-h"></i>
-						<span><?=_('Slider')?></span>
-						<i class="fa fa-angle-left pull-right"></i>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="<?=URL::action('AdminController@getSlider')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-						<li><a href="<?=URL::action('AdminController@getAddSlide')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
-					</ul>
-				</li>
+				<li><a href="<?=URL::action('AdminController@getSlider')?>"><i class="fa fa-ellipsis-h <?php if(str_contains(URL::current(),'slider')) echo ' active'?>"></i> <?=_('Slider')?></a></li>
 			<?php endif; ?>
 			<!-- /Slider -->
-			<!-- Product -->
-			<?php if(userCan('manageProduct')): ?>
-				<li class="treeview <?php if(str_contains(URL::current(),'product')) echo ' active'?>">
-					<a href="">
-						<i class="fa fa-shopping-cart"></i>
-						<span><?=_('Products')?></span>
-						<i class="fa fa-angle-left pull-right"></i>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="<?=URL::action('AdminController@getProducts')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-						<li><a href="<?=URL::action('AdminController@getAddProduct')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
-					</ul>
-				</li>
-			<?php  endif; ?>
-			<!-- /Product -->
-			<!-- Services -->
-			<?php if(userCan('manageService')): ?>
-				<li class="treeview <?php if(str_contains(URL::current(),'service')) echo ' active'?>">
-					<a href="">
-						<i class="fa  fa-globe"></i>
-						<span><?=_('Services')?></span>
-						<i class="fa fa-angle-left pull-right"></i>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="<?=URL::action('AdminController@getServices')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-						<li><a href="<?=URL::action('AdminController@getAddService')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
-					</ul>
-				</li>
-			<?php endif; ?>
-			<!-- /Services -->
-			<!-- Orders -->
-			<?php if(userCan('manageOrders')): ?>
-				<li class="treeview <?php if(str_contains(URL::current(),'order')) echo ' active'?>">
-					<a href="">
-						<i class="fa fa-credit-card"></i>
-						<span><?=_('Orders')?></span>
-						<i class="fa fa-angle-left pull-right"></i>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="<?=URL::action('AdminController@getOrders')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
-					</ul>
-				</li>
-			<?php endif; ?>
-			<!-- /Orders -->
 			<!-- Contact -->
+			<?php if(userCan('manageContact')): ?>
 			<li class="treeview <?php if(str_contains(URL::current(),'contact')) echo ' active'?>">
 				<a href="">
 					<i class="fa fa-envelope"></i>
@@ -145,6 +83,7 @@
 					<li><a href="<?=URL::action('AdminController@getContacts')?>"><i class="fa fa-inbox"></i> <?=_('İnbox')?></a></li>
 				</ul>
 			</li>
+			<?php endif; ?>
 			<!-- /Contact -->
 			<!-- Options -->
 			<?php if(userCan('manageOptions')): ?>
@@ -155,7 +94,10 @@
 						<i class="fa fa-angle-left pull-right"></i>
 					</a>
 					<ul class="treeview-menu">
-						<li><a href="<?=URL::action('OptionsController@getIndex')?>"><i class="fa fa-angle-double-right"></i> <?=_('General')?></a></li>
+						<?php if (userCan( 'manageGeneralOptions' )): ?>
+							<li><a href="<?=URL::action('OptionsController@getIndex')?>"><i class="fa fa-angle-double-right"></i> <?=_('General')?></a></li>
+						<?php endif ?>
+						<li><a href="<?=URL::action('OptionsController@getUserPreferences')?>"><i class="fa fa-angle-double-right"></i> <?=_('Site Preferences')?></a></li>
 					</ul>
 				</li>
 			<?php endif; ?>
