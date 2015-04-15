@@ -10,15 +10,6 @@ $(function () {
 		$('.dataTable').dataTable();
 	}
 	/**
-	 * ajaxForm sınıflı  formların işlemini ajax ile yapıyor
-	 */
-
-  //Şifre değiştirme kutusu sayfa yüklendiğinde kapalı olsun
-	setTimeout(function () {
-		$('#collapseButton').trigger('click');
-	}, 500);
-
-	/**
 	 *  data-mask özelliği olan nesneye input mask uygular
 	 */
 	if ($.isFunction($.fn.inputmask)) {

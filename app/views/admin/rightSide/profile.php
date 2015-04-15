@@ -330,13 +330,7 @@
 				<!-- Password Update -->
 				<?php if (Auth::user()->id == $user->id): ?>
 				<section class="col-md-3 no-padding">
-					<div id="updatePassword" class="box box-primary">
-						<?= Form::open( array(
-								'role'   => 'form',
-								'class'  => 'ajaxFormPassword',
-								'action' => 'AdminController@postUpdateUserPassword',
-								'method' => 'post'
-						) ) ?>
+					<div id="updatePassword" class="box box-primary collapsed-box">
 						<div class="box-header">
 							<h3 class="box-title"><?= _( 'Password Update' ) ?></h3>
 
@@ -345,7 +339,13 @@
 									<i class="fa fa-minus"></i></button>
 							</div>
 						</div>
-						<div class="box-body" style="display: block;">
+						<div class="box-body" style="display: none;">
+							<?= Form::open( array(
+								'role'   => 'form',
+								'class'  => 'ajaxFormPassword',
+								'action' => 'AdminController@postUpdateUserPassword',
+								'method' => 'post'
+							) ) ?>
 							<?= Form::hidden( 'id', $user->id ) ?>
 							<!-- Current Password -->
 							<div id="currentPassword" class="form-group col-md-12">
@@ -384,7 +384,7 @@
 							<!-- /.form group -->
 							<div class="clearfix"></div>
 						</div><!-- /.box-body -->
-						<div class="box-footer" style="display: block;">
+						<div class="box-footer" style="display: none;">
 							<?= Form::submit( _( 'Update' ), array( 'class' => 'btn btn-primary pull-right' ) ) ?>
 							<div class="clearfix"></div>
 						</div><!-- /.box-footer-->
