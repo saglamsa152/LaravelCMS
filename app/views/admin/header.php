@@ -40,7 +40,7 @@
 								<?php endforeach; ?>
 							</ul>
 						</li>
-						<li class="footer"><a href="<?=URL::action('AdminController@getContacts')?>"><?= _('See All Messages')?></a></li>
+						<li class="footer"><a href="<?=URL::action('AdminController@getMailbox')?>"><?= _('See All Messages')?></a></li>
 					</ul>
 				</li>
 				<?php endif; ?>

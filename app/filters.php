@@ -59,7 +59,9 @@ App::before( function ( $request ) {
 				'manageOrders'         => [ 'admin', 'editor' ],
 				'manageContact'        => [ 'admin', 'editor' ],
 				'manageDues'           => [ 'admin' ],
-				'viewDashboard'        => [ 'admin', 'editor', 'user' ]
+				'viewDashboard'        => [ 'admin', 'editor', 'user' ],
+				'manageMailbox'           => [ 'admin', 'editor', 'user' ],
+				'manageMailSettings'   => [ 'admin' ]
 		);
 		if ( is_array( $action ) ) {
 			foreach ( $action as $a ) {

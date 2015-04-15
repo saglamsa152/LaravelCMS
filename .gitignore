@@ -3,4 +3,3 @@ composer.lock
 .idea
 app/config/database.php
 app/config/app.php
-app/config/database.php

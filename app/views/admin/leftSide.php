@@ -72,15 +72,16 @@
 			<?php endif; ?>
 			<!-- /Slider -->
 			<!-- Contact -->
-			<?php if(userCan('manageContact')): ?>
-			<li class="treeview <?php if(str_contains(URL::current(),'contact')) echo ' active'?>">
+			<?php if(userCan('manageMailbox')): ?>
+			<li class="treeview <?php if(str_contains(URL::current(),'mail')) echo ' active'?>">
 				<a href="">
 					<i class="fa fa-envelope"></i>
-					<span><?=_('Contact')?></span>
+					<span><?=_('Mailbox')?></span>
 					<i class="fa fa-angle-left pull-right"></i>
 				</a>
 				<ul class="treeview-menu">
-					<li><a href="<?=URL::action('AdminController@getContacts')?>"><i class="fa fa-inbox"></i> <?=_('İnbox')?></a></li>
+					<li><a href="<?=URL::action('AdminController@getMailbox')?>"><i class="fa fa-inbox"></i> <?=_('Mailbox')?></a></li>
+					<li><a href="<?=URL::action('AdminController@getMailSettings')?>"><i class="fa fa-cogs"></i> <?=_('Settings')?></a></li>
 				</ul>
 			</li>
 			<?php endif; ?>

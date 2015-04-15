@@ -605,15 +605,29 @@ class AdminController extends BaseController {
 		return View::make( 'admin.update.product' )->with( compact( 'title', 'rightSide', 'product' ) )->withErrors( $error );
 	}
 
-	/* Contacts */
+	/* Mail */
 
 	/**
 	 * @return \Illuminate\View\View
 	 */
-	public function getContacts() {
-		if ( userCan( 'manageContact' ) ) {
-			$title     = _( 'Cotacts' );
-			$rightSide = 'list/contacts';
+	public function getMailbox() {
+		if ( userCan( 'manageMailbox' ) ) {
+			$title     = _( 'Mailbox' );
+			$rightSide = 'mail/mailbox';
+			$error     = null;
+		}
+		else {
+			$title     = _( 'Permission Error' );
+			$rightSide = 'error';
+			$error     = _( 'You do not have permission to access this page' );
+		}
+		return View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
+	}
+
+	public function getMailSettings(){
+		if ( userCan( 'manageMailbox' ) ) {
+			$title     = _( 'Mail Settings' );
+			$rightSide = 'mail/settings';
 			$error     = null;
 		}
 		else {
