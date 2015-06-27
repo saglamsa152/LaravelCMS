@@ -17,10 +17,13 @@ $(function(){
         // This function is called when a file is added to the queue;
         // either via the browse button, or via drag/drop:
         add: function (e, data) {
+					var uploadPath = $(this).attr('uploadPath');
+					var targetFormElement = $(this).attr('targetFormElement');
 
-					$('#view-tab img').attr('src','http://'+window.location.host+'/assets/uploads/profile_image/'+data.files[0].name+'');
+					$('#view-tab img').attr('src', uploadPath + data.files[0].name + '');
 					$('a[href="#view-tab"]').trigger('click');
-					$('#user-form input[name="meta[avatar]"]').val('/assets/uploads/profile_image/'+data.files[0].name+'');
+					$(targetFormElement).val(uploadPath + data.files[0].name + '');
+
 						var tpl = $('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
                 ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
 

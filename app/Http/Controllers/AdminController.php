@@ -1031,11 +1031,11 @@ class AdminController extends BaseController {
 	 * mini-ajx-upload-file uygulamasını upload işlemi
 	 * resim yükleme işlemini gerçekleştiriyor
 	 */
-	public
-	function postAvatarUpload() {
+	public	function postUpload() {
 		// A list of permitted file extensions
 		$allowed = array( 'png', 'jpg', 'gif' );
 		$file    = \Input::file( 'upl' );
+		$path    = Input::get('uploadPath');
 		if ( \Input::hasFile( 'upl' ) && \Input::file( 'upl' )->getError() == 0 ) {
 
 			$extension = \Input::file( 'upl' )->getClientOriginalExtension();
@@ -1044,7 +1044,7 @@ class AdminController extends BaseController {
 				echo '{"status":"error"}';
 				exit;
 			}
-			if ( \Input::file( 'upl' )->move( public_path() . '/assets/uploads/profile_image/', $file->getClientOriginalName() ) ) {
+			if ( Input::file( 'upl' )->move( $path, $file->getClientOriginalName() ) ) {
 				echo '{"status":"success"}';
 				exit;
 			}
