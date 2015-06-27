@@ -3,6 +3,7 @@
 use App\Models\Contact;
 use App\Models\Option;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Exception;
 class AdminController extends BaseController {
 	public function __construct() {
@@ -598,107 +599,82 @@ class AdminController extends BaseController {
 			$title     = _( 'Mail Settings' );
 			$rightSide = 'mail/settings';
 			$error     = null;
+			//domain adresine tanımlı mail adresleri todo domain otomatik alınacak
+			$emails=DB::connection('mysql_mail')->table('virtual_users')->whereRaw('email like "%@gencbilisim%" AND email NOT like "system@%"')->lists('email');
+			$emaillist=array();
+			foreach($emails as $email){
+				$emaillist[$email]=$email;
+			}
+			$emails=$emaillist;
 		}
 		else {
 			$title     = _( 'Permission Error' );
 			$rightSide = 'error';
 			$error     = _( 'You do not have permission to access this page' );
 		}
-		return \View::make( 'admin.index' )->with( compact( 'title', 'rightSide' ) )->withErrors( $error );
+		return \View::make( 'admin.index' )->with( compact( 'title', 'rightSide','emails' ) )->withErrors( $error );
 	}
 
 	/**
-	 * İletişim işlemleri
-	 * @return \Illuminate\Http\RedirectResponse
+	 * mail kullanıcısının şifresini  değiştirir
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function postAddContact() {
-		//todo veri tabanına kayıt yerine direk mail olarak gönderilir ve contact sayfasında ilgili mail hesabı açılır
+	public function postUpdateMailUserPassword() {
 		$postData = \Input::all();
-
 		$rules = array(
-			'name'    => 'required|min:3|alpha_dash',
-			'email'   => 'required|email',
-			'message' => 'required|min:10',
+			'currentPassword'       => 'required',
+			'password'              => 'required|min:4|confirmed',
+			'password_confirmation' => 'required'
 		);
 		// todo  İngilizce  tercüme yapılacak
-		$messages  = array(
-			'email.required'   => _( 'Lütfen mail adresinizi yazın' ),
-			'email.email'      => _( 'Lütfen geçerli bir mail adresi yazın' ),
-			'name.required'    => _( 'Please Enter Your Name' ),
-			'name.min'         => _( 'İsim en az 3 karakter olabilir' ),
-			'name.alpha_dash'  => _( 'İsimda sadece harf kullanınız' ),
-			'message.required' => _( 'Please enter message' ),
-			'message.min'      => _( 'Mesaj en  az 10 karakter olabilir.' )
+		$messages = array(
+			'currentPassword.required'       => _( 'Lütfen şuanki şifrenizi yazın' ),
+			'password.required'              => _( 'Lütfen şifrenizi yazın' ),
+			'password.min'                   => _( 'Şifreniz minumum 4 karakterden oluşmalıdır' ),
+			'password.confirmed'             => _( 'Girdiğiniz şifreler birbiriyle eşleşmiyor' ),
+			'password_confirmation.required' => _( 'Lütfen şifrenizi doğrulayın' )
 		);
 		$validator = \Validator::make( $postData, $rules, $messages );
 
-		if ( $validator->failed() ) {
-			return \Redirect::back()->withErrors( $validator->messages() )->withInput();
-		}
-		else {
-			$meta = array(
-				'name'  => $postData['name'],
-				'email' => $postData['email']
-			);
-			Contact::create( array(
-				'meta'    => serialize( $meta ),
-				'message' => $postData['message'],
-				'isRead'  => false
-			) );
-			//todo Options modelinden contact mail  adresini alıp  o  adrese mail  olarak  da  yollanacak
-			return \Redirect::back();
+		if ( $validator->fails() ) {
+			$ajaxResponse = array( 'status' => 'danger', 'msg' => $validator->messages()->toArray() );
+			return \Response::json( $ajaxResponse );
+		} else {
+			extract( \Input::all() );// post ile gelen verileri değişken olarak tanımladık.
+
+			if ( strpos( $emailUser, 'gencbilisim.net' ) ) { // todo bu kısım domaini otomatik alacak şekilde değiştirilecek
+				try {
+					$currentpass = "ENCRYPT('$currentPassword', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16)))";
+					$pass = "ENCRYPT('$password', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16)))";
+					if ( DB::connection( 'mysql_mail' )->statement( "select * from virtual_users where password=ENCRYPT('$currentPassword', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16)))" ) ) {
+						DB::connection( 'mysql_mail' )->statement( "UPDATE virtual_users SET password=ENCRYPT('$password', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))) WHERE email='$emailUser'" );
+						$ajaxResponse = array( 'status' => 'success', 'msg' => _( 'Password changed successful' ) );
+					} else {
+						$ajaxResponse = array( 'status' => 'danger', 'msg' => _( 'wrong password' ) );
+					}
+				} catch ( Exception $e ) {
+					$ajaxResponse = array( 'status' => 'danger', 'msg' => $e->getMessage() );
+					return response()->json( $ajaxResponse );
+				}
+			} else {
+				$ajaxResponse = array( 'status' => 'danger', 'msg' => 'Permission Error' . $emailUser );
+			}
+			return response()->json( $ajaxResponse );
 		}
 	}
 
 	/**
-	 * İletişim mesajını okundu yada okunmadı olarak işaretler
-	 *
-	 * @return \Illuminate\Http\JsonResponse
+	 * İletişim formundan yollana mesajlar 1 idli kullaıcının tanımlı mail adresine göderiliyor.
+	 * @return \Illuminate\Http\RedirectResponse
 	 */
-	public function postMarkAsReadContact() {
-		if ( \Request::ajax() ) {
-			$ids = (array) \Input::get( 'id' );
-			is_null( \Input::get( 'toggle' ) ) ? $toggle = true : $toggle = \Input::get( 'toggle' );
-			if ( !is_null( $ids || !empty( $ids ) ) ) {
-				$contacts = Contact::find( $ids );
-				foreach ( $contacts as $contact ) {
-					filter_var( $toggle, FILTER_VALIDATE_BOOLEAN ) ? $contact->isRead = !$contact->isRead : $contact->isRead = true;
-					$contact->save();
-				}
-				$response = array( 'status' => 'success', 'msg' => _( 'Successful' ) . $toggle, 'redirect' => '' );
-				return response()->json( $response );
-			}
-		}
-	}
-
-	public function postAnswerContact() {
-		if ( \Request::ajax() ) {
-			try {
-				$postData = \Input::only( array( 'email', 'subject', 'answer', 'name' ) );
-				$mailData = array( 'answer' => $postData['answer'] );
-				Mail::send( 'emails.contact', $mailData, function ( $message ) use ( $postData ) {
-					$message->to( $postData['email'], $postData['name'] )->subject( $postData['subject'] );
-				} );
-				$response = array( 'status' => 'success', 'msg' => _( 'Mail send Successfully' ), 'redirect' => '' );
-			} catch ( Exception $e ) {
-				$response = array( 'status' => 'danger', 'msg' => $e->getMessage() );
-			}
-			return response()->json( $response );
-		}
-	}
-
-	public function postDeleteContact() {
-		if ( \Request::ajax() ) {
-			try {
-				$ids = (array) \Input::get( 'id' );
-				if ( !is_null( $ids || !empty( $ids ) ) ) {
-					Contact::destroy( $ids );
-					$response = array( 'status' => 'success', 'msg' => _( 'Mail Delete Successfully' ), 'redirect' => '' );
-				}
-			} catch ( Exception $e ) {
-				$response = array( 'status' => 'danger', 'msg' => $e->getMessage() );
-			}
-			return response()->json( $response );
+	public function postSendContactMessage() {
+		if(\Request::ajax()){
+			extract(\Input::all());
+			$admin=\User::find(1);
+			$mailData = array( 'name' => $name, 'email' => $email,'phone'=>$phone,'contactMessage'=>$message );
+			Mail::send( 'emails.contact', $mailData, function ( $message ) use ( $admin ) {
+				$message->to( $admin->email, $admin->getScreenName() )->subject( _('Contact Message') );
+			} );
 		}
 	}
 

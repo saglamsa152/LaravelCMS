@@ -64,6 +64,17 @@ return [
 			'strict'    => false,
 		],
 
+		'mysql_mail' => array(
+			'driver'    => 'mysql',
+			'host'      => env('MAİL_DB_HOST','localhost'),
+			'database'  => env('MAİL_DB_DATABASE','database'),
+			'username'  => env('MAİL_DB_USERNAME','username'),
+			'password'  => env('MAİL_DB_PASSWORD','123456'),
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+
 		'pgsql' => [
 			'driver'   => 'pgsql',
 			'host'     => env('DB_HOST', 'localhost'),
