@@ -34,7 +34,7 @@ $(function () {
 	 */
 	$('#view-tab #clear').click(function () {
 		$('#view-tab img').attr('src', null);
-		$('#user-form input[name="meta[avatar]"]').val(null);
+		$($(this).attr('targetFormElement')).val(null);
 	});
 
 	/**
