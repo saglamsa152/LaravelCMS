@@ -65,8 +65,16 @@ class HomeController extends BaseController {
 	}
 
 	public function getServices() {
-		$title=_('Services');
-		return View::make( 'services/index' )->with('title',$title);
+		$title    = _( 'Services' );
+		$services = Post::service()->with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->get();
+
+		foreach ( $services as $service ) {
+			foreach ( $service->postMeta as $meta ) {
+				$service = array_add( $service, $meta->metaKey, $meta->metaValue );
+			}
+		}
+
+		return View::make( 'services/index' )->with( compact('title','services' ) );
 	}
 
 	public function getMembership() {

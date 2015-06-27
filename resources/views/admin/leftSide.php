@@ -66,6 +66,25 @@
 				</li>
 			<?php endif; ?>
 			<!-- /News -->
+			<!-- Services -->
+			<?php if ( userCan( 'manageService' ) ): ?>
+				<li class="treeview <?php if(str_contains(URL::current(),'service')) echo ' active'?>">
+					<a href="">
+						<i class="fa  fa-globe"></i>
+						<span><?= _( 'Services' ) ?></span>
+						<i class="fa fa-angle-left pull-right"></i>
+					</a>
+					<ul class="treeview-menu">
+						<li>
+							<a href="<?= URL::action( 'AdminController@getService' ) ?>"><i class="fa fa-list"></i> <?= _( 'List' ) ?>
+							</a></li>
+						<li>
+							<a href="<?= URL::action( 'AdminController@getAddService' ) ?>"><i class="fa fa-plus"></i> <?= _( 'Add New' ) ?>
+							</a></li>
+					</ul>
+				</li>
+			<?php endif; ?>
+			<!-- /Services -->
 			<!-- Slider -->
 			<?php if(userCan('manageSlider')): ?>
 				<li><a href="<?=URL::action('AdminController@getSlider')?>"><i class="fa fa-ellipsis-h <?php if(str_contains(URL::current(),'slider')) echo ' active'?>"></i> <?=_('Slider')?></a></li>

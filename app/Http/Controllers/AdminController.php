@@ -457,7 +457,7 @@ class AdminController extends BaseController {
 	/**
 	 * @return \Illuminate\View\View
 	 */
-	public function getServices() {
+	public function getService() {
 		if ( userCan( 'manageService' ) ) {
 			$title     = _( 'Services' );
 			$services  = \Post::with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->service()->get();
@@ -497,7 +497,7 @@ class AdminController extends BaseController {
 	public function getUpdateService( $id = null ) {
 		if ( is_null( $id ) ) return false;
 		if ( userCan( 'manageService' ) ) {
-			$title     = _( 'Update News' );
+			$title     = _( 'Update Service' );
 			$rightSide = 'update/service';
 			$service   = \Post::service()->with( 'postMeta' )->find( $id );
 			foreach ( $service->postMeta as $meta ) {
@@ -988,7 +988,7 @@ class AdminController extends BaseController {
 				$postData = array_add( $postData, 'url', Str::slug_utf8( $postData['title'] ) );
 				$postData = array_add( $postData, 'created_ip', \Request::getClientIp() );
 				// meta bilgilerini  dizinen çıkartalım
-				$metas = array_pull( $postData, 'meta' );
+				$metas = array_pull( $postData, 'postMeta' );
 				// yeni bilgileri güncelleyelim
 				$post->fill( $postData )->push();
 

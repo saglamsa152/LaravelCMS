@@ -7,7 +7,7 @@
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="<?= URL::action( 'AdminController@getIndex' ) ?>"><i class="fa fa-dashboard"></i> <?=_('Home')?></a></li>
-			<li><a href="<?= URL::action( 'AdminController@getServices' ) ?>"><?= _( 'Contact' ) ?></a></li>
+			<li><a href="<?= URL::action( 'AdminController@getMailbox' ) ?>"><?= _( 'Mailbox' ) ?></a></li>
 			<li class="active"><?= _( 'Inbox' ) ?></li>
 		</ol>
 	</section>
