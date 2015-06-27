@@ -66,7 +66,7 @@
 				</ul>
 				<div class="tab-content">
 					<div id="view-tab" class="tab-pane active">
-						<?= HTML::image( $news->coverImage, 'News Image', array( 'class' => 'center-block', 'width' => '150px' ) );//todo haber resmi gösterilecek ?>
+						<?= Html::image( $news->coverImage, 'News Image', array( 'class' => 'center-block', 'width' => '150px' ) );//todo haber resmi gösterilecek ?>
 						<button id="clear" type="button" class="btn btn-danger pull-right" targetFormElement='#updateNewsForm input[name="postMeta[coverImage]"]'><?= _( 'Clear' ) ?></button>
 						<div class="clearfix"></div>
 					</div><!-- /#view .tab-pane -->

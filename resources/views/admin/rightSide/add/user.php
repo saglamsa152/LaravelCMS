@@ -20,11 +20,11 @@
 				<section class="col-md-9">
 					<?=
 					Form::open( array(
-							'role'   => 'form',
-							'id'     => 'user-form',
-							'class'  => 'ajaxForm form-horizontal',
-							'action' => 'AdminController@postAddUser',
-							'method' => 'post'
+						'role'   => 'form',
+						'id'     => 'userForm',
+						'class'  => 'ajaxForm form-horizontal',
+						'action' => 'AdminController@postAddUser',
+						'method' => 'post'
 					) ) ?>
 					<?=Form::hidden('meta[avatar]',null)?>
 					<h4 class="page-header"><?= _( 'Personal Information' ) ?></h4>
@@ -183,7 +183,7 @@
 							<div id="view-tab" class="tab-pane">
 								<div class="tab-content">
 									<?= Html::image( '', 'User Image', array( 'class' => 'img-circle  center-block', 'width' => '150px' ) ) ?>
-									<button id="clear" type="button" class="btn btn-danger pull-right"><?= _( 'Clear' ) ?></button>
+									<button id="clear" type="button" class="btn btn-danger pull-right" targetFormElement='#userForm input[name="meta[avatar]"]'><?= _( 'Clear' ) ?></button>
 									<div class="clearfix"></div>
 								</div>
 							</div><!-- /#view .tab-pane -->
@@ -192,11 +192,15 @@
 									<?=_('Eğer Gravatar kullanıyosanız resim yüklemenize gerek yok.Gravatar resminiz gözükecektir ')?>
 								</div>
 								<?= Form::open( array(
-										'role'    => 'form',
-										'id'      => 'upload',
-										'action'  => 'AdminController@postAvatarUpload',
-										'method'  => 'post',
-										'enctype' => 'multipart/form-data' ) ) ?>
+									'role'    => 'form',
+									'id'      => 'upload',
+									'action'  => 'AdminController@postUpload',
+									'method'  => 'post',
+									'enctype' => 'multipart/form-data',
+									'uploadPath'        => '/assets/uploads/profile_image/',
+									'targetFormElement' => '#userForm input[name="meta[avatar]"]'
+								) ) ?>
+								<?= Form::hidden( 'uploadPath', public_path() . '/assets/uploads/profile_image/' ) ?>
 								<div id="drop">
 									<?=_('Drop Here')?>
 
