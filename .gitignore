@@ -1,0 +1,8 @@
+/vendor
+/node_modules
+.env
+
+### Laravel template
+/bootstrap/compiled.php
+.env.*.php
+.env.php

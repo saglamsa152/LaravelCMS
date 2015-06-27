@@ -1,0 +1,1215 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ilklaravel\n"
+"POT-Creation-Date: 2015-01-22 01:32+0200\n"
+"PO-Revision-Date: 2015-01-22 01:32+0200\n"
+"Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
+"Language-Team:  <sametatabasch@gmail.com>\n"
+"Language: en_EN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: views\n"
+"X-Poedit-SearchPath-1: models\n"
+"X-Poedit-SearchPath-2: controllers\n"
+"X-Poedit-SearchPath-3: ../public/assets/admin/js\n"
+
+#: views/admin/header.php:26
+#, php-format
+msgid "You have %s messages"
+msgstr ""
+
+#: views/admin/header.php:43
+msgid "See All Messages"
+msgstr ""
+
+#: views/admin/header.php:64
+#, php-format
+msgid "Member since %s"
+msgstr ""
+
+#: views/admin/header.php:72 views/admin/leftSide.php:49
+#: views/admin/rightSide/profile.php:21 views/admin/rightSide/error.php:28
+msgid "Profile"
+msgstr ""
+
+#: views/admin/header.php:75
+msgid "Sign out"
+msgstr ""
+
+#: views/admin/login.php:38 views/admin/register.php:38
+#: views/password/remind.php:34 views/password/reset.php:34
+msgid "Alert!"
+msgstr ""
+
+#: views/admin/login.php:44
+msgid "Sign In"
+msgstr ""
+
+#: views/admin/login.php:53 views/admin/register.php:56
+#: views/admin/rightSide/list/users.php:35
+#: views/admin/rightSide/list/users.php:101
+msgid "Username"
+msgstr ""
+
+#: views/admin/login.php:56
+msgid "Password"
+msgstr ""
+
+#: views/admin/login.php:59
+msgid "Remember me"
+msgstr ""
+
+#: views/admin/login.php:63
+msgid "Sing in"
+msgstr ""
+
+#: views/admin/login.php:65
+msgid "I forgot my password"
+msgstr ""
+
+#: views/admin/login.php:67
+msgid "Register a new membership"
+msgstr ""
+
+#: views/admin/login.php:72
+msgid "Sign in using social networks"
+msgstr ""
+
+#: views/admin/leftSide.php:11
+msgid "Hello"
+msgstr ""
+
+#: views/admin/leftSide.php:26 views/admin/rightSide/error.php:26
+#: views/admin/rightSide/default.php:6 views/admin/rightSide/default.php:10
+msgid "Dashboard"
+msgstr ""
+
+#: views/admin/leftSide.php:36 views/admin/rightSide/list/users.php:11
+#: controllers/AdminController.php:67
+msgid "Members"
+msgstr ""
+
+#: views/admin/leftSide.php:40 views/admin/leftSide.php:63
+#: views/admin/rightSide/list/slider.php:12
+#: views/admin/rightSide/list/news.php:11
+#: views/admin/rightSide/list/users.php:12
+#: views/admin/rightSide/list/services.php:11
+#: views/admin/rightSide/list/products.php:11
+msgid "List"
+msgstr ""
+
+#: views/admin/leftSide.php:42 views/admin/rightSide/add/user.php:7
+#: controllers/AdminController.php:120
+msgid "Add New Member"
+msgstr ""
+
+#: views/admin/leftSide.php:59 views/admin/rightSide/list/news.php:10
+#: views/admin/rightSide/list/news.php:22 views/template/menu.blade.php:9
+msgid "News"
+msgstr ""
+
+#: views/admin/leftSide.php:64 views/admin/rightSide/list/slider.php:26
+#: views/admin/rightSide/list/news.php:25
+#: views/admin/rightSide/list/users.php:26
+msgid "Add New"
+msgstr ""
+
+#: views/admin/leftSide.php:71
+msgid "Slider"
+msgstr ""
+
+#: views/admin/leftSide.php:79 views/admin/rightSide/list/contacts.php:10
+#: controllers/HomeController.php:47
+msgid "Contact"
+msgstr ""
+
+#: views/admin/leftSide.php:83
+msgid "İnbox"
+msgstr ""
+
+#: views/admin/leftSide.php:93
+msgid "Options"
+msgstr ""
+
+#: views/admin/leftSide.php:98
+msgid "General"
+msgstr ""
+
+#: views/admin/leftSide.php:100
+#: views/admin/rightSide/options/preferences.php:23
+#: controllers/OptionsController.php:40
+msgid "Site Preferences"
+msgstr ""
+
+#: views/admin/register.php:44
+msgid "Register New Membership"
+msgstr ""
+
+#: views/admin/register.php:62 views/password/reset.php:55
+msgid "Password Confirm"
+msgstr ""
+
+#: views/admin/register.php:66
+msgid "Sign me up"
+msgstr ""
+
+#: views/admin/register.php:68
+msgid "I already have a membership"
+msgstr ""
+
+#: views/admin/register.php:72
+msgid "Register using social networks"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:7 views/admin/rightSide/error.php:7
+msgid "Menage Profile"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:10 views/admin/rightSide/error.php:10
+#: views/admin/rightSide/list/slider.php:9
+#: views/admin/rightSide/list/news.php:9
+#: views/admin/rightSide/list/contacts.php:9
+#: views/admin/rightSide/list/users.php:9
+#: views/admin/rightSide/list/services.php:9
+#: views/admin/rightSide/list/products.php:9
+#: views/admin/rightSide/add/user.php:10 views/template/menu.blade.php:7
+msgid "Home"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:12
+msgid "Profile page"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:22 views/admin/rightSide/profile.php:233
+msgid "Dues"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:34
+msgid "Save Profile"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:39 views/admin/rightSide/add/user.php:30
+msgid "Personal Information"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:43 views/admin/rightSide/add/user.php:33
+msgid "User Name :"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:54 views/admin/rightSide/add/user.php:41
+msgid "User Role :"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:63 views/admin/rightSide/add/user.php:49
+msgid "Name :"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:73 views/admin/rightSide/add/user.php:57
+msgid "Last Name :"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:83 views/admin/rightSide/add/user.php:65
+msgid "Birthday :"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:96 views/admin/rightSide/add/user.php:76
+msgid "Member since :"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:108 views/admin/rightSide/add/user.php:86
+msgid "Contact Information"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:112 views/admin/rightSide/add/user.php:90
+msgid "Address :"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:122 views/admin/rightSide/add/user.php:98
+msgid "City :"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:138
+#: views/admin/rightSide/add/user.php:108
+msgid "First select a city"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:142
+#: views/admin/rightSide/add/user.php:106
+msgid "County :"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:152
+#: views/admin/rightSide/add/user.php:114
+msgid "GSM :"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:165
+#: views/admin/rightSide/add/user.php:125
+msgid "Phone :"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:178
+#: views/admin/rightSide/add/user.php:136
+msgid "e-mail :"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:188
+#: views/admin/rightSide/add/user.php:146
+msgid "Social Information"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:216
+#: views/admin/rightSide/list/slider.php:167
+#: views/admin/rightSide/add/user.php:170
+#: views/admin/rightSide/options/index.php:71
+#: views/admin/rightSide/options/preferences.php:45
+msgid "Save"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:226
+msgid "Payment summary"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:243 views/admin/rightSide/profile.php:244
+#, php-format
+msgid "Dues of %s "
+msgstr ""
+
+#: views/admin/rightSide/profile.php:250
+msgid "You do not have unpaid dues"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:255 views/admin/rightSide/profile.php:260
+#: views/admin/rightSide/profile.php:262
+msgid "Donate"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:266
+msgid "Description"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:270
+msgid "Write a description"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:274
+msgid "Pay"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:285
+#: views/admin/rightSide/list/news.php:63
+#: views/admin/rightSide/list/services.php:57
+#: views/admin/rightSide/list/products.php:57
+#: views/admin/rightSide/add/user.php:178
+msgid "View"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:286
+msgid "Upload"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:288
+#: views/admin/rightSide/add/user.php:180
+msgid "Avatar"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:293
+#: views/admin/rightSide/add/user.php:186 views/contacts/index.blade.php:46
+msgid "Clear"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:299
+#: views/admin/rightSide/add/user.php:192
+msgid ""
+"Eğer Gravatar kullanıyosanız resim yüklemenize gerek yok.Gravatar resminiz "
+"gözükecektir "
+msgstr ""
+
+#: views/admin/rightSide/profile.php:308
+#: views/admin/rightSide/add/user.php:201
+msgid "Drop Here"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:310
+#: views/admin/rightSide/add/user.php:203
+msgid "Browse"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:341
+msgid "Password Update"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:356
+msgid "Current Password"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:368
+msgid "New Password"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:380
+msgid "Password Confirmation"
+msgstr ""
+
+#: views/admin/rightSide/profile.php:388
+#: views/admin/rightSide/update/news.php:54
+msgid "Update"
+msgstr ""
+
+#: views/admin/rightSide/error.php:12
+msgid "Error page"
+msgstr ""
+
+#: views/admin/rightSide/error.php:24
+msgid "Go Back"
+msgstr ""
+
+#: views/admin/rightSide/default.php:7
+msgid "Control panel"
+msgstr ""
+
+#: views/admin/rightSide/default.php:28
+msgid "Total News"
+msgstr ""
+
+#: views/admin/rightSide/default.php:35 views/admin/rightSide/default.php:55
+msgid "More info"
+msgstr ""
+
+#: views/admin/rightSide/default.php:48
+msgid "Total Member"
+msgstr ""
+
+#: views/admin/rightSide/default.php:71
+msgid "Calendar"
+msgstr ""
+
+#: views/admin/rightSide/default.php:80
+msgid "Add new event"
+msgstr ""
+
+#: views/admin/rightSide/default.php:81
+msgid "Clear events"
+msgstr ""
+
+#: views/admin/rightSide/default.php:83
+msgid "View calendar"
+msgstr ""
+
+#: views/admin/rightSide/default.php:105
+msgid "Send Message to Admin"
+msgstr ""
+
+#: views/admin/rightSide/default.php:118
+#: views/admin/rightSide/list/contacts.php:31
+#: views/admin/rightSide/list/contacts.php:102
+msgid "Message"
+msgstr ""
+
+#: views/admin/rightSide/default.php:122 views/contacts/index.blade.php:45
+msgid "Send"
+msgstr ""
+
+#: views/admin/rightSide/list/slider.php:5
+#: views/admin/rightSide/list/slider.php:11
+#: views/admin/rightSide/list/slider.php:22
+msgid "Slides"
+msgstr ""
+
+#: views/admin/rightSide/list/slider.php:36
+#: views/admin/rightSide/list/slider.php:152
+msgid "Select Image"
+msgstr ""
+
+#: views/admin/rightSide/list/slider.php:42
+#: views/admin/rightSide/list/slider.php:59
+#: views/admin/rightSide/list/slider.php:156
+#: views/admin/rightSide/list/slider.php:192
+msgid "Upload Image"
+msgstr ""
+
+#: views/admin/rightSide/list/slider.php:52
+#: views/admin/rightSide/list/slider.php:185
+msgid "Image Uploading..."
+msgstr ""
+
+#: views/admin/rightSide/list/slider.php:57
+#: views/admin/rightSide/list/slider.php:190
+msgid "Image Uploaded"
+msgstr ""
+
+#: views/admin/rightSide/list/slider.php:67
+msgid "Slide url"
+msgstr ""
+
+#: views/admin/rightSide/list/slider.php:69
+msgid "Slide title"
+msgstr ""
+
+#: views/admin/rightSide/list/slider.php:71
+msgid "Slide content"
+msgstr ""
+
+#: views/admin/rightSide/list/slider.php:168
+#: views/admin/rightSide/list/news.php:87
+#: views/admin/rightSide/list/news.php:122
+#: views/admin/rightSide/list/contacts.php:87
+#: views/admin/rightSide/list/contacts.php:115
+#: views/admin/rightSide/list/users.php:86
+#: views/admin/rightSide/list/users.php:120
+#: views/admin/rightSide/list/services.php:67
+#: views/admin/rightSide/list/products.php:67
+msgid "Delete"
+msgstr ""
+
+#: views/admin/rightSide/list/news.php:34
+#: views/admin/rightSide/list/news.php:100
+#: views/admin/rightSide/list/services.php:30
+#: views/admin/rightSide/list/services.php:78
+#: views/admin/rightSide/list/products.php:30
+#: views/admin/rightSide/list/products.php:78
+#: views/admin/rightSide/add/news.php:36
+#: views/admin/rightSide/update/news.php:35
+msgid "Title"
+msgstr ""
+
+#: views/admin/rightSide/list/news.php:35
+#: views/admin/rightSide/list/news.php:101
+#: views/admin/rightSide/list/services.php:31
+#: views/admin/rightSide/list/services.php:79
+#: views/admin/rightSide/list/products.php:31
+#: views/admin/rightSide/list/products.php:79
+msgid "Author"
+msgstr ""
+
+#: views/admin/rightSide/list/news.php:36
+#: views/admin/rightSide/list/news.php:102
+#: views/admin/rightSide/list/services.php:32
+#: views/admin/rightSide/list/services.php:80
+#: views/admin/rightSide/list/products.php:32
+#: views/admin/rightSide/list/products.php:80
+msgid "Publish Date"
+msgstr ""
+
+#: views/admin/rightSide/list/news.php:37
+#: views/admin/rightSide/list/news.php:103
+#: views/admin/rightSide/list/services.php:33
+#: views/admin/rightSide/list/services.php:81
+#: views/admin/rightSide/list/products.php:33
+#: views/admin/rightSide/list/products.php:81
+msgid "Type"
+msgstr ""
+
+#: views/admin/rightSide/list/news.php:38
+#: views/admin/rightSide/list/news.php:104
+#: views/admin/rightSide/list/users.php:39
+#: views/admin/rightSide/list/users.php:105
+msgid "Status"
+msgstr ""
+
+#: views/admin/rightSide/list/news.php:39
+#: views/admin/rightSide/list/news.php:55
+#: views/admin/rightSide/list/contacts.php:32
+#: views/admin/rightSide/list/contacts.php:48
+#: views/admin/rightSide/list/users.php:41
+#: views/admin/rightSide/list/users.php:59
+#: views/admin/rightSide/list/services.php:34
+#: views/admin/rightSide/list/services.php:48
+#: views/admin/rightSide/list/services.php:82
+#: views/admin/rightSide/list/products.php:34
+#: views/admin/rightSide/list/products.php:48
+#: views/admin/rightSide/list/products.php:82
+msgid "Actions"
+msgstr ""
+
+#: views/admin/rightSide/list/news.php:69
+#: views/admin/rightSide/list/services.php:62
+#: views/admin/rightSide/list/products.php:62
+msgid "Edit"
+msgstr ""
+
+#: views/admin/rightSide/list/news.php:73
+msgid "Change Status"
+msgstr ""
+
+#: views/admin/rightSide/list/news.php:78
+msgid "Make Task"
+msgstr ""
+
+#: views/admin/rightSide/list/news.php:78
+#: views/admin/rightSide/add/news.php:55 views/admin/rightSide/add/news.php:64
+#: views/admin/rightSide/update/news.php:49
+msgid "Publish"
+msgstr ""
+
+#: views/admin/rightSide/list/news.php:108
+#: views/admin/rightSide/list/contacts.php:107
+#: views/admin/rightSide/list/users.php:111
+msgid "Bulk Actions"
+msgstr ""
+
+#: views/admin/rightSide/list/news.php:116
+msgid "Toggle Status"
+msgstr ""
+
+#: views/admin/rightSide/list/contacts.php:11
+#: views/admin/rightSide/list/contacts.php:21
+msgid "Inbox"
+msgstr ""
+
+#: views/admin/rightSide/list/contacts.php:28
+#: views/admin/rightSide/list/contacts.php:99
+msgid "Sender's Name"
+msgstr ""
+
+#: views/admin/rightSide/list/contacts.php:29
+#: views/admin/rightSide/list/contacts.php:100
+msgid "Sender's E-mail"
+msgstr ""
+
+#: views/admin/rightSide/list/contacts.php:30
+#: views/admin/rightSide/list/contacts.php:101
+msgid "Send Date"
+msgstr ""
+
+#: views/admin/rightSide/list/contacts.php:44
+msgid "Click to read more"
+msgstr ""
+
+#: views/admin/rightSide/list/contacts.php:55
+#: views/admin/rightSide/list/contacts.php:121
+msgid "Mark as unread"
+msgstr ""
+
+#: views/admin/rightSide/list/contacts.php:55
+#: views/admin/rightSide/list/contacts.php:121
+msgid "Mark as read"
+msgstr ""
+
+#: views/admin/rightSide/list/contacts.php:73
+msgid "Answer"
+msgstr ""
+
+#: views/admin/rightSide/list/contacts.php:81
+msgid "Delete Message"
+msgstr ""
+
+#: views/admin/rightSide/list/users.php:23
+msgid "Users"
+msgstr ""
+
+#: views/admin/rightSide/list/users.php:36
+#: views/admin/rightSide/list/users.php:102
+msgid "Name - Lastname"
+msgstr ""
+
+#: views/admin/rightSide/list/users.php:37
+#: views/admin/rightSide/list/users.php:103
+msgid "email"
+msgstr ""
+
+#: views/admin/rightSide/list/users.php:38
+#: views/admin/rightSide/list/users.php:104
+msgid "Date registered"
+msgstr ""
+
+#: views/admin/rightSide/list/users.php:61
+msgid "Toggle Dropdown"
+msgstr ""
+
+#: views/admin/rightSide/list/users.php:67
+msgid "View/Edit"
+msgstr ""
+
+#: views/admin/rightSide/list/users.php:71
+msgid "Approve User"
+msgstr ""
+
+#: views/admin/rightSide/list/users.php:76
+msgid "Approve"
+msgstr ""
+
+#: views/admin/rightSide/list/users.php:76
+msgid "Unapprove"
+msgstr ""
+
+#: views/admin/rightSide/list/users.php:125
+msgid ""
+"Warning! Bu işlem seçilen kullanıcılar arasındaki onaylı kullanıcıları "
+"onaysız,onaysız kullanıcıları onaylı  duruma getirir. "
+msgstr ""
+
+#: views/admin/rightSide/list/users.php:127
+msgid "Approve / Unapprove"
+msgstr ""
+
+#: views/admin/rightSide/list/services.php:10
+#: views/admin/rightSide/list/services.php:22
+#: controllers/HomeController.php:57 controllers/AdminController.php:489
+msgid "Services"
+msgstr ""
+
+#: views/admin/rightSide/list/products.php:10
+#: views/admin/rightSide/list/products.php:22
+#: controllers/HomeController.php:52 controllers/AdminController.php:550
+msgid "Products"
+msgstr ""
+
+#: views/admin/rightSide/add/news.php:6
+msgid "Creat New News"
+msgstr ""
+
+#: views/admin/rightSide/add/news.php:10
+#: views/admin/rightSide/options/index.php:10
+#: views/admin/rightSide/options/preferences.php:10
+#: views/admin/rightSide/update/news.php:10
+msgid "Admin Home"
+msgstr ""
+
+#: views/admin/rightSide/add/news.php:30
+msgid "New News"
+msgstr ""
+
+#: views/admin/rightSide/add/news.php:54
+#: views/admin/rightSide/update/news.php:49
+msgid "Task"
+msgstr ""
+
+#: views/admin/rightSide/add/user.php:12
+msgid "Add Member"
+msgstr ""
+
+#: views/admin/rightSide/options/index.php:6
+msgid "Menage General Options"
+msgstr ""
+
+#: views/admin/rightSide/options/index.php:23
+msgid "Site Options"
+msgstr ""
+
+#: views/admin/rightSide/options/index.php:37
+#: views/admin/rightSide/options/preferences.php:32
+msgid "Save Options"
+msgstr ""
+
+#: views/admin/rightSide/options/index.php:42
+msgid "Site Name"
+msgstr ""
+
+#: views/admin/rightSide/options/index.php:49
+msgid "Site Description"
+msgstr ""
+
+#: views/admin/rightSide/options/index.php:57
+msgid "Main mail address"
+msgstr ""
+
+#: views/admin/rightSide/options/index.php:64
+msgid "Dues Amount"
+msgstr ""
+
+#: views/admin/rightSide/options/preferences.php:6
+msgid "Menage Site Preferences"
+msgstr ""
+
+#: views/admin/rightSide/options/preferences.php:37
+msgid "Theme Skin"
+msgstr ""
+
+#: views/admin/rightSide/update/news.php:6
+#: views/admin/rightSide/update/news.php:31
+#: controllers/AdminController.php:391 controllers/AdminController.php:527
+#: controllers/AdminController.php:588
+msgid "Update News"
+msgstr ""
+
+#: views/emails/welcome.php:9
+msgid "New User"
+msgstr ""
+
+#: views/emails/welcome.php:15
+msgid "Login"
+msgstr ""
+
+#: views/emails/auth/reminder.blade.php:7 views/password/reset.php:37
+msgid "Password Reset"
+msgstr ""
+
+#: views/emails/auth/reminder.blade.php:10
+msgid "To reset your password, complete this form:"
+msgstr ""
+
+#: views/template/default.blade.php:66
+msgid "Why Us?"
+msgstr ""
+
+#: views/template/default.blade.php:77
+msgid "Address"
+msgstr ""
+
+#: views/template/default.blade.php:79 views/contacts/index.blade.php:56
+msgid "Country:"
+msgstr ""
+
+#: views/template/default.blade.php:80 views/contacts/index.blade.php:57
+msgid "City:"
+msgstr ""
+
+#: views/template/default.blade.php:81
+msgid "Phone:"
+msgstr ""
+
+#: views/template/default.blade.php:82 views/contacts/index.blade.php:59
+msgid "Email:"
+msgstr ""
+
+#: views/template/default.blade.php:88
+msgid "Follow Us"
+msgstr ""
+
+#: views/template/menu.blade.php:7
+msgid "Welcome!"
+msgstr ""
+
+#: views/template/menu.blade.php:9
+msgid "Fresh"
+msgstr ""
+
+#: views/template/menu.blade.php:11
+msgid "Bylaw"
+msgstr ""
+
+#: views/template/menu.blade.php:11
+msgid "law"
+msgstr ""
+
+#: views/template/menu.blade.php:13 controllers/HomeController.php:62
+msgid "Membership"
+msgstr ""
+
+#: views/template/menu.blade.php:13
+msgid "Join Us"
+msgstr ""
+
+#: views/template/menu.blade.php:15 views/contacts/index.blade.php:53
+msgid "Contacts"
+msgstr ""
+
+#: views/template/menu.blade.php:15
+msgid "Our Address"
+msgstr ""
+
+#: views/contacts/index.blade.php:26
+msgid "Contact Form"
+msgstr ""
+
+#: views/contacts/index.blade.php:30
+msgid "Your Name:"
+msgstr ""
+
+#: views/contacts/index.blade.php:34
+msgid "Your City:"
+msgstr ""
+
+#: views/contacts/index.blade.php:38
+msgid "Your E-mail:"
+msgstr ""
+
+#: views/contacts/index.blade.php:42
+msgid "Your Message:"
+msgstr ""
+
+#: views/contacts/index.blade.php:58
+msgid "Telephone:"
+msgstr ""
+
+#: views/password/remind.php:41
+msgid "Success!"
+msgstr ""
+
+#: views/password/remind.php:44
+msgid "Password Remind"
+msgstr ""
+
+#: views/password/remind.php:54
+msgid "Enter your email adress"
+msgstr ""
+
+#: views/password/remind.php:58
+msgid "Submit"
+msgstr ""
+
+#: views/password/reset.php:59
+msgid "Reset My Password"
+msgstr ""
+
+#: models/User.php:115
+msgid "Unapproved"
+msgstr ""
+
+#: models/User.php:115
+msgid "User"
+msgstr ""
+
+#: models/User.php:115
+msgid "Editor"
+msgstr ""
+
+#: models/User.php:115
+msgid "Admin"
+msgstr ""
+
+#: models/Option.php:59
+msgid "January"
+msgstr ""
+
+#: models/Option.php:59
+msgid "February"
+msgstr ""
+
+#: models/Option.php:59
+msgid "March"
+msgstr ""
+
+#: models/Option.php:59
+msgid "April"
+msgstr ""
+
+#: models/Option.php:59
+msgid "May"
+msgstr ""
+
+#: models/Option.php:59
+msgid "June"
+msgstr ""
+
+#: models/Option.php:59
+msgid "July "
+msgstr ""
+
+#: models/Option.php:59
+msgid "August"
+msgstr ""
+
+#: models/Option.php:59
+msgid "September"
+msgstr ""
+
+#: models/Option.php:59
+msgid "October"
+msgstr ""
+
+#: models/Option.php:59
+msgid "November"
+msgstr ""
+
+#: models/Option.php:59
+msgid "December"
+msgstr ""
+
+#: controllers/RemindersController.php:22
+msgid "Password Reminder"
+msgstr ""
+
+#: controllers/RemindersController.php:25
+msgid "E-mail not found"
+msgstr ""
+
+#: controllers/RemindersController.php:29
+msgid "Your request received. Please check your e-mails"
+msgstr ""
+
+#: controllers/AdminController.php:21
+msgid "Admin Panel"
+msgstr ""
+
+#: controllers/AdminController.php:26 controllers/AdminController.php:73
+#: controllers/AdminController.php:125 controllers/AdminController.php:359
+#: controllers/AdminController.php:376 controllers/AdminController.php:400
+#: controllers/AdminController.php:425 controllers/AdminController.php:500
+#: controllers/AdminController.php:517 controllers/AdminController.php:536
+#: controllers/AdminController.php:561 controllers/AdminController.php:578
+#: controllers/AdminController.php:597 controllers/AdminController.php:616
+#: controllers/AdminController.php:730 controllers/OptionsController.php:31
+#: controllers/OptionsController.php:45
+msgid "Permission Error"
+msgstr ""
+
+#: controllers/AdminController.php:28 controllers/AdminController.php:75
+#: controllers/AdminController.php:127 controllers/AdminController.php:361
+#: controllers/AdminController.php:378 controllers/AdminController.php:402
+#: controllers/AdminController.php:427 controllers/AdminController.php:502
+#: controllers/AdminController.php:519 controllers/AdminController.php:538
+#: controllers/AdminController.php:563 controllers/AdminController.php:580
+#: controllers/AdminController.php:599 controllers/AdminController.php:618
+#: controllers/AdminController.php:732 controllers/OptionsController.php:33
+#: controllers/OptionsController.php:47
+msgid "You do not have permission to access this page"
+msgstr ""
+
+#: controllers/AdminController.php:47
+msgid "Register Page"
+msgstr ""
+
+#: controllers/AdminController.php:56
+msgid "Login Page"
+msgstr ""
+
+#: controllers/AdminController.php:146 controllers/AdminController.php:209
+msgid "Bir kullanıcı adı tanımlamalısınız"
+msgstr ""
+
+#: controllers/AdminController.php:147 controllers/AdminController.php:210
+msgid "Bir e-mail belirtmelisiniz"
+msgstr ""
+
+#: controllers/AdminController.php:148 controllers/AdminController.php:211
+msgid "Kullanıcı adı kullanılıyor"
+msgstr ""
+
+#: controllers/AdminController.php:149 controllers/AdminController.php:212
+msgid "Mail adresi kullanılıyor"
+msgstr ""
+
+#: controllers/AdminController.php:150 controllers/AdminController.php:213
+#: controllers/AdminController.php:867
+msgid "Kullanıcını adınız en az 3 karakterden oluşmalıdır"
+msgstr ""
+
+#: controllers/AdminController.php:187
+msgid "Saved successfully"
+msgstr ""
+
+#: controllers/AdminController.php:257
+msgid "Yeni Üye oluşturuldu"
+msgstr ""
+
+#: controllers/AdminController.php:276
+msgid "Lütfen şuanki şifrenizi yazın"
+msgstr ""
+
+#: controllers/AdminController.php:277 controllers/AdminController.php:873
+msgid "Lütfen şifrenizi yazın"
+msgstr ""
+
+#: controllers/AdminController.php:278 controllers/AdminController.php:874
+msgid "Şifreniz minumum 4 karakterden oluşmalıdır"
+msgstr ""
+
+#: controllers/AdminController.php:279 controllers/AdminController.php:875
+msgid "Girdiğiniz şifreler birbiriyle eşleşmiyor"
+msgstr ""
+
+#: controllers/AdminController.php:280 controllers/AdminController.php:876
+msgid "Lütfen şifrenizi doğrulayın"
+msgstr ""
+
+#: controllers/AdminController.php:298
+msgid "Incorrect Password"
+msgstr ""
+
+#: controllers/AdminController.php:301
+msgid "Passwords mustn't same"
+msgstr ""
+
+#: controllers/AdminController.php:313
+msgid "Deleted Successfully"
+msgstr ""
+
+#: controllers/AdminController.php:315
+msgid "Admin can not be delete"
+msgstr ""
+
+#: controllers/AdminController.php:333 controllers/AdminController.php:681
+msgid "Successful"
+msgstr ""
+
+#: controllers/AdminController.php:348
+msgid "News Management Page"
+msgstr ""
+
+#: controllers/AdminController.php:414
+msgid "Slider Management Page"
+msgstr ""
+
+#: controllers/AdminController.php:467
+msgid "Extension not allowed"
+msgstr ""
+
+#: controllers/AdminController.php:471
+msgid "File uploaded successfully"
+msgstr ""
+
+#: controllers/AdminController.php:512
+msgid "Add New Service"
+msgstr ""
+
+#: controllers/AdminController.php:573
+msgid "Add New Product"
+msgstr ""
+
+#: controllers/AdminController.php:611
+msgid "Cotacts"
+msgstr ""
+
+#: controllers/AdminController.php:638 controllers/AdminController.php:870
+msgid "Lütfen mail adresinizi yazın"
+msgstr ""
+
+#: controllers/AdminController.php:639 controllers/AdminController.php:871
+msgid "Lütfen geçerli bir mail adresi yazın"
+msgstr ""
+
+#: controllers/AdminController.php:640
+msgid "Please Enter Your Name"
+msgstr ""
+
+#: controllers/AdminController.php:641
+msgid "İsim en az 3 karakter olabilir"
+msgstr ""
+
+#: controllers/AdminController.php:642
+msgid "İsimda sadece harf kullanınız"
+msgstr ""
+
+#: controllers/AdminController.php:643
+msgid "Please enter message"
+msgstr ""
+
+#: controllers/AdminController.php:644
+msgid "Mesaj en  az 10 karakter olabilir."
+msgstr ""
+
+#: controllers/AdminController.php:695
+msgid "Mail send Successfully"
+msgstr ""
+
+#: controllers/AdminController.php:709
+msgid "Mail Delete Successfully"
+msgstr ""
+
+#: controllers/AdminController.php:725
+msgid "Orders"
+msgstr ""
+
+#: controllers/AdminController.php:780
+msgid "Payed Successfully"
+msgstr ""
+
+#: controllers/AdminController.php:826
+msgid "Please enter user name"
+msgstr ""
+
+#: controllers/AdminController.php:827
+msgid "Please enter password"
+msgstr ""
+
+#: controllers/AdminController.php:866
+msgid "Lütfen kullanıcı adınızı yazın"
+msgstr ""
+
+#: controllers/AdminController.php:868
+msgid ""
+"Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı yazın"
+msgstr ""
+
+#: controllers/AdminController.php:869
+msgid "Lütfen özel karakter ve boşluk içermeyen kullanıcı adı yazın"
+msgstr ""
+
+#: controllers/AdminController.php:872
+msgid "Bu mail adresi zaten kullanılıyor. Lütfen başka bir mail adresi yazın"
+msgstr ""
+
+#: controllers/AdminController.php:914 controllers/AdminController.php:988
+msgid "Başlık boş bırakılamaz"
+msgstr ""
+
+#: controllers/AdminController.php:915 controllers/AdminController.php:989
+msgid "İçerik boş bırakılamaz"
+msgstr ""
+
+#: controllers/AdminController.php:946
+msgid "Processing was carried out successfully"
+msgstr ""
+
+#: controllers/AdminController.php:1015
+msgid "Update Successfully"
+msgstr ""
+
+#: controllers/OptionsController.php:26
+msgid "General Options"
+msgstr ""
+
+#: controllers/OptionsController.php:65 controllers/OptionsController.php:71
+msgid "Options Saved"
+msgstr ""
+
+#: controllers/OptionsController.php:88
+msgid "Select County"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:3
+msgid "Kapat"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:4
+msgid "Evet"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:5
+msgid "Hayır"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:6
+msgid "Tamam"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:7
+msgid "Silme onayı"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:8
+msgid "Bu işlem geri  alınamaz. Devam etmek istiyormusunuz?"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:9
+msgid "Konu"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:10
+msgid "Gönder"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:11
+msgid "Yanıtla"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:12
+msgid "Cevapla"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:13
+msgid "Kaydet"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:14
+msgid "Kaydediliyor..."
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:15
+msgid "Kaydedildi"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:16
+msgid "Ekle"
+msgstr ""
+
+#: ../public/assets/admin/js/gettext.php:17
+msgid "Öde"
+msgstr ""
