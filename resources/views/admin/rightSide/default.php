@@ -111,7 +111,7 @@
 						</div><!-- /. tools -->
 					</div>
 					<div class="box-body">
-						<?=Form::open(array('role' => 'form','id' =>'ContactForm','action'=>'AdminController@postAddContact'))?>
+						<?=Form::open(array('role' => 'form','id' =>'ContactForm'))?><!-- Todo hızlı mail gönderme yapılacak yada kaldırılacak-->
 						<?=Form::hidden('name',Auth::user()->getScreenName())?>
 						<?=Form::hidden('email',Auth::user()->email)?>
 							<div>
