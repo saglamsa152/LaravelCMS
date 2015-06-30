@@ -3042,10 +3042,13 @@ table.text-center th {
 .register-page {
   background: #d2d6de;
 }
-.login-box,
-.register-box {
+.login-box {
   width: 360px;
   margin: 5% auto;
+}
+.register-box{
+    width: 360px;
+    margin: 2% auto;
 }
 @media (max-width: 768px) {
   .login-box,
