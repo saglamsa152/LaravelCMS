@@ -1,10 +1,10 @@
-<?php
+<?php use Illuminate\Support\Facades\URL;
 if ( Auth::check() ) {
 	echo Redirect::intended( '/admin' );
 }
 ?>
 <!DOCTYPE html>
-<html class="bg-black">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<?php if ( isset( $title ) ): ?>
@@ -13,76 +13,93 @@ if ( Auth::check() ) {
 		<title><?=Option::getOption('siteName')?></title>
 	<?php endif; ?>
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-	<!-- bootstrap 3.0.2 -->
-	<?= Html::style( 'assets/admin/css/bootstrap.min.css' ) ?>
-	<!-- font Awesome -->
-	<?= Html::style( 'assets/admin/css/font-awesome.min.css' ) ?>
-	<!-- Theme style -->
-	<?= Html::style( 'assets/admin/css/AdminLTE.css' ) ?>
+    <!-- Bootstrap 3.3.4 -->
+    <?=Html::style('/assets/bootstrap/css/bootstrap.min.css')?>
+    <!-- Font Awesome Icons -->
+    <?=Html::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')?>
+    <!-- Theme style -->
+    <?=Html::style('/assets/admin/css/AdminLTE.min.css')?>
+    <!-- iCheck -->
+    <?=Html::style('/assets/admin/plugins/iCheck/square/blue.css')?>
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-	<?=Html::script('https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')?>
-	<?=Html::script('https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js')?>
-	<![endif]-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body class="bg-black">
+<body class="login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href="<?=Url::action('HomeController@getIndex')?>"><b>Admin</b>LTE</a>
+    </div><!-- /.login-logo -->
+    <?php if ( $errors->count() > 0 ):
+        foreach ( $errors->all() as $error ):?>
+            <div class="alert alert-danger alert-dismissable">
+                <i class="fa fa-ban"></i>
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <b><?= _( 'Alert!' ) ?></b> <?= $error ?>
+            </div>
+        <?php
+        endforeach;
+    endif;
+    ?>
+    <div class="login-box-body">
+        <p class="login-box-msg"><?=_('Sign in to start your session')?></p>
+        <?=
+        Form::open( array(
+            'role'   => 'form',
+            'method' => 'post',
+            'action' => 'AdminController@postLogin'
+        ) ) ?>
+            <div class="form-group has-feedback">
+                <?= Form::text( 'username', Input::old( 'username' ), array( 'class' => 'form-control', 'autofocus', 'id' => 'username', 'placeholder' => _( 'Username' ) ) ) ?>
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <?php echo Form::password( 'password', array( 'class' => 'form-control', 'id' => 'password', 'placeholder' => _( 'Password' ) ) ) ?>
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
+                            <?= Form::checkbox( 'remember' ) ?> <?= _( 'Remember me' ) ?>
+                        </label>
+                    </div>
+                </div><!-- /.col -->
+                <div class="col-xs-4">
+                    <?= Form::button( _( 'Sing in' ), array( 'class' => 'btn btn-primary btn-block btn-flat', 'type' => 'submit' ) ) ?>
+                </div><!-- /.col -->
+            </div>
+        </form>
 
-<div class="form-box" id="login-box">
-	<?php if ( $errors->count() > 0 ):
-		foreach ( $errors->all() as $error ):?>
-			<div class="alert alert-danger alert-dismissable">
-				<i class="fa fa-ban"></i>
-				<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-				<b><?= _( 'Alert!' ) ?></b> <?= $error ?>
-			</div>
-		<?php
-		endforeach;
-	endif;
-	?>
-	<div class="header"><?= _( 'Sign In' ) ?></div>
-	<?=
-	Form::open( array(
-			'role'   => 'form',
-			'method' => 'post',
-			'action' => 'AdminController@postLogin'
-	) ) ?>
-	<div class="body bg-gray">
-		<div class="form-group">
-			<?= Form::text( 'username', Input::old( 'username' ), array( 'class' => 'form-control', 'autofocus', 'id' => 'username', 'placeholder' => _( 'Username' ) ) ) ?>
-		</div>
-		<div class="form-group">
-			<?php echo Form::password( 'password', array( 'class' => 'form-control', 'id' => 'password', 'placeholder' => _( 'Password' ) ) ) ?>
-		</div>
-		<div class="form-group">
-			<?= Form::checkbox( 'remember' ) ?> <?= _( 'Remember me' ) ?>
-		</div>
-	</div>
-	<div class="footer">
-		<?= Form::button( _( 'Sing in' ), array( 'class' => 'btn bg-olive btn-block', 'type' => 'submit' ) ) ?>
+        <div class="social-auth-links text-center">
+            <p>- <?=_('OR')?> -</p>
+            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i><?=_('Sign in using Facebook')?> </a>
+            <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i><?=_(' Sign in using Google+')?></a>
+        </div><!-- /.social-auth-links -->
 
-		<p><a href="<?=URL::action('RemindersController@getRemind')?>"><?= _( 'I forgot my password' ) ?></a></p>
+        <a href="<?=URL::action('RemindersController@getRemind')?>"><?= _( 'I forgot my password' ) ?></a><br>
+        <?= link_to_action( 'AdminController@getRegister', _( 'Register a new membership' ), '', array( 'class' => 'text-center' ) ) ?>
 
-		<?= link_to_action( 'AdminController@getRegister', _( 'Register a new membership' ), '', array( 'class' => 'text-center' ) ) ?>
-	</div>
-	<?= Form::close() ?>
-
-	<div class="margin text-center">
-		<span><?= _( 'Sign in using social networks' ) ?></span>
-		<br />
-		<button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
-		<button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
-		<button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
-
-	</div>
-</div>
-
-
-<!-- jQuery 2.1.1 -->
-<?=Html::script('assets/js/jquery-2.1.1.min.js')?>
+    </div><!-- /.login-box-body -->
+</div><!-- /.login-box -->
+<!-- jQuery 2.1.4 -->
+<?=Html::script('assets/admin/plugins/jQuery/jQuery-2.1.4.min.js')?>
 <!-- Bootstrap -->
-<?= Html::script( 'assets/admin/js/bootstrap.min.js' ) ?>
-
+<?= Html::script( 'assets/bootstrap/js/bootstrap.min.js' ) ?>
+<!-- iCheck -->
+<?=Html::script('assets/admin/plugins/iCheck/icheck.min.js')?>
+<script>
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
+        });
+    });
+</script>
 </body>
 </html>
