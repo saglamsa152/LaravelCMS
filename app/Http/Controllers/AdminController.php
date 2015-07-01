@@ -1030,4 +1030,24 @@ class AdminController extends BaseController {
 		echo '{"status":"error"}';
 		exit;
 	}
+
+    public function postSendMessageToAdmin(){
+        try {
+            /*
+             * name, email, message
+             */
+            $postData = Input::all();
+            extract( $postData );
+            $mailData = array( 'name' => $name, 'contactMessage' => $message, 'email' => $email );
+            Mail::send( 'emails.contact', $mailData, function ( $message ) use ( $postData ) {
+                $message->to( 'sametatabasch@gmail.com', 'Samet ATABAŞ' )->subject( 'Admin Panelden Mesaj' );
+                $message->from( $postData['email'], $postData['name'] );
+            } );
+            $ajaxResponse = array( 'status' => 'success', 'msg' => _('Message Sent') );
+            return Response::json( $ajaxResponse );
+        }catch (Exception $e){
+            $ajaxResponse = array( 'status' => 'danger', 'msg' => $e->getMessage() );
+            return Response::json( $ajaxResponse );
+        }
+    }
 }

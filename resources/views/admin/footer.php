@@ -6,9 +6,10 @@
 </script>
 <!-- Bootstrap 3.3.2 JS -->
 <?=Html::script('assets/bootstrap/js/bootstrap.min.js')?>
-<!-- Morris.js charts -->
+<!-- Morris.js charts  KALDIRILDI
 <?=Html::script('//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js')?>
 <?=Html::script('assets/admin/plugins/morris/morris.min.js')?>
+-->
 <!-- Sparkline -->
 <?=Html::script('assets/admin/plugins/sparkline/jquery.sparkline.min.js')?>
 <!-- jvectormap -->

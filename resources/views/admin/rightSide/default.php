@@ -111,12 +111,12 @@
 						</div><!-- /. tools -->
 					</div>
 					<div class="box-body">
-						<?=Form::open(array('role' => 'form','id' =>'ContactForm'))?><!-- Todo hızlı mail gönderme yapılacak yada kaldırılacak-->
-						<?=Form::hidden('name',Auth::user()->getScreenName())?>
-						<?=Form::hidden('email',Auth::user()->email)?>
-							<div>
-								<?=Form::textarea('message','',array('placeholder'=>_('Message'),'id'=>'message'))?>
-							</div>
+                        <?=Form::open(array('role' => 'form','id' =>'ContactForm','action'=>'AdminController@postSendMessageToAdmin','class'=>'ajaxForm'))?>
+                        <?=Form::hidden('name',Auth::user()->getScreenName())?>
+                        <?=Form::hidden('email',Auth::user()->email)?>
+                        <div>
+                            <?=Form::textarea('message','',array('placeholder'=>_('Message'),'id'=>'message'))?>
+                        </div>
 					</div>
 					<div class="box-footer clearfix">
 						<button class="pull-right btn btn-default" id="sendEmail"><?=_('Send')?> <i class="fa fa-arrow-circle-right"></i>

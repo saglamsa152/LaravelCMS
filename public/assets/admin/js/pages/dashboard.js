@@ -27,7 +27,7 @@ $(function () {
   });
 
   //bootstrap WYSIHTML5 - text editor
-  $(".textarea").wysihtml5();
+  //yerine ckeditor kullandığım için kaldırdım $(".textarea").wysihtml5();
 
   $('.daterange').daterangepicker(
           {
@@ -123,7 +123,7 @@ $(function () {
     height: '250px'
   });
 
-  /* Morris.js Charts */
+  /* Morris.js Charts
   // Sales chart
   var area = new Morris.Area({
     element: 'revenue-chart',
@@ -194,7 +194,7 @@ $(function () {
     area.redraw();
     donut.redraw();
   });
-
+   */
 
   /* BOX REFRESH PLUGIN EXAMPLE (usage with morris charts) */
   $("#loading-example").boxRefresh({
