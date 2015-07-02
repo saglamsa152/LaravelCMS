@@ -1,4 +1,4 @@
-<aside class="right-side" xmlns="http://www.w3.org/1999/html">
+<aside class="content-wrapper" xmlns="http://www.w3.org/1999/html">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
