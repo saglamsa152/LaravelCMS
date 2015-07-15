@@ -21,7 +21,7 @@
 	  todo panelden seçilen skin e göre o css in yüklenmesi sayfa boyutu açısından daha iyi olur-->
 <?= Html::style( 'assets/admin/css/skins/_all-skins.min.css' ) ?>
 <!-- iCheck -->
-<?= Html::style( 'assets/admin/plugins/iCheck/minimal/_all.css' ) ?>
+<?= Html::style( 'assets/admin/plugins/iCheck/all.css' ) ?>
 <!-- Morris chart -->
 <?= Html::style( 'assets/admin/plugins/morris/morris.css' ) ?>
 <!-- jvectormap -->

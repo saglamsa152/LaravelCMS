@@ -36,7 +36,14 @@ $(function () {
 		$('#view-tab img').attr('src', null);
 		$($(this).attr('targetFormElement')).val(null);
 	});
-
+	/**
+	 * checkbox lar için icheck eklentisini  aktif diyoruz
+	 * todo teme seçimine göre iChek rengi otomatik olarak değişecek #93
+	 */
+	$('input[type=checkbox]').iCheck({
+		checkboxClass: 'icheckbox_square-blue',
+		increaseArea: '20%' // optional
+	});
 	/**
 	 * tablolardaki hepsini seç checkbox ı için
 	 */
