@@ -14,7 +14,8 @@
 Route::get( '/', array( 'as' => 'home', 'uses' => 'HomeController@getIndex' ) );
 Route::controller( '/admin/options', 'OptionsController' );
 Route::controller( '/admin', 'AdminController' );
-Route::controller( '/password', 'RemindersController' );
+Route::controller( '/password', 'Auth\PasswordController' );
+
 Route::controller( '/', 'HomeController' );
 
 
@@ -22,7 +23,4 @@ Route::controller( '/', 'HomeController' );
 
 Route::get('home', 'HomeController@index');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);*/
+;*/

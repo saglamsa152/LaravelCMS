@@ -21,6 +21,11 @@ class PasswordController extends Controller {
 	use ResetsPasswords;
 
 	/**
+	 * İşlemler sonrası  admin sayfasına yönlendirmesi için
+	 */
+	protected $redirectTo = '/admin';
+
+	/**
 	 * Create a new password controller instance.
 	 *
 	 * @param  \Illuminate\Contracts\Auth\Guard  $auth

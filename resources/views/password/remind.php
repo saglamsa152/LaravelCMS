@@ -46,7 +46,7 @@
 	Form::open( array(
 			'role'   => 'form',
 			'method' => 'post',
-			'action' => 'RemindersController@postRemind',
+			'action' => 'Auth\PasswordController@postEmail',
 			'class'  => 'ajaxForm'
 	) ) ?>
 	<div class="body bg-gray">

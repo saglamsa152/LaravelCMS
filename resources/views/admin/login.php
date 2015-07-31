@@ -81,7 +81,7 @@ if ( Auth::check() ) {
             <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i><?=_(' Sign in using Google+')?></a>
         </div><!-- /.social-auth-links -->
 
-        <a href="<?=URL::action('RemindersController@getRemind')?>"><?= _( 'I forgot my password' ) ?></a><br>
+        <a href="<?=URL::action('Auth\PasswordController@getEmail')?>"><?= _( 'I forgot my password' ) ?></a><br>
         <?= link_to_action( 'AdminController@getRegister', _( 'Register a new membership' ), '', array( 'class' => 'text-center' ) ) ?>
 
     </div><!-- /.login-box-body -->

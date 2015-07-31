@@ -233,7 +233,7 @@ class AdminController extends BaseController {
 				}
 			}
 		} catch ( Exception $e ) {
-			$ajaxResponse = array( 'status' => 'danger', 'msg' => $e->getMessage() );
+			$ajaxResponse = array( 'status' => 'danger', 'msg' => $e->getMessage().$e->getFile().$e->getLine() );
 			return response()->json( $ajaxResponse );
 		}
 	}
