@@ -96,6 +96,7 @@ $(function () {
 		});
 		return false;
 	});
+
 	/**
 	 * Şifre değiştirme formunu  çalıştırır
 	 */
@@ -126,6 +127,7 @@ $(function () {
 		});
 		return false;
 	});
+
 	/**
 	 * silme  işlemleri  için onay alınmasını ve formun çalışmasını sağlar
 	 */
@@ -230,11 +232,10 @@ $(function () {
 		 * ajax işlemini çalıştıran fonsiyon
 		 */
 		function triggerAjax() {
-			var token = $('#bulkAction input[name="_token"]').val();
 			$.ajax({
 				type   : 'POST',
 				url    : link.attr('data-link'),
-				data   : {id: ids, '_token': token},
+				data   : {id: ids},
 				success: function (returnData) {
 					var cevap = '<ul>';
 					if (jQuery.type(returnData['msg']) == "object") {
@@ -265,8 +266,9 @@ $(function () {
 			});
 		}
 	});
+
 	/**
-	 * iletişim  mesajlarında cevaplama işlemlerini  yapar
+	 * iletişim  mesajlarında cevaplama işlemlerini  yapar todo iletişim işlemleri mail sayfasından yapıldığı için silinecek
 	 */
 	$('a.contactAnswer').click(function () {
 		var contact = $.parseJSON($(this).attr('data-value'));
@@ -348,8 +350,9 @@ $(function () {
 		modal.modal('show');
 
 	});
-	/**
-	 * İletişim sayfasındaki mesaja tıklandığında modal içerisinde mesajı açar
+
+    /**
+	 * İletişim sayfasındaki mesaja tıklandığında modal içerisinde mesajı açar todo iletişim işlemleri mail sayfasından yapıldığı için silinecek
 	 */
 	$('.clickToRead').click(function () {
 		var message = $.parseJSON($(this).attr('data-value'));// id,name,content
@@ -370,7 +373,8 @@ $(function () {
 			$('#contactAnswer-' + message.id).trigger('click');
 		});
 	});
-	/**
+
+    /**
 	 * Sadece buton üzerinde geri  bildirim veren ajax formlarını  çalıştırır
 	 */
 	$('.ajaxButton').on('submit', function () {
@@ -393,6 +397,7 @@ $(function () {
 		});
 		return false;
 	});
+
 	/**
 	 * data-action özelliği delete olan butonlar tıklandığında silme işlemi  için  onay alan ve silme işlemini  yapan fonksiyon
 	 * slider sayfasında slide silme buyonu için oluşturuldu. diğer silme işlemleri için kullanımı ayarlanabilir.
@@ -400,7 +405,6 @@ $(function () {
 	$('button[data-action="delete"]').click(function () {
 		var url = $(this).attr('data-url');
 		var id = $(this).attr('data-id');
-		var token = $($(this).attr('token')).val();
 		body.append(modal);
 		//modal  kapatıldığında sayfadan silinsin
 		modal.on('hidden.bs.modal', function (e) {
@@ -420,7 +424,7 @@ $(function () {
 			$.ajax({
 				type   : 'POST',
 				url    : url,
-				data   : {"id": id, "_token": token},
+				data   : {"id": id},
 				success: function (returnData) {
 					var cevap = '<ul>';
 					if (jQuery.type(returnData['msg']) == "object") {
@@ -449,8 +453,10 @@ $(function () {
 		});
 
 	});
+
 	/**
-	 * içeriği tada taeget ile belirtilmiş formları modal içerisinde açar ve işleme sokar
+	 * içeriği tada target ile belirtilmiş formları modal içerisinde açar ve işleme sokar
+     * rightSide/list/slider.php:25 de kullanımı var
 	 */
 	$('[data-target]').click(function () {
 		var target = $($(this).attr("data-target")).clone();//
@@ -504,8 +510,9 @@ $(function () {
 			});
 		})
 	});
+
 	/**
-	 * aidat sayfası formu  ödeme butonuna tıklayınca çalışan ajax
+	 * aidat sayfası formu  ödeme butonuna tıklayınca çalışan ajax todo aidat işlemleri  dernek dalında bu daldan kaldırılacak
 	 */
 	$('.ajaxFormDues').on('submit', function (t) {
 		var form = $(this);
