@@ -52,6 +52,7 @@ if ( Auth::check() ) {
 				'action' => 'Auth\PasswordController@postReset',
 				'class'  => 'ajaxForm'
 		) ) ?>
+		<input type="hidden" name="token" value="<?=$token?>">
 		<div class="form-group has-feedback">
 			<?=Form::email('email',Input::old('email'),array('class'=>'form-control','autofocus','id'=>'email','placeholder'=>_( 'Enter your email adress' )))?>
 			<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
