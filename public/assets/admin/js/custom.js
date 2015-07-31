@@ -40,24 +40,27 @@ $(function () {
 	 * checkbox lar için icheck eklentisini  aktif diyoruz
 	 * todo teme seçimine göre iChek rengi otomatik olarak değişecek #93
 	 */
-	$('input[type=checkbox]').iCheck({
-		checkboxClass: 'icheckbox_square-blue',
-		increaseArea: '20%' // optional
-	});
-	/**
-	 * tablolardaki hepsini seç checkbox ı için
-	 */
-	//When unchecking the checkbox
-	var table = $("#check-all").parents('table');
-	$("#check-all").on('ifUnchecked', function (event) {
-		//Uncheck all checkboxes
-		$("input[type='checkbox']", table).iCheck("uncheck");
-	});
-	//When checking the checkbox
-	$("#check-all").on('ifChecked', function (event) {
-		//Check all checkboxes
-		$("input[type='checkbox']", table).iCheck("check");
-	});
+	if ($.isFunction($.fn.iCheck)) {
+		$('input[type=checkbox]').iCheck({
+			checkboxClass: 'icheckbox_square-blue',
+			increaseArea: '20%' // optional
+		});
+
+		/**
+		 * tablolardaki hepsini seç checkbox ı için
+		 */
+		//When unchecking the checkbox
+		var table = $("#check-all").parents('table');
+		$("#check-all").on('ifUnchecked', function (event) {
+			//Uncheck all checkboxes
+			$("input[type='checkbox']", table).iCheck("uncheck");
+		});
+		//When checking the checkbox
+		$("#check-all").on('ifChecked', function (event) {
+			//Check all checkboxes
+			$("input[type='checkbox']", table).iCheck("check");
+		});
+	}
 	/*Başlanğıç -> Yöneticiye mesaj gönder*/
 	if(document.getElementById("message")!=null) {
 		CKEDITOR.replace('message', {
