@@ -151,6 +151,7 @@ return [
 		 */
 		'Collective\Html\HtmlServiceProvider',
 		'Folklore\Image\ImageServiceProvider',
+		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
 	],
 
