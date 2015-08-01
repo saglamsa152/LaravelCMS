@@ -1,1232 +1,86 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ilklaravel\n"
-"POT-Creation-Date: 2015-01-22 01:45+0200\n"
-"PO-Revision-Date: 2015-01-22 01:46+0200\n"
+"POT-Creation-Date: 2015-08-02 00:00+0200\n"
+"PO-Revision-Date: 2015-08-02 00:12+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team:  <sametatabasch@gmail.com>\n"
-"Language: TR\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.5\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: ../../views\n"
-"X-Poedit-SearchPath-1: ../../models\n"
-"X-Poedit-SearchPath-2: ../../controllers\n"
-"X-Poedit-SearchPath-3: ../../../public/assets/admin/js\n"
-
-#: ../../views/admin/header.php:26
-#, php-format
-msgid "You have %s messages"
-msgstr "%s Mesajın var"
-
-#: ../../views/admin/header.php:43
-msgid "See All Messages"
-msgstr "Tüm Mesajları Gör"
-
-#: ../../views/admin/header.php:64
-#, php-format
-msgid "Member since %s"
-msgstr "%s den beri üye"
-
-#: ../../views/admin/header.php:72 ../../views/admin/leftSide.php:49
-#: ../../views/admin/rightSide/profile.php:21
-#: ../../views/admin/rightSide/error.php:28
-msgid "Profile"
-msgstr "Profil"
-
-#: ../../views/admin/header.php:75
-msgid "Sign out"
-msgstr "Çıkış yap"
-
-#: ../../views/admin/login.php:38 ../../views/admin/register.php:38
-#: ../../views/password/remind.php:34 ../../views/password/reset.php:34
-msgid "Alert!"
-msgstr "Uyarı!"
-
-#: ../../views/admin/login.php:44
-msgid "Sign In"
-msgstr "Giriş Yap"
-
-#: ../../views/admin/login.php:53 ../../views/admin/register.php:56
-#: ../../views/admin/rightSide/list/users.php:35
-#: ../../views/admin/rightSide/list/users.php:101
-msgid "Username"
-msgstr "Kullanıcı Adı"
-
-#: ../../views/admin/login.php:56
-msgid "Password"
-msgstr "Şifre"
-
-#: ../../views/admin/login.php:59
-msgid "Remember me"
-msgstr "Beni  hatırla"
-
-#: ../../views/admin/login.php:63
-msgid "Sing in"
-msgstr "Giriş yap"
-
-#: ../../views/admin/login.php:65
-msgid "I forgot my password"
-msgstr "Şifremi unuttum"
-
-#: ../../views/admin/login.php:67
-msgid "Register a new membership"
-msgstr "Yeni üyelik oluştur"
-
-#: ../../views/admin/login.php:72
-msgid "Sign in using social networks"
-msgstr "Sosyal ağları kullanarak giriş yap"
-
-#: ../../views/admin/leftSide.php:11
-msgid "Hello"
-msgstr "Selam"
-
-#: ../../views/admin/leftSide.php:26 ../../views/admin/rightSide/error.php:26
-#: ../../views/admin/rightSide/default.php:6
-#: ../../views/admin/rightSide/default.php:10
-msgid "Dashboard"
-msgstr "Başlangıç"
-
-#: ../../views/admin/leftSide.php:36
-#: ../../views/admin/rightSide/list/users.php:11
-#: ../../controllers/AdminController.php:67
-msgid "Members"
-msgstr "Üyeler"
-
-#: ../../views/admin/leftSide.php:40 ../../views/admin/leftSide.php:63
-#: ../../views/admin/rightSide/list/slider.php:12
-#: ../../views/admin/rightSide/list/news.php:11
-#: ../../views/admin/rightSide/list/users.php:12
-#: ../../views/admin/rightSide/list/services.php:11
-#: ../../views/admin/rightSide/list/products.php:11
-msgid "List"
-msgstr "Liste"
-
-#: ../../views/admin/leftSide.php:42
-#: ../../views/admin/rightSide/add/user.php:7
-#: ../../controllers/AdminController.php:120
-msgid "Add New Member"
-msgstr "Yeni Üye Ekle"
-
-#: ../../views/admin/leftSide.php:59
-#: ../../views/admin/rightSide/list/news.php:10
-#: ../../views/admin/rightSide/list/news.php:22
-#: ../../views/template/menu.blade.php:9
-msgid "News"
-msgstr "Haberler"
-
-#: ../../views/admin/leftSide.php:64
-#: ../../views/admin/rightSide/list/slider.php:26
-#: ../../views/admin/rightSide/list/news.php:25
-#: ../../views/admin/rightSide/list/users.php:26
-msgid "Add New"
-msgstr "Yeni Ekle"
-
-#: ../../views/admin/leftSide.php:71
-msgid "Slider"
-msgstr "Slider"
-
-#: ../../views/admin/leftSide.php:79
-#: ../../views/admin/rightSide/list/contacts.php:10
-#: ../../controllers/HomeController.php:47
-msgid "Contact"
-msgstr "İletişim"
-
-#: ../../views/admin/leftSide.php:83
-msgid "İnbox"
-msgstr "Gelen Kutusu"
-
-#: ../../views/admin/leftSide.php:93
-msgid "Options"
-msgstr "Ayarlar"
-
-#: ../../views/admin/leftSide.php:98
-msgid "General"
-msgstr "Genel"
-
-#: ../../views/admin/leftSide.php:100
-#: ../../views/admin/rightSide/options/preferences.php:23
-#: ../../controllers/OptionsController.php:40
-msgid "Site Preferences"
-msgstr "Site Tercihleri"
-
-#: ../../views/admin/register.php:44
-msgid "Register New Membership"
-msgstr "Yeni Üyelik Oluştur"
-
-#: ../../views/admin/register.php:62 ../../views/password/reset.php:55
-msgid "Password Confirm"
-msgstr "Şifre Tekrar"
-
-#: ../../views/admin/register.php:66
-msgid "Sign me up"
-msgstr "Üye yap"
-
-#: ../../views/admin/register.php:68
-msgid "I already have a membership"
-msgstr "Zaten bir üyeliğim var"
-
-#: ../../views/admin/register.php:72
-msgid "Register using social networks"
-msgstr "Sosyal ağları kullanarak üye ol"
-
-#: ../../views/admin/rightSide/profile.php:7
-#: ../../views/admin/rightSide/error.php:7
-msgid "Menage Profile"
-msgstr "Profili yönet"
-
-#: ../../views/admin/rightSide/profile.php:10
-#: ../../views/admin/rightSide/error.php:10
-#: ../../views/admin/rightSide/list/slider.php:9
-#: ../../views/admin/rightSide/list/news.php:9
-#: ../../views/admin/rightSide/list/contacts.php:9
-#: ../../views/admin/rightSide/list/users.php:9
-#: ../../views/admin/rightSide/list/services.php:9
-#: ../../views/admin/rightSide/list/products.php:9
-#: ../../views/admin/rightSide/add/user.php:10
-#: ../../views/template/menu.blade.php:7
-msgid "Home"
-msgstr "Anasayfa"
-
-#: ../../views/admin/rightSide/profile.php:12
-msgid "Profile page"
-msgstr "Profil sayfası"
-
-#: ../../views/admin/rightSide/profile.php:22
-#: ../../views/admin/rightSide/profile.php:233
-msgid "Dues"
-msgstr "Aidat"
-
-#: ../../views/admin/rightSide/profile.php:34
-msgid "Save Profile"
-msgstr "Profili Kaydet"
-
-#: ../../views/admin/rightSide/profile.php:39
-#: ../../views/admin/rightSide/add/user.php:30
-msgid "Personal Information"
-msgstr "Kişisel Bilgiler"
-
-#: ../../views/admin/rightSide/profile.php:43
-#: ../../views/admin/rightSide/add/user.php:33
-msgid "User Name :"
-msgstr "Kullanıcı Adı :"
-
-#: ../../views/admin/rightSide/profile.php:54
-#: ../../views/admin/rightSide/add/user.php:41
-msgid "User Role :"
-msgstr "Kullanıcı Rolü"
-
-#: ../../views/admin/rightSide/profile.php:63
-#: ../../views/admin/rightSide/add/user.php:49
-msgid "Name :"
-msgstr "İsim :"
-
-#: ../../views/admin/rightSide/profile.php:73
-#: ../../views/admin/rightSide/add/user.php:57
-msgid "Last Name :"
-msgstr "Soyisim :"
-
-#: ../../views/admin/rightSide/profile.php:83
-#: ../../views/admin/rightSide/add/user.php:65
-msgid "Birthday :"
-msgstr "Doğum Tarihi :"
-
-#: ../../views/admin/rightSide/profile.php:96
-#: ../../views/admin/rightSide/add/user.php:76
-msgid "Member since :"
-msgstr "Üyelik tarihi"
-
-#: ../../views/admin/rightSide/profile.php:108
-#: ../../views/admin/rightSide/add/user.php:86
-msgid "Contact Information"
-msgstr "İletişim Bilgisi"
-
-#: ../../views/admin/rightSide/profile.php:112
-#: ../../views/admin/rightSide/add/user.php:90
-msgid "Address :"
-msgstr "Adres :"
-
-#: ../../views/admin/rightSide/profile.php:122
-#: ../../views/admin/rightSide/add/user.php:98
-msgid "City :"
-msgstr "Şehir :"
-
-#: ../../views/admin/rightSide/profile.php:138
-#: ../../views/admin/rightSide/add/user.php:108
-msgid "First select a city"
-msgstr "Önce şehir seçin"
-
-#: ../../views/admin/rightSide/profile.php:142
-#: ../../views/admin/rightSide/add/user.php:106
-msgid "County :"
-msgstr "İlçe :"
-
-#: ../../views/admin/rightSide/profile.php:152
-#: ../../views/admin/rightSide/add/user.php:114
-msgid "GSM :"
-msgstr ""
-
-#: ../../views/admin/rightSide/profile.php:165
-#: ../../views/admin/rightSide/add/user.php:125
-msgid "Phone :"
-msgstr "Telefon:"
-
-#: ../../views/admin/rightSide/profile.php:178
-#: ../../views/admin/rightSide/add/user.php:136
-msgid "e-mail :"
-msgstr "Eposta:"
-
-#: ../../views/admin/rightSide/profile.php:188
-#: ../../views/admin/rightSide/add/user.php:146
-msgid "Social Information"
-msgstr "Sosyal Bilgiler"
-
-#: ../../views/admin/rightSide/profile.php:216
-#: ../../views/admin/rightSide/list/slider.php:167
-#: ../../views/admin/rightSide/add/user.php:170
-#: ../../views/admin/rightSide/options/index.php:71
-#: ../../views/admin/rightSide/options/preferences.php:45
-msgid "Save"
-msgstr "Kaydet"
-
-#: ../../views/admin/rightSide/profile.php:226
-msgid "Payment summary"
-msgstr "Ödeme Özeti"
-
-#: ../../views/admin/rightSide/profile.php:243
-#: ../../views/admin/rightSide/profile.php:244
-#, php-format
-msgid "Dues of %s "
-msgstr "%s ayı aidatı"
-
-#: ../../views/admin/rightSide/profile.php:250
-msgid "You do not have unpaid dues"
-msgstr "Ödenmemiş aidatınız yok"
-
-#: ../../views/admin/rightSide/profile.php:255
-#: ../../views/admin/rightSide/profile.php:260
-#: ../../views/admin/rightSide/profile.php:262
-msgid "Donate"
-msgstr "Bağış"
-
-#: ../../views/admin/rightSide/profile.php:266
-msgid "Description"
-msgstr "Açıklama"
-
-#: ../../views/admin/rightSide/profile.php:270
-msgid "Write a description"
-msgstr "Bİr açıklama yaz"
-
-#: ../../views/admin/rightSide/profile.php:274
-msgid "Pay"
-msgstr "Öde"
-
-#: ../../views/admin/rightSide/profile.php:285
-#: ../../views/admin/rightSide/list/news.php:63
-#: ../../views/admin/rightSide/list/services.php:57
-#: ../../views/admin/rightSide/list/products.php:57
-#: ../../views/admin/rightSide/add/user.php:178
-msgid "View"
-msgstr "Göster"
-
-#: ../../views/admin/rightSide/profile.php:286
-msgid "Upload"
-msgstr "Yükle"
-
-#: ../../views/admin/rightSide/profile.php:288
-#: ../../views/admin/rightSide/add/user.php:180
-msgid "Avatar"
-msgstr ""
-
-#: ../../views/admin/rightSide/profile.php:293
-#: ../../views/admin/rightSide/add/user.php:186
-#: ../../views/contacts/index.blade.php:46
-msgid "Clear"
-msgstr "Temizle"
-
-#: ../../views/admin/rightSide/profile.php:299
-#: ../../views/admin/rightSide/add/user.php:192
-msgid ""
-"Eğer Gravatar kullanıyosanız resim yüklemenize gerek yok.Gravatar resminiz "
-"gözükecektir "
-msgstr ""
-
-#: ../../views/admin/rightSide/profile.php:308
-#: ../../views/admin/rightSide/add/user.php:201
-msgid "Drop Here"
-msgstr "Buraya Bırak"
-
-#: ../../views/admin/rightSide/profile.php:310
-#: ../../views/admin/rightSide/add/user.php:203
-msgid "Browse"
-msgstr "Gözat"
-
-#: ../../views/admin/rightSide/profile.php:341
-msgid "Password Update"
-msgstr "Şifre Güncelle"
-
-#: ../../views/admin/rightSide/profile.php:356
-msgid "Current Password"
-msgstr "Şimdiki Şifre"
-
-#: ../../views/admin/rightSide/profile.php:368
-msgid "New Password"
-msgstr "Yeni Şifre"
-
-#: ../../views/admin/rightSide/profile.php:380
-msgid "Password Confirmation"
-msgstr "Şifre Doğrulama"
-
-#: ../../views/admin/rightSide/profile.php:388
-#: ../../views/admin/rightSide/update/news.php:54
-msgid "Update"
-msgstr "Güncelle"
-
-#: ../../views/admin/rightSide/error.php:12
-msgid "Error page"
-msgstr "Hata sayfası"
-
-#: ../../views/admin/rightSide/error.php:24
-msgid "Go Back"
-msgstr "Geri Dön"
-
-#: ../../views/admin/rightSide/default.php:7
-msgid "Control panel"
-msgstr "Kontrol paneli"
-
-#: ../../views/admin/rightSide/default.php:28
-msgid "Total News"
-msgstr "Toplam Haber"
-
-#: ../../views/admin/rightSide/default.php:35
-#: ../../views/admin/rightSide/default.php:55
-msgid "More info"
-msgstr "Detaylı bilgi"
-
-#: ../../views/admin/rightSide/default.php:48
-msgid "Total Member"
-msgstr "Toplam Üye"
-
-#: ../../views/admin/rightSide/default.php:71
-msgid "Calendar"
-msgstr "Takvim"
-
-#: ../../views/admin/rightSide/default.php:80
-msgid "Add new event"
-msgstr "Yeni etkinlik Ekle"
-
-#: ../../views/admin/rightSide/default.php:81
-msgid "Clear events"
-msgstr "Etkinlikleri temizle"
-
-#: ../../views/admin/rightSide/default.php:83
-msgid "View calendar"
-msgstr "Takvimi  göster"
-
-#: ../../views/admin/rightSide/default.php:105
-msgid "Send Message to Admin"
-msgstr "Yöneticiye mesaj gönder"
-
-#: ../../views/admin/rightSide/default.php:118
-#: ../../views/admin/rightSide/list/contacts.php:31
-#: ../../views/admin/rightSide/list/contacts.php:102
-msgid "Message"
-msgstr "Mesaj"
-
-#: ../../views/admin/rightSide/default.php:122
-#: ../../views/contacts/index.blade.php:45
-msgid "Send"
-msgstr "Gönder"
-
-#: ../../views/admin/rightSide/list/slider.php:5
-#: ../../views/admin/rightSide/list/slider.php:11
-#: ../../views/admin/rightSide/list/slider.php:22
-msgid "Slides"
-msgstr "Slidelar"
-
-#: ../../views/admin/rightSide/list/slider.php:36
-#: ../../views/admin/rightSide/list/slider.php:152
-msgid "Select Image"
-msgstr "Resim Seç"
-
-#: ../../views/admin/rightSide/list/slider.php:42
-#: ../../views/admin/rightSide/list/slider.php:59
-#: ../../views/admin/rightSide/list/slider.php:156
-#: ../../views/admin/rightSide/list/slider.php:192
-msgid "Upload Image"
-msgstr "Resmi Yükle"
-
-#: ../../views/admin/rightSide/list/slider.php:52
-#: ../../views/admin/rightSide/list/slider.php:185
-msgid "Image Uploading..."
-msgstr "Resim Yükleniyor"
-
-#: ../../views/admin/rightSide/list/slider.php:57
-#: ../../views/admin/rightSide/list/slider.php:190
-msgid "Image Uploaded"
-msgstr "Resim Yüklendi"
-
-#: ../../views/admin/rightSide/list/slider.php:67
-msgid "Slide url"
-msgstr "Slide url"
-
-#: ../../views/admin/rightSide/list/slider.php:69
-msgid "Slide title"
-msgstr "Slide başlığı"
-
-#: ../../views/admin/rightSide/list/slider.php:71
-msgid "Slide content"
-msgstr "Slide içeriği"
-
-#: ../../views/admin/rightSide/list/slider.php:168
-#: ../../views/admin/rightSide/list/news.php:87
-#: ../../views/admin/rightSide/list/news.php:122
-#: ../../views/admin/rightSide/list/contacts.php:87
-#: ../../views/admin/rightSide/list/contacts.php:115
-#: ../../views/admin/rightSide/list/users.php:86
-#: ../../views/admin/rightSide/list/users.php:120
-#: ../../views/admin/rightSide/list/services.php:67
-#: ../../views/admin/rightSide/list/products.php:67
-msgid "Delete"
-msgstr "Sil"
-
-#: ../../views/admin/rightSide/list/news.php:34
-#: ../../views/admin/rightSide/list/news.php:100
-#: ../../views/admin/rightSide/list/services.php:30
-#: ../../views/admin/rightSide/list/services.php:78
-#: ../../views/admin/rightSide/list/products.php:30
-#: ../../views/admin/rightSide/list/products.php:78
-#: ../../views/admin/rightSide/add/news.php:36
-#: ../../views/admin/rightSide/update/news.php:35
-msgid "Title"
-msgstr "Başlık"
-
-#: ../../views/admin/rightSide/list/news.php:35
-#: ../../views/admin/rightSide/list/news.php:101
-#: ../../views/admin/rightSide/list/services.php:31
-#: ../../views/admin/rightSide/list/services.php:79
-#: ../../views/admin/rightSide/list/products.php:31
-#: ../../views/admin/rightSide/list/products.php:79
-msgid "Author"
-msgstr "Yazar"
-
-#: ../../views/admin/rightSide/list/news.php:36
-#: ../../views/admin/rightSide/list/news.php:102
-#: ../../views/admin/rightSide/list/services.php:32
-#: ../../views/admin/rightSide/list/services.php:80
-#: ../../views/admin/rightSide/list/products.php:32
-#: ../../views/admin/rightSide/list/products.php:80
-msgid "Publish Date"
-msgstr "Yayınlama tarihi"
-
-#: ../../views/admin/rightSide/list/news.php:37
-#: ../../views/admin/rightSide/list/news.php:103
-#: ../../views/admin/rightSide/list/services.php:33
-#: ../../views/admin/rightSide/list/services.php:81
-#: ../../views/admin/rightSide/list/products.php:33
-#: ../../views/admin/rightSide/list/products.php:81
-msgid "Type"
-msgstr "Tip"
-
-#: ../../views/admin/rightSide/list/news.php:38
-#: ../../views/admin/rightSide/list/news.php:104
-#: ../../views/admin/rightSide/list/users.php:39
-#: ../../views/admin/rightSide/list/users.php:105
-msgid "Status"
-msgstr "Statü"
-
-#: ../../views/admin/rightSide/list/news.php:39
-#: ../../views/admin/rightSide/list/news.php:55
-#: ../../views/admin/rightSide/list/contacts.php:32
-#: ../../views/admin/rightSide/list/contacts.php:48
-#: ../../views/admin/rightSide/list/users.php:41
-#: ../../views/admin/rightSide/list/users.php:59
-#: ../../views/admin/rightSide/list/services.php:34
-#: ../../views/admin/rightSide/list/services.php:48
-#: ../../views/admin/rightSide/list/services.php:82
-#: ../../views/admin/rightSide/list/products.php:34
-#: ../../views/admin/rightSide/list/products.php:48
-#: ../../views/admin/rightSide/list/products.php:82
-msgid "Actions"
-msgstr "İşlemler"
-
-#: ../../views/admin/rightSide/list/news.php:69
-#: ../../views/admin/rightSide/list/services.php:62
-#: ../../views/admin/rightSide/list/products.php:62
-msgid "Edit"
-msgstr "Düzenle"
-
-#: ../../views/admin/rightSide/list/news.php:73
-msgid "Change Status"
-msgstr "Durumu Değiştir"
-
-#: ../../views/admin/rightSide/list/news.php:78
-msgid "Make Task"
-msgstr "Taslak"
-
-#: ../../views/admin/rightSide/list/news.php:78
-#: ../../views/admin/rightSide/add/news.php:55
-#: ../../views/admin/rightSide/add/news.php:64
-#: ../../views/admin/rightSide/update/news.php:49
-msgid "Publish"
-msgstr "Yayınla"
-
-#: ../../views/admin/rightSide/list/news.php:108
-#: ../../views/admin/rightSide/list/contacts.php:107
-#: ../../views/admin/rightSide/list/users.php:111
-msgid "Bulk Actions"
-msgstr "Toplu İşlemler"
-
-#: ../../views/admin/rightSide/list/news.php:116
-msgid "Toggle Status"
-msgstr "Statüyü değiştir"
-
-#: ../../views/admin/rightSide/list/contacts.php:11
-#: ../../views/admin/rightSide/list/contacts.php:21
-msgid "Inbox"
-msgstr "Gelen Kutusu"
-
-#: ../../views/admin/rightSide/list/contacts.php:28
-#: ../../views/admin/rightSide/list/contacts.php:99
-msgid "Sender's Name"
-msgstr "Gönderenin Adı"
-
-#: ../../views/admin/rightSide/list/contacts.php:29
-#: ../../views/admin/rightSide/list/contacts.php:100
-msgid "Sender's E-mail"
-msgstr "Gönderenin e-maili"
-
-#: ../../views/admin/rightSide/list/contacts.php:30
-#: ../../views/admin/rightSide/list/contacts.php:101
-msgid "Send Date"
-msgstr "Gönderme Tarihi"
-
-#: ../../views/admin/rightSide/list/contacts.php:44
-msgid "Click to read more"
-msgstr "Daha fazla okumak için tıkla"
-
-#: ../../views/admin/rightSide/list/contacts.php:55
-#: ../../views/admin/rightSide/list/contacts.php:121
-msgid "Mark as unread"
-msgstr "Okunmadı işaretle"
-
-#: ../../views/admin/rightSide/list/contacts.php:55
-#: ../../views/admin/rightSide/list/contacts.php:121
-msgid "Mark as read"
-msgstr "Okundu işaretle"
-
-#: ../../views/admin/rightSide/list/contacts.php:73
-msgid "Answer"
-msgstr "Cevap"
-
-#: ../../views/admin/rightSide/list/contacts.php:81
-msgid "Delete Message"
-msgstr "Mesajı Sil"
-
-#: ../../views/admin/rightSide/list/users.php:23
-msgid "Users"
-msgstr "Kullanıcılar"
-
-#: ../../views/admin/rightSide/list/users.php:36
-#: ../../views/admin/rightSide/list/users.php:102
-msgid "Name - Lastname"
-msgstr "İsim - Soyisim"
-
-#: ../../views/admin/rightSide/list/users.php:37
-#: ../../views/admin/rightSide/list/users.php:103
-msgid "email"
-msgstr "eposta"
-
-#: ../../views/admin/rightSide/list/users.php:38
-#: ../../views/admin/rightSide/list/users.php:104
-msgid "Date registered"
-msgstr "Kayıt Tarihi"
-
-#: ../../views/admin/rightSide/list/users.php:61
-msgid "Toggle Dropdown"
-msgstr ""
-
-#: ../../views/admin/rightSide/list/users.php:67
-msgid "View/Edit"
-msgstr "Göster/Düzenle"
-
-#: ../../views/admin/rightSide/list/users.php:71
-msgid "Approve User"
-msgstr "Kullanıcıyı Onayla"
-
-#: ../../views/admin/rightSide/list/users.php:76
-msgid "Approve"
-msgstr "Onayla"
-
-#: ../../views/admin/rightSide/list/users.php:76
-msgid "Unapprove"
-msgstr "Onaylanmamış"
-
-#: ../../views/admin/rightSide/list/users.php:125
-msgid ""
-"Warning! Bu işlem seçilen kullanıcılar arasındaki onaylı kullanıcıları "
-"onaysız,onaysız kullanıcıları onaylı  duruma getirir. "
-msgstr ""
-"Dikkat ! Bu işlem seçilen kullanıcılar arasındaki onaylı kullanıcıları "
-"onaysız,onaysız kullanıcıları onaylı  duruma getirir. "
-
-#: ../../views/admin/rightSide/list/users.php:127
-msgid "Approve / Unapprove"
-msgstr "Onayla / Onayı kaldır"
-
-#: ../../views/admin/rightSide/list/services.php:10
-#: ../../views/admin/rightSide/list/services.php:22
-#: ../../controllers/HomeController.php:57
-#: ../../controllers/AdminController.php:489
-msgid "Services"
-msgstr "Hizmeler"
-
-#: ../../views/admin/rightSide/list/products.php:10
-#: ../../views/admin/rightSide/list/products.php:22
-#: ../../controllers/HomeController.php:52
-#: ../../controllers/AdminController.php:550
-msgid "Products"
-msgstr "Ürünler"
-
-#: ../../views/admin/rightSide/add/news.php:6
-msgid "Creat New News"
-msgstr "Yeni Haber oluştur"
-
-#: ../../views/admin/rightSide/add/news.php:10
-#: ../../views/admin/rightSide/options/index.php:10
-#: ../../views/admin/rightSide/options/preferences.php:10
-#: ../../views/admin/rightSide/update/news.php:10
-msgid "Admin Home"
-msgstr "Yönetici Paneli"
-
-#: ../../views/admin/rightSide/add/news.php:30
-msgid "New News"
-msgstr "Yeni Haber"
-
-#: ../../views/admin/rightSide/add/news.php:54
-#: ../../views/admin/rightSide/update/news.php:49
-msgid "Task"
-msgstr "Taslak"
-
-#: ../../views/admin/rightSide/add/user.php:12
-msgid "Add Member"
-msgstr "Üye Ekle"
-
-#: ../../views/admin/rightSide/options/index.php:6
-msgid "Menage General Options"
-msgstr "Genel Ayarları Yönet"
-
-#: ../../views/admin/rightSide/options/index.php:23
-msgid "Site Options"
-msgstr "Site Ayarları"
-
-#: ../../views/admin/rightSide/options/index.php:37
-#: ../../views/admin/rightSide/options/preferences.php:32
-msgid "Save Options"
-msgstr "Ayarları Kaydet"
-
-#: ../../views/admin/rightSide/options/index.php:42
-msgid "Site Name"
-msgstr "Site Adı"
-
-#: ../../views/admin/rightSide/options/index.php:49
-msgid "Site Description"
-msgstr "Site Açıklama"
-
-#: ../../views/admin/rightSide/options/index.php:57
-msgid "Main mail address"
-msgstr "Birincil Mail adresi"
-
-#: ../../views/admin/rightSide/options/index.php:64
-msgid "Dues Amount"
-msgstr "Aidat miktarı"
-
-#: ../../views/admin/rightSide/options/preferences.php:6
-msgid "Menage Site Preferences"
-msgstr "Site Tercihlerini Yönet"
-
-#: ../../views/admin/rightSide/options/preferences.php:37
-msgid "Theme Skin"
-msgstr "Temayı değiştir"
-
-#: ../../views/admin/rightSide/update/news.php:6
-#: ../../views/admin/rightSide/update/news.php:31
-#: ../../controllers/AdminController.php:391
-#: ../../controllers/AdminController.php:527
-#: ../../controllers/AdminController.php:588
-msgid "Update News"
-msgstr "Haberi Güncelle"
-
-#: ../../views/emails/welcome.php:9
-msgid "New User"
-msgstr "Yeni  Kullanıcı"
-
-#: ../../views/emails/welcome.php:15
-msgid "Login"
-msgstr "Giriş"
-
-#: ../../views/emails/auth/reminder.blade.php:7
-#: ../../views/password/reset.php:37
-msgid "Password Reset"
-msgstr "Şifre sıfırlama"
-
-#: ../../views/emails/auth/reminder.blade.php:10
-msgid "To reset your password, complete this form:"
-msgstr "Şifrenizi  yenilemek için bu formu doldurun"
-
-#: ../../views/template/default.blade.php:66
-msgid "Why Us?"
-msgstr "Neden biz?"
-
-#: ../../views/template/default.blade.php:77
-msgid "Address"
-msgstr "Adres"
-
-#: ../../views/template/default.blade.php:79
-#: ../../views/contacts/index.blade.php:56
-msgid "Country:"
-msgstr "Ülke:"
-
-#: ../../views/template/default.blade.php:80
-#: ../../views/contacts/index.blade.php:57
-msgid "City:"
-msgstr "Şehir:"
-
-#: ../../views/template/default.blade.php:81
-msgid "Phone:"
-msgstr "Telefon:"
-
-#: ../../views/template/default.blade.php:82
-#: ../../views/contacts/index.blade.php:59
-msgid "Email:"
-msgstr "Eposta:"
-
-#: ../../views/template/default.blade.php:88
-msgid "Follow Us"
-msgstr "Bizi takip edin"
-
-#: ../../views/template/menu.blade.php:7
-msgid "Welcome!"
-msgstr "Hoş geldiniz!"
-
-#: ../../views/template/menu.blade.php:9
-msgid "Fresh"
-msgstr "Temiz"
-
-#: ../../views/template/menu.blade.php:11
-msgid "Bylaw"
-msgstr "Tüzük"
-
-#: ../../views/template/menu.blade.php:11
-msgid "law"
-msgstr "hukuk"
-
-#: ../../views/template/menu.blade.php:13
-#: ../../controllers/HomeController.php:62
-msgid "Membership"
-msgstr "Üyelik"
-
-#: ../../views/template/menu.blade.php:13
-msgid "Join Us"
-msgstr "Bize Katıl"
-
-#: ../../views/template/menu.blade.php:15
-#: ../../views/contacts/index.blade.php:53
-msgid "Contacts"
-msgstr "İletişim"
-
-#: ../../views/template/menu.blade.php:15
-msgid "Our Address"
-msgstr "Adresimiz"
-
-#: ../../views/contacts/index.blade.php:26
-msgid "Contact Form"
-msgstr "İletişim Formu"
-
-#: ../../views/contacts/index.blade.php:30
-msgid "Your Name:"
-msgstr "Adınız:"
-
-#: ../../views/contacts/index.blade.php:34
-msgid "Your City:"
-msgstr "Şehriniz:"
-
-#: ../../views/contacts/index.blade.php:38
-msgid "Your E-mail:"
-msgstr "E-postanız:"
-
-#: ../../views/contacts/index.blade.php:42
-msgid "Your Message:"
-msgstr "Mesajınız"
-
-#: ../../views/contacts/index.blade.php:58
-msgid "Telephone:"
-msgstr "Telefon:"
-
-#: ../../views/password/remind.php:41
-msgid "Success!"
-msgstr "Başarılı!"
-
-#: ../../views/password/remind.php:44
-msgid "Password Remind"
-msgstr "Şifre hatırlatma"
-
-#: ../../views/password/remind.php:54
-msgid "Enter your email adress"
-msgstr "email adresinizi girin"
-
-#: ../../views/password/remind.php:58
-msgid "Submit"
-msgstr "Gönder"
-
-#: ../../views/password/reset.php:59
-msgid "Reset My Password"
-msgstr "Şifremi Sıfırla"
-
-#: ../../models/User.php:115
-msgid "Unapproved"
-msgstr "Onaylanmamış"
-
-#: ../../models/User.php:115
-msgid "User"
-msgstr "Kullanıcı"
-
-#: ../../models/User.php:115
-msgid "Editor"
-msgstr "Editör"
-
-#: ../../models/User.php:115
-msgid "Admin"
-msgstr "Yönetici"
-
-#: ../../models/Option.php:59
+"X-Poedit-SearchPath-0: ../../../app/Models\n"
+"X-Poedit-SearchPath-1: ../../../app/Html/Controllers\n"
+"X-Poedit-SearchPath-2: ../../../public/assets/admin/js\n"
+"X-Poedit-SearchPath-3: ../..\n"
+
+#: ../../../app/Models/Option.php:55
 msgid "January"
 msgstr "Ocak"
 
-#: ../../models/Option.php:59
+#: ../../../app/Models/Option.php:55
 msgid "February"
 msgstr "Şubat"
 
-#: ../../models/Option.php:59
+#: ../../../app/Models/Option.php:55
 msgid "March"
 msgstr "Mart"
 
-#: ../../models/Option.php:59
+#: ../../../app/Models/Option.php:55
 msgid "April"
 msgstr "Nisan"
 
-#: ../../models/Option.php:59
+#: ../../../app/Models/Option.php:55
 msgid "May"
 msgstr "Mayıs"
 
-#: ../../models/Option.php:59
+#: ../../../app/Models/Option.php:55
 msgid "June"
 msgstr "Haziran"
 
-#: ../../models/Option.php:59
+#: ../../../app/Models/Option.php:55
 msgid "July "
 msgstr "Temmuz"
 
-#: ../../models/Option.php:59
+#: ../../../app/Models/Option.php:55
 msgid "August"
 msgstr "Ağustos"
 
-#: ../../models/Option.php:59
+#: ../../../app/Models/Option.php:55
 msgid "September"
 msgstr "Eylül"
 
-#: ../../models/Option.php:59
+#: ../../../app/Models/Option.php:55
 msgid "October"
 msgstr "Ekim"
 
-#: ../../models/Option.php:59
+#: ../../../app/Models/Option.php:55
 msgid "November"
 msgstr "Kasım"
 
-#: ../../models/Option.php:59
+#: ../../../app/Models/Option.php:55
 msgid "December"
 msgstr "Aralık"
 
-#: ../../controllers/RemindersController.php:22
-msgid "Password Reminder"
-msgstr "Şifre Hatırlatıcı"
+#: ../../../app/Models/User.php:117
+msgid "Unapproved"
+msgstr "Onaylanmamış"
 
-#: ../../controllers/RemindersController.php:25
-msgid "E-mail not found"
-msgstr "E-mail bulunamadı"
+#: ../../../app/Models/User.php:117
+msgid "User"
+msgstr "Kullanıcı"
 
-#: ../../controllers/RemindersController.php:29
-msgid "Your request received. Please check your e-mails"
-msgstr "Talebiniz alındı.Maillerinizi kontrol edin"
+#: ../../../app/Models/User.php:117
+msgid "Editor"
+msgstr "Editör"
 
-#: ../../controllers/AdminController.php:21
-msgid "Admin Panel"
-msgstr "Yönetici Paneli"
-
-#: ../../controllers/AdminController.php:26
-#: ../../controllers/AdminController.php:73
-#: ../../controllers/AdminController.php:125
-#: ../../controllers/AdminController.php:359
-#: ../../controllers/AdminController.php:376
-#: ../../controllers/AdminController.php:400
-#: ../../controllers/AdminController.php:425
-#: ../../controllers/AdminController.php:500
-#: ../../controllers/AdminController.php:517
-#: ../../controllers/AdminController.php:536
-#: ../../controllers/AdminController.php:561
-#: ../../controllers/AdminController.php:578
-#: ../../controllers/AdminController.php:597
-#: ../../controllers/AdminController.php:616
-#: ../../controllers/AdminController.php:730
-#: ../../controllers/OptionsController.php:31
-#: ../../controllers/OptionsController.php:45
-msgid "Permission Error"
-msgstr "Yetki Hatası"
-
-#: ../../controllers/AdminController.php:28
-#: ../../controllers/AdminController.php:75
-#: ../../controllers/AdminController.php:127
-#: ../../controllers/AdminController.php:361
-#: ../../controllers/AdminController.php:378
-#: ../../controllers/AdminController.php:402
-#: ../../controllers/AdminController.php:427
-#: ../../controllers/AdminController.php:502
-#: ../../controllers/AdminController.php:519
-#: ../../controllers/AdminController.php:538
-#: ../../controllers/AdminController.php:563
-#: ../../controllers/AdminController.php:580
-#: ../../controllers/AdminController.php:599
-#: ../../controllers/AdminController.php:618
-#: ../../controllers/AdminController.php:732
-#: ../../controllers/OptionsController.php:33
-#: ../../controllers/OptionsController.php:47
-msgid "You do not have permission to access this page"
-msgstr "Bu sayfaya ulaşmak için yetkiniz yok"
-
-#: ../../controllers/AdminController.php:47
-msgid "Register Page"
-msgstr "Üyelik Sayfası"
-
-#: ../../controllers/AdminController.php:56
-msgid "Login Page"
-msgstr "Giriş Sayfası"
-
-#: ../../controllers/AdminController.php:146
-#: ../../controllers/AdminController.php:209
-msgid "Bir kullanıcı adı tanımlamalısınız"
-msgstr ""
-
-#: ../../controllers/AdminController.php:147
-#: ../../controllers/AdminController.php:210
-msgid "Bir e-mail belirtmelisiniz"
-msgstr ""
-
-#: ../../controllers/AdminController.php:148
-#: ../../controllers/AdminController.php:211
-msgid "Kullanıcı adı kullanılıyor"
-msgstr ""
-
-#: ../../controllers/AdminController.php:149
-#: ../../controllers/AdminController.php:212
-msgid "Mail adresi kullanılıyor"
-msgstr ""
-
-#: ../../controllers/AdminController.php:150
-#: ../../controllers/AdminController.php:213
-#: ../../controllers/AdminController.php:867
-msgid "Kullanıcını adınız en az 3 karakterden oluşmalıdır"
-msgstr ""
-
-#: ../../controllers/AdminController.php:187
-msgid "Saved successfully"
-msgstr "Başarıyla Kaydedildi"
-
-#: ../../controllers/AdminController.php:257
-msgid "Yeni Üye oluşturuldu"
-msgstr ""
-
-#: ../../controllers/AdminController.php:276
-msgid "Lütfen şuanki şifrenizi yazın"
-msgstr ""
-
-#: ../../controllers/AdminController.php:277
-#: ../../controllers/AdminController.php:873
-msgid "Lütfen şifrenizi yazın"
-msgstr ""
-
-#: ../../controllers/AdminController.php:278
-#: ../../controllers/AdminController.php:874
-msgid "Şifreniz minumum 4 karakterden oluşmalıdır"
-msgstr ""
-
-#: ../../controllers/AdminController.php:279
-#: ../../controllers/AdminController.php:875
-msgid "Girdiğiniz şifreler birbiriyle eşleşmiyor"
-msgstr ""
-
-#: ../../controllers/AdminController.php:280
-#: ../../controllers/AdminController.php:876
-msgid "Lütfen şifrenizi doğrulayın"
-msgstr ""
-
-#: ../../controllers/AdminController.php:298
-msgid "Incorrect Password"
-msgstr "Yanlış şifre"
-
-#: ../../controllers/AdminController.php:301
-msgid "Passwords mustn't same"
-msgstr "Şifreler aynı olamaz"
-
-#: ../../controllers/AdminController.php:313
-msgid "Deleted Successfully"
-msgstr "Başarıyla Silindi"
-
-#: ../../controllers/AdminController.php:315
-msgid "Admin can not be delete"
-msgstr "Yönetici Silinemez"
-
-#: ../../controllers/AdminController.php:333
-#: ../../controllers/AdminController.php:681
-msgid "Successful"
-msgstr "Başarılı"
-
-#: ../../controllers/AdminController.php:348
-msgid "News Management Page"
-msgstr "Haberler  Yönetim  Sayfası"
-
-#: ../../controllers/AdminController.php:371
-msgid "Add News"
-msgstr "Haber Ekle"
-
-#: ../../controllers/AdminController.php:414
-msgid "Slider Management Page"
-msgstr "Slider  Yönetim  Sayfası"
-
-#: ../../controllers/AdminController.php:467
-msgid "Extension not allowed"
-msgstr "Geçersiz dosya uzantısı"
-
-#: ../../controllers/AdminController.php:471
-msgid "File uploaded successfully"
-msgstr "Dosya başarıyla yüklendi"
-
-#: ../../controllers/AdminController.php:512
-msgid "Add New Service"
-msgstr "Yeni Hizmet Ekle"
-
-#: ../../controllers/AdminController.php:573
-msgid "Add New Product"
-msgstr "Yeni  Ürün Ekle"
-
-#: ../../controllers/AdminController.php:611
-msgid "Cotacts"
-msgstr "İletişim"
-
-#: ../../controllers/AdminController.php:638
-#: ../../controllers/AdminController.php:870
-msgid "Lütfen mail adresinizi yazın"
-msgstr ""
-
-#: ../../controllers/AdminController.php:639
-#: ../../controllers/AdminController.php:871
-msgid "Lütfen geçerli bir mail adresi yazın"
-msgstr ""
-
-#: ../../controllers/AdminController.php:640
-msgid "Please Enter Your Name"
-msgstr "Lütfen adınızı giriniz"
-
-#: ../../controllers/AdminController.php:641
-msgid "İsim en az 3 karakter olabilir"
-msgstr ""
-
-#: ../../controllers/AdminController.php:642
-msgid "İsimda sadece harf kullanınız"
-msgstr ""
-
-#: ../../controllers/AdminController.php:643
-msgid "Please enter message"
-msgstr "Lütfen mesajınızı yazın"
-
-#: ../../controllers/AdminController.php:644
-msgid "Mesaj en  az 10 karakter olabilir."
-msgstr ""
-
-#: ../../controllers/AdminController.php:695
-msgid "Mail send Successfully"
-msgstr "Mail başarıyla gönderildi"
-
-#: ../../controllers/AdminController.php:709
-msgid "Mail Delete Successfully"
-msgstr "Mail başarıyla silindi"
-
-#: ../../controllers/AdminController.php:725
-msgid "Orders"
-msgstr "Siparişler"
-
-#: ../../controllers/AdminController.php:780
-msgid "Payed Successfully"
-msgstr "Başarıyla Ödendi"
-
-#: ../../controllers/AdminController.php:826
-msgid "Please enter user name"
-msgstr "Lütfen kullanıcı adınızı giriniz"
-
-#: ../../controllers/AdminController.php:827
-msgid "Please enter password"
-msgstr "Lütfen şifrenizi giriniz"
-
-#: ../../controllers/AdminController.php:866
-msgid "Lütfen kullanıcı adınızı yazın"
-msgstr ""
-
-#: ../../controllers/AdminController.php:868
-msgid ""
-"Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı yazın"
-msgstr ""
-
-#: ../../controllers/AdminController.php:869
-msgid "Lütfen özel karakter ve boşluk içermeyen kullanıcı adı yazın"
-msgstr ""
-
-#: ../../controllers/AdminController.php:872
-msgid "Bu mail adresi zaten kullanılıyor. Lütfen başka bir mail adresi yazın"
-msgstr ""
-
-#: ../../controllers/AdminController.php:914
-#: ../../controllers/AdminController.php:988
-msgid "Başlık boş bırakılamaz"
-msgstr ""
-
-#: ../../controllers/AdminController.php:915
-#: ../../controllers/AdminController.php:989
-msgid "İçerik boş bırakılamaz"
-msgstr ""
-
-#: ../../controllers/AdminController.php:946
-msgid "Processing was carried out successfully"
-msgstr "İşleme başarıyla gerçekleştirildi"
-
-#: ../../controllers/AdminController.php:1015
-msgid "Update Successfully"
-msgstr "Başarıyla Güncellendi"
-
-#: ../../controllers/OptionsController.php:26
-msgid "General Options"
-msgstr "Genel Ayarlar"
-
-#: ../../controllers/OptionsController.php:65
-#: ../../controllers/OptionsController.php:71
-msgid "Options Saved"
-msgstr "Ayarlar Kaydedildi"
-
-#: ../../controllers/OptionsController.php:88
-msgid "Select County"
-msgstr "İlçe Seçin"
+#: ../../../app/Models/User.php:117
+msgid "Admin"
+msgstr "Yönetici"
 
 #: ../../../public/assets/admin/js/gettext.php:3
 msgid "Kapat"
@@ -1287,6 +141,1315 @@ msgstr ""
 #: ../../../public/assets/admin/js/gettext.php:17
 msgid "Öde"
 msgstr ""
+
+#: ../../lang/en/pagination.php:16
+msgid "&laquo; Previous"
+msgstr "&laquo; Önceki"
+
+#: ../../lang/en/pagination.php:17
+msgid "Next &raquo;"
+msgstr "Sonraki &raquo;"
+
+#: ../../lang/en/passwords.php:16
+msgid "Passwords must be at least six characters and match the confirmation."
+msgstr ""
+
+#: ../../lang/en/passwords.php:17
+msgid "We can't find a user with that e-mail address."
+msgstr "Bu e-mail ile kayıtlı kullanıcı bulunamadı"
+
+#: ../../lang/en/passwords.php:18
+msgid "This password reset token is invalid."
+msgstr "Şifre sıfırlama kodu geçersiz."
+
+#: ../../lang/en/passwords.php:19
+msgid "We have e-mailed your password reset link!"
+msgstr "Şifre sıfırlama bağlantısı mail adresinize gönderildi"
+
+#: ../../lang/en/passwords.php:20
+msgid "Your password has been reset!"
+msgstr "Şifreniz sıfırlandı"
+
+#: ../../lang/en/validation.php:16
+msgid "The :attribute must be accepted."
+msgstr ""
+
+#: ../../lang/en/validation.php:17
+msgid "The :attribute is not a valid URL."
+msgstr ""
+
+#: ../../lang/en/validation.php:18
+msgid "The :attribute must be a date after :date."
+msgstr ""
+
+#: ../../lang/en/validation.php:19
+msgid "The :attribute may only contain letters."
+msgstr ""
+
+#: ../../lang/en/validation.php:20
+msgid "The :attribute may only contain letters, numbers, and dashes."
+msgstr ""
+
+#: ../../lang/en/validation.php:21
+msgid "The :attribute may only contain letters and numbers."
+msgstr ""
+
+#: ../../lang/en/validation.php:22
+msgid "The :attribute must be an array."
+msgstr ""
+
+#: ../../lang/en/validation.php:23
+msgid "The :attribute must be a date before :date."
+msgstr ""
+
+#: ../../lang/en/validation.php:25
+msgid "The :attribute must be between :min and :max."
+msgstr ""
+
+#: ../../lang/en/validation.php:26
+msgid "The :attribute must be between :min and :max kilobytes."
+msgstr ""
+
+#: ../../lang/en/validation.php:27
+msgid "The :attribute must be between :min and :max characters."
+msgstr ""
+
+#: ../../lang/en/validation.php:28
+msgid "The :attribute must have between :min and :max items."
+msgstr ""
+
+#: ../../lang/en/validation.php:30
+msgid "The :attribute field must be true or false."
+msgstr ""
+
+#: ../../lang/en/validation.php:31
+msgid "The :attribute confirmation does not match."
+msgstr ""
+
+#: ../../lang/en/validation.php:32
+msgid "The :attribute is not a valid date."
+msgstr ""
+
+#: ../../lang/en/validation.php:33
+msgid "The :attribute does not match the format :format."
+msgstr ""
+
+#: ../../lang/en/validation.php:34
+msgid "The :attribute and :other must be different."
+msgstr ""
+
+#: ../../lang/en/validation.php:35
+msgid "The :attribute must be :digits digits."
+msgstr ""
+
+#: ../../lang/en/validation.php:36
+msgid "The :attribute must be between :min and :max digits."
+msgstr ""
+
+#: ../../lang/en/validation.php:37
+msgid "The :attribute must be a valid email address."
+msgstr ""
+
+#: ../../lang/en/validation.php:38 ../../lang/en/validation.php:60
+msgid "The :attribute field is required."
+msgstr ""
+
+#: ../../lang/en/validation.php:39 ../../lang/en/validation.php:41
+#: ../../lang/en/validation.php:57
+msgid "The selected :attribute is invalid."
+msgstr ""
+
+#: ../../lang/en/validation.php:40
+msgid "The :attribute must be an image."
+msgstr ""
+
+#: ../../lang/en/validation.php:42
+msgid "The :attribute must be an integer."
+msgstr ""
+
+#: ../../lang/en/validation.php:43
+msgid "The :attribute must be a valid IP address."
+msgstr ""
+
+#: ../../lang/en/validation.php:45
+msgid "The :attribute may not be greater than :max."
+msgstr ""
+
+#: ../../lang/en/validation.php:46
+msgid "The :attribute may not be greater than :max kilobytes."
+msgstr ""
+
+#: ../../lang/en/validation.php:47
+msgid "The :attribute may not be greater than :max characters."
+msgstr ""
+
+#: ../../lang/en/validation.php:48
+msgid "The :attribute may not have more than :max items."
+msgstr ""
+
+#: ../../lang/en/validation.php:50
+msgid "The :attribute must be a file of type: :values."
+msgstr ""
+
+#: ../../lang/en/validation.php:52
+msgid "The :attribute must be at least :min."
+msgstr ""
+
+#: ../../lang/en/validation.php:53
+msgid "The :attribute must be at least :min kilobytes."
+msgstr ""
+
+#: ../../lang/en/validation.php:54
+msgid "The :attribute must be at least :min characters."
+msgstr ""
+
+#: ../../lang/en/validation.php:55
+msgid "The :attribute must have at least :min items."
+msgstr ""
+
+#: ../../lang/en/validation.php:58
+msgid "The :attribute must be a number."
+msgstr ""
+
+#: ../../lang/en/validation.php:59 ../../lang/en/validation.php:74
+msgid "The :attribute format is invalid."
+msgstr ""
+
+#: ../../lang/en/validation.php:61
+msgid "The :attribute field is required when :other is :value."
+msgstr ""
+
+#: ../../lang/en/validation.php:62 ../../lang/en/validation.php:63
+msgid "The :attribute field is required when :values is present."
+msgstr ""
+
+#: ../../lang/en/validation.php:64
+msgid "The :attribute field is required when :values is not present."
+msgstr ""
+
+#: ../../lang/en/validation.php:65
+msgid "The :attribute field is required when none of :values are present."
+msgstr ""
+
+#: ../../lang/en/validation.php:66
+msgid "The :attribute and :other must match."
+msgstr ""
+
+#: ../../lang/en/validation.php:68
+msgid "The :attribute must be :size."
+msgstr ""
+
+#: ../../lang/en/validation.php:69
+msgid "The :attribute must be :size kilobytes."
+msgstr ""
+
+#: ../../lang/en/validation.php:70
+msgid "The :attribute must be :size characters."
+msgstr ""
+
+#: ../../lang/en/validation.php:71
+msgid "The :attribute must contain :size items."
+msgstr ""
+
+#: ../../lang/en/validation.php:73
+msgid "The :attribute has already been taken."
+msgstr ""
+
+#: ../../lang/en/validation.php:75
+msgid "The :attribute must be a valid zone."
+msgstr ""
+
+#: ../../views/admin/header.php:26
+#, php-format
+msgid "You have %s messages"
+msgstr "%s Mesajın var"
+
+#: ../../views/admin/header.php:43
+msgid "See All Messages"
+msgstr "Tüm Mesajları Gör"
+
+#: ../../views/admin/header.php:64
+#, php-format
+msgid "Member since %s"
+msgstr "%s den beri üye"
+
+#: ../../views/admin/header.php:72 ../../views/admin/leftSide.php:49
+#: ../../views/admin/rightSide/error.php:28
+msgid "Profile"
+msgstr "Profil"
+
+#: ../../views/admin/header.php:75
+msgid "Sign out"
+msgstr "Çıkış yap"
+
+#: ../../views/admin/leftSide.php:11
+msgid "Hello"
+msgstr "Selam"
+
+#: ../../views/admin/leftSide.php:26
+#: ../../views/admin/rightSide/default.php:6
+#: ../../views/admin/rightSide/default.php:10
+#: ../../views/admin/rightSide/error.php:26
+msgid "Dashboard"
+msgstr "Başlangıç"
+
+#: ../../views/admin/leftSide.php:36
+#: ../../views/admin/rightSide/list/users.php:11
+msgid "Members"
+msgstr "Üyeler"
+
+#: ../../views/admin/leftSide.php:40 ../../views/admin/leftSide.php:63
+#: ../../views/admin/leftSide.php:79
+#: ../../views/admin/rightSide/list/news.php:11
+#: ../../views/admin/rightSide/list/products.php:11
+#: ../../views/admin/rightSide/list/services.php:11
+#: ../../views/admin/rightSide/list/slider.php:12
+#: ../../views/admin/rightSide/list/users.php:12
+msgid "List"
+msgstr "Liste"
+
+#: ../../views/admin/leftSide.php:42
+#: ../../views/admin/rightSide/add/user.php:7
+msgid "Add New Member"
+msgstr "Yeni Üye Ekle"
+
+#: ../../views/admin/leftSide.php:59
+#: ../../views/admin/rightSide/list/news.php:10
+#: ../../views/admin/rightSide/list/news.php:22
+#: ../../views/template/menu.blade.php:9
+msgid "News"
+msgstr "Haberler"
+
+#: ../../views/admin/leftSide.php:64 ../../views/admin/leftSide.php:82
+#: ../../views/admin/rightSide/list/news.php:25
+#: ../../views/admin/rightSide/list/services.php:25
+#: ../../views/admin/rightSide/list/slider.php:26
+#: ../../views/admin/rightSide/list/users.php:26
+msgid "Add New"
+msgstr "Yeni Ekle"
+
+#: ../../views/admin/leftSide.php:74
+msgid "Services"
+msgstr "Hizmeler"
+
+#: ../../views/admin/leftSide.php:90
+msgid "Slider"
+msgstr "Slider"
+
+#: ../../views/admin/leftSide.php:98 ../../views/admin/leftSide.php:102
+#: ../../views/admin/rightSide/mail/mailbox.php:10
+msgid "Mailbox"
+msgstr "Posta kutusu"
+
+#: ../../views/admin/leftSide.php:103
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: ../../views/admin/leftSide.php:113
+msgid "Options"
+msgstr "Ayarlar"
+
+#: ../../views/admin/leftSide.php:118
+msgid "General"
+msgstr "Genel"
+
+#: ../../views/admin/leftSide.php:120
+#: ../../views/admin/rightSide/options/preferences.php:23
+msgid "Site Preferences"
+msgstr "Site Tercihleri"
+
+#: ../../views/admin/login.php:42 ../../views/admin/register.php:43
+#: ../../views/auth/password.blade.php:42 ../../views/auth/reset.blade.php:42
+#: ../../views/password/remind.php:34 ../../views/password/reset.php:34
+msgid "Alert!"
+msgstr "Uyarı!"
+
+#: ../../views/admin/login.php:49
+msgid "Sign in to start your session"
+msgstr ""
+
+#: ../../views/admin/login.php:57 ../../views/admin/register.php:62
+#: ../../views/admin/rightSide/list/users.php:35
+#: ../../views/admin/rightSide/list/users.php:101
+msgid "Username"
+msgstr "Kullanıcı Adı"
+
+#: ../../views/admin/login.php:61
+msgid "Password"
+msgstr "Şifre"
+
+#: ../../views/admin/login.php:68
+msgid "Remember me"
+msgstr "Beni  hatırla"
+
+#: ../../views/admin/login.php:73
+msgid "Sing in"
+msgstr "Giriş yap"
+
+#: ../../views/admin/login.php:79
+msgid "OR"
+msgstr ""
+
+#: ../../views/admin/login.php:80
+msgid "Sign in using Facebook"
+msgstr "Facebook ile giriş yap"
+
+#: ../../views/admin/login.php:81
+msgid " Sign in using Google+"
+msgstr "Google+ ile giriş yap"
+
+#: ../../views/admin/login.php:84
+msgid "I forgot my password"
+msgstr "Şifremi unuttum"
+
+#: ../../views/admin/login.php:85 ../../views/admin/register.php:50
+msgid "Register a new membership"
+msgstr "Yeni üyelik oluştur"
+
+#: ../../views/admin/register.php:70 ../../views/auth/reset.blade.php:65
+#: ../../views/password/reset.php:55
+msgid "Password Confirm"
+msgstr "Şifre Tekrar"
+
+#: ../../views/admin/register.php:82
+msgid "Sign me up"
+msgstr "Üye yap"
+
+#: ../../views/admin/register.php:89
+msgid "Sign up using Facebook"
+msgstr "Facebook ile üye ol"
+
+#: ../../views/admin/register.php:90
+msgid "Sign up using Google+"
+msgstr "Google+ ile üye ol"
+
+#: ../../views/admin/register.php:93
+msgid "I already have a membership"
+msgstr "Zaten bir üyeliğim var"
+
+#: ../../views/admin/rightSide/add/news.php:6
+msgid "Create New News"
+msgstr "Yeni Haber Oluştur"
+
+#: ../../views/admin/rightSide/add/news.php:10
+#: ../../views/admin/rightSide/add/service.php:10
+#: ../../views/admin/rightSide/mail/settings.php:10
+#: ../../views/admin/rightSide/options/index.php:10
+#: ../../views/admin/rightSide/options/preferences.php:10
+#: ../../views/admin/rightSide/update/news.php:10
+#: ../../views/admin/rightSide/update/service.php:10
+msgid "Admin Home"
+msgstr "Yönetici Paneli"
+
+#: ../../views/admin/rightSide/add/news.php:31
+msgid "New News"
+msgstr "Yeni Haber"
+
+#: ../../views/admin/rightSide/add/news.php:36
+#: ../../views/admin/rightSide/add/service.php:35
+#: ../../views/admin/rightSide/list/news.php:34
+#: ../../views/admin/rightSide/list/news.php:100
+#: ../../views/admin/rightSide/list/products.php:30
+#: ../../views/admin/rightSide/list/products.php:78
+#: ../../views/admin/rightSide/list/services.php:34
+#: ../../views/admin/rightSide/list/services.php:100
+#: ../../views/admin/rightSide/update/news.php:36
+#: ../../views/admin/rightSide/update/service.php:36
+msgid "Title"
+msgstr "Başlık"
+
+#: ../../views/admin/rightSide/add/news.php:49
+#: ../../views/admin/rightSide/add/service.php:48
+#: ../../views/admin/rightSide/update/news.php:48
+#: ../../views/admin/rightSide/update/service.php:48
+msgid "Task"
+msgstr "Taslak"
+
+#: ../../views/admin/rightSide/add/news.php:50
+#: ../../views/admin/rightSide/add/news.php:57
+#: ../../views/admin/rightSide/add/service.php:49
+#: ../../views/admin/rightSide/add/service.php:56
+#: ../../views/admin/rightSide/list/news.php:78
+#: ../../views/admin/rightSide/list/services.php:78
+#: ../../views/admin/rightSide/update/news.php:48
+#: ../../views/admin/rightSide/update/service.php:48
+msgid "Publish"
+msgstr "Yayınla"
+
+#: ../../views/admin/rightSide/add/news.php:67
+#: ../../views/admin/rightSide/add/service.php:66
+#: ../../views/admin/rightSide/add/user.php:178
+#: ../../views/admin/rightSide/list/news.php:63
+#: ../../views/admin/rightSide/list/products.php:57
+#: ../../views/admin/rightSide/list/services.php:63
+#: ../../views/admin/rightSide/profile.php:205
+#: ../../views/admin/rightSide/update/news.php:62
+#: ../../views/admin/rightSide/update/service.php:62
+msgid "View"
+msgstr "Göster"
+
+#: ../../views/admin/rightSide/add/news.php:68
+#: ../../views/admin/rightSide/add/service.php:67
+#: ../../views/admin/rightSide/profile.php:206
+#: ../../views/admin/rightSide/update/news.php:63
+#: ../../views/admin/rightSide/update/service.php:63
+msgid "Upload"
+msgstr "Yükle"
+
+#: ../../views/admin/rightSide/add/news.php:70
+#: ../../views/admin/rightSide/add/service.php:69
+#: ../../views/admin/rightSide/update/news.php:65
+#: ../../views/admin/rightSide/update/service.php:65
+msgid "Image"
+msgstr "Resim"
+
+#: ../../views/admin/rightSide/add/news.php:75
+#: ../../views/admin/rightSide/add/service.php:74
+#: ../../views/admin/rightSide/add/user.php:186
+#: ../../views/admin/rightSide/profile.php:213
+#: ../../views/admin/rightSide/update/news.php:70
+#: ../../views/admin/rightSide/update/service.php:70
+#: ../../views/contacts/index.blade.php:47
+msgid "Clear"
+msgstr "Temizle"
+
+#: ../../views/admin/rightSide/add/news.php:90
+#: ../../views/admin/rightSide/add/service.php:89
+#: ../../views/admin/rightSide/add/user.php:205
+#: ../../views/admin/rightSide/profile.php:232
+#: ../../views/admin/rightSide/update/news.php:85
+#: ../../views/admin/rightSide/update/service.php:85
+msgid "Drop Here"
+msgstr "Buraya Bırak"
+
+#: ../../views/admin/rightSide/add/news.php:91
+#: ../../views/admin/rightSide/add/service.php:90
+#: ../../views/admin/rightSide/add/user.php:207
+#: ../../views/admin/rightSide/profile.php:234
+#: ../../views/admin/rightSide/update/news.php:86
+#: ../../views/admin/rightSide/update/service.php:86
+msgid "Browse"
+msgstr "Gözat"
+
+#: ../../views/admin/rightSide/add/service.php:6
+msgid "Create New Workspace"
+msgstr ""
+
+#: ../../views/admin/rightSide/add/service.php:30
+msgid "New workspace"
+msgstr ""
+
+#: ../../views/admin/rightSide/add/user.php:10
+#: ../../views/admin/rightSide/error.php:10
+#: ../../views/admin/rightSide/list/contacts.php:9
+#: ../../views/admin/rightSide/list/news.php:9
+#: ../../views/admin/rightSide/list/products.php:9
+#: ../../views/admin/rightSide/list/services.php:9
+#: ../../views/admin/rightSide/list/slider.php:9
+#: ../../views/admin/rightSide/list/users.php:9
+#: ../../views/admin/rightSide/mail/mailbox.php:9
+#: ../../views/admin/rightSide/profile.php:10
+#: ../../views/template/menu.blade.php:7
+msgid "Home"
+msgstr "Anasayfa"
+
+#: ../../views/admin/rightSide/add/user.php:12
+msgid "Add Member"
+msgstr "Üye Ekle"
+
+#: ../../views/admin/rightSide/add/user.php:30
+#: ../../views/admin/rightSide/profile.php:33
+msgid "Personal Information"
+msgstr "Kişisel Bilgiler"
+
+#: ../../views/admin/rightSide/add/user.php:33
+#: ../../views/admin/rightSide/profile.php:37
+msgid "User Name :"
+msgstr "Kullanıcı Adı :"
+
+#: ../../views/admin/rightSide/add/user.php:41
+#: ../../views/admin/rightSide/profile.php:46
+msgid "User Role :"
+msgstr "Kullanıcı Rolü"
+
+#: ../../views/admin/rightSide/add/user.php:49
+#: ../../views/admin/rightSide/profile.php:54
+msgid "Name :"
+msgstr "İsim :"
+
+#: ../../views/admin/rightSide/add/user.php:57
+#: ../../views/admin/rightSide/profile.php:62
+msgid "Last Name :"
+msgstr "Soyisim :"
+
+#: ../../views/admin/rightSide/add/user.php:65
+#: ../../views/admin/rightSide/profile.php:70
+msgid "Birthday :"
+msgstr "Doğum Tarihi :"
+
+#: ../../views/admin/rightSide/add/user.php:76
+#: ../../views/admin/rightSide/profile.php:81
+msgid "Member since :"
+msgstr "Üyelik tarihi"
+
+#: ../../views/admin/rightSide/add/user.php:86
+#: ../../views/admin/rightSide/profile.php:91
+msgid "Contact Information"
+msgstr "İletişim Bilgisi"
+
+#: ../../views/admin/rightSide/add/user.php:90
+#: ../../views/admin/rightSide/profile.php:95
+msgid "Address :"
+msgstr "Adres :"
+
+#: ../../views/admin/rightSide/add/user.php:98
+#: ../../views/admin/rightSide/profile.php:103
+msgid "City :"
+msgstr "Şehir :"
+
+#: ../../views/admin/rightSide/add/user.php:106
+#: ../../views/admin/rightSide/profile.php:121
+msgid "County :"
+msgstr "İlçe :"
+
+#: ../../views/admin/rightSide/add/user.php:108
+#: ../../views/admin/rightSide/profile.php:117
+msgid "First select a city"
+msgstr "Önce şehir seçin"
+
+#: ../../views/admin/rightSide/add/user.php:114
+#: ../../views/admin/rightSide/profile.php:129
+msgid "GSM :"
+msgstr ""
+
+#: ../../views/admin/rightSide/add/user.php:125
+#: ../../views/admin/rightSide/profile.php:140
+msgid "Phone :"
+msgstr "Telefon:"
+
+#: ../../views/admin/rightSide/add/user.php:136
+#: ../../views/admin/rightSide/profile.php:151
+msgid "e-mail :"
+msgstr "Eposta:"
+
+#: ../../views/admin/rightSide/add/user.php:146
+#: ../../views/admin/rightSide/profile.php:161
+msgid "Social Information"
+msgstr "Sosyal Bilgiler"
+
+#: ../../views/admin/rightSide/add/user.php:170
+#: ../../views/admin/rightSide/list/slider.php:167
+#: ../../views/admin/rightSide/mail/settings.php:78
+#: ../../views/admin/rightSide/options/index.php:71
+#: ../../views/admin/rightSide/options/preferences.php:219
+#: ../../views/admin/rightSide/profile.php:195
+msgid "Save"
+msgstr "Kaydet"
+
+#: ../../views/admin/rightSide/add/user.php:180
+#: ../../views/admin/rightSide/profile.php:208
+msgid "Avatar"
+msgstr ""
+
+#: ../../views/admin/rightSide/add/user.php:192
+#: ../../views/admin/rightSide/profile.php:219
+msgid ""
+"Eğer Gravatar kullanıyosanız resim yüklemenize gerek yok.Gravatar resminiz "
+"gözükecektir "
+msgstr ""
+
+#: ../../views/admin/rightSide/default.php:7
+msgid "Control panel"
+msgstr "Kontrol paneli"
+
+#: ../../views/admin/rightSide/default.php:22
+msgid "Password Warning !"
+msgstr "Şifre uyarısı !"
+
+#: ../../views/admin/rightSide/default.php:23
+msgid ""
+"Your password is \"123456\" which set by default. Please change password so "
+"this is important your security."
+msgstr ""
+"Şİfreniz ön tanımlı olarak belirlenmiş \"123456\" dır. Lütfen güvenliğiniz "
+"için şifrenizi değiştirin."
+
+#: ../../views/admin/rightSide/default.php:37
+msgid "Total News"
+msgstr "Toplam Haber"
+
+#: ../../views/admin/rightSide/default.php:44
+#: ../../views/admin/rightSide/default.php:64
+msgid "More info"
+msgstr "Detaylı bilgi"
+
+#: ../../views/admin/rightSide/default.php:57
+msgid "Total Member"
+msgstr "Toplam Üye"
+
+#: ../../views/admin/rightSide/default.php:80
+msgid "Calendar"
+msgstr "Takvim"
+
+#: ../../views/admin/rightSide/default.php:89
+msgid "Add new event"
+msgstr "Yeni etkinlik Ekle"
+
+#: ../../views/admin/rightSide/default.php:90
+msgid "Clear events"
+msgstr "Etkinlikleri temizle"
+
+#: ../../views/admin/rightSide/default.php:92
+msgid "View calendar"
+msgstr "Takvimi  göster"
+
+#: ../../views/admin/rightSide/default.php:114
+msgid "Send Message to Admin"
+msgstr "Yöneticiye mesaj gönder"
+
+#: ../../views/admin/rightSide/default.php:127
+#: ../../views/admin/rightSide/list/contacts.php:31
+#: ../../views/admin/rightSide/list/contacts.php:102
+msgid "Message"
+msgstr "Mesaj"
+
+#: ../../views/admin/rightSide/default.php:131
+#: ../../views/contacts/index.blade.php:46
+msgid "Send"
+msgstr "Gönder"
+
+#: ../../views/admin/rightSide/error.php:7
+#: ../../views/admin/rightSide/profile.php:7
+msgid "Menage Profile"
+msgstr "Profili yönet"
+
+#: ../../views/admin/rightSide/error.php:12
+msgid "Error page"
+msgstr "Hata sayfası"
+
+#: ../../views/admin/rightSide/error.php:24
+msgid "Go Back"
+msgstr "Geri Dön"
+
+#: ../../views/admin/rightSide/list/contacts.php:10
+msgid "Contact"
+msgstr "İletişim"
+
+#: ../../views/admin/rightSide/list/contacts.php:11
+#: ../../views/admin/rightSide/list/contacts.php:21
+#: ../../views/admin/rightSide/mail/mailbox.php:11
+msgid "Inbox"
+msgstr "Gelen Kutusu"
+
+#: ../../views/admin/rightSide/list/contacts.php:28
+#: ../../views/admin/rightSide/list/contacts.php:99
+msgid "Sender's Name"
+msgstr "Gönderenin Adı"
+
+#: ../../views/admin/rightSide/list/contacts.php:29
+#: ../../views/admin/rightSide/list/contacts.php:100
+msgid "Sender's E-mail"
+msgstr "Gönderenin e-maili"
+
+#: ../../views/admin/rightSide/list/contacts.php:30
+#: ../../views/admin/rightSide/list/contacts.php:101
+msgid "Send Date"
+msgstr "Gönderme Tarihi"
+
+#: ../../views/admin/rightSide/list/contacts.php:32
+#: ../../views/admin/rightSide/list/contacts.php:48
+#: ../../views/admin/rightSide/list/news.php:39
+#: ../../views/admin/rightSide/list/news.php:55
+#: ../../views/admin/rightSide/list/products.php:34
+#: ../../views/admin/rightSide/list/products.php:48
+#: ../../views/admin/rightSide/list/products.php:82
+#: ../../views/admin/rightSide/list/services.php:39
+#: ../../views/admin/rightSide/list/services.php:55
+#: ../../views/admin/rightSide/list/users.php:41
+#: ../../views/admin/rightSide/list/users.php:59
+msgid "Actions"
+msgstr "İşlemler"
+
+#: ../../views/admin/rightSide/list/contacts.php:44
+msgid "Click to read more"
+msgstr "Daha fazla okumak için tıkla"
+
+#: ../../views/admin/rightSide/list/contacts.php:55
+#: ../../views/admin/rightSide/list/contacts.php:121
+msgid "Mark as unread"
+msgstr "Okunmadı işaretle"
+
+#: ../../views/admin/rightSide/list/contacts.php:55
+#: ../../views/admin/rightSide/list/contacts.php:121
+msgid "Mark as read"
+msgstr "Okundu işaretle"
+
+#: ../../views/admin/rightSide/list/contacts.php:73
+msgid "Answer"
+msgstr "Cevap"
+
+#: ../../views/admin/rightSide/list/contacts.php:81
+msgid "Delete Message"
+msgstr "Mesajı Sil"
+
+#: ../../views/admin/rightSide/list/contacts.php:87
+#: ../../views/admin/rightSide/list/contacts.php:115
+#: ../../views/admin/rightSide/list/news.php:87
+#: ../../views/admin/rightSide/list/news.php:122
+#: ../../views/admin/rightSide/list/products.php:67
+#: ../../views/admin/rightSide/list/services.php:87
+#: ../../views/admin/rightSide/list/services.php:122
+#: ../../views/admin/rightSide/list/slider.php:168
+#: ../../views/admin/rightSide/list/users.php:86
+#: ../../views/admin/rightSide/list/users.php:120
+msgid "Delete"
+msgstr "Sil"
+
+#: ../../views/admin/rightSide/list/contacts.php:107
+#: ../../views/admin/rightSide/list/news.php:108
+#: ../../views/admin/rightSide/list/services.php:108
+#: ../../views/admin/rightSide/list/users.php:111
+msgid "Bulk Actions"
+msgstr "Toplu İşlemler"
+
+#: ../../views/admin/rightSide/list/news.php:35
+#: ../../views/admin/rightSide/list/news.php:101
+#: ../../views/admin/rightSide/list/products.php:31
+#: ../../views/admin/rightSide/list/products.php:79
+#: ../../views/admin/rightSide/list/services.php:35
+#: ../../views/admin/rightSide/list/services.php:101
+msgid "Author"
+msgstr "Yazar"
+
+#: ../../views/admin/rightSide/list/news.php:36
+#: ../../views/admin/rightSide/list/news.php:102
+#: ../../views/admin/rightSide/list/products.php:32
+#: ../../views/admin/rightSide/list/products.php:80
+#: ../../views/admin/rightSide/list/services.php:36
+#: ../../views/admin/rightSide/list/services.php:102
+msgid "Publish Date"
+msgstr "Yayınlama tarihi"
+
+#: ../../views/admin/rightSide/list/news.php:37
+#: ../../views/admin/rightSide/list/news.php:103
+#: ../../views/admin/rightSide/list/products.php:33
+#: ../../views/admin/rightSide/list/products.php:81
+#: ../../views/admin/rightSide/list/services.php:37
+#: ../../views/admin/rightSide/list/services.php:103
+msgid "Type"
+msgstr "Tip"
+
+#: ../../views/admin/rightSide/list/news.php:38
+#: ../../views/admin/rightSide/list/news.php:104
+#: ../../views/admin/rightSide/list/services.php:38
+#: ../../views/admin/rightSide/list/services.php:104
+#: ../../views/admin/rightSide/list/users.php:39
+#: ../../views/admin/rightSide/list/users.php:105
+msgid "Status"
+msgstr "Statü"
+
+#: ../../views/admin/rightSide/list/news.php:69
+#: ../../views/admin/rightSide/list/products.php:62
+#: ../../views/admin/rightSide/list/services.php:69
+msgid "Edit"
+msgstr "Düzenle"
+
+#: ../../views/admin/rightSide/list/news.php:73
+#: ../../views/admin/rightSide/list/services.php:73
+msgid "Change Status"
+msgstr "Durumu Değiştir"
+
+#: ../../views/admin/rightSide/list/news.php:78
+#: ../../views/admin/rightSide/list/services.php:78
+msgid "Make Task"
+msgstr "Taslak"
+
+#: ../../views/admin/rightSide/list/news.php:116
+#: ../../views/admin/rightSide/list/services.php:116
+msgid "Toggle Status"
+msgstr "Statüyü değiştir"
+
+#: ../../views/admin/rightSide/list/products.php:10
+#: ../../views/admin/rightSide/list/products.php:22
+msgid "Products"
+msgstr "Ürünler"
+
+#: ../../views/admin/rightSide/list/services.php:6
+msgid "Manage Workspaces"
+msgstr ""
+
+#: ../../views/admin/rightSide/list/services.php:10
+#: ../../views/admin/rightSide/list/services.php:22
+msgid "My Workspace"
+msgstr ""
+
+#: ../../views/admin/rightSide/list/slider.php:5
+#: ../../views/admin/rightSide/list/slider.php:11
+#: ../../views/admin/rightSide/list/slider.php:22
+msgid "Slides"
+msgstr "Slidelar"
+
+#: ../../views/admin/rightSide/list/slider.php:36
+#: ../../views/admin/rightSide/list/slider.php:152
+msgid "Select Image"
+msgstr "Resim Seç"
+
+#: ../../views/admin/rightSide/list/slider.php:42
+#: ../../views/admin/rightSide/list/slider.php:59
+#: ../../views/admin/rightSide/list/slider.php:156
+#: ../../views/admin/rightSide/list/slider.php:192
+msgid "Upload Image"
+msgstr "Resmi Yükle"
+
+#: ../../views/admin/rightSide/list/slider.php:52
+#: ../../views/admin/rightSide/list/slider.php:185
+msgid "Image Uploading..."
+msgstr "Resim Yükleniyor"
+
+#: ../../views/admin/rightSide/list/slider.php:57
+#: ../../views/admin/rightSide/list/slider.php:190
+msgid "Image Uploaded"
+msgstr "Resim Yüklendi"
+
+#: ../../views/admin/rightSide/list/slider.php:67
+msgid "Slide url"
+msgstr "Slide url"
+
+#: ../../views/admin/rightSide/list/slider.php:69
+msgid "Slide title"
+msgstr "Slide başlığı"
+
+#: ../../views/admin/rightSide/list/slider.php:71
+msgid "Slide content"
+msgstr "Slide içeriği"
+
+#: ../../views/admin/rightSide/list/users.php:23
+msgid "Users"
+msgstr "Kullanıcılar"
+
+#: ../../views/admin/rightSide/list/users.php:36
+#: ../../views/admin/rightSide/list/users.php:102
+msgid "Name - Lastname"
+msgstr "İsim - Soyisim"
+
+#: ../../views/admin/rightSide/list/users.php:37
+#: ../../views/admin/rightSide/list/users.php:103
+msgid "email"
+msgstr "eposta"
+
+#: ../../views/admin/rightSide/list/users.php:38
+#: ../../views/admin/rightSide/list/users.php:104
+msgid "Date registered"
+msgstr "Kayıt Tarihi"
+
+#: ../../views/admin/rightSide/list/users.php:61
+msgid "Toggle Dropdown"
+msgstr ""
+
+#: ../../views/admin/rightSide/list/users.php:67
+msgid "View/Edit"
+msgstr "Göster/Düzenle"
+
+#: ../../views/admin/rightSide/list/users.php:71
+msgid "Approve User"
+msgstr "Kullanıcıyı Onayla"
+
+#: ../../views/admin/rightSide/list/users.php:76
+msgid "Approve"
+msgstr "Onayla"
+
+#: ../../views/admin/rightSide/list/users.php:76
+msgid "Unapprove"
+msgstr "Onaylanmamış"
+
+#: ../../views/admin/rightSide/list/users.php:125
+msgid ""
+"Warning! Bu işlem seçilen kullanıcılar arasındaki onaylı kullanıcıları "
+"onaysız,onaysız kullanıcıları onaylı  duruma getirir. "
+msgstr ""
+"Dikkat ! Bu işlem seçilen kullanıcılar arasındaki onaylı kullanıcıları "
+"onaysız,onaysız kullanıcıları onaylı  duruma getirir. "
+
+#: ../../views/admin/rightSide/list/users.php:127
+msgid "Approve / Unapprove"
+msgstr "Onayla / Onayı kaldır"
+
+#: ../../views/admin/rightSide/mail/settings.php:6
+msgid "Manage Mail Addresses"
+msgstr "Mail Adreslerini Yönet"
+
+#: ../../views/admin/rightSide/mail/settings.php:23
+#: ../../views/admin/rightSide/mail/settings.php:32
+msgid "Change Password"
+msgstr "Şİfre Değiştir"
+
+#: ../../views/admin/rightSide/mail/settings.php:36
+msgid "Email Username"
+msgstr "E-mail Kullanıcı adı"
+
+#: ../../views/admin/rightSide/mail/settings.php:46
+#: ../../views/admin/rightSide/mail/settings.php:51
+#: ../../views/admin/rightSide/profile.php:280
+msgid "Current Password"
+msgstr "Şimdiki Şifre"
+
+#: ../../views/admin/rightSide/mail/settings.php:57
+#: ../../views/admin/rightSide/mail/settings.php:62
+#: ../../views/admin/rightSide/profile.php:292
+msgid "New Password"
+msgstr "Yeni Şifre"
+
+#: ../../views/admin/rightSide/mail/settings.php:68
+#: ../../views/admin/rightSide/mail/settings.php:73
+#: ../../views/admin/rightSide/profile.php:304
+msgid "Password Confirmation"
+msgstr "Şifre Doğrulama"
+
+#: ../../views/admin/rightSide/options/index.php:6
+msgid "Menage General Options"
+msgstr "Genel Ayarları Yönet"
+
+#: ../../views/admin/rightSide/options/index.php:23
+msgid "Site Options"
+msgstr "Site Ayarları"
+
+#: ../../views/admin/rightSide/options/index.php:37
+#: ../../views/admin/rightSide/options/preferences.php:32
+msgid "Save Options"
+msgstr "Ayarları Kaydet"
+
+#: ../../views/admin/rightSide/options/index.php:42
+msgid "Site Name"
+msgstr "Site Adı"
+
+#: ../../views/admin/rightSide/options/index.php:49
+msgid "Site Description"
+msgstr "Site Açıklama"
+
+#: ../../views/admin/rightSide/options/index.php:57
+msgid "Main mail address"
+msgstr "Birincil Mail adresi"
+
+#: ../../views/admin/rightSide/options/index.php:64
+msgid "Dues Amount"
+msgstr "Aidat miktarı"
+
+#: ../../views/admin/rightSide/options/preferences.php:6
+msgid "Menage Site Preferences"
+msgstr "Site Tercihlerini Yönet"
+
+#: ../../views/admin/rightSide/profile.php:12
+msgid "Profile page"
+msgstr "Profil sayfası"
+
+#: ../../views/admin/rightSide/profile.php:28
+msgid "Save Profile"
+msgstr "Profili Kaydet"
+
+#: ../../views/admin/rightSide/profile.php:259
+msgid "Password Update"
+msgstr "Şifre Güncelle"
+
+#: ../../views/admin/rightSide/profile.php:312
+#: ../../views/admin/rightSide/update/news.php:53
+#: ../../views/admin/rightSide/update/service.php:53
+msgid "Update"
+msgstr "Güncelle"
+
+#: ../../views/admin/rightSide/update/news.php:6
+#: ../../views/admin/rightSide/update/news.php:32
+msgid "Update News"
+msgstr "Haberi Güncelle"
+
+#: ../../views/admin/rightSide/update/service.php:6
+msgid "Update workspace"
+msgstr ""
+
+#: ../../views/admin/rightSide/update/service.php:32
+msgid "Update Workspace"
+msgstr ""
+
+#: ../../views/auth/password.blade.php:47 ../../views/auth/reset.blade.php:47
+#: ../../views/password/remind.php:44
+msgid "Password Remind"
+msgstr "Şifre hatırlatma"
+
+#: ../../views/auth/password.blade.php:56 ../../views/auth/reset.blade.php:57
+#: ../../views/password/remind.php:54
+msgid "Enter your email adress"
+msgstr "email adresinizi girin"
+
+#: ../../views/auth/password.blade.php:60 ../../views/auth/reset.blade.php:69
+#: ../../views/password/remind.php:58
+msgid "Submit"
+msgstr "Gönder"
+
+#: ../../views/contacts/index.blade.php:27
+msgid "Contact Form"
+msgstr "İletişim Formu"
+
+#: ../../views/contacts/index.blade.php:31
+msgid "Your Name:"
+msgstr "Adınız:"
+
+#: ../../views/contacts/index.blade.php:35
+msgid "Your City:"
+msgstr "Şehriniz:"
+
+#: ../../views/contacts/index.blade.php:39
+msgid "Your E-mail:"
+msgstr "E-postanız:"
+
+#: ../../views/contacts/index.blade.php:43
+msgid "Your Message:"
+msgstr "Mesajınız"
+
+#: ../../views/contacts/index.blade.php:54
+#: ../../views/template/menu.blade.php:15
+msgid "Contacts"
+msgstr "İletişim"
+
+#: ../../views/contacts/index.blade.php:57
+#: ../../views/template/default.blade.php:81
+msgid "Country:"
+msgstr "Ülke:"
+
+#: ../../views/contacts/index.blade.php:58
+#: ../../views/template/default.blade.php:82
+msgid "City:"
+msgstr "Şehir:"
+
+#: ../../views/contacts/index.blade.php:59
+msgid "Telephone:"
+msgstr "Telefon:"
+
+#: ../../views/contacts/index.blade.php:60
+#: ../../views/template/default.blade.php:84
+msgid "Email:"
+msgstr "Eposta:"
+
+#: ../../views/emails/auth/reminder.blade.php:7
+#: ../../views/password/reset.php:37
+msgid "Password Reset"
+msgstr "Şifre sıfırlama"
+
+#: ../../views/emails/auth/reminder.blade.php:10
+msgid "To reset your password, complete this form:"
+msgstr "Şifrenizi  yenilemek için bu formu doldurun"
+
+#: ../../views/emails/password.blade.php:1
+msgid "Click here to reset your password:"
+msgstr "Şifrenizi sıfırlamak için buraya tıklayın:"
+
+#: ../../views/emails/welcome.php:10
+msgid "New User"
+msgstr "Yeni  Kullanıcı"
+
+#: ../../views/emails/welcome.php:16
+msgid "Login"
+msgstr "Giriş"
+
+#: ../../views/password/remind.php:41
+msgid "Success!"
+msgstr "Başarılı!"
+
+#: ../../views/password/reset.php:59
+msgid "Reset My Password"
+msgstr "Şifremi Sıfırla"
+
+#: ../../views/template/default.blade.php:68
+msgid "Why Us?"
+msgstr "Neden biz?"
+
+#: ../../views/template/default.blade.php:79
+msgid "Address"
+msgstr "Adres"
+
+#: ../../views/template/default.blade.php:83
+msgid "Phone:"
+msgstr "Telefon:"
+
+#: ../../views/template/default.blade.php:90
+msgid "Follow Us"
+msgstr "Bizi takip edin"
+
+#: ../../views/template/menu.blade.php:7
+msgid "Welcome!"
+msgstr "Hoş geldiniz!"
+
+#: ../../views/template/menu.blade.php:9
+msgid "Fresh"
+msgstr "Temiz"
+
+#: ../../views/template/menu.blade.php:11
+msgid "Bylaw"
+msgstr "Tüzük"
+
+#: ../../views/template/menu.blade.php:11
+msgid "law"
+msgstr "hukuk"
+
+#: ../../views/template/menu.blade.php:13
+msgid "Membership"
+msgstr "Üyelik"
+
+#: ../../views/template/menu.blade.php:13
+msgid "Join Us"
+msgstr "Bize Katıl"
+
+#: ../../views/template/menu.blade.php:15
+msgid "Our Address"
+msgstr "Adresimiz"
+
+#~ msgid "Sign In"
+#~ msgstr "Giriş Yap"
+
+#~ msgid "Sign in using social networks"
+#~ msgstr "Sosyal ağları kullanarak giriş yap"
+
+#~ msgid "İnbox"
+#~ msgstr "Gelen Kutusu"
+
+#~ msgid "Register New Membership"
+#~ msgstr "Yeni Üyelik Oluştur"
+
+#~ msgid "Register using social networks"
+#~ msgstr "Sosyal ağları kullanarak üye ol"
+
+#~ msgid "Dues"
+#~ msgstr "Aidat"
+
+#~ msgid "Payment summary"
+#~ msgstr "Ödeme Özeti"
+
+#~ msgid "Dues of %s "
+#~ msgstr "%s ayı aidatı"
+
+#~ msgid "You do not have unpaid dues"
+#~ msgstr "Ödenmemiş aidatınız yok"
+
+#~ msgid "Donate"
+#~ msgstr "Bağış"
+
+#~ msgid "Description"
+#~ msgstr "Açıklama"
+
+#~ msgid "Write a description"
+#~ msgstr "Bİr açıklama yaz"
+
+#~ msgid "Pay"
+#~ msgstr "Öde"
+
+#~ msgid "Creat New News"
+#~ msgstr "Yeni Haber oluştur"
+
+#~ msgid "Theme Skin"
+#~ msgstr "Temayı değiştir"
+
+#~ msgid "Password Reminder"
+#~ msgstr "Şifre Hatırlatıcı"
+
+#~ msgid "E-mail not found"
+#~ msgstr "E-mail bulunamadı"
+
+#~ msgid "Your request received. Please check your e-mails"
+#~ msgstr "Talebiniz alındı.Maillerinizi kontrol edin"
+
+#~ msgid "Admin Panel"
+#~ msgstr "Yönetici Paneli"
+
+#~ msgid "Permission Error"
+#~ msgstr "Yetki Hatası"
+
+#~ msgid "You do not have permission to access this page"
+#~ msgstr "Bu sayfaya ulaşmak için yetkiniz yok"
+
+#~ msgid "Register Page"
+#~ msgstr "Üyelik Sayfası"
+
+#~ msgid "Login Page"
+#~ msgstr "Giriş Sayfası"
+
+#~ msgid "Saved successfully"
+#~ msgstr "Başarıyla Kaydedildi"
+
+#~ msgid "Incorrect Password"
+#~ msgstr "Yanlış şifre"
+
+#~ msgid "Passwords mustn't same"
+#~ msgstr "Şifreler aynı olamaz"
+
+#~ msgid "Deleted Successfully"
+#~ msgstr "Başarıyla Silindi"
+
+#~ msgid "Admin can not be delete"
+#~ msgstr "Yönetici Silinemez"
+
+#~ msgid "Successful"
+#~ msgstr "Başarılı"
+
+#~ msgid "News Management Page"
+#~ msgstr "Haberler  Yönetim  Sayfası"
+
+#~ msgid "Add News"
+#~ msgstr "Haber Ekle"
+
+#~ msgid "Slider Management Page"
+#~ msgstr "Slider  Yönetim  Sayfası"
+
+#~ msgid "Extension not allowed"
+#~ msgstr "Geçersiz dosya uzantısı"
+
+#~ msgid "File uploaded successfully"
+#~ msgstr "Dosya başarıyla yüklendi"
+
+#~ msgid "Add New Service"
+#~ msgstr "Yeni Hizmet Ekle"
+
+#~ msgid "Add New Product"
+#~ msgstr "Yeni  Ürün Ekle"
+
+#~ msgid "Cotacts"
+#~ msgstr "İletişim"
+
+#~ msgid "Please Enter Your Name"
+#~ msgstr "Lütfen adınızı giriniz"
+
+#~ msgid "Please enter message"
+#~ msgstr "Lütfen mesajınızı yazın"
+
+#~ msgid "Mail send Successfully"
+#~ msgstr "Mail başarıyla gönderildi"
+
+#~ msgid "Mail Delete Successfully"
+#~ msgstr "Mail başarıyla silindi"
+
+#~ msgid "Orders"
+#~ msgstr "Siparişler"
+
+#~ msgid "Payed Successfully"
+#~ msgstr "Başarıyla Ödendi"
+
+#~ msgid "Please enter user name"
+#~ msgstr "Lütfen kullanıcı adınızı giriniz"
+
+#~ msgid "Please enter password"
+#~ msgstr "Lütfen şifrenizi giriniz"
+
+#~ msgid "Processing was carried out successfully"
+#~ msgstr "İşleme başarıyla gerçekleştirildi"
+
+#~ msgid "Update Successfully"
+#~ msgstr "Başarıyla Güncellendi"
+
+#~ msgid "General Options"
+#~ msgstr "Genel Ayarlar"
+
+#~ msgid "Options Saved"
+#~ msgstr "Ayarlar Kaydedildi"
+
+#~ msgid "Select County"
+#~ msgstr "İlçe Seçin"
 
 #~ msgid "Close"
 #~ msgstr "Kapat"
@@ -1406,9 +1569,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Update Slide"
 #~ msgstr "Slide ekle"
-
-#~ msgid "Settings"
-#~ msgstr "Ayarlar"
 
 #~ msgid "Save changes"
 #~ msgstr "Değişiklikleri  kaydet"

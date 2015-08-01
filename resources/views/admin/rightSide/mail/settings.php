@@ -3,7 +3,7 @@
 	<section class="content-header">
 		<h1>
 			<?= $title ?>
-			<small><?= _( 'Menage Mail Addresses' ) ?></small>
+			<small><?= _( 'Manage Mail Addresses' ) ?></small>
 		</h1>
 		<ol class="breadcrumb">
 			<li>
