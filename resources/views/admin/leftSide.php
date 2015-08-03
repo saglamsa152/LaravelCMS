@@ -123,6 +123,5 @@
 			<?php endif; ?>
 			<!-- /Options -->
 		</ul>
-	</section>
-	<!-- /.sidebar -->
+	</section><!-- /.sidebar -->
 </aside>
