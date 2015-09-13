@@ -1,7 +1,7 @@
 <?php
 session_start();
 mb_internal_encoding('UTF-8');
-date_default_timezone_set('Europe/Rome');
+date_default_timezone_set('Europe/İstanbul');
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +66,7 @@ $config = array(
 	| with start and final /
 	|
 	*/
-	'upload_dir' => '/source/',
+	'upload_dir' => '/assets/uploads/',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -76,7 +76,7 @@ $config = array(
 	| with final /
 	|
 	*/
-	'current_path' => '../source/',
+	'current_path' => '../../../../uploads/',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -87,7 +87,7 @@ $config = array(
 	| DO NOT put inside upload folder
 	|
 	*/
-	'thumbs_base_path' => '../thumbs/',
+	'thumbs_base_path' => '../../../../thumbs/',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -127,7 +127,7 @@ $config = array(
 	| default language file name
 	|--------------------------------------------------------------------------
 	*/
-	'default_language' => "en_EN",
+	'default_language' => "tr_TR",
 
 	/*
 	|--------------------------------------------------------------------------
