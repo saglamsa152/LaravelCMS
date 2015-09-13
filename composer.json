@@ -7,7 +7,6 @@
 	"require": {
 		"laravel/framework": "5.0.*",
         "laravelcollective/html": "~5.0",
-        "folklore/image": "dev-master",
 		"barryvdh/laravel-ide-helper": "^2.0"
 	},
 	"require-dev": {

@@ -150,7 +150,6 @@ return [
 		 * Sonradan Eklenenler
 		 */
 		'Collective\Html\HtmlServiceProvider',
-		'Folklore\Image\ImageServiceProvider',
 		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
 	],
@@ -206,7 +205,6 @@ return [
 		 */
 		'Form' => 'Collective\Html\FormFacade',
 		'Html' => 'Collective\Html\HtmlFacade',
-		'Image' => 'Folklore\Image\Facades\Image',
 		/*
 		 * Model takma isimleri
 		 */

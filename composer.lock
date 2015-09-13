@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9170a365b51461b70141d78fb74bd012",
+    "hash": "04ce2be6f618444fb82d2b7d63ff14dc",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -284,125 +284,6 @@
                 "string"
             ],
             "time": "2014-12-20 21:24:13"
-        },
-        {
-            "name": "folklore/image",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Folkloreatelier/laravel-image.git",
-                "reference": "06a893334253503c4a48be7066063dd6dde14c88"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Folkloreatelier/laravel-image/zipball/06a893334253503c4a48be7066063dd6dde14c88",
-                "reference": "06a893334253503c4a48be7066063dd6dde14c88",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.0",
-                "imagine/imagine": "0.6.*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "3.0.*"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "tests/ImageTestCase.php"
-                ],
-                "psr-0": {
-                    "Folklore\\Image\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Folklore",
-                    "email": "info@atelierfolklore.ca",
-                    "homepage": "http://atelierfolklore.ca"
-                },
-                {
-                    "name": "David Mongeau-Petitpas",
-                    "email": "dmp@atelierfolklore.ca",
-                    "homepage": "http://mongo.ca",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Image manipulation library for Laravel 4 based on Imagine and inspired by Croppa for easy url based manipulation",
-            "homepage": "http://github.com/Folkloreatelier/laravel-image",
-            "keywords": [
-                "gd",
-                "gmagick",
-                "image",
-                "imagick",
-                "imagine",
-                "laravel",
-                "thumbnail",
-                "watermark"
-            ],
-            "time": "2015-08-05 14:41:39"
-        },
-        {
-            "name": "imagine/imagine",
-            "version": "0.6.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/avalanche123/Imagine.git",
-                "reference": "83ca8babede0e54f935ec09d55a726bf4b0a3f7c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/83ca8babede0e54f935ec09d55a726bf4b0a3f7c",
-                "reference": "83ca8babede0e54f935ec09d55a726bf4b0a3f7c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "sami/sami": "dev-master"
-            },
-            "suggest": {
-                "ext-gd": "to use the GD implementation",
-                "ext-gmagick": "to use the Gmagick implementation",
-                "ext-imagick": "to use the Imagick implementation"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-develop": "0.7-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Imagine": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bulat Shakirzyanov",
-                    "email": "mallluhuct@gmail.com",
-                    "homepage": "http://avalanche123.com"
-                }
-            ],
-            "description": "Image processing for PHP 5.3",
-            "homepage": "http://imagine.readthedocs.org/",
-            "keywords": [
-                "drawing",
-                "graphics",
-                "image manipulation",
-                "image processing"
-            ],
-            "time": "2014-11-11 11:36:02"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -1327,12 +1208,12 @@
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Console.git",
+                "url": "git@github.com:symfony/Console.git",
                 "reference": "0e5e18ae09d3f5c06367759be940e9ed3f568359"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/0e5e18ae09d3f5c06367759be940e9ed3f568359",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/2d33e68be3df98c81cac93f28bddb8c793881513",
                 "reference": "0e5e18ae09d3f5c06367759be940e9ed3f568359",
                 "shasum": ""
             },
@@ -3095,9 +2976,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "folklore/image": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
