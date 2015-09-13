@@ -35,4 +35,8 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Make dialogs simpler.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+
+	config.filebrowserBrowseUrl = '/assets/admin/plugins/ResponsiveFilemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=';
+	config.filebrowserUploadUrl = '/assets/admin/plugins/ResponsiveFilemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=';
+	config.filebrowserImageBrowseUrl = '/assets/admin/plugins/ResponsiveFilemanager/filemanager/dialog.php?type=1&editor=ckeditor&fldr=';
 };
