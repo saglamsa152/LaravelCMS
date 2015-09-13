@@ -46,8 +46,6 @@
 <?=Html::script('assets/admin/plugins/datatables/dataTables.bootstrap.js')?>
 <!-- CK Editor -->
 <?=Html::script('assets/admin/plugins/ckeditor/ckeditor.js')?>
-<!--TinyMCE -->
-<?=Html::script('assets/admin/plugins/tinymce/tinymce.min.js')?>
 <!-- InputMask -->
 <?=Html::script('assets/admin/plugins/input-mask/jquery.inputmask.js')?>
 <?=Html::script('assets/admin/plugins/input-mask/jquery.inputmask.date.extensions.js')?>

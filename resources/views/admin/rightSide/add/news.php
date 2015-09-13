@@ -98,7 +98,9 @@
 					</div><!-- /#upload .tab-pane -->
 				</div><!-- /.tab-content -->
 			</div><!-- /.nav-tabs-custom -->
+			<div class="clearfix"></div>
 		</section>
+		<div class="clearfix"></div>
 	</section>
 
 	<!-- /.content -->
