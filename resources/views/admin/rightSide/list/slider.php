@@ -22,7 +22,7 @@
 						<h3 class="box-title"><?= _( 'Slides' ) ?></h3>
 
 						<div class="box-tools">
-							<button id="newSlide" type="button" class="btn btn-success pull-right" data-target="#newSlideTarget">
+							<button id="newSlide" type="button" class="btn btn-success pull-right" html-target="#newSlideTarget">
 								<i class="fa fa-plus"></i> <?= _( 'Add New' ) ?>
 							</button>
 

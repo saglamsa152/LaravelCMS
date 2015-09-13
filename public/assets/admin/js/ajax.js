@@ -351,9 +351,10 @@ $(function () {
 	/**
 	 * içeriği tada target ile belirtilmiş formları modal içerisinde açar ve işleme sokar
      * rightSide/list/slider.php:25 de kullanımı var
+	 * View içinde modal kodlarını ekleyerek kalabalık yapmamak için kullanılıyor
 	 */
-	$('[data-target]').click(function () {
-		var target = $($(this).attr("data-target")).clone();//
+	$('[html-target]').click(function () {
+		var target = $($(this).attr("html-target")).clone();//
 		var title = $(this).html();
 		body.append(modal);
 		//modal  kapatıldığında sayfadan silinsin
