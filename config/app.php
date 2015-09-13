@@ -205,6 +205,7 @@ return [
 		 */
 		'Form' => 'Collective\Html\FormFacade',
 		'Html' => 'Collective\Html\HtmlFacade',
+		'FileManager'=> 'App\MyClasses\FileManager\FileManager',
 		/*
 		 * Model takma isimleri
 		 */

@@ -1,4 +1,3 @@
-<?php use App\MyClasses\FileManager\FileManager;?>
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="content-wrapper">
 	<!-- Content Header (Page header) -->

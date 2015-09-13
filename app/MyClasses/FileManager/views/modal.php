@@ -6,22 +6,28 @@
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><?=_('File Manager')?></h4>
+                <h4 class="modal-title"><?= _('File Manager') ?></h4>
             </div>
             <div class="modal-body no-padding">
-
                 <iframe id="filemanagerFrame" width="100%" height="100%" frameborder="0"
-                        src="<?=$pluginDir?>filemanager/dialog.php?<?=$request?>"></iframe>
+                        src="<?= $pluginDir ?>filemanager/dialog.php?<?= $request ?>"></iframe>
                 <script>
                     $("#filemanagerFrame").height(window.innerHeight - 150);
 
                     function responsive_filemanager_callback(field_id) {
-                        console.log(field_id);
-                        var filed=jQuery('#' + field_id);
-                        var url = filed.val();
+                        var field = jQuery('#' + field_id);
+                        var url = field.val();
+                        /*
+                        önizleme için url değerinin aktarılması istenen img nesnesi. id değerini  php den aktarınca otomatik olarak img nesnesinin tamamını alıyor(ilginç:)).
+                         */
+                        var targetImageId = <?=$targetImageId?>;
+                        if ($.type(targetImageId) !== 'undefined') {
+                            $(targetImageId).attr('src', url);
+                        }
+
                         //eğer seçilen alan resimse url source özelliğine aktarılıacak
-                        if(filed.is('img')){
-                            filed.attr('src',url)
+                        if (field.is('img')) {
+                            field.attr('src', url)
                         }
                     }
                 </script>
