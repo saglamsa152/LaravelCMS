@@ -1,3 +1,4 @@
+<?php use App\MyClasses\FileManager\FileManager;?>
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -17,7 +18,7 @@
 		<!-- Small boxes (Stat box) -->
 		<div class="row">
 			<div class="col-md-12">
-				<?php if (Hash::check('123456', Auth::getUser()->getAuthPassword())):?>
+				<?php if (Hash::check('123456', Auth::getUser()->getAuthPassword()) && Auth::user()->username==='admin'):?>
 					<div class="callout callout-danger">
 						<h4><?=_('Password Warning !')?></h4>
 						<p><?=_('Your password is "123456" which set by default. Please change password so this is important your security.')?></p>
@@ -72,6 +73,7 @@
 		<div class="row">
 			<!-- Left col -->
 			<section class="col-lg-6">
+
 				<!-- Calendar -->
 				<div class="box box-warning">
 					<div class="box-header">
