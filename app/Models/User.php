@@ -147,7 +147,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			$avatar_url .= md5( strtolower( trim( $user->email ) ) );
 			$avatar_url .= "?s=$s&d=$d&r=$r";
 		}
-		else $avatar_url = $user->avatar;
+		else {
+			$avatar_url = thumbImageUrl($user->avatar,array('width'=>$s,'height'=>$s));// eğer resim var sa thumbial oluşturulacak
+		}
 		return $avatar_url;
 	}
 
