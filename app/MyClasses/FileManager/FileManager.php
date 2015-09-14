@@ -26,7 +26,7 @@ class FileManager
 		// set default
 		$options = array(
 			'btn_class' => 'btn btn-primary',
-			'btn-title' =>_('Open Filemanager'),
+			'btn_title' =>_('Open Filemanager'),
 			'type'=>0,
 			'field_id' => null,
 			'fldr' => null,
