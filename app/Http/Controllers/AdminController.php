@@ -1002,35 +1002,6 @@ class AdminController extends BaseController {
 		}
 	}
 
-	/**
-	 * todo upload işlemleri  yapılınca taşınacak
-	 * mini-ajx-upload-file uygulamasını upload işlemi
-	 * resim yükleme işlemini gerçekleştiriyor
-	 */
-	public	function postUpload() {
-		// A list of permitted file extensions
-		$allowed = array( 'png', 'jpg', 'gif' );
-		$file    = \Input::file( 'upl' );
-		$path    = Input::get('uploadPath');
-		if ( \Input::hasFile( 'upl' ) && \Input::file( 'upl' )->getError() == 0 ) {
-
-			$extension = \Input::file( 'upl' )->getClientOriginalExtension();
-
-			if ( !in_array( strtolower( $extension ), $allowed ) ) {
-				echo '{"status":"error"}';
-				exit;
-			}
-			if ( Input::file( 'upl' )->move( $path, $file->getClientOriginalName() ) ) {
-				echo '{"status":"success"}';
-				exit;
-			}
-
-		}
-
-		echo '{"status":"error"}';
-		exit;
-	}
-
     public function postSendMessageToAdmin(){
         try {
             /*
