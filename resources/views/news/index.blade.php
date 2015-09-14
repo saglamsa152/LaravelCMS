@@ -43,6 +43,7 @@
 				</h5>
 
 				<div class="wrapper pad_bot2">
+					<img src="{{$post->coverImage}}">
 					{{$post->excerpt}}
 					<a class="link1" href="{{URL::action('HomeController@getNews',$post->url)}}">Read More</a>
 				</div>

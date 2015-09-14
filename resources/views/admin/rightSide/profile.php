@@ -238,8 +238,8 @@
 							) ) ?>
 							<button id="clear" type="button" class="btn btn-danger pull-right"
 									targetFormElement='#userForm input[name="meta[avatar]"]'><?= _( 'Clear' ) ?></button>
-							<?php $fileman= new FileManager();
-							$fileman->getOpenButton(array('type'=>1,'field_id'=>'metaAvatar','fldr'=>'profile_image','btn_title'=>_('Change'),'targetImageId'=>'userAvatar'));
+							<?php
+							fileManager()->getOpenButton(array('type'=>1,'field_id'=>'metaAvatar','fldr'=>'profile_image','btn_title'=>_('Change'),'targetImageId'=>'userAvatar'));
 							?>
 							<div class="clearfix"></div>
 						</div>

@@ -36,7 +36,7 @@ function userCan( $action ) {
 		'manageContact'        => [ 'admin', 'editor' ],
 		'manageDues'           => [ 'admin' ],
 		'viewDashboard'        => [ 'admin', 'editor', 'user' ],
-		'manageMailbox'           => [ 'admin', 'editor', 'user' ],
+		'manageMailbox'        => [ 'admin', 'editor', 'user' ],
 		'manageMailSettings'   => [ 'admin' ]
 	);
 	if ( is_array( $action ) ) {
@@ -55,4 +55,8 @@ function userCan( $action ) {
 	}
 
 	return $result;
+}
+
+function fileManager(){
+	return new FileManager();
 }

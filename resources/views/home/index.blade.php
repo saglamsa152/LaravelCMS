@@ -1,4 +1,4 @@
-<?php use Folklore\Image\Facades\Image; ?>@extends('template.default')
+@extends('template.default')
 @section('header')
 <div class="body1">
 	<div id="page1" class="body2">
@@ -24,7 +24,7 @@
 					<div class="wrap-col">
 						<h2 class="under">Hoşgeldiniz!</h2>
 						<div class="wrapper"><!-- Todo Image çalışmıyor -->
-							<figure class="left marg_right1"><img alt="" src="{{Image::url('assets/images/page1_img1.jpg',200,200,array('crop'))}}">
+							<figure class="left marg_right1"><img alt="" src="assets/images/page1_img1.jpg">
 							</figure>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam scelerisque porttitor nibh ac laoreet. Maecenas molestie magna ut quam lacinia finibus. In non magna eu ex efficitur accumsan efficitur non massa. Pellentesque eu est a tellus tristique suscipit ac fermentum eros. Suspendisse potenti. Fusce condimentum rutrum nulla, a feugiat dolor imperdiet nec. Aenean purus ligula, bibendum tincidunt placerat id, blandit id turpis. Maecenas varius vulputate ante, et lobortis felis volutpat at. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
 
