@@ -90,13 +90,17 @@ function thumbImageUrl($image, $arg = array())
 {
     // set default
     $options = array(
-        'width' => 150,
-        'height' => 150,
+        'width' => 100,
+        'height' => 100,
         'crop' => false,
         'grayscale' => false
     );
     $options = array_merge($options, $arg);
     extract($options);
+    if(preg_match('/^https?:\/\/[^\/]+/i',$image )){//eğer url ise
+        $image =preg_replace('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})\//','',$image);// ilk / tan sonrasını  alıyoruz
+    }
+
     if (File::exists($image)) {
         $extension = File::extension($image);
         $whitoutext =str_replace('.'.$extension,'',$image);
