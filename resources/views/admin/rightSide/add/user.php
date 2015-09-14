@@ -26,7 +26,7 @@
 						'action' => 'AdminController@postAddUser',
 						'method' => 'post'
 					) ) ?>
-					<?=Form::hidden('meta[avatar]',null)?>
+					<?=Form::hidden('meta[avatar]',null,array('id'=>'metaAvatar'))?>
 					<h4 class="page-header"><?= _( 'Personal Information' ) ?></h4>
 					<!-- Username -->
 					<div class="form-group col-md-6">
@@ -172,54 +172,27 @@
 					<?= Form::close() ?>
 				</section><!-- /.col-md-9 -->
 				<!-- Avatar upload -->
-				<section class="col-md-3 no-padding">
-					<div class="nav-tabs-custom">
-						<ul class="nav nav-tabs pull-right">
-							<li><a data-toggle="tab" href="#view-tab"><?= _( 'View' ) ?></a></li>
-							<li class="active"><a data-toggle="tab" href="#upload-tab"><i class="fa fa-cloud-upload"></i> </a></li>
-							<li class="pull-left header"><?= _( 'Avatar' ) ?></li>
-						</ul>
-						<div class="tab-content">
-							<div id="view-tab" class="tab-pane">
-								<div class="tab-content">
-									<?= Html::image( '', 'User Image', array( 'class' => 'img-circle  center-block', 'width' => '150px' ) ) ?>
-									<button id="clear" type="button" class="btn btn-danger pull-right" targetFormElement='#userForm input[name="meta[avatar]"]'><?= _( 'Clear' ) ?></button>
-									<div class="clearfix"></div>
-								</div>
-							</div><!-- /#view .tab-pane -->
-							<div id="upload-tab" class="tab-pane active" data-trigger="hover" data-placement="left" data-title="Gravatar">
-								<div class="hidden" id="gravatar-message">
-									<?=_('Eğer Gravatar kullanıyosanız resim yüklemenize gerek yok.Gravatar resminiz gözükecektir ')?>
-								</div>
-								<?= Form::open( array(
-									'role'    => 'form',
-									'id'      => 'upload',
-									'action'  => 'AdminController@postUpload',
-									'method'  => 'post',
-									'enctype' => 'multipart/form-data',
-									'uploadPath'        => '/assets/uploads/profile_image/',
-									'targetFormElement' => '#userForm input[name="meta[avatar]"]'
+				<section class="col-md-3 ">
+					<div class="row">
+						<div class="box">
+							<div class="box-header with-border">
+								<h3 class="box-title"><?= _( 'Avatar' ) ?></h3>
+							</div>
+							<div class="box-body">
+								<?= HTML::image( 'assets/images/default.jpg', 'User Image', array(
+									'class' => 'img-circle  center-block',
+									'id'=> 'userAvatar',
+									'width' => '150px'
 								) ) ?>
-								<?= Form::hidden( 'uploadPath', public_path() . '/assets/uploads/profile_image/' ) ?>
-								<div id="drop">
-									<?=_('Drop Here')?>
-
-									<a><?=_('Browse')?></a>
-									<input type="file" name="upl" />
-								</div>
-
-								<ul>
-									<!-- The file uploads will be shown here -->
-								</ul>
-								<?=Form::close()?>
-								<script type="text/javascript">
-									$(function(){
-										$('#upload-tab').popover({content:$('#gravatar-message').html()});
-									});
-								</script>
-							</div><!-- /#upload .tab-pane -->
-						</div><!-- /.tab-content -->
-					</div><!-- /.nav-tabs-custom -->
+								<button id="clear" type="button" class="btn btn-danger pull-right"
+										targetFormElement='#userForm input[name="meta[avatar]"]'><?= _( 'Clear' ) ?></button>
+								<?php
+								fileManager()->getOpenButton(array('type'=>1,'field_id'=>'metaAvatar','fldr'=>'profile_image','btn_title'=>_('Change'),'targetImageId'=>'userAvatar'));
+								?>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</div>
 				</section><!-- /.col-md-3 -->
 			</div>
 

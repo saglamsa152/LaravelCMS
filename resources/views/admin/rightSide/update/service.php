@@ -25,7 +25,7 @@
 		) ) ?>
 		<?= Form::hidden( 'type', $service->type ) ?>
 		<?= Form::hidden( 'id', $service->id ) ?>
-		<?= Form::hidden( 'postMeta[coverImage]', $service->coverImage ) ?>
+		<?= Form::hidden( 'postMeta[coverImage]', $service->coverImage,array('id'=>'coverImage') ) ?>
 		<section class=" col-md-9">
 			<div class="box">
 				<div class="box-header">
@@ -53,47 +53,22 @@
 					<?= Form::submit( _( 'Update' ), array( 'class' => 'btn btn-primary pull-right' ) ) ?>
 				</div><!-- /.box-footer -->
 			</div><!-- /.box -->
+			<!-- Cover İmage upload -->
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title"><?=_('Cover Image')?></h3>
+				</div>
+				<div class="box-body">
+					<?php
+					echo HTML::image($service->coverImage, 'News Image', array('class' => 'center-block', 'width' => '150px','id'=>'serviceCoverImage'));
+
+					fileManager()->getOpenButton(array('fldr' => 'Posts', 'type' => 1, 'btn_title' => _('Select'), 'field_id' => 'coverImage', 'targetImageId' =>'serviceCoverImage'));
+					?>
+				</div>
+			</div>
 		</section>
 		<?= Form::close() ?><!--/ Update Workspace Form -->
-		<!-- İmage upload -->
-		<section class="col-md-3 no-padding">
-			<div class="nav-tabs-custom">
-				<ul class="nav nav-tabs pull-right">
-					<li class="active"><a data-toggle="tab" href="#view-tab"><?= _( 'View' ) ?></a></li>
-					<li><a data-toggle="tab" href="#upload-tab"><i class="fa fa-cloud-upload"></i> <?= _( 'Upload' ) ?> </a>
-					</li>
-					<li class="pull-left header"><?= _( 'Image' ) ?></li>
-				</ul>
-				<div class="tab-content">
-					<div id="view-tab" class="tab-pane active">
-						<?= HTML::image( $service->coverImage, 'Service Image', array( 'class' => 'center-block', 'width' => '150px' ) );?>
-						<button id="clear" type="button" class="btn btn-danger pull-right" targetFormElement='#updateServiceForm input[name="postMeta[coverImage]"]'><?= _( 'Clear' ) ?></button>
-						<div class="clearfix"></div>
-					</div><!-- /#view .tab-pane -->
-					<div id="upload-tab" class="tab-pane">
-						<?= Form::open( array(
-							'role'       => 'form',
-							'id'         => 'upload',
-							'action'     => 'AdminController@postUpload',
-							'method'     => 'post',
-							'enctype'    => 'multipart/form-data',
-							'uploadPath' => '/assets/uploads/images/',
-							'targetFormElement'=>'#updateServiceForm input[name="postMeta[coverImage]"]'
-						) ) ?>
-						<?= Form::hidden( 'uploadPath', public_path() . '/assets/uploads/images/' ) ?>
-						<div id="drop">
-							<?= _( 'Drop Here' ) ?>
-							<a><?= _( 'Browse' ) ?></a>
-							<input type="file" name="upl" />
-						</div>
-						<ul>
-							<!-- The file uploads will be shown here -->
-						</ul>
-						<?= Form::close() ?>
-					</div><!-- /#upload .tab-pane -->
-				</div><!-- /.tab-content -->
-			</div><!-- /.nav-tabs-custom -->
-		</section>
+		<div class="clearfix"></div>
 	</section>
 
 	<!-- /.content -->
