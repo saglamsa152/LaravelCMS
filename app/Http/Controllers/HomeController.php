@@ -21,7 +21,6 @@ class HomeController extends BaseController {
 	/**
 	 * Create a new controller instance.
 	 *
-	 * @return void
 	 */
 	public function __construct() {
 		/**
@@ -46,10 +45,18 @@ class HomeController extends BaseController {
 	 */
 	public function getNews( $url = null ) {
 		if ( is_null( $url ) ):
-			$posts = Post::news()->orderBy('created_at','desc')->paginate( 5 );
+			$posts      = Post::news()->with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->paginate( 5 );
+			foreach ( $posts as $post ) {
+				foreach ( $post->postMeta as $meta ) {
+					$post = array_add( $post, $meta->metaKey, $meta->metaValue );
+				}
+			}
 			return View::make( 'news/index' )->with( 'posts', $posts );
 		else:
-			$post = Post::news()->whereRaw( "url= '$url'" )->first();
+			$post      = Post::news()->with( 'postMeta', 'user' )->whereRaw( "url= '$url'" )->first();
+			foreach ( $post->postMeta as $meta ) {
+				$post = array_add( $post, $meta->metaKey, $meta->metaValue );
+			}
 			return View::make( 'news/single' )->with( array( 'post' => $post, 'title' => $post->title ) );
 		endif;
 	}
