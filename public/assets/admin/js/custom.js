@@ -32,8 +32,8 @@ $(function () {
 	/**
 	 * üye ekleme ve profil düzenleme sayfasında avatarı kaldırma işlemini yapar
 	 */
-	$('#view-tab #clear').click(function () {
-		$('#view-tab img').attr('src', null);
+	$('#clear').click(function () {
+		$('img',$(this).parent()).attr('src', null);
 		$($(this).attr('targetFormElement')).val(null);
 	});
 	/**
