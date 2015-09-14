@@ -151,6 +151,7 @@ return [
 		 */
 		'Collective\Html\HtmlServiceProvider',
 		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+		'Folklore\Image\ImageServiceProvider',
 
 	],
 
@@ -206,6 +207,7 @@ return [
 		'Form' => 'Collective\Html\FormFacade',
 		'Html' => 'Collective\Html\HtmlFacade',
 		'FileManager'=> 'App\MyClasses\FileManager\FileManager',
+		'Image' => 'Folklore\Image\Facades\Image',
 		/*
 		 * Model takma isimleri
 		 */
