@@ -116,7 +116,7 @@ $(function () {
 						$('.ajaxFormPassword #' + key).prepend('<label for="inputError" class="control-label"><i class="fa fa-times-circle-o"></i>' + value + '</label>')
 					});
 				} else {
-					$('#updatePassword > .overlay').html('<span class="glyphicon glyphicon-ok"></span>');
+					$('#updatePassword > .overlay').html('<i class="fa fa-check"></i>');
 					$('#updatePassword > .overlay').click(function () {
 						$(this).remove();
 						$('.ajaxFormPassword input').val('');
