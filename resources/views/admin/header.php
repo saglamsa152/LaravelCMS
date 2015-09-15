@@ -15,6 +15,7 @@
 
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
+				<!-- todo bu kısım silinip yerine mail kutusundaki okunmamış mesaj sayısını belirten ikon gelecek-->
 				<?php if(userCan('manageContact')): ?>
 				<!-- Messages: style can be found in dropdown.less-->
 				<li class="dropdown messages-menu">

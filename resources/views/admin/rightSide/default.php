@@ -16,14 +16,15 @@
 
 		<!-- Small boxes (Stat box) -->
 		<div class="row">
+			<!-- Password Warning -->
 			<div class="col-md-12">
 				<?php if (Hash::check('123456', Auth::getUser()->getAuthPassword()) && Auth::user()->username==='admin'):?>
 					<div class="callout callout-danger">
 						<h4><?=_('Password Warning !')?></h4>
-						<p><?=_('Your password is "123456" which set by default. Please change password so this is important your security.')?></p>
+						<p><?=_('Your password is "123456" which set by default. Please change password so this is important your security.')?>
+							<a class="" href="<?=URL::action('AdminController@getProfile')?>"><?=_('Go Profile')?> <i class="fa fa-arrow-circle-right"></i></a></p>
 					</div>
 				<?php endif;?>
-
 			</div>
 			<div class="col-lg-6 col-xs-6">
 				<!-- small box -->
