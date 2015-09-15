@@ -59,13 +59,6 @@
 								<?= Form::email( 'options[mainMailAddress]', Option::getOption( 'mainMailAddress' ), array( 'class' => 'form-control' ) ) ?>
 							</div>
 						</div>
-						<!-- Dues Amount -->
-						<div class="form-group">
-							<?= Form::label( 'options[duesAmount]', _( 'Dues Amount' ), array( 'class' => 'control-label col-md-2' ) ) ?>
-							<div class="col-md-4">
-								<?= Form::number( 'options[duesAmount]', Option::getOption( 'duesAmount' ), array( 'class' => 'form-control' ) ) ?>
-							</div>
-						</div>
 					</div><!-- /.box-body-->
 					<div class="box-footer clearfix">
 						<?= Form::button( _( 'Save' ) . ' <i class="fa fa-arrow-circle-right"></i>', array( 'class' => 'pull-right btn btn-default', 'type' => 'submit' ) ) ?>
