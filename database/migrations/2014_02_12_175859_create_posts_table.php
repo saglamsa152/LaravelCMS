@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration {
 			$table->increments('id');
 			$table->integer('author');
 			$table->text('content');
-			$table->string('title',255)->unique();
+			$table->string('title',255);
 			$table->text('excerpt');
 			$table->string('status',15);
 			$table->string('type',30);
