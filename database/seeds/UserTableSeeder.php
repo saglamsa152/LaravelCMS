@@ -9,11 +9,12 @@ class UserTableSeeder extends Seeder {
 		DB::table( 'users' )->delete();
 		// Konsol çıktısını verelim
 		$this->command->info( 'users tablosu temizlendi' );
+		$email= preg_replace('/^https?:\/\//','admin@',config('app.url') );
 		//Veri tabanına verilerimizi ekleyelim
 		$id=DB::table( 'users' )->insertGetId(
 				array(
 						'username'   => 'admin',
-						'email'      => 'admin@test.com',
+						'email'      => $email,
 						'password'   => Hash::make( '123456' ),
 						'created_at' => date( 'Y-m-d H:i:s' ),
 						'created_ip' => '127.0.0.1',
