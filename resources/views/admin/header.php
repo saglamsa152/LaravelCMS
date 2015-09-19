@@ -17,33 +17,82 @@
 			<ul class="nav navbar-nav">
 				<!-- todo bu kısım silinip yerine mail kutusundaki okunmamış mesaj sayısını belirten ikon gelecek-->
 				<?php if(userCan('manageContact')): ?>
-				<!-- Messages: style can be found in dropdown.less-->
-				<li class="dropdown messages-menu">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="fa fa-envelope"></i>
-						<span class="label label-success"><?=$contacts->where('isRead','=',false)->count()?></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="header"><?php printf(_('You have %s messages'),$contacts->where('isRead','=',false)->count())?></li>
-						<li><!-- inner menu: contains the actual data -->
-
-							<ul class="menu">
-								<?php	foreach ( $contacts->where('isRead','=',false)->get() as $contact ):
-									$contact->meta=unserialize($contact->meta); // veritabanındaki bilgiyi diziye döndirmek için?>
-								<li><!-- start message -->
-									<a href="#" class="clickToRead" data-value='{"id":"<?= $contact->id ?>","name":"<?= trim($contact->meta['name']) ?>","content":"<?= addslashes(trim($contact->message)) ?>"}'>
-										<h4>
-											<?= $contact->meta['name'] ?>
-										</h4>
-										<p><?= mb_substr( $contact->message, 0, 50, 'UTF-8' ).'...' ?></p>
-									</a>
-								</li><!-- end message -->
-								<?php endforeach; ?>
-							</ul>
-						</li>
-						<li class="footer"><a href="<?=URL::action('AdminController@getMailbox')?>"><?= _('See All Messages')?></a></li>
-					</ul>
-				</li>
+					<!-- Messages: style can be found in dropdown.less-->
+					<li class="dropdown messages-menu">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-envelope-o"></i>
+							<span class="label label-success">4</span>
+						</a>
+						<ul class="dropdown-menu">
+							<li class="header">You have 4 messages</li>
+							<li>
+								<!-- inner menu: contains the actual data -->
+								<ul class="menu">
+									<li><!-- start message -->
+										<a href="#">
+											<div class="pull-left">
+												<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+											</div>
+											<h4>
+												Support Team
+												<small><i class="fa fa-clock-o"></i> 5 mins</small>
+											</h4>
+											<p>Why not buy a new awesome theme?</p>
+										</a>
+									</li><!-- end message -->
+									<li>
+										<a href="#">
+											<div class="pull-left">
+												<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+											</div>
+											<h4>
+												AdminLTE Design Team
+												<small><i class="fa fa-clock-o"></i> 2 hours</small>
+											</h4>
+											<p>Why not buy a new awesome theme?</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="pull-left">
+												<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+											</div>
+											<h4>
+												Developers
+												<small><i class="fa fa-clock-o"></i> Today</small>
+											</h4>
+											<p>Why not buy a new awesome theme?</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="pull-left">
+												<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+											</div>
+											<h4>
+												Sales Department
+												<small><i class="fa fa-clock-o"></i> Yesterday</small>
+											</h4>
+											<p>Why not buy a new awesome theme?</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="pull-left">
+												<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+											</div>
+											<h4>
+												Reviewers
+												<small><i class="fa fa-clock-o"></i> 2 days</small>
+											</h4>
+											<p>Why not buy a new awesome theme?</p>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="footer"><a href="#">See All Messages</a></li>
+						</ul>
+					</li>
 				<?php endif; ?>
 				<!-- User Account: style can be found in dropdown.less -->
 				<li class="dropdown user user-menu">

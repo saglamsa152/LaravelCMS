@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-use App\Models\Contact;
 use App\Models\Option;
 use App\Models\Post;
 use Illuminate\Support\Str;
@@ -20,14 +19,7 @@ class AdminController extends BaseController
          */
         $this->beforeFilter('csrf', array('on' => 'post', 'except' => 'postMarkAsReadContact'));
 
-        /**
-         * eğer kullanıcının iletişim mesajlarını  yönetme yetkisi varsa contacts değişkenini  tüm viewler de paylaş
-         *
-         * Contact bilgisi  admin palen üst barda da gösterileceği için tüm admin paneli viewlerinde gözükecek
-         */
-        if (userCan('manageContact')) {
-            \View::share('contacts', new Contact());
-        }
+
     }
 
     /**

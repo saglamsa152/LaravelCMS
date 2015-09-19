@@ -6,15 +6,6 @@ class OptionsController extends BaseController {
 		 * login ve register sayfaları  dışındaki  sayfalarda oturum kontrolü
 		 */
 		$this->middleware( 'auth' );
-
-		/**
-		 * eğer kullanıcının iletişim mesajlarını  yönetme yetkisi varsa contacts değişkenini  tüm viewler de paylaş
-		 *
-		 * Contact bilgisi  admin palen üst barda da gösterileceği için tüm admin paneli viewlerinde gözükecek
-		 */
-		if ( userCan( 'manageContact' ) ) {
-			\View::share( 'contacts', new \Contact() );
-		}
 	}
 
 	/**
