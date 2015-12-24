@@ -75,7 +75,7 @@ if ( Auth::check() ) {
             </div>
         </form>
 
-        <div class="social-auth-links text-center">
+        <!--div class="social-auth-links text-center">
             <p>- <?=_('OR')?> -</p>
             <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i><?=_('Sign in using Facebook')?> </a>
             <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i><?=_(' Sign in using Google+')?></a>
