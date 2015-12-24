@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Option extends Model {
 
 	/**
-	 * toplu atama yaparken hangi alanların kullanılacağını belirler (laravel kitap s145)
+	 * toplu atama yaparken hangi alanların kullanılmayacağını belirler (laravel kitap s145)
 	 * @var array
 	 */
 	protected $guarded = array( 'id', 'created_at', 'updated_at' );
