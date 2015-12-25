@@ -118,6 +118,7 @@
 							<li><a href="<?=URL::action('OptionsController@getIndex')?>"><i class="fa fa-angle-double-right"></i> <?=_('General')?></a></li>
 						<?php endif ?>
 						<li><a href="<?=URL::action('OptionsController@getUserPreferences')?>"><i class="fa fa-angle-double-right"></i> <?=_('Site Preferences')?></a></li>
+						<li><a href="<?=URL::action('OptionsController@getPostOptions')?>"><i class="fa fa-angle-double-right"></i> <?=_('Post Options')?></a></li>
 					</ul>
 				</li>
 			<?php endif; ?>

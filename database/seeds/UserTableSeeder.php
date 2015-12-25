@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\UserMeta;
 
 class UserTableSeeder extends Seeder {
 	public function  run() {

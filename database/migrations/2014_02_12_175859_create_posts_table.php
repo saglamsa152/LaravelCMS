@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration {
 			$table->text('excerpt');
 			$table->string('status',15);
 			$table->string('type',30);
+			$table->integer('categoryId');
 			$table->text('url');
 			$table->timestamps();
 			$table->softDeletes();
