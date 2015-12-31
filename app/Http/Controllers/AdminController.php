@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\Option;
-use App\Models\Post;
+use App\Models\PostModel;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Exception;
@@ -322,7 +322,7 @@ class AdminController extends BaseController
         if (userCan('manageNews')) {
             $title = _('News Management Page');
             $rightSide = 'list/news';
-            $news = \Post::news()->with('postMeta', 'user')->orderBy('created_at', 'desc')->get();
+            $news = \PostModel::news()->with('postMeta', 'user')->orderBy('created_at', 'desc')->get();
             foreach ($news as $new) {
                 foreach ($new->postMeta as $meta) {
                     $new = array_add($new, $meta->metaKey, $meta->metaValue);
@@ -364,7 +364,7 @@ class AdminController extends BaseController
         if (is_null($id)) return false;
         if (userCan('manageNews')) {
             $title = _('Update News');
-            $news = \Post::news()->with('postMeta')->find($id);
+            $news = \PostModel::news()->with('postMeta')->find($id);
             $rightSide = 'update/news';
             foreach ($news->postMeta as $meta) {
                 $news = array_add($news, $meta->metaKey, $meta->metaValue);
@@ -382,7 +382,7 @@ class AdminController extends BaseController
         if (userCan('manageNews')) {
             $title = _('News Trash');
             $rightSide = 'list/newsTrash';
-            $news = \Post::news()->with('postMeta', 'user')->onlyTrashed()->orderBy('created_at', 'desc')->get();
+            $news = \PostModel::news()->with('postMeta', 'user')->onlyTrashed()->orderBy('created_at', 'desc')->get();
             foreach ($news as $new) {
                 foreach ($new->postMeta as $meta) {
                     $new = array_add($new, $meta->metaKey, $meta->metaValue);
@@ -407,7 +407,7 @@ class AdminController extends BaseController
     {
         if (userCan('manageSlider')) {
             $title = _('Slider Management Page');
-            $slides = \Post::slider()->with('postMeta')->orderBy('created_at', 'desc')->get();
+            $slides = \PostModel::slider()->with('postMeta')->orderBy('created_at', 'desc')->get();
             $rightSide = 'list/slider';
             foreach ($slides as $slide) {
                 foreach ($slide->postMeta as $meta) {
@@ -432,7 +432,7 @@ class AdminController extends BaseController
             $slides = \Input::only('slide');
             $slides = $slides['slide'];
             foreach ($slides as $id => $slide) {
-                $post = \Post::find($id);
+                $post = \PostModel::find($id);
                 $metas = array_pull($slide, 'meta');// diziden metaların tutulduğu diziyi  alıyoruz
                 $post->fill($slide)->push();// meta hariç  diğer bilgileri  kaydediyoruz.
                 if (!empty($metas)) {
@@ -481,7 +481,7 @@ class AdminController extends BaseController
     {
         if (userCan('manageService')) {
             $title = _('Services');
-            $services = \Post::service()->with('postMeta', 'user')->orderBy('created_at', 'desc')->get();
+            $services = \PostModel::service()->with('postMeta', 'user')->orderBy('created_at', 'desc')->get();
             $rightSide = 'list/services';
             foreach ($services as $service) {
                 foreach ($service->postMeta as $meta) {
@@ -520,7 +520,7 @@ class AdminController extends BaseController
         if (userCan('manageService')) {
             $title = _('Update Service');
             $rightSide = 'update/service';
-            $service = \Post::service()->with('postMeta')->find($id);
+            $service = \PostModel::service()->with('postMeta')->find($id);
             foreach ($service->postMeta as $meta) {
                 $service = array_add($service, $meta->metaKey, $meta->metaValue);
             }
@@ -536,7 +536,7 @@ class AdminController extends BaseController
     public function getServiceTrash(){
         if (userCan('manageService')) {
             $title = _('Services');
-            $services = \Post::service()->with('postMeta', 'user')->onlyTrashed()->orderBy('created_at', 'desc')->get();
+            $services = \PostModel::service()->with('postMeta', 'user')->onlyTrashed()->orderBy('created_at', 'desc')->get();
             $rightSide = 'list/servicesTrash';
             foreach ($services as $service) {
                 foreach ($service->postMeta as $meta) {
@@ -562,7 +562,7 @@ class AdminController extends BaseController
     {
         if (userCan('manageProduct')) {
             $title = _('Products');
-            $products = \Post::with('postMeta', 'user')->orderBy('created_at', 'desc')->product()->get();
+            $products = \PostModel::with('postMeta', 'user')->orderBy('created_at', 'desc')->product()->get();
             $rightSide = 'list/products';
             foreach ($products as $product) {
                 foreach ($product->postMeta as $meta) {
@@ -601,7 +601,7 @@ class AdminController extends BaseController
         if (userCan('manageProduct')) {
             $title = _('Update News');
             $rightSide = 'update/product';
-            $product = \Post::product()->with('postMeta')->find($id);
+            $product = \PostModel::product()->with('postMeta')->find($id);
             foreach ($product->postMeta as $meta) {
                 $product = array_add($product, $meta->metaKey, $meta->metaValue);
             }
@@ -925,7 +925,7 @@ class AdminController extends BaseController
 
                     $url = $this->creatPostUrl($postData);
 
-                    $post = \Post::create(array(
+                    $post = \PostModel::create(array(
                         'author' => \Auth::user()->id,
                         'content' => $postData['content'],
                         'title' => $postData['title'],
@@ -974,7 +974,7 @@ class AdminController extends BaseController
         $sayac = 2;// url nin sonuna eklenecek sayı
         $tempSayac = 2;
         $tepmUrl = $url;
-        while (Post::where('url', '=', $tepmUrl)->count() > 0) {
+        while (PostModel::where('url', '=', $tepmUrl)->count() > 0) {
             if ($tempSayac < $sayac) {
                 $tepmUrl = $url;
                 $tempSayac++;
@@ -997,8 +997,8 @@ class AdminController extends BaseController
             if (\Request::ajax()) {
                 $ids = (array)\Input::get('id');
                 if (!is_null($ids || !empty($ids))) {
-                    \Post::whereIn('id', $ids)->update(['status'=>'trashed']);
-                    \Post::destroy($ids);
+                    \PostModel::whereIn('id', $ids)->update(['status'=>'trashed']);
+                    \PostModel::destroy($ids);
                     $response = array('status' => 'success', 'msg' => 'Deleted Successfully', 'redirect' => '');
                     return response()->json($response);
                 }
@@ -1020,7 +1020,7 @@ class AdminController extends BaseController
             if (\Request::ajax()) {
                 $ids = (array)\Input::get('id');
                 if (!is_null($ids || !empty($ids))) {
-                    Post::onlyTrashed()->whereIn('id', $ids)->forceDelete();
+                    PostModel::onlyTrashed()->whereIn('id', $ids)->forceDelete();
 
                     $response = array('status' => 'success', 'msg' => 'Deleted Successfully', 'redirect' => '');
                     return response()->json($response);
@@ -1037,8 +1037,8 @@ class AdminController extends BaseController
             if (\Request::ajax()) {
                 $ids = (array)\Input::get('id');
                 if (!is_null($ids || !empty($ids))) {
-                    Post::onlyTrashed()->whereIn('id', $ids)->update(['status'=>'task']);
-                    Post::onlyTrashed()->whereIn('id', $ids)->restore();
+                    PostModel::onlyTrashed()->whereIn('id', $ids)->update(['status'=>'task']);
+                    PostModel::onlyTrashed()->whereIn('id', $ids)->restore();
 
                     $response = array('status' => 'success', 'msg' => 'Restore Successfully', 'redirect' => '');
                     return response()->json($response);
@@ -1074,7 +1074,7 @@ class AdminController extends BaseController
                 $response = array('status' => 'danger', 'msg' => $validator->messages());
                 return response()->json($response);
             } else {
-                $post = \Post::find($postData['id']);
+                $post = \PostModel::find($postData['id']);
 
                 $postData = array_add($postData, 'author', \Auth::user()->id);
                 $postData = array_add($postData, 'excerpt', mb_substr(strip_tags($postData['content']), 0, 450, 'UTF-8'));
@@ -1109,7 +1109,7 @@ class AdminController extends BaseController
             if (!is_null($ids) || empty($ids)) {
                 $status = ['publish' => 'task', 'task' => 'publish'];
                 foreach ($ids as $id) {
-                    $post = \Post::find($id);
+                    $post = \PostModel::find($id);
                     $post->status = $status[$post->status];
                     $post->save();
                 }

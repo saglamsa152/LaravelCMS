@@ -31,7 +31,7 @@
 				<div class="small-box bg-green">
 					<div class="inner">
 						<h3>
-							<?=Post::news()->count('*')?>
+							<?=PostModel::news()->count('*')?>
 						</h3>
 
 						<p>

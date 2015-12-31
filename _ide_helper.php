@@ -12517,7 +12517,7 @@ namespace {
     }
 
 
-    class Post extends \App\Models\Post{
+    class PostModel extends \App\Models\PostModel{
         
     }
 

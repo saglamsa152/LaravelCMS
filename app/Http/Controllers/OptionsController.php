@@ -178,7 +178,7 @@ class OptionsController extends BaseController
                     $sayac = 2;// url nin sonuna eklenecek sayı
                     $tempSayac = 2;
                     $tepmUrl = $slug;
-                    while (\Post::where('url', '=', $tepmUrl)->count() > 0) {
+                    while (\PostModel::where('url', '=', $tepmUrl)->count() > 0) {
                         if ($tempSayac < $sayac) {
                             $tepmUrl = $slug;
                             $tempSayac++;

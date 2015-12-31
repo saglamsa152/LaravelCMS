@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\View;
-use App\Models\Post;
+use App\Models\PostModel;
 use App\Models\Option;
 use Illuminate\Support\Facades\Response;
 
@@ -32,7 +32,7 @@ class HomeController extends BaseController {
 
 	public function getIndex() {
 		$title=Option::getOption('siteName');
-		$slides = Post::slider()->with('postMeta')->orderBy( 'created_at', 'desc' )->get();
+		$slides = PostModel::slider()->with('postMeta')->orderBy( 'created_at', 'desc' )->get();
 		return View::make( 'home/index' )->with(compact('slides','title'));
 	}
 
@@ -45,7 +45,7 @@ class HomeController extends BaseController {
 	 */
 	public function getNews( $url = null ) {
 		if ( is_null( $url ) ):
-			$posts      = Post::news()->with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->paginate( 5 );
+			$posts      = PostModel::news()->with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->paginate( 5 );
 			foreach ( $posts as $post ) {
 				foreach ( $post->postMeta as $meta ) {
 					$post = array_add( $post, $meta->metaKey, $meta->metaValue );
@@ -53,7 +53,7 @@ class HomeController extends BaseController {
 			}
 			return View::make( 'news/index' )->with( 'posts', $posts );
 		else:
-			$post      = Post::news()->with( 'postMeta', 'user' )->whereRaw( "url= '$url'" )->first();
+			$post      = PostModel::news()->with( 'postMeta', 'user' )->whereRaw( "url= '$url'" )->first();
 			foreach ( $post->postMeta as $meta ) {
 				$post = array_add( $post, $meta->metaKey, $meta->metaValue );
 			}
@@ -73,7 +73,7 @@ class HomeController extends BaseController {
 
 	public function getServices() {
 		$title    = _( 'Services' );
-		$services = Post::service()->with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->get();
+		$services = PostModel::service()->with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->get();
 
 		foreach ( $services as $service ) {
 			foreach ( $service->postMeta as $meta ) {

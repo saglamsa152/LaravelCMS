@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * -task
  * -trashed
  */
-class Post extends Model {
+class PostModel extends Model {
 
 	use SoftDeletes;
 
