@@ -152,6 +152,7 @@ return [
 		'Collective\Html\HtmlServiceProvider',
 		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 		'Folklore\Image\ImageServiceProvider',
+		'App\Providers\PostServiceProvider',
 
 	],
 
@@ -208,13 +209,14 @@ return [
 		'Html' => 'Collective\Html\HtmlFacade',
 		'FileManager'=> 'App\MyClasses\FileManager\FileManager',
 		'Image' => 'Folklore\Image\Facades\Image',
+		'Post' => 'App\MyClasses\Post\PostFacade',
 		/*
 		 * Model takma isimleri
 		 */
 		'Contact'=>'App\Models\Contact',
 		'Option'=> 'App\Models\Option',
 		'Orders'=>'App\Models\Orders',
-		'Post'=>'App\Models\Post',
+		'PostModel'=>'App\Models\PostModel',
 		'PostMeta'=>'App\Models\PostMeta',
 		'User'=>'App\Models\User',
 		'UserMeta'=>'App\Models\UserMeta',

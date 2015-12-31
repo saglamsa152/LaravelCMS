@@ -20,6 +20,8 @@ class PostModel extends Model {
 
 	use SoftDeletes;
 
+	protected $table= 'posts';
+
 	/**
 	 * toplu atama yaparken hangi alanların kullanılacağını belirler (laravel kitap s145)
 	 * @var array

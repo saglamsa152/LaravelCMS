@@ -5,6 +5,7 @@ use App\Models\PostModel;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use App\MyClasses\Post\PostFacade as Post;
 
 class AdminController extends BaseController
 {
@@ -378,7 +379,8 @@ class AdminController extends BaseController
         return \View::make('admin.index')->with(compact('title', 'rightSide', 'news'))->withErrors($error);
     }
 
-    public function getNewsTrash(){
+    public function getNewsTrash()
+    {
         if (userCan('manageNews')) {
             $title = _('News Trash');
             $rightSide = 'list/newsTrash';
@@ -533,7 +535,8 @@ class AdminController extends BaseController
         return \View::make('admin.index')->with(compact('title', 'rightSide', 'service'))->withErrors($error);
     }
 
-    public function getServiceTrash(){
+    public function getServiceTrash()
+    {
         if (userCan('manageService')) {
             $title = _('Services');
             $services = \PostModel::service()->with('postMeta', 'user')->onlyTrashed()->orderBy('created_at', 'desc')->get();
@@ -905,84 +908,42 @@ class AdminController extends BaseController
     public function postAddPost()
     {
         try {
-            if (\Request::ajax()) {
-                $postData = \Input::all();
-                $rules = array(
-                    'title' => 'required',
-                    'content' => 'required'
-                );
-                // todo  ingilzce  tercüme
-                $messages = array(
-                    'title.required' => _('Başlık boş bırakılamaz'),
-                    'content.required' => _('İçerik boş bırakılamaz')
-                );
-                $validator = \Validator::make($postData, $rules, $messages);
+            /*
+             * Get Post Request Data
+             */
+            $postData = \Input::all();
+            /*
+             * Validator Rules
+             */
+            $rules = array(
+                'title' => 'required',
+                'content' => 'required'
+            );
+            /*
+             * Varlidator Error Message
+             */
+            $messages = array(
+                'title.required' => _('Başlık boş bırakılamaz'),
+                'content.required' => _('İçerik boş bırakılamaz')
+            );
+            /*
+             * Set Validator
+             */
+            $validator = \Validator::make($postData, $rules, $messages);
 
-                if ($validator->fails()) {
-                    $ajaxResponse = array('status' => 'danger', 'msg' => $validator->messages()->toArray()); //todo  burası  olmuyor
-                    return response()->json($ajaxResponse);
-                } else {
+            /*
+             * Check validate
+             */
+            if ($validator->fails()) {
+                $ajaxResponse = array('status' => 'danger', 'msg' => $validator->messages()->toArray()); //todo  burası  olmuyor
+                return response()->json($ajaxResponse);
+            } else
+                return response()->json(Post::addNew($postData));
 
-                    $url = $this->creatPostUrl($postData);
-
-                    $post = \PostModel::create(array(
-                        'author' => \Auth::user()->id,
-                        'content' => $postData['content'],
-                        'title' => $postData['title'],
-                        'excerpt' => mb_substr(strip_tags($postData['content']), 0, 450, 'UTF-8'),
-                        'status' => $postData['status'],
-                        'type' => $postData['type'],
-                        'url' => $url,
-                        'created_ip' => \Request::getClientIp()
-                    ));
-
-                    if (isset($postData['postMeta'])) {
-                        $postMeta = $postData['postMeta'];
-                        $modelPostMeta = array();
-                        foreach ($postMeta as $key => $value) {
-                            $modelPostMeta[] = new \PostMeta(array('metaKey' => $key, 'metaValue' => $value));
-                        }
-                        $post->postMeta()->saveMany($modelPostMeta);
-                    }
-                    $actionToType = \Option::getOption('postTypes', 'general', true);
-                    $redirectAction = 'AdminController@get' . $actionToType[$postData['type']];//gönderinin türü ne ise o türün listesine yönlendirme için
-                    $ajaxResponse = array('status' => 'success', 'msg' => _('Processing was carried out successfully'), 'redirect' => \URL::action($redirectAction));
-                    return response()->json($ajaxResponse);
-                }
-            }
         } catch (Exception $e) {
-            $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage());
+            $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage() . $e->getFile() . $e->getLine());
             return response()->json($ajaxResponse);
         }
-    }
-
-    /**
-     * Gönderinin urlsini hazırlar
-     *
-     * eğer aynı urlye sahip başka gönderi var ise yazı urlsini sonuna rakam ekleyerek çakışmayı önler
-     *
-     * @param $postData
-     * @return string
-     */
-    private function creatPostUrl($postData)
-    {
-        // eğer gönderi slayt ise bir dış urlsi var demektir direk onu dönüyoruz
-        if ($postData['type'] === 'slider') return $postData['url'];
-        else $url = Str::slug_utf8($postData['title']);
-
-        // aynı başlıklı yazı var ise url sonuna sayı ekleyerek benzersiz url üretmek için
-        $sayac = 2;// url nin sonuna eklenecek sayı
-        $tempSayac = 2;
-        $tepmUrl = $url;
-        while (PostModel::where('url', '=', $tepmUrl)->count() > 0) {
-            if ($tempSayac < $sayac) {
-                $tepmUrl = $url;
-                $tempSayac++;
-            }
-            $tepmUrl .= '-' . $sayac;
-            $sayac++;
-        }
-        return $tepmUrl;
     }
 
     /**
@@ -994,16 +955,8 @@ class AdminController extends BaseController
     public function postDeletePost()
     {
         try {
-            if (\Request::ajax()) {
-                $ids = (array)\Input::get('id');
-                if (!is_null($ids || !empty($ids))) {
-                    \PostModel::whereIn('id', $ids)->update(['status'=>'trashed']);
-                    \PostModel::destroy($ids);
-                    $response = array('status' => 'success', 'msg' => 'Deleted Successfully', 'redirect' => '');
-                    return response()->json($response);
-                }
-            }
-        }catch (Exception $e){
+            return response()->json(Post::delete((array)\Input::get('id')));
+        } catch (Exception $e) {
             $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage());
             return response()->json($ajaxResponse);
         }
@@ -1026,25 +979,26 @@ class AdminController extends BaseController
                     return response()->json($response);
                 }
             }
-        }catch (Exception $e){
+        } catch (Exception $e) {
             $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage());
             return response()->json($ajaxResponse);
         }
     }
 
-    public function postRestorePost(){
+    public function postRestorePost()
+    {
         try {
             if (\Request::ajax()) {
                 $ids = (array)\Input::get('id');
                 if (!is_null($ids || !empty($ids))) {
-                    PostModel::onlyTrashed()->whereIn('id', $ids)->update(['status'=>'task']);
+                    PostModel::onlyTrashed()->whereIn('id', $ids)->update(['status' => 'task']);
                     PostModel::onlyTrashed()->whereIn('id', $ids)->restore();
 
                     $response = array('status' => 'success', 'msg' => 'Restore Successfully', 'redirect' => '');
                     return response()->json($response);
                 }
             }
-        }catch (Exception $e){
+        } catch (Exception $e) {
             $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage());
             return response()->json($ajaxResponse);
         }
