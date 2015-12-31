@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.0.33 on 2015-09-14.
+ * Generated for Laravel 5.0.34 on 2015-12-31.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12328,7 +12328,181 @@ namespace {
     }
 
 
-    class Contact extends \App\Models\Contact{
+    class Image extends \Folklore\Image\Facades\Image{
+        
+        /**
+         * Return an URL to process the image
+         *
+         * @param string $src
+         * @param int $width
+         * @param int $height
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function url($src, $width = null, $height = null, $options = array()){
+            return \Folklore\Image\ImageManager::url($src, $width, $height, $options);
+        }
+        
+        /**
+         * Make an image and apply options
+         *
+         * @param string $path The path of the image
+         * @param array $options The manipulations to apply on the image
+         * @return \Folklore\Image\ImageInterface 
+         * @static 
+         */
+        public static function make($path, $options = array()){
+            return \Folklore\Image\ImageManager::make($path, $options);
+        }
+        
+        /**
+         * Serve an image from an url
+         *
+         * @param string $path
+         * @param array $config
+         * @return \Folklore\Image\Illuminate\Support\Facades\Response 
+         * @static 
+         */
+        public static function serve($path, $config = array()){
+            return \Folklore\Image\ImageManager::serve($path, $config);
+        }
+        
+        /**
+         * Register a custom filter.
+         *
+         * @param string $name The name of the filter
+         * @param \Closure|string $filter
+         * @return void 
+         * @static 
+         */
+        public static function filter($name, $filter){
+            \Folklore\Image\ImageManager::filter($name, $filter);
+        }
+        
+        /**
+         * Create a thumbnail from an image
+         *
+         * @param \Folklore\Image\ImageInterface|string $image An image instance or the path to an image
+         * @param int $width
+         * @return \Folklore\Image\ImageInterface 
+         * @static 
+         */
+        public static function thumbnail($image, $width = null, $height = null, $crop = true){
+            return \Folklore\Image\ImageManager::thumbnail($image, $width, $height, $crop);
+        }
+        
+        /**
+         * Get the format of an image
+         *
+         * @param string $path The path to an image
+         * @return \Folklore\Image\ImageInterface 
+         * @static 
+         */
+        public static function format($path){
+            return \Folklore\Image\ImageManager::format($path);
+        }
+        
+        /**
+         * Delete a file and all manipulated files
+         *
+         * @param string $path The path to an image
+         * @return void 
+         * @static 
+         */
+        public static function delete($path){
+            \Folklore\Image\ImageManager::delete($path);
+        }
+        
+        /**
+         * Delete all manipulated files
+         *
+         * @param string $path The path to an image
+         * @return void 
+         * @static 
+         */
+        public static function deleteManipulated($path){
+            \Folklore\Image\ImageManager::deleteManipulated($path);
+        }
+        
+        /**
+         * Get the URL pattern
+         *
+         * @return string 
+         * @static 
+         */
+        public static function pattern($parameter = null){
+            return \Folklore\Image\ImageManager::pattern($parameter);
+        }
+        
+        /**
+         * Parse the path for the original path of the image and options
+         *
+         * @param string $path A path to parse
+         * @param array $config Configuration options for the parsing
+         * @return array 
+         * @static 
+         */
+        public static function parse($path, $config = array()){
+            return \Folklore\Image\ImageManager::parse($path, $config);
+        }
+        
+        /**
+         * Get the default image driver name.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultDriver(){
+            return \Folklore\Image\ImageManager::getDefaultDriver();
+        }
+        
+        /**
+         * Set the default image driver name.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */
+        public static function setDefaultDriver($name){
+            \Folklore\Image\ImageManager::setDefaultDriver($name);
+        }
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */
+        public static function driver($driver = null){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Folklore\Image\ImageManager::driver($driver);
+        }
+        
+        /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function extend($driver, $callback){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Folklore\Image\ImageManager::extend($driver, $callback);
+        }
+        
+        /**
+         * Get all of the created "drivers".
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getDrivers(){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Folklore\Image\ImageManager::getDrivers();
+        }
         
     }
 
