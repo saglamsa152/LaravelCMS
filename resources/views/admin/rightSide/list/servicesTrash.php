@@ -3,11 +3,11 @@
 	<section class="content-header">
 		<h1>
 			<?= $title ?>
-			<small>advanced tables</small>
+			<small><?=_('Manage Workspaces')?></small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="<?= URL::action( 'AdminController@getIndex' ) ?>"><i class="fa fa-dashboard"></i> <?=_('Home')?></a></li>
-			<li><a href="<?= URL::action( 'AdminController@getNews' ) ?>"><?= _( 'News' ) ?></a></li>
+			<li><a href="<?= URL::action( 'AdminController@getService' ) ?>"><?= _('My Workspace') ?></a></li>
 			<li class="active"><?= _( 'List' ) ?></li>
 		</ol>
 	</section>
@@ -19,15 +19,15 @@
 
 				<div class="box">
 					<div class="box-header">
-						<h3 class="box-title"><?= _( 'News' ) ?></h3>
+						<h3 class="box-title"><?= _('My Workspace') ?></h3>
 						<div class="box-tools">
-							<button class="btn btn-success pull-right" onclick="window.location.replace('<?=URL::action('AdminController@getAddNews')?>')">
+							<button class="btn btn-success pull-right" onclick="window.location.replace('<?=URL::action('AdminController@getAddService')?>')">
 								<i class="fa fa-plus"></i> <?=_('Add New')?>
 							</button>
 						</div><!-- &.box-tools -->
 					</div><!-- /.box-header -->
 					<div class="box-body">
-						<table id="news-table" class="table table-responsive table-bordered table-striped dataTable text-center">
+						<table id="services-table" class="table table-responsive table-bordered table-striped dataTable text-center">
 							<thead>
 							<tr>
 								<th>Id</th>
@@ -41,14 +41,14 @@
 							</thead>
 							<tbody>
 
-							<?php foreach ( $news as $new ): ?>
+							<?php foreach ( $services as $service ): ?>
 								<tr>
-									<td><?= $new->id ?></td>
-									<td><?= $new->title ?></td>
-									<td><?= $new->user->username ?></td>
-									<td><?= $new->created_at ?></td>
-									<td><?= $new->type ?></td>
-									<td><?= $new->getHtmlStatus() ?></td>
+									<td><?= $service->id ?></td>
+									<td><?= $service->title ?></td>
+									<td><?= $service->user->username ?></td>
+									<td><?= $service->created_at ?></td>
+									<td><?= $service->type ?></td>
+									<td><?= $service->getHtmlStatus() ?></td>
 									<td>
 										<div class="btn-group text-left" style="margin-right:5px">
 											<button data-toggle="dropdown" class="btn btn-default btn-flat dropdown-toggle" type="button">
@@ -57,40 +57,27 @@
 												<span class="sr-only">Toggle Dropdown</span>
 											</button>
 											<ul role="menu" class="dropdown-menu">
-												<li>
-													<a href="<?= URL::action( 'HomeController@getNews', $new->url ) ?>">
-														<i class="fa fa-eye"></i>
-														<?= _( 'View' ) ?>
-													</a>
-												</li>
-												<li>
-													<a href="<?= URL::action( 'AdminController@getUpdateNews', $new->id ) ?>">
-														<i class="fa fa-edit"></i>
-														<?= _( 'Edit' ) ?>
-													</a>
-												</li>
-												<li>
-													<?= Form::open( array( 'id' => 'publishForm-' . $new->id, 'method' => 'post', 'action' => 'AdminController@postTogglePostStatus', 'class' => 'ajaxForm','title'=>_('Change Status') ) ) ?>
-													<?= Form::hidden( 'id', $new->id ) ?>
+												<li><!-- todo deleteform gibi geri getirmek istiyormusunuz uyarısı gelmeli -->
+													<?= Form::open( array( 'id' => 'restoreForm-' . $service->id, 'method' => 'post', 'action' => 'AdminController@postRestorePost', 'class' => 'ajaxForm','title'=>_('Restore New') ) ) ?>
+													<?= Form::hidden( 'id', $service->id ) ?>
 													<?= Form::close() ?>
-													<a href="#" onclick="$('#publishForm-<?= $new->id ?>').submit()">
-														<i class="fa fa-check"></i>
-														<?php if($new->status=='publish') echo _('Make Task'); else echo _( 'Publish' ) ?>
+													<a href="#" onclick="$('#restoreForm-<?= $service->id ?>').submit()">
+														<i class="fa fa-recycle"></i>
+														<?= _( 'Restore' ) ?>
 													</a>
 												</li>
-													<li>
-														<!-- todo deleteform yerine çöp kutusuna gönderme formu  uyarısı gelmeli-->
-														<?= Form::open( array( 'id' => 'deleteForm-' . $new->id, 'method' => 'post', 'action' => 'AdminController@postDeletePost', 'class' => 'ajaxFormDelete' ) ) ?>
-														<?= Form::hidden( 'id', $new->id ) ?>
-														<?= Form::close() ?>
-														<a href="#" onclick="$('#deleteForm-<?= $new->id ?>').submit()">
-															<i class="fa fa-trash-o"></i>
-															<?= _( 'Delete' ) ?>
-														</a>
-													</li>
+												<li>
+													<?= Form::open( array( 'id' => 'deleteForm-' . $service->id, 'method' => 'post', 'action' => 'AdminController@postForceDeletePost', 'class' => 'ajaxFormDelete' ) ) ?>
+													<?= Form::hidden( 'id', $service->id ) ?>
+													<?= Form::close() ?>
+													<a href="#" onclick="$('#deleteForm-<?= $service->id ?>').submit()">
+														<i class="fa fa-trash-o"></i>
+														<?= _( 'Delete' ) ?>
+													</a>
+												</li>
 											</ul>
 										</div>
-										<?= Form::checkbox( 'bulk-' . $new->id, $new->id ) ?>
+										<?= Form::checkbox( 'bulk-' . $service->id, $service->id ) ?>
 									</td>
 								</tr>
 							<?php endforeach ?>
@@ -112,13 +99,13 @@
 										</button>
 										<ul role="menu" class="dropdown-menu">
 											<li>
-												<a href="#" data-link="<?= URL::action( 'AdminController@postTogglePostStatus' ) ?>">
-													<i class="fa fa-check"></i>
-													<?= _( 'Toggle Status' ) ?>
+												<a href="#" data-link="<?= URL::action( 'AdminController@postRestorePost' ) ?>">
+													<i class="fa fa-recycle"></i>
+													<?= _( 'Restore' ) ?>
 												</a>
 											</li>
 											<li>
-												<a href="#" data-action="delete" data-link="<?= URL::action( 'AdminController@postDeletePost' ) ?>">
+												<a href="#" data-action="delete" data-link="<?= URL::action( 'AdminController@postForceDeletePost' ) ?>">
 													<i class="fa fa-trash-o"></i>
 													<?= _( 'Delete' ) ?>
 												</a>
@@ -129,13 +116,10 @@
 							</tr>
 							</tfoot>
 						</table>
-					</div>
-					<!-- /.box-body -->
-				</div>
-				<!-- /.box -->
-			</div>
-		</div>
+					</div><!-- /.box-body -->
+				</div><!-- /.box -->
+			</div><!-- /.col-xs-12 -->
+		</div><!-- /.row -->
 
-	</section>
-	<!-- /.content -->
+	</section><!-- /.content -->
 </aside><!-- /.right-side -->

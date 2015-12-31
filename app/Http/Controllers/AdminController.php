@@ -378,6 +378,26 @@ class AdminController extends BaseController
         return \View::make('admin.index')->with(compact('title', 'rightSide', 'news'))->withErrors($error);
     }
 
+    public function getNewsTrash(){
+        if (userCan('manageNews')) {
+            $title = _('News Trash');
+            $rightSide = 'list/newsTrash';
+            $news = \Post::news()->with('postMeta', 'user')->onlyTrashed()->orderBy('created_at', 'desc')->get();
+            foreach ($news as $new) {
+                foreach ($new->postMeta as $meta) {
+                    $new = array_add($new, $meta->metaKey, $meta->metaValue);
+                }
+            }
+            $error = null;
+        } else {
+            $title = _('Permission Error');
+            $rightSide = 'error';
+            $error = _('You do not have permission to access this page');
+        }
+        return \View::make('admin.index')->with(compact('title', 'rightSide', 'news'))->withErrors($error);
+
+    }
+
     /* Slider */
 
     /**
@@ -404,8 +424,6 @@ class AdminController extends BaseController
     }
 
     /**
-     *
-     *
      *
      */
     public function postUpdateSlide()
@@ -463,7 +481,7 @@ class AdminController extends BaseController
     {
         if (userCan('manageService')) {
             $title = _('Services');
-            $services = \Post::with('postMeta', 'user')->orderBy('created_at', 'desc')->service()->get();
+            $services = \Post::service()->with('postMeta', 'user')->orderBy('created_at', 'desc')->get();
             $rightSide = 'list/services';
             foreach ($services as $service) {
                 foreach ($service->postMeta as $meta) {
@@ -513,6 +531,26 @@ class AdminController extends BaseController
             $error = _('You do not have permission to access this page');
         }
         return \View::make('admin.index')->with(compact('title', 'rightSide', 'service'))->withErrors($error);
+    }
+
+    public function getServiceTrash(){
+        if (userCan('manageService')) {
+            $title = _('Services');
+            $services = \Post::service()->with('postMeta', 'user')->onlyTrashed()->orderBy('created_at', 'desc')->get();
+            $rightSide = 'list/servicesTrash';
+            foreach ($services as $service) {
+                foreach ($service->postMeta as $meta) {
+                    $service = array_add($service, $meta->metaKey, $meta->metaValue);
+                }
+            }
+            $error = null;
+        } else {
+            $title = _('Permission Error');
+            $rightSide = 'error';
+            $error = _('You do not have permission to access this page');
+        }
+        return \View::make('admin.index')->with(compact('title', 'services', 'rightSide'))->withErrors($error);
+
     }
 
     /* Products */
@@ -701,7 +739,7 @@ class AdminController extends BaseController
     }
 
     /*
-     * Dues
+     * Dues todo silinecek
      */
     public function postDues()
     {
@@ -755,9 +793,9 @@ class AdminController extends BaseController
 
     /*
      * Type Ahead eklentisi  için json çıktıları
+     * todo kullanımı araştırılıp gerekiyorsa silinecek muhtemelen sadece aidat sayfasında kullanıcı aramak için kullanılıyordu.
      */
-    public
-    function getUserTypeAhead($column = '', $value = '')
+    public function getUserTypeAhead($column = '', $value = '')
     {
         try {
             $response = \User::where($column, 'like', "%" . $value . "%")->get([$column . ' as value']);
@@ -776,8 +814,7 @@ class AdminController extends BaseController
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public
-    function postLogin()
+    public function postLogin()
     {
         // POST İLE GÖNDERİLEN DEĞERLERİ ALALIM.
         $postData = \Input::all();
@@ -950,18 +987,66 @@ class AdminController extends BaseController
 
     /**
      * Post sil işlemi
+     * belirtilen idlerdeki gönderilerin statu s değerlerini trashed olarak değiştirir ve soft delete işlemi uygular
      *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postDeletePost()
     {
-        if (\Request::ajax()) {
-            $ids = (array)\Input::get('id');
-            if (!is_null($ids || !empty($ids))) {
-                \Post::destroy($ids);
-                $response = array('status' => 'success', 'msg' => 'Deleted Successfully', 'redirect' => '');
-                return response()->json($response);
+        try {
+            if (\Request::ajax()) {
+                $ids = (array)\Input::get('id');
+                if (!is_null($ids || !empty($ids))) {
+                    \Post::whereIn('id', $ids)->update(['status'=>'trashed']);
+                    \Post::destroy($ids);
+                    $response = array('status' => 'success', 'msg' => 'Deleted Successfully', 'redirect' => '');
+                    return response()->json($response);
+                }
             }
+        }catch (Exception $e){
+            $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage());
+            return response()->json($ajaxResponse);
+        }
+    }
+
+    /**
+     * id değerleri verilen gönderilerin kalıcı olarak siler
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function postForceDeletePost()
+    {
+        try {
+            if (\Request::ajax()) {
+                $ids = (array)\Input::get('id');
+                if (!is_null($ids || !empty($ids))) {
+                    Post::onlyTrashed()->whereIn('id', $ids)->forceDelete();
+
+                    $response = array('status' => 'success', 'msg' => 'Deleted Successfully', 'redirect' => '');
+                    return response()->json($response);
+                }
+            }
+        }catch (Exception $e){
+            $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage());
+            return response()->json($ajaxResponse);
+        }
+    }
+
+    public function postRestorePost(){
+        try {
+            if (\Request::ajax()) {
+                $ids = (array)\Input::get('id');
+                if (!is_null($ids || !empty($ids))) {
+                    Post::onlyTrashed()->whereIn('id', $ids)->update(['status'=>'task']);
+                    Post::onlyTrashed()->whereIn('id', $ids)->restore();
+
+                    $response = array('status' => 'success', 'msg' => 'Restore Successfully', 'redirect' => '');
+                    return response()->json($response);
+                }
+            }
+        }catch (Exception $e){
+            $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage());
+            return response()->json($ajaxResponse);
         }
     }
 

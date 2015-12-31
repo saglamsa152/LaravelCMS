@@ -57,37 +57,24 @@
 												<span class="sr-only">Toggle Dropdown</span>
 											</button>
 											<ul role="menu" class="dropdown-menu">
-												<li>
-													<a href="<?= URL::action( 'HomeController@getNews', $new->url ) ?>">
-														<i class="fa fa-eye"></i>
-														<?= _( 'View' ) ?>
-													</a>
-												</li>
-												<li>
-													<a href="<?= URL::action( 'AdminController@getUpdateNews', $new->id ) ?>">
-														<i class="fa fa-edit"></i>
-														<?= _( 'Edit' ) ?>
-													</a>
-												</li>
-												<li>
-													<?= Form::open( array( 'id' => 'publishForm-' . $new->id, 'method' => 'post', 'action' => 'AdminController@postTogglePostStatus', 'class' => 'ajaxForm','title'=>_('Change Status') ) ) ?>
+												<li><!-- todo deleteform gibi geri getirmek istiyormusunuz uyarısı gelmeli -->
+													<?= Form::open( array( 'id' => 'restoreForm-' . $new->id, 'method' => 'post', 'action' => 'AdminController@postRestorePost', 'class' => 'ajaxForm','title'=>_('Restore New') ) ) ?>
 													<?= Form::hidden( 'id', $new->id ) ?>
 													<?= Form::close() ?>
-													<a href="#" onclick="$('#publishForm-<?= $new->id ?>').submit()">
-														<i class="fa fa-check"></i>
-														<?php if($new->status=='publish') echo _('Make Task'); else echo _( 'Publish' ) ?>
+													<a href="#" onclick="$('#restoreForm-<?= $new->id ?>').submit()">
+														<i class="fa fa-recycle"></i>
+														<?= _( 'Restore' ) ?>
 													</a>
 												</li>
-													<li>
-														<!-- todo deleteform yerine çöp kutusuna gönderme formu  uyarısı gelmeli-->
-														<?= Form::open( array( 'id' => 'deleteForm-' . $new->id, 'method' => 'post', 'action' => 'AdminController@postDeletePost', 'class' => 'ajaxFormDelete' ) ) ?>
-														<?= Form::hidden( 'id', $new->id ) ?>
-														<?= Form::close() ?>
-														<a href="#" onclick="$('#deleteForm-<?= $new->id ?>').submit()">
-															<i class="fa fa-trash-o"></i>
-															<?= _( 'Delete' ) ?>
-														</a>
-													</li>
+												<li>
+													<?= Form::open( array( 'id' => 'deleteForm-' . $new->id, 'method' => 'post', 'action' => 'AdminController@postForceDeletePost', 'class' => 'ajaxFormDelete' ) ) ?>
+													<?= Form::hidden( 'id', $new->id ) ?>
+													<?= Form::close() ?>
+													<a href="#" onclick="$('#deleteForm-<?= $new->id ?>').submit()">
+														<i class="fa fa-trash-o"></i>
+														<?= _( 'Delete' ) ?>
+													</a>
+												</li>
 											</ul>
 										</div>
 										<?= Form::checkbox( 'bulk-' . $new->id, $new->id ) ?>
@@ -112,13 +99,13 @@
 										</button>
 										<ul role="menu" class="dropdown-menu">
 											<li>
-												<a href="#" data-link="<?= URL::action( 'AdminController@postTogglePostStatus' ) ?>">
-													<i class="fa fa-check"></i>
-													<?= _( 'Toggle Status' ) ?>
+												<a href="#" data-link="<?= URL::action( 'AdminController@postRestorePost' ) ?>">
+													<i class="fa fa-recycle"></i>
+													<?= _( 'Restore' ) ?>
 												</a>
 											</li>
 											<li>
-												<a href="#" data-action="delete" data-link="<?= URL::action( 'AdminController@postDeletePost' ) ?>">
+												<a href="#" data-action="delete" data-link="<?= URL::action( 'AdminController@postForceDeletePost' ) ?>">
 													<i class="fa fa-trash-o"></i>
 													<?= _( 'Delete' ) ?>
 												</a>

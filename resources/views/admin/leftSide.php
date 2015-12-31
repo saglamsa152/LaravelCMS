@@ -62,6 +62,7 @@
 					<ul class="treeview-menu">
 						<li><a href="<?=URL::action('AdminController@getNews')?>"><i class="fa fa-list"></i> <?=_('List')?></a></li>
 						<li><a href="<?=URL::action('AdminController@getAddNews')?>"><i class="fa fa-plus"></i> <?=_('Add New')?></a></li>
+						<li><a href="<?=URL::action('AdminController@getNewsTrash')?>"><i class="fa fa-trash"></i> <?=_('Trash')?></a></li>
 					</ul>
 				</li>
 			<?php endif; ?>
@@ -75,12 +76,9 @@
 						<i class="fa fa-angle-left pull-right"></i>
 					</a>
 					<ul class="treeview-menu">
-						<li>
-							<a href="<?= URL::action( 'AdminController@getService' ) ?>"><i class="fa fa-list"></i> <?= _( 'List' ) ?>
-							</a></li>
-						<li>
-							<a href="<?= URL::action( 'AdminController@getAddService' ) ?>"><i class="fa fa-plus"></i> <?= _( 'Add New' ) ?>
-							</a></li>
+						<li><a href="<?= URL::action( 'AdminController@getService' ) ?>"><i class="fa fa-list"></i> <?= _( 'List' ) ?></a></li>
+						<li><a href="<?= URL::action( 'AdminController@getAddService' ) ?>"><i class="fa fa-plus"></i> <?= _( 'Add New' ) ?></a></li>
+						<li><a href="<?= URL::action( 'AdminController@getServiceTrash' )?>"><i class="fa fa-trash"></i> <?=_('Trash')?></a></li>
 					</ul>
 				</li>
 			<?php endif; ?>

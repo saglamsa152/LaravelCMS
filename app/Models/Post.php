@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  *
@@ -13,8 +14,11 @@ use Illuminate\Database\Eloquent\Model;
  * Post Status:
  * -publish
  * -task
+ * -trashed
  */
 class Post extends Model {
+
+	use SoftDeletes;
 
 	/**
 	 * toplu atama yaparken hangi alanların kullanılacağını belirler (laravel kitap s145)
@@ -95,7 +99,7 @@ class Post extends Model {
 	 * @return string
 	 */
 	public function getHtmlStatus() {
-		$labelClass = array( 'publish' => 'label-success', 'task' => 'label-primary' );
+		$labelClass = array( 'publish' => 'label-success', 'task' => 'label-primary','trashed'=>'label-danger' );
 		return '<span class="label ' . $labelClass[$this->status] . '">' . $this->status . '</span>';
 	}
 }
