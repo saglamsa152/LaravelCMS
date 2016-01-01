@@ -48,7 +48,7 @@
 									<td><?= $new->user->username ?></td>
 									<td><?= $new->created_at ?></td>
 									<td><?= $new->type ?></td>
-									<td><?= $new->getHtmlStatus() ?></td>
+									<td><?= \Post::getHtmlStatus($new->status) ?></td>
 									<td>
 										<div class="btn-group text-left" style="margin-right:5px">
 											<button data-toggle="dropdown" class="btn btn-default btn-flat dropdown-toggle" type="button">

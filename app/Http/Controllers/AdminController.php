@@ -52,7 +52,7 @@ class AdminController extends BaseController
     }
 
     /**
-     * Üye ol sayfası
+     * Üye ol sayfasına yönlendirir
      * @return \Illuminate\View\View
      */
     public function getRegister()
@@ -62,7 +62,7 @@ class AdminController extends BaseController
     }
 
     /**
-     * Admin panel giriş sayfasını gösterir
+     * Admin panel giriş sayfasına yönlendirir
      * @return mixed
      */
     public function getLogin()
@@ -73,7 +73,7 @@ class AdminController extends BaseController
 
     /* User */
     /**
-     * Admin panel users sayfasını açar
+     * Admin panel users sayfasına yönlendirir
      * @return mixed
      */
     public function getUsers()
@@ -92,8 +92,9 @@ class AdminController extends BaseController
     }
 
     /**
-     * @param null $id
+     * Id ile belirtilen kullanıcının profil sayfasına yönlendirir
      *
+     * @param null $id
      * @return \Illuminate\View\View
      */
     public function getProfile($id = null)
@@ -115,9 +116,6 @@ class AdminController extends BaseController
         return \View::make('admin.index')->with(compact('user', 'title', 'rightSide'));
     }
 
-    /**
-     * @return \Illuminate\View\View
-     */
     public function getAddUser()
     {
         if (userCan('addUser')) {
@@ -132,9 +130,6 @@ class AdminController extends BaseController
         return \View::make('admin.index')->with(compact('title', 'rightSide'))->withErrors($error);
     }
 
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function postUpdateUser()
     {
         try {
@@ -178,7 +173,6 @@ class AdminController extends BaseController
             return response()->json($ajaxResponse);
         }
     }
-
 
     public function postAddUser()
     {
@@ -315,9 +309,6 @@ class AdminController extends BaseController
     }
 
     /* News */
-    /**
-     * @return \Illuminate\View\View
-     */
     public function getNews()
     {
         if (userCan('manageNews')) {
@@ -339,7 +330,7 @@ class AdminController extends BaseController
     }
 
     /**
-     * Yeni gönderi oluşturma sayfası
+     * Yeni gönderi oluşturma sayfasına yönlendirir
      */
     public function getAddNews()
     {
@@ -355,11 +346,6 @@ class AdminController extends BaseController
         return \View::make('admin.index')->with(compact('title', 'rightSide'))->withErrors($error);
     }
 
-    /**
-     * @param null $id
-     *
-     * @return bool|\Illuminate\View\View
-     */
     public function getUpdateNews($id = null)
     {
         if (is_null($id)) return false;
@@ -402,9 +388,6 @@ class AdminController extends BaseController
 
     /* Slider */
 
-    /**
-     * @return \Illuminate\View\View
-     */
     public function getSlider()
     {
         if (userCan('manageSlider')) {
@@ -425,9 +408,6 @@ class AdminController extends BaseController
         return \View::make('admin.index')->with(compact('title', 'slides', 'rightSide'))->withErrors($error);
     }
 
-    /**
-     *
-     */
     public function postUpdateSlide()
     {
         try {
@@ -476,9 +456,6 @@ class AdminController extends BaseController
 
     /* Services */
 
-    /**
-     * @return \Illuminate\View\View
-     */
     public function getService()
     {
         if (userCan('manageService')) {
@@ -499,9 +476,6 @@ class AdminController extends BaseController
         return \View::make('admin.index')->with(compact('title', 'services', 'rightSide'))->withErrors($error);
     }
 
-    /**
-     * @return \Illuminate\View\View
-     */
     public function getAddService()
     {
         if (userCan('manageService')) {
@@ -558,9 +532,6 @@ class AdminController extends BaseController
 
     /* Products */
 
-    /**
-     * @return \Illuminate\View\View
-     */
     public function getProducts()
     {
         if (userCan('manageProduct')) {
@@ -581,9 +552,6 @@ class AdminController extends BaseController
         return \View::make('admin.index')->with(compact('title', 'products', 'rightSide'))->withErrors($error);
     }
 
-    /**
-     * @return \Illuminate\View\View
-     */
     public function getAddProduct()
     {
         if (userCan('manageProduct')) {
@@ -619,9 +587,6 @@ class AdminController extends BaseController
 
     /* Mail */
 
-    /**
-     * @return \Illuminate\View\View
-     */
     public function getMailbox()
     {
         if (userCan('manageMailbox')) {
@@ -724,9 +689,6 @@ class AdminController extends BaseController
 
     /* Orders */
 
-    /**
-     * @return \Illuminate\View\View
-     */
     public function getOrders()
     {
         if (userCan('manageOrders')) {
@@ -901,7 +863,7 @@ class AdminController extends BaseController
     }
 
     /**
-     * Yeni haber kaydını denetler
+     * Yeni Gönderi kayıt işlemine yönlendirir
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -970,15 +932,7 @@ class AdminController extends BaseController
     public function postForceDeletePost()
     {
         try {
-            if (\Request::ajax()) {
-                $ids = (array)\Input::get('id');
-                if (!is_null($ids || !empty($ids))) {
-                    PostModel::onlyTrashed()->whereIn('id', $ids)->forceDelete();
-
-                    $response = array('status' => 'success', 'msg' => 'Deleted Successfully', 'redirect' => '');
-                    return response()->json($response);
-                }
-            }
+            return response()->json(Post::forceDelete((array)\Input::get('id')));
         } catch (Exception $e) {
             $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage());
             return response()->json($ajaxResponse);
@@ -988,16 +942,7 @@ class AdminController extends BaseController
     public function postRestorePost()
     {
         try {
-            if (\Request::ajax()) {
-                $ids = (array)\Input::get('id');
-                if (!is_null($ids || !empty($ids))) {
-                    PostModel::onlyTrashed()->whereIn('id', $ids)->update(['status' => 'task']);
-                    PostModel::onlyTrashed()->whereIn('id', $ids)->restore();
-
-                    $response = array('status' => 'success', 'msg' => 'Restore Successfully', 'redirect' => '');
-                    return response()->json($response);
-                }
-            }
+            return response()->json(Post::restore((array)\Input::get('id')));
         } catch (Exception $e) {
             $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage());
             return response()->json($ajaxResponse);
@@ -1011,44 +956,45 @@ class AdminController extends BaseController
      */
     public function postUpdatePost()
     {
-        if (\Request::ajax()) {
+        try {
+            /*
+             * Get Post Request Data
+             */
             $postData = \Input::all();
+            /*
+             * Validator Rules
+             */
             $rules = array(
                 'title' => 'required',
                 'content' => 'required'
             );
-            // todo  ingilzce  tercüme
+            /*
+             * Varlidator Error Message
+             *  todo  ingilzce  tercüme
+             */
             $messages = array(
                 'title.required' => _('Başlık boş bırakılamaz'),
                 'content.required' => _('İçerik boş bırakılamaz')
             );
+            /*
+             * Set Validator
+             */
             $validator = \Validator::make($postData, $rules, $messages);
 
+            /*
+             * Check validate
+             */
             if ($validator->fails()) {
-                $response = array('status' => 'danger', 'msg' => $validator->messages());
-                return response()->json($response);
-            } else {
-                $post = \PostModel::find($postData['id']);
+                $ajaxResponse = array('status' => 'danger', 'msg' => $validator->messages()->toArray()); //todo  burası  olmuyor
+                return response()->json($ajaxResponse);
+            } else
+                return response()->json(Post::update($postData));
 
-                $postData = array_add($postData, 'author', \Auth::user()->id);
-                $postData = array_add($postData, 'excerpt', mb_substr(strip_tags($postData['content']), 0, 450, 'UTF-8'));
-                $postData = array_add($postData, 'url', Str::slug_utf8($postData['title']));
-                $postData = array_add($postData, 'created_ip', \Request::getClientIp());
-                // meta bilgilerini  dizinen çıkartalım
-                $metas = array_pull($postData, 'postMeta');
-                // yeni bilgileri güncelleyelim
-                $post->fill($postData)->push();
-
-                if (!empty($metas)) {
-                    foreach ($metas as $key => $value) {
-                        if (is_null($value)) continue;
-                        \PostMeta::setMeta($postData['id'], $key, $value);
-                    }
-                }
-                $response = array('status' => 'success', 'msg' => _('Update Successfully'), 'redirect' => '');
-                return response()->json($response);
-            }
+        } catch (Exception $e) {
+            $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage() . $e->getFile() . $e->getLine());
+            return response()->json($ajaxResponse);
         }
+
     }
 
     /**
@@ -1058,18 +1004,11 @@ class AdminController extends BaseController
      */
     public function postTogglePostStatus()
     {
-        if (\Request::ajax()) {
-            $ids = (array)\Input::get('id');
-            if (!is_null($ids) || empty($ids)) {
-                $status = ['publish' => 'task', 'task' => 'publish'];
-                foreach ($ids as $id) {
-                    $post = \PostModel::find($id);
-                    $post->status = $status[$post->status];
-                    $post->save();
-                }
-                $response = array('status' => 'success', 'msg' => 'Status Changed', 'redirect' => '');
-            }
-            return response()->json($response);
+        try {
+            return response()->json(Post::toggleStatus((array)\Input::get('id')));
+        } catch (Exception $e) {
+            $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage());
+            return response()->json($ajaxResponse);
         }
     }
 

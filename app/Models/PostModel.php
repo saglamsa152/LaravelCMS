@@ -94,14 +94,4 @@ class PostModel extends Model {
 	public function scopeService( $query ) {
 		return $query->where( 'type', '=', 'service' );
 	}
-
-	/**
-	 * Gönderilerin listelendiği tabloda kullanmak için gönderi durumuna uygun olarak
-	 * bootstrap labeli döndürür
-	 * @return string
-	 */
-	public function getHtmlStatus() {
-		$labelClass = array( 'publish' => 'label-success', 'task' => 'label-primary','trashed'=>'label-danger' );
-		return '<span class="label ' . $labelClass[$this->status] . '">' . $this->status . '</span>';
-	}
 }

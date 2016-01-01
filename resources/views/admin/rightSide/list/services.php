@@ -48,7 +48,7 @@
 									<td><?= $service->user->username ?></td>
 									<td><?= $service->created_at ?></td>
 									<td><?= $service->type ?></td>
-									<td><?= $service->getHtmlStatus() ?></td>
+									<td><?= \Post::getHtmlStatus($service->status) ?></td>
 									<td>
 										<div class="btn-group text-left" style="margin-right:5px">
 											<button data-toggle="dropdown" class="btn btn-default btn-flat dropdown-toggle" type="button">
