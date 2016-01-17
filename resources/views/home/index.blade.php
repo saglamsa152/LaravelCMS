@@ -11,16 +11,24 @@
     <?= Html::style('assets/home/css/style.css') ?>
     <!-- all Pages -->
     <!-- only Default -->
+    @if('default'===$contentName)
     <?= Html::style('assets/home/css/camera.css') ?>
+    @endif
     <!-- /only Default -->
     <!-- default and about -->
+    @if('default'===$contentName || 'about'===$contentName)
     <?= Html::style('assets/home/css/owl.carousel.css') ?>
+    @endif
     <!-- /default and about -->
     <!-- only contact -->
+    @if('contact'===$contentName)
     <?= Html::style('assets/home/css/contact-form.css') ?>
+    @endif
     <!-- /only contact -->
     <!-- only service -->
+    @if('service'===$contentName)
     <?= Html::style('assets/home/css/isotope.css') ?>
+    @endif
     <!-- /only service -->
     <!-- /CSS -->
 
@@ -31,20 +39,28 @@
     <?=Html::script('assets/home/js/jquery.equalheights.js')?>
     <!-- /all Pages -->
     <!-- only Default -->
+    @if('default'===$contentName)
     <!--[if (gt IE 9)|!(IE)]><!-->
     <?=Html::script('assets/home/js/jquery.mobile.customized.min.js')?>
+    @endif
     <!--<![endif]-->
     <?=Html::script('assets/home/js/camera.js')?>
     <!-- /only Default -->
     <!-- default and about -->
+    @if('default'===$contentName || 'about'===$contentName)
     <?=Html::script('assets/home/js/owl.carousel.js')?>
+    @endif
     <!-- /default and about -->
     <!-- only contact -->
+    @if('contact'===$contentName)
     <?=Html::script('assets/home/js/modal.js')?>
     <?=Html::script('assets/home/js/TMForm.js')?>
+    @endif
     <!-- /only contact -->
     <!-- only service -->
+    @if('service'===$contentName)
     <?=Html::script('assets/home/js/isotope.min.js')?>
+    @endif
     <!-- /only service -->
     <!-- /Script -->
 
