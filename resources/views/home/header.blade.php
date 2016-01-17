@@ -12,7 +12,7 @@
                     </div>
                     <nav class="nav put-right">
                         <ul class="sf-menu">
-                            <li class="<?php if(str_contains(URL::current(),'/')) echo ' current'?>"><a href="{{URL::action('HomeController@getIndex')}}">Home</a></li>
+                            <li class="<?php if(!str_contains(URL::current(),array('about','service','contact','blog'))) echo ' current'?>"><a href="{{URL::action('HomeController@getIndex')}}">Home</a></li>
                             <li class="<?php if(str_contains(URL::current(),'about')) echo ' current'?>">
                                 <a href="{{URL::action('HomeController@getAbout')}}">About</a>
                                 <ul>

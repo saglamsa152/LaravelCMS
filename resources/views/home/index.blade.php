@@ -58,7 +58,7 @@
     @endif
     <!-- /only contact -->
     <!-- only service -->
-    @if('service'===$contentName)
+    @if('services'===$contentName)
     <?=Html::script('assets/home/js/isotope.min.js')?>
     @endif
     <!-- /only service -->
