@@ -33,7 +33,8 @@ class HomeController extends BaseController {
 	public function getIndex() {
 		$title=Option::getOption('siteName');
 		$slides = PostModel::slider()->with('postMeta')->orderBy( 'created_at', 'desc' )->get();
-		return View::make( 'home/index' )->with(compact('slides','title'));
+		$contentName='default';
+		return View::make( 'home/index' )->with(compact('slides','title','contentName'));
 	}
 
 	/**
@@ -43,7 +44,7 @@ class HomeController extends BaseController {
 	 *
 	 * @return \Illuminate\View\View
 	 */
-	public function getNews( $url = null ) {
+	public function getBlog($url = null ) {
 		if ( is_null( $url ) ):
 			$posts      = PostModel::news()->with( 'postMeta', 'user' )->orderBy( 'created_at', 'desc' )->paginate( 5 );
 			foreach ( $posts as $post ) {
@@ -51,24 +52,36 @@ class HomeController extends BaseController {
 					$post = array_add( $post, $meta->metaKey, $meta->metaValue );
 				}
 			}
-			return View::make( 'news/index' )->with( 'posts', $posts );
+			$title=_('Blog');
+			$contentName='blog';
+			return View::make( 'home/index' )->with( compact('posts','title','contentName') );
 		else:
 			$post      = PostModel::news()->with( 'postMeta', 'user' )->whereRaw( "url= '$url'" )->first();
 			foreach ( $post->postMeta as $meta ) {
 				$post = array_add( $post, $meta->metaKey, $meta->metaValue );
 			}
-			return View::make( 'news/single' )->with( array( 'post' => $post, 'title' => $post->title ) );
+			$title=$post->title;
+			$contentName='blogSingle';
+			return View::make( 'home/index' )->with(compact('post','title','contentName') );
 		endif;
 	}
 
-	public function getContacts() {
+	public function getContact() {
 		$title=_('Contact');
-		return View::make( 'contacts/index' )->with('title',$title);
+		$contentName='contact';
+		return View::make( 'home/index' )->with(compact('title','contentName') );
+	}
+
+	public function getAbout() {
+		$title=_('About');
+		$contentName='about';
+		return View::make( 'home/index' )->with(compact('title','contentName') );
 	}
 
 	public function getProducts() {
 		$title=_('Products');
-		return View::make( 'products/index' )->with('title',$title);
+		$contentName='products';
+		return View::make( 'home/index' )->with(compact('title','contentName' ));
 	}
 
 	public function getServices() {
@@ -80,13 +93,8 @@ class HomeController extends BaseController {
 				$service = array_add( $service, $meta->metaKey, $meta->metaValue );
 			}
 		}
-
-		return View::make( 'services/index' )->with( compact('title','services' ) );
-	}
-
-	public function getMembership() {
-		$title=_('Membership');
-		return View::make( 'membership/index' )->with('title',$title);
+		$contentName='services';
+		return View::make( 'home/index' )->with( compact('title','services','contentName' ) );
 	}
 
 	public function getSource($source){

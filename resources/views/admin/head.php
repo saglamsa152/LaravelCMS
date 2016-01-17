@@ -30,8 +30,6 @@
 <?=Html::style( 'assets/admin/plugins/datepicker/datepicker3.css')?>
 <!-- Daterange picker -->
 <?= Html::style( 'assets/admin/plugins/daterangepicker/daterangepicker-bs3.css' ) ?>
-<!-- bootstrap wysihtml5 - text editor todo bun kullamıyorum yerine ckeditor var tema güncellemesi sonrası kaldırılacak -->
-<link href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

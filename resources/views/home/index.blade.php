@@ -1,88 +1,104 @@
-@extends('template.default')
-@section('header')
-<div class="body1">
-	<div id="page1" class="body2">
-		<div class="main zerogrid">
-			<!-- header -->
-			<header>
-				@include('template.menu')
-				@include('template.slider')
-			</header>
-			<!-- header end-->
-		</div>
-	</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- CSS -->
+    <!-- all Pages -->
+    <title>{{$title}}</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <?= Html::favicon('assets/home/images/favicon.ico') ?>
+    <?= Html::style('assets/home/css/grid.css') ?>
+    <?= Html::style('assets/home/css/style.css') ?>
+    <!-- all Pages -->
+    <!-- only Default -->
+    <?= Html::style('assets/home/css/camera.css') ?>
+    <!-- /only Default -->
+    <!-- default and about -->
+    <?= Html::style('assets/home/css/owl.carousel.css') ?>
+    <!-- /default and about -->
+    <!-- only contact -->
+    <?= Html::style('assets/home/css/contact-form.css') ?>
+    <!-- /only contact -->
+    <!-- only service -->
+    <?= Html::style('assets/home/css/isotope.css') ?>
+    <!-- /only service -->
+    <!-- /CSS -->
+
+    <!-- Script -->
+    <!-- all Pages -->
+    <?=Html::script('assets/home/js/jquery.js')?>
+    <?=Html::script('assets/home/js/jquery-migrate-1.2.1.js')?>
+    <?=Html::script('assets/home/js/jquery.equalheights.js')?>
+    <!-- /all Pages -->
+    <!-- only Default -->
+    <!--[if (gt IE 9)|!(IE)]><!-->
+    <?=Html::script('assets/home/js/jquery.mobile.customized.min.js')?>
+    <!--<![endif]-->
+    <?=Html::script('assets/home/js/camera.js')?>
+    <!-- /only Default -->
+    <!-- default and about -->
+    <?=Html::script('assets/home/js/owl.carousel.js')?>
+    <!-- /default and about -->
+    <!-- only contact -->
+    <?=Html::script('assets/home/js/modal.js')?>
+    <?=Html::script('assets/home/js/TMForm.js')?>
+    <!-- /only contact -->
+    <!-- only service -->
+    <?=Html::script('assets/home/js/isotope.min.js')?>
+    <!-- /only service -->
+    <!-- /Script -->
+
+    <!--[if lt IE 9]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+        <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+            <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0"
+                 height="42" width="820"
+                 alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."/>
+        </a>
+    </div>
+    <?=Html::script('assets/home/js/html5shiv.js')?>
+    <?= Html::style( 'assets/home/css/ie.css' ) ?>
+    <![endif]-->
+
+    <!-- For sercvice page -->
+
+
+            <!-- /For sercvice page -->
+
+</head>
+<body>
+<div class="page">
+    <!--========================================================
+                              HEADER
+    =========================================================-->
+    @include('home.header')
+            <!--========================================================
+                              CONTENT
+    =========================================================-->
+    @include("home.content.$contentName")
+
+    <div class="container">
+        <div class="row wrap_9 wrap_4 wrap_10">
+            <div class="grid_12">
+                <div class="header_1 wrap_3 color_3">
+                    Get in Touch
+                </div>
+                <div class="box_3">
+                    <ul class="list_1">
+                        <li><a class="fa fa-twitter" href="#"></a></li>
+                        <li><a class="fa fa-facebook" href="#"></a></li>
+                        <li><a class="fa fa-google-plus" href="#"></a></li>
+                        <li><a class="fa fa-pinterest" href="#"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-@stop
-
-@section('content')
-<div class="body3">
-	<div class="main zerogrid">
-		<!-- content -->
-		<article id="content">
-			<div class="wrapper row">
-				<section class="col-3-4">
-					<div class="wrap-col">
-						<h2 class="under">Hoşgeldiniz!</h2>
-						<div class="wrapper"><!-- Todo Image çalışmıyor -->
-							<figure class="left marg_right1"><img alt="" src="assets/images/page1_img1.jpg">
-							</figure>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam scelerisque porttitor nibh ac laoreet. Maecenas molestie magna ut quam lacinia finibus. In non magna eu ex efficitur accumsan efficitur non massa. Pellentesque eu est a tellus tristique suscipit ac fermentum eros. Suspendisse potenti. Fusce condimentum rutrum nulla, a feugiat dolor imperdiet nec. Aenean purus ligula, bibendum tincidunt placerat id, blandit id turpis. Maecenas varius vulputate ante, et lobortis felis volutpat at. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-
-							<p>Nulla nec tincidunt leo. Aliquam arcu libero, ornare sed dignissim nec, dictum a lorem. Vivamus tristique leo efficitur aliquet rhoncus. Aliquam malesuada vulputate leo eu porta. Mauris sodales ornare tristique. Aenean vulputate risus ut ex convallis ornare. Nulla aliquet nisl at lacus dapibus, sit amet posuere purus sagittis. Donec in dolor tellus. Aliquam a consectetur nisl. Donec dapibus eu ipsum ac consectetur. Vivamus quis erat a elit pellentesque sodales. Phasellus laoreet, nisl nec luctus auctor, est risus cursus ligula, et hendrerit tortor ligula non tortor.</p>
-
-						</div>
-					</div>
-				</section>
-				<section class="col-1-4">
-					<div class="wrap-col">
-						<h2>Duyurular</h2>
-						<div class="testimonials">
-							<div id="testimonials" style="visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; height: 210px;">
-								<ul style="margin: 0px; padding: 0px; position: relative; list-style-type: none; z-index: 1; height: 1050px; top: -210px;">
-									<li style="overflow: hidden; float: none; width: 215px; height: 210px;">
-										<div>
-											“Nam libero tempore, cum soluta nobis eligendi quo minus quod maxime placeat facere.”
-										</div>
-									<span><strong class="color1">James Coloway,</strong> <br>
-									Director</span>
-									</li>
-									<li style="overflow: hidden; float: none; width: 215px; height: 210px;">
-										<div>
-											“Nam libero tempore, cum soluta nobis eligendi quo minus quod maxime placeat facere.”
-										</div>
-									<span><strong class="color1">James Coloway,</strong> <br>
-									Director</span>
-									</li>
-									<li style="overflow: hidden; float: none; width: 215px; height: 210px;">
-										<div>
-											“Nam libero tempore, cum soluta nobis eligendi quo minus quod maxime placeat facere.”
-										</div>
-									<span><strong class="color1">James Coloway,</strong> <br>
-									Director</span>
-									</li>
-									<li style="overflow: hidden; float: none; width: 215px; height: 210px;">
-										<div>
-											“Nam libero tempore, cum soluta nobis eligendi quo minus quod maxime placeat facere.”
-										</div>
-									<span><strong class="color1">James Coloway,</strong> <br>
-									Director</span>
-									</li>
-									<li style="overflow: hidden; float: none; width: 215px; height: 210px;">
-										<div>
-											“Nam libero tempore, cum soluta nobis eligendi quo minus quod maxime placeat facere.”
-										</div>
-									<span><strong class="color1">James Coloway,</strong> <br>
-									Director</span>
-									</li>
-								</ul>
-							</div>
-							<a class="up" href="#"></a>
-							<a class="down" href="#"></a>
-						</div>
-					</div>
-				</section>
-			</div>
-		</article>
-	</div>
-</div>
-@stop
+<!--========================================================
+                          FOOTER
+=========================================================-->
+@include('home.footer')
+<?=Html::script('assets/home/js/script.js')?>
+</body>
+</html>

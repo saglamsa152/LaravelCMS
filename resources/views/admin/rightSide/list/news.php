@@ -58,7 +58,7 @@
 											</button>
 											<ul role="menu" class="dropdown-menu">
 												<li>
-													<a href="<?= URL::action( 'HomeController@getNews', $new->url ) ?>">
+													<a href="<?= URL::action( 'HomeController@getBlog', $new->url ) ?>">
 														<i class="fa fa-eye"></i>
 														<?= _( 'View' ) ?>
 													</a>
