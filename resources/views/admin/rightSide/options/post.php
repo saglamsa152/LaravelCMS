@@ -84,7 +84,7 @@
 
                                 <?php foreach ($categories as $category): ?>
                                     <tr>
-                                        <td data-index="name"><?= $category->name ?></td>
+                                        <td data-index="name"><?= str_repeat(' - ', $category->level) .$category->name ?></td>
                                         <td data-index="description"><?= $category->description ?></td>
                                         <td class="text-center">
                                             <div class="btn-group text-left" style="margin-right:5px">
@@ -159,7 +159,7 @@
                                     $('input#id', form).val(values.id);
                                     $('input#name', form).val(values.name);
                                     $('select#parentCat :selected', form).removeAttr('selected');
-                                    $('select#parentCat option[value="'+values.parentCat+'"]', form).attr('selected','selected');
+                                    $('select#parentCat').val(values.parentCat);
                                     $('input#level', form).val(values.level);
                                     $('#description', form).val(values.description);
 
