@@ -88,7 +88,7 @@ class OptionsController extends BaseController
                 global $categoriesArray;
 
                 foreach ($list as $id => $cat) {
-                    $cat['name'] = str_repeat(' - ', $cat['level']) . $cat['name'];
+                    //$cat['name'] = str_repeat(' - ', $cat['level']) . $cat['name'];
                     $categoriesArray[$id] = $cat;
                     if (!empty($cat['subCategory'])) {
                         createCategoriesArray($cat['subCategory']);
@@ -100,7 +100,7 @@ class OptionsController extends BaseController
 
             $title = _('Post Options');
             $rightSide = 'options/post';
-            $categories = json_decode(json_encode(createCategoriesArray($categoryTree)), false);
+            $categories = json_decode(json_encode(createCategoriesArray($categoryTree)), false); //todo encode ve decode bir arada kullanılmış mantıksız gibi duruyor incelenecek
             $categoriesSelectArray = createCategoriesSelectArray($categoryTree);
             $error = null;
         } else {
