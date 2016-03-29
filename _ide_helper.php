@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.0.34 on 2015-12-31.
+ * Generated for Laravel 5.0.35 on 2016-03-29.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12502,6 +12502,100 @@ namespace {
         public static function getDrivers(){
             //Method inherited from \Illuminate\Support\Manager            
             return \Folklore\Image\ImageManager::getDrivers();
+        }
+        
+    }
+
+
+    class Post extends \App\MyClasses\Post\PostFacade{
+        
+        /**
+         * Veri tabanına yeni gönderi ekler ve işlem sonucunun json olarak kullanmak üzere array olarak döner.
+         * 
+         * Sadece ajax ile çalışır
+         *
+         * @param array $postData
+         * @return array 
+         * @throws \Exception
+         * @static 
+         */
+        public static function addNew($postData){
+            return \App\MyClasses\Post\Post::addNew($postData);
+        }
+        
+        /**
+         * Post sil işlemi
+         * belirtilen idlerdeki gönderilerin status değerlerini trashed olarak değiştirir ve soft delete işlemi uygular
+         *
+         * @param array $ids
+         * @return array 
+         * @throws \Exception
+         * @static 
+         */
+        public static function delete($ids){
+            return \App\MyClasses\Post\Post::delete($ids);
+        }
+        
+        /**
+         * Silinmiş  gönderiyi taslak olarak geri getirir
+         *
+         * @param array $ids
+         * @return array 
+         * @throws \Exception
+         * @static 
+         */
+        public static function restore($ids){
+            return \App\MyClasses\Post\Post::restore($ids);
+        }
+        
+        /**
+         * Çöp kutusunda bulunan gönderiyi kalıcı olarak siler
+         * 
+         * todo #97
+         *
+         * @param array $ids
+         * @return array 
+         * @throws \Exception
+         * @static 
+         */
+        public static function forceDelete($ids){
+            return \App\MyClasses\Post\Post::forceDelete($ids);
+        }
+        
+        /**
+         * id bilgisi  verilen gönderinin durumunu değiştirir
+         *  publish ise task, task ise punlish
+         *
+         * @param array $ids
+         * @return array 
+         * @throws \Exception
+         * @static 
+         */
+        public static function toggleStatus($ids){
+            return \App\MyClasses\Post\Post::toggleStatus($ids);
+        }
+        
+        /**
+         * Gönderi güncelleme işlemini  yapar
+         *
+         * @param array $postData
+         * @return array 
+         * @throws \Exception
+         * @static 
+         */
+        public static function update($postData){
+            return \App\MyClasses\Post\Post::update($postData);
+        }
+        
+        /**
+         * Gönderilerin listelendiği tabloda kullanmak için gönderi durumuna uygun olarak
+         * bootstrap labeli döndürür
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getHtmlStatus($status){
+            return \App\MyClasses\Post\Post::getHtmlStatus($status);
         }
         
     }
