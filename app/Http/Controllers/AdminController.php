@@ -701,74 +701,7 @@ class AdminController extends BaseController
         }
         return \View::make('admin.index')->with(compact('title', 'rightSide'))->withErrors($error);
     }
-
-    /*
-     * Dues todo silinecek
-     */
-    public function postDues()
-    {
-        if (\Request::ajax()) {
-            try {
-                $postData = \Input::all();
-                $duesAmount = Option::getOption('duesAmount');
-
-                if (isset($postData['dues'])) {
-                    $userDues = \UserMeta::getMeta($postData['userId'], 'dues', true);
-                    $total = 0;
-                    foreach ($postData['dues'] as $dues) {
-                        $dues = explode('-', $dues);
-                        $total += $duesAmount;
-                        if (array_key_exists($dues[0], $userDues)) {
-                            $userDues[$dues[0]][$dues[1]] = 1;// usrmeta tablosunda aidatı ödendi olarak ayarlayalım
-                            \UserMeta::setMeta($postData['userId'], 'dues', $userDues, true);// güncel bilgileri veri tabanına kaydettik
-                        }
-
-                    }
-                    //ödeme bilgisini  veri tabanına kaydedelim
-                    $order = Orders::create(array(
-                        'userId' => $postData['userId'],
-                        'type' => 'dues',
-                        'price' => $total,
-                        'description' => $postData['description'],
-                        'meta' => ''
-                    ));
-                    if ($order) {
-                        \UserMeta::setMeta($postData['userId'], 'dues', $userDues, true);// güncel bilgileri veri tabanına kaydettik
-                    }
-                }
-                if (isset($postData['donate']) && $postData['donate']) {
-                    //ödeme bilgisini  veri tabanına kaydedelim
-                    $order = Orders::create(array(
-                        'userId' => $postData['userId'],
-                        'type' => 'donate',
-                        'price' => $postData['donateAmount'],
-                        'description' => $postData['description'],
-                        'meta' => ''
-                    ));
-                }
-                $response = array('status' => 'success', 'msg' => _('Payed Successfully'), 'redirect' => '');
-            } catch
-            (Exception $e) {
-                $response = array('status' => 'danger', 'msg' => $e->getMessage());
-            }
-            return response()->json($response);
-        }
-    }
-
-    /*
-     * Type Ahead eklentisi  için json çıktıları
-     * todo kullanımı araştırılıp gerekiyorsa silinecek muhtemelen sadece aidat sayfasında kullanıcı aramak için kullanılıyordu.
-     */
-    public function getUserTypeAhead($column = '', $value = '')
-    {
-        try {
-            $response = \UserModel::where($column, 'like', "%" . $value . "%")->get([$column . ' as value']);
-        } catch (Exception $e) {
-            $response = array('status' => 'danger', 'msg' => $e->getMessage());
-        }
-        return response()->json($response);
-    }
-
+    
     /*
      * post istekleri
      */
