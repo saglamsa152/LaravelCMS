@@ -151,6 +151,7 @@ return [
 		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 		'Folklore\Image\ImageServiceProvider',
 		'App\Providers\PostServiceProvider',
+        'App\Providers\UserServiceProvider',
 
 	],
 

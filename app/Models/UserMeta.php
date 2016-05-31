@@ -17,7 +17,7 @@ class UserMeta extends Model {
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
 	public function user() {
-		return $this->belongsTo( 'App\Models\User', 'userId' );
+		return $this->belongsTo( 'App\Models\UserModel', 'userId' );
 	}
 
 	/**

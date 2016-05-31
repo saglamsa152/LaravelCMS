@@ -9,7 +9,6 @@
 namespace App\MyClasses\Post;
 
 use Illuminate\Support\Str;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 
 
 class Post
