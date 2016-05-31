@@ -50,7 +50,6 @@ class Post
         $redirectAction = 'AdminController@get' . $actionToType[$postData['type']];//gönderinin türü ne ise o türün listesine yönlendirme için
         return $ajaxResponse = array('status' => 'success', 'msg' => _('Processing was carried out successfully'), 'redirect' => \URL::action($redirectAction));
 
-
     }
 
     /**
@@ -64,7 +63,7 @@ class Post
     public function delete(array $ids)
     {
         if (!\Request::ajax()) throw new \Exception(_('This request is not Ajax. Accept only ajax request.'));
-        if (!is_null($ids || !empty($ids))) {
+        if (!is_null($ids) || !empty($ids)) {
             \PostModel::whereIn('id', $ids)->update(['status' => 'trashed']);
             \PostModel::destroy($ids);
             return $response = array('status' => 'success', 'msg' => 'Deleted Successfully', 'redirect' => '');
