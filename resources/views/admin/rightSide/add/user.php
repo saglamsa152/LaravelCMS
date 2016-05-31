@@ -40,7 +40,7 @@
 					<div class="form-group col-md-6">
 						<?= Form::label( 'role', _( 'User Role :' ), array( 'class' => 'control-label col-md-4' ) ) ?>
 						<div class="input-group col-md-8">
-							<?= Form::select('role',User::getRoles(),'user',array( 'class' => 'form-control ' ))?>
+							<?= Form::select('role',UserModel::getRoles(),'user',array( 'class' => 'form-control ' ))?>
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
 

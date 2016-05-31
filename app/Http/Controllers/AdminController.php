@@ -20,7 +20,6 @@ class AdminController extends BaseController
          */
         $this->beforeFilter('csrf', array('on' => 'post', 'except' => 'postMarkAsReadContact'));
 
-
     }
 
     /**
@@ -81,7 +80,7 @@ class AdminController extends BaseController
         if (userCan('viewUsers')) {
             $title = _('Members');
             $rightSide = 'list/users';
-            $users = \User::all();
+            $users = \UserModel::all();
             $error = null;
         } else {
             $title = _('Permission Error');
@@ -106,7 +105,7 @@ class AdminController extends BaseController
         if (!userCan('manageUsers') || is_null($id)) {
             $id = \Auth::user()->id;
         }
-        $user = \User::find($id);//kullanıcıyı getiriyoruz
+        $user = \UserModel::find($id);//kullanıcıyı getiriyoruz
         //kullanıcı metabilgileri user değişkenine aktarılıyor
         foreach ($user->userMeta as $meta) {
             $user = array_add($user, $meta->metaKey, $meta->metaValue);
@@ -154,7 +153,7 @@ class AdminController extends BaseController
                     $ajaxResponse = array('status' => 'danger', 'msg' => $validator->messages()->toArray()); //todo  burası  olmuyor
                     return response()->json($ajaxResponse);
                 } else {
-                    $user = \User::find($postData['id']);
+                    $user = \UserModel::find($postData['id']);
                     // meta bilgilerini  dizinen çıkartalım
                     $metas = array_pull($postData, 'meta');
                     // yeni bilgileri güncelleyelim
@@ -206,7 +205,7 @@ class AdminController extends BaseController
                     $postData['created_ip'] = \Request::getClientIp();
 
                     // kullanıcıyı oluşturalım
-                    $user = \User::create($postData);//kulllanıcıyı kaydedelim
+                    $user = \UserModel::create($postData);//kulllanıcıyı kaydedelim
 
                     if ($user) {
                         /**
@@ -256,7 +255,7 @@ class AdminController extends BaseController
             return response()->json($ajaxResponse);
         } else {
             if (isset($postData['id'])) {
-                $user = \User::findOrFail($postData['id']);
+                $user = \UserModel::findOrFail($postData['id']);
                 if ($postData['currentPassword'] !== $postData['password']) {
                     if (\Hash::check($postData['currentPassword'], $user->getAuthPassword())) {
                         $user->password = \Hash::make($postData['password']);
@@ -277,7 +276,7 @@ class AdminController extends BaseController
             $ids = (array)\Input::get('id');
             if (!is_null($ids)) {
                 if (!in_array('1', $ids)):
-                    \User::destroy($ids);
+                    \UserModel::destroy($ids);
                     $response = array('status' => 'success', 'msg' => _('Deleted Successfully'), 'redirect' => \URL::action('AdminController@getUsers'));
                 else:
                     $response = array('status' => 'danger', 'msg' => _('Admin can not be delete'));
@@ -293,7 +292,7 @@ class AdminController extends BaseController
             if (\Request::ajax()) {
                 $ids = (array)\Input::get('id');
                 if (!is_null($ids || !empty($ids))) {
-                    $users = \User::find($ids);
+                    $users = \UserModel::find($ids);
                     foreach ($users as $user) {
                         if ($user->role == 'unapproved') $user->role = 'user';
                         else if ($user->id != '1') $user->role = 'unapproved';
@@ -679,7 +678,7 @@ class AdminController extends BaseController
     {
         if (\Request::ajax()) {
             extract(\Input::all());
-            $admin = \User::find(1);
+            $admin = \UserModel::find(1);
             $mailData = array('name' => $name, 'email' => $email, 'phone' => $phone, 'contactMessage' => $message);
             Mail::send('emails.contact', $mailData, function ($message) use ($admin) {
                 $message->to($admin->email, $admin->getScreenName())->subject(_('Contact Message'));
@@ -763,7 +762,7 @@ class AdminController extends BaseController
     public function getUserTypeAhead($column = '', $value = '')
     {
         try {
-            $response = \User::where($column, 'like', "%" . $value . "%")->get([$column . ' as value']);
+            $response = \UserModel::where($column, 'like', "%" . $value . "%")->get([$column . ' as value']);
         } catch (Exception $e) {
             $response = array('status' => 'danger', 'msg' => $e->getMessage());
         }
@@ -848,7 +847,7 @@ class AdminController extends BaseController
         if ($validator->fails()) {
             return \Redirect::action('AdminController@getRegister')->withInput()->withErrors($validator->messages());
         } else {
-            $user = \User::create(array(
+            $user = \UserModel::create(array(
                 'username' => $postData['username'],
                 'email' => $postData['email'],
                 'password' => \Hash::make($postData['password']),

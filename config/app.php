@@ -210,6 +210,7 @@ return [
 		'FileManager'=> 'App\MyClasses\FileManager\FileManager',
 		'Image' => 'Folklore\Image\Facades\Image',
 		'Post' => 'App\MyClasses\Post\PostFacade',
+		'User' => 'App\MyClasses\Post\UserFacade',
 		/*
 		 * Model takma isimleri
 		 */
@@ -218,7 +219,7 @@ return [
 		'Orders'=>'App\Models\Orders',
 		'PostModel'=>'App\Models\PostModel',
 		'PostMeta'=>'App\Models\PostMeta',
-		'User'=>'App\Models\User',
+		'UserModel'=>'App\Models\UserModel',
 		'UserMeta'=>'App\Models\UserMeta',
 
 	],

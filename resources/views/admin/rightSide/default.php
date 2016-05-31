@@ -51,7 +51,7 @@
 				<div class="small-box bg-yellow">
 					<div class="inner">
 						<h3>
-							<?=User::count('id')?>
+							<?=UserModel::count('id')?>
 						</h3>
 
 						<p>
