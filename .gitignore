@@ -1,6 +1,8 @@
 /vendor
 /node_modules
 .env
+_ide_helper.php
+composer.lock
 
 ### Laravel template
 /bootstrap/compiled.php
