@@ -78,7 +78,7 @@ class UserModel extends Model implements AuthenticatableContract, CanResetPasswo
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
 	public function post() {
-		return $this->hasMany( 'App\Models\Post', 'author' );
+		return $this->hasMany( 'App\Models\PostModel', 'author' );
 	}
 
 	/**
@@ -161,7 +161,7 @@ class UserModel extends Model implements AuthenticatableContract, CanResetPasswo
 	 * Kullanıcı adına dues tablosnuna kaydedilmiş yılları döner
 	 * @return array
 	 */
-	public function getDuesYears() {
+	public function getDuesYears() { //todo silinecek
 		$years = array();
 		foreach ( $this->dues as $dues ):
 			$years[$dues->year] = $dues->year;
