@@ -2,6 +2,7 @@
 
 use App\Models\Option;
 use App\Models\PostModel;
+use App\MyClasses\User\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Exception;
@@ -132,41 +133,42 @@ class AdminController extends BaseController
     public function postUpdateUser()
     {
         try {
-            if (\Request::ajax()) {
-                $postData = \Input::all();
-                //kurallar
-                $rules = array(
-                    'username' => 'required|min:3',
-                    'email' => 'required|email'
-                );
-                // todo  ingilzce  tercüme
-                $messages = array(
-                    'username.required' => _('Bir kullanıcı adı tanımlamalısınız'),
-                    'content.required' => _('Bir e-mail belirtmelisiniz'),
-                    'username.unique' => _('Kullanıcı adı kullanılıyor'),
-                    'email.unique' => _('Mail adresi kullanılıyor'),
-                    'username.min' => _('Kullanıcını adınız en az 3 karakterden oluşmalıdır'),
-                );
-                $validator = \Validator::make($postData, $rules, $messages);
-
-                if ($validator->fails()) {
-                    $ajaxResponse = array('status' => 'danger', 'msg' => $validator->messages()->toArray()); //todo  burası  olmuyor
-                    return response()->json($ajaxResponse);
-                } else {
-                    $user = \UserModel::find($postData['id']);
-                    // meta bilgilerini  dizinen çıkartalım
-                    $metas = array_pull($postData, 'meta');
-                    // yeni bilgileri güncelleyelim
-                    $user->fill($postData)->push();
-
-                    foreach ($metas as $key => $value) {
-                        if (is_null($value)) continue;
-                        \UserMeta::setMeta($postData['id'], $key, $value);
-                    }
-                    $response = array('status' => 'success', 'msg' => _('Saved successfully'), 'redirect' => \URL::action('AdminController@getProfile', $postData['id']));
-                    return response()->json($response);
-                }
+            /*
+             * Users Data 
+             */
+            $postData = \Input::all();
+            /*
+             *  Validate Rules
+             */
+            $rules = array(
+                'username' => 'required|min:3',
+                'email' => 'required|email'
+            );
+            /*
+             * Validate Messages
+             */
+            // todo  ingilzce  tercüme
+            $messages = array(
+                'username.required' => _('Bir kullanıcı adı tanımlamalısınız'),
+                'content.required' => _('Bir e-mail belirtmelisiniz'),
+                'username.unique' => _('Kullanıcı adı kullanılıyor'),
+                'email.unique' => _('Mail adresi kullanılıyor'),
+                'username.min' => _('Kullanıcını adınız en az 3 karakterden oluşmalıdır'),
+            );
+            /*
+             * Create Validator
+             */
+            $validator = \Validator::make($postData, $rules, $messages);
+            /*
+             * Check validator
+             */
+            if ($validator->fails()) {
+                $ajaxResponse = array('status' => 'danger', 'msg' => $validator->messages()->toArray()); //todo  burası  olmuyor
+                return response()->json($ajaxResponse);
+            } else {
+                return response()->json(User::update($postData));
             }
+
         } catch (Exception $e) {
             $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage());
             return response()->json($ajaxResponse);
@@ -701,7 +703,7 @@ class AdminController extends BaseController
         }
         return \View::make('admin.index')->with(compact('title', 'rightSide'))->withErrors($error);
     }
-    
+
     /*
      * post istekleri
      */
