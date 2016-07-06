@@ -209,7 +209,7 @@ return [
 		'FileManager'=> 'App\MyClasses\FileManager\FileManager',
 		'Image' => 'Folklore\Image\Facades\Image',
 		'Post' => 'App\MyClasses\Post\PostFacade',
-		'User' => 'App\MyClasses\Post\UserFacade',
+		'User' => 'App\MyClasses\User\UserFacade',
 		/*
 		 * Model takma isimleri
 		 */
