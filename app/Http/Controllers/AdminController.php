@@ -2,11 +2,11 @@
 
 use App\Models\Option;
 use App\Models\PostModel;
-use App\MyClasses\User\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use App\MyClasses\Post\PostFacade as Post;
+use App\MyClasses\User\UserFacade as User;
 
 class AdminController extends BaseController
 {
@@ -130,6 +130,11 @@ class AdminController extends BaseController
         return \View::make('admin.index')->with(compact('title', 'rightSide'))->withErrors($error);
     }
 
+    /**
+     * Kullanıcı düzenleme sayfasında belirtilen bilgilere göre seçilen kullnıcının verilerini günceller
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function postUpdateUser()
     {
         try {
@@ -175,59 +180,50 @@ class AdminController extends BaseController
         }
     }
 
+    /**
+     * Yeni Kullnıcı ekleme sayfasındaki bilgiler ile yeni bir kullanıcıyı oluşturur
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function postAddUser()
     {
         try {
-            if (\Request::ajax()) {
-                $postData = \Input::all();
-                //kurallar
-                $rules = array(
-                    'username' => 'required|min:3|unique:users,username',
-                    'email' => 'required|email|unique:users,email'
-                );
-                // todo  ingilzce  tercüme
-                $messages = array(
-                    'username.required' => _('Bir kullanıcı adı tanımlamalısınız'),
-                    'content.required' => _('Bir e-mail belirtmelisiniz'),
-                    'username.unique' => _('Kullanıcı adı kullanılıyor'),
-                    'email.unique' => _('Mail adresi kullanılıyor'),
-                    'username.min' => _('Kullanıcını adınız en az 3 karakterden oluşmalıdır'),
-                );
-                $validator = \Validator::make($postData, $rules, $messages);
-
-                if ($validator->fails()) {
-                    $ajaxResponse = array('status' => 'danger', 'msg' => $validator->messages()->toArray());
-                    return response()->json($ajaxResponse);
-                } else {
-                    $password = str_random(6);
-                    //meta verileini diziden çıkartalım ve $userMeta değişkenine atayalım
-                    $userMeta = array_pull($postData, 'meta');
-                    //password ve created_ip alanlarını  diziye ekleyelim
-                    $postData['password'] = \Hash::make($password);
-                    $postData['created_ip'] = \Request::getClientIp();
-
-                    // kullanıcıyı oluşturalım
-                    $user = \UserModel::create($postData);//kulllanıcıyı kaydedelim
-
-                    if ($user) {
-                        /**
-                         * yeni oluşturulan kullanıcının şifresini kullanıcının mail adresime mail olark gönderelim
-                         */
-                        $mailData = array('username' => $postData['username'], 'password' => $password);
-                        \Mail::send('emails.welcome', $mailData, function ($message) use ($postData) {
-                            $message->to($postData['email'], $postData['name'] . ' ' . $postData['lastName'])->subject('Hoş geldiniz!');
-                            $message->from(Option::getOption('mainMailAddress'), Option::getOption('siteName'));
-                        });
-
-                        //kullanıcı meta verilerini  kaydedelim
-                        foreach ($userMeta as $key => $value) {
-                            \UserMeta::setMeta($user->id, $key, $value);
-                        }
-                    }
-                    $ajaxResponse = array('status' => 'success', 'msg' => _('Yeni Üye oluşturuldu'), 'redirect' => \URL::action('AdminController@getProfile', $user->id));
-                    return response()->json($ajaxResponse);
-                }
+            /*
+             * Girilen veriler alınıyor
+             */
+            $postData = \Input::all();
+            /*
+             * Validate Rules
+             */
+            $rules = array(
+                'username' => 'required|min:3|unique:users,username',
+                'email' => 'required|email|unique:users,email'
+            );
+            /*
+             * Validate Messages
+             */
+            // todo  ingilzce  tercüme
+            $messages = array(
+                'username.required' => _('Bir kullanıcı adı tanımlamalısınız'),
+                'content.required' => _('Bir e-mail belirtmelisiniz'),
+                'username.unique' => _('Kullanıcı adı kullanılıyor'),
+                'email.unique' => _('Mail adresi kullanılıyor'),
+                'username.min' => _('Kullanıcını adınız en az 3 karakterden oluşmalıdır'),
+            );
+            /*
+             * Create Validate
+             */
+            $validator = \Validator::make($postData, $rules, $messages);
+            /*
+             * Check Validate
+             */
+            if ($validator->fails()) {
+                $ajaxResponse = array('status' => 'danger', 'msg' => $validator->messages()->toArray());
+                return response()->json($ajaxResponse);
+            } else {
+                return response()->json(User::add($postData));
             }
+
         } catch (Exception $e) {
             $ajaxResponse = array('status' => 'danger', 'msg' => $e->getMessage() . $e->getFile() . $e->getLine());
             return response()->json($ajaxResponse);
@@ -236,12 +232,21 @@ class AdminController extends BaseController
 
     public function postUpdateUserPassword()
     {
+        /*
+         * Get Values
+         */
         $postData = \Input::all();
+        /*
+         * Validate Rules
+         */
         $rules = array(
             'currentPassword' => 'required',
             'password' => 'required|min:4|confirmed',
             'password_confirmation' => 'required'
         );
+        /*
+         * Validate Messages
+         */
         // todo  İngilizce  tercüme yapılacak
         $messages = array(
             'currentPassword.required' => _('Lütfen şuanki şifrenizi yazın'),
@@ -250,25 +255,18 @@ class AdminController extends BaseController
             'password.confirmed' => _('Girdiğiniz şifreler birbiriyle eşleşmiyor'),
             'password_confirmation.required' => _('Lütfen şifrenizi doğrulayın')
         );
+        /*
+         * Create Validate
+         */
         $validator = \Validator::make($postData, $rules, $messages);
-
+        /*
+         * Check Validate
+         */
         if ($validator->fails()) {
             $ajaxResponse = array('status' => 'danger', 'msg' => $validator->messages()->toArray());
             return response()->json($ajaxResponse);
         } else {
-            if (isset($postData['id'])) {
-                $user = \UserModel::findOrFail($postData['id']);
-                if ($postData['currentPassword'] !== $postData['password']) {
-                    if (\Hash::check($postData['currentPassword'], $user->getAuthPassword())) {
-                        $user->password = \Hash::make($postData['password']);
-                        $user->save();
-                        $ajaxResponse = array('status' => 'info', 'msg' => '');
-                    } else {
-                        $ajaxResponse = array('status' => 'danger', 'msg' => array('currentPassword' => _('Incorrect Password')));
-                    }
-                } else $ajaxResponse = array('status' => 'danger', 'msg' => array('password' => _('Passwords mustn\'t same')));
-            }
-            return response()->json($ajaxResponse);
+            return response()->json(User::updatePassword($postData));
         }
     }
 
